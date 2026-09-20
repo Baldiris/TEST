@@ -1,75 +1,61 @@
-const THEMES = {
-  signage: {
-    letter:"A", name:"メトロ・サイン計画",
-    description:"駅の案内サインのように、迷わず次の操作へ進めるデザイン。",
-    tags:["視認性","実用性","現行から移行しやすい"]
-  },
-  boardgame: {
-    letter:"B", name:"トラベルボードゲーム",
-    description:"旅の高揚感とサイコロ遊びを前面に出した、明るいゲーム盤デザイン。",
-    tags:["桃鉄感","楽しさ","演出を伸ばしやすい"]
-  },
-  night: {
-    letter:"C", name:"TOKYO NIGHT LINE",
-    description:"夜の東京を路線の光で駆け抜ける、没入感のあるダークデザイン。",
-    tags:["世界観","路線カラー","夜の旅"]
-  }
+const ENTRIES = {
+  a:"A案｜駅サイン式",
+  b:"B案｜盤面主役式",
+  c:"C案｜旅程手帳式"
 };
+const STORAGE_KEY="kimagureMetroDesignVoteV02";
+const LEGACY_KEY="kimagureMetroDesignVoteV01";
+const voteResult=document.getElementById("voteResult");
+const voteResultText=document.getElementById("voteResultText");
+let activeEntry="a";
 
-const STORAGE_KEY = "kimagureMetroDesignVoteV01";
-const prototype = document.getElementById("prototype");
-const conceptName = document.getElementById("conceptName");
-const entryLetter = document.getElementById("entryLetter");
-const conceptTitle = document.getElementById("conceptTitle");
-const conceptDescription = document.getElementById("conceptDescription");
-const conceptTags = document.getElementById("conceptTags");
-const voteButton = document.getElementById("voteButton");
-const voteResult = document.getElementById("voteResult");
-const voteResultText = document.getElementById("voteResultText");
-let activeTheme = "signage";
-
-function renderVote(){
-  const vote = localStorage.getItem(STORAGE_KEY);
-  const choice = THEMES[vote];
-  voteResult.classList.toggle("hidden",!choice);
-  if(choice) voteResultText.textContent = choice.letter+"案｜"+choice.name;
-  voteButton.textContent = vote===activeTheme ? "この案に投票済み ✓" : THEMES[activeTheme].letter+"案に投票する";
+function savedVote(){
+  const current=localStorage.getItem(STORAGE_KEY);
+  if(ENTRIES[current]) return current;
+  const legacy=localStorage.getItem(LEGACY_KEY);
+  return ENTRIES[legacy]?legacy:null;
 }
 
-function selectTheme(theme){
-  if(!THEMES[theme]) return;
-  activeTheme = theme;
-  const data = THEMES[theme];
-  prototype.dataset.theme = theme;
-  conceptName.textContent = data.letter+"案｜"+data.name;
-  entryLetter.textContent = data.letter;
-  conceptTitle.textContent = data.name;
-  conceptDescription.textContent = data.description;
-  conceptTags.innerHTML = "";
-  data.tags.forEach(tag=>{
-    const span=document.createElement("span");
-    span.textContent=tag;
-    conceptTags.appendChild(span);
+function renderVote(){
+  const vote=savedVote();
+  voteResult.classList.toggle("hidden",!vote);
+  voteResultText.textContent=vote?ENTRIES[vote]:"";
+  document.querySelectorAll("[data-vote-entry]").forEach(button=>{
+    const selected=button.dataset.voteEntry===vote;
+    button.textContent=selected?ENTRIES[vote].split("｜")[0]+"を選択中 ✓":button.dataset.voteEntry.toUpperCase()+"案を選ぶ";
   });
-  document.querySelectorAll("[data-theme-target]").forEach(button=>{
-    const selected=button.dataset.themeTarget===theme;
+}
+
+function selectEntry(entry){
+  if(!ENTRIES[entry]) return;
+  activeEntry=entry;
+  document.querySelectorAll("[data-entry-view]").forEach(view=>{
+    view.classList.toggle("active",view.dataset.entryView===entry);
+  });
+  document.querySelectorAll("[data-entry-target]").forEach(button=>{
+    const selected=button.dataset.entryTarget===entry;
     button.classList.toggle("active",selected);
     button.setAttribute("aria-pressed",String(selected));
   });
-  renderVote();
 }
 
-document.querySelectorAll("[data-theme-target]").forEach(button=>{
-  button.addEventListener("click",()=>selectTheme(button.dataset.themeTarget));
+document.querySelectorAll("[data-entry-target]").forEach(button=>{
+  button.addEventListener("click",()=>selectEntry(button.dataset.entryTarget));
 });
-voteButton.addEventListener("click",()=>{
-  localStorage.setItem(STORAGE_KEY,activeTheme);
-  renderVote();
-  voteResult.scrollIntoView({behavior:"smooth",block:"nearest"});
+document.querySelectorAll("[data-vote-entry]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    const entry=button.dataset.voteEntry;
+    localStorage.setItem(STORAGE_KEY,entry);
+    localStorage.removeItem(LEGACY_KEY);
+    renderVote();
+    voteResult.scrollIntoView({behavior:"smooth",block:"nearest"});
+  });
 });
 document.getElementById("clearVoteButton").addEventListener("click",()=>{
   localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(LEGACY_KEY);
   renderVote();
 });
 
-selectTheme("signage");
+selectEntry(activeEntry);
+renderVote();
