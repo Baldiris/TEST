@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#173a2a">
-  <title>きまぐれメトロ旅 V0.3</title>
+  <title>きまぐれメトロ旅 V0.4</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
         <div class="logo">M</div>
         <div>
           <h1>きまぐれメトロ旅</h1>
-          <p>東京メトロ全9路線 V0.3 / ローカル保存</p>
+          <p>東京メトロ ネットワーク盤面 V0.4</p>
         </div>
       </div>
       <button class="tiny" id="resetBtn">初期化</button>
@@ -23,85 +23,125 @@
     <section id="homeView">
       <div class="panel hero">
         <div class="eyebrow">TOKYO METRO NETWORK JOURNEY</div>
-        <h2>乗り換えて、<br>東京を進もう。</h2>
-        <p>出発駅とゴール駅をランダム抽選。乗る路線を選び、サイコロの目だけ進みます。乗換は0マスです。</p>
+        <h2>路線図を見ながら、<br>サイコロで東京を進む。</h2>
+        <p>現在地・ゴール・おすすめ経路・サイコロで行ける駅を、ひとつのネットワーク盤面で確認できます。</p>
       </div>
+
       <div class="panel">
-        <div class="section-title"><h2>V0.3</h2><p id="networkStat">9路線</p></div>
+        <div class="section-title">
+          <h2>V0.4 Network Board</h2>
+          <p id="networkStat">9路線</p>
+        </div>
         <div class="feature-grid">
-          <div class="feature"><b>全9路線</b><span>東京メトロ内を移動</span></div>
-          <div class="feature"><b>乗換対応</b><span>駅で自由に路線変更</span></div>
-          <div class="feature"><b>2クエスト</b><span>到着駅ごとに生成</span></div>
-          <div class="feature"><b>最短表示</b><span>ゴールまでの目安</span></div>
+          <div class="feature"><b>ネットワーク盤面</b><span>全9路線を一望</span></div>
+          <div class="feature"><b>駅を直接タップ</b><span>路線選択を不要に</span></div>
+          <div class="feature"><b>最短ルート強調</b><span>ゴール方向を可視化</span></div>
+          <div class="feature"><b>到達駅ハイライト</b><span>サイコロ後に表示</span></div>
         </div>
         <button class="btn orange" id="newGameBtn">新しい旅をはじめる</button>
-        <button class="btn secondary hidden" id="resumeBtn">途中から再開する</button>
-        <p class="notice">ログイン・GPS・AI API・バックエンドは使用しません。進行状況はこのブラウザだけに保存されます。</p>
+        <button class="btn secondary hidden gap-top" id="resumeBtn">途中から再開する</button>
+        <p class="notice">ログイン・GPS・AI API・バックエンドは使いません。進行状況はこのブラウザだけに保存されます。</p>
       </div>
     </section>
 
     <section id="setupView" class="hidden">
       <div class="panel">
-        <div class="section-title"><h2>旅の行き先を抽選</h2><p>東京メトロ全駅</p></div>
+        <div class="section-title">
+          <h2>旅の行き先を抽選</h2>
+          <p>東京メトロ全ネットワーク</p>
+        </div>
         <div class="timeline"><span class="step on"></span><span class="step"></span><span class="step"></span></div>
+
         <div class="slot">
           <div class="slot-label">START</div>
           <div class="slot-value" id="startSlot">？</div>
-          <div class="slot-sub" id="startLines"></div>
+          <div class="chips" id="startLines"></div>
           <button class="btn orange" id="drawStartBtn">出発駅を抽選</button>
         </div>
+
         <div class="slot">
           <div class="slot-label">GOAL</div>
           <div class="slot-value" id="goalSlot">？</div>
-          <div class="slot-sub" id="goalLines"></div>
+          <div class="chips" id="goalLines"></div>
           <button class="btn orange" id="drawGoalBtn" disabled>ゴール駅を抽選</button>
         </div>
+
         <div class="message hidden" id="setupRoute"></div>
         <button class="btn" id="confirmSetupBtn" disabled>この旅を開始</button>
-        <button class="btn ghost" id="cancelSetupBtn">ホームへ戻る</button>
+        <button class="btn ghost gap-top" id="cancelSetupBtn">ホームへ戻る</button>
       </div>
     </section>
 
     <section id="gameView" class="hidden">
-      <div class="panel">
-        <div class="section-title"><h2>現在地</h2><p id="turnText">TURN 1</p></div>
+      <div class="panel compact-panel">
+        <div class="section-title">
+          <h2>旅の状況</h2>
+          <p id="turnText">TURN 1</p>
+        </div>
         <div class="timeline"><span class="step on"></span><span class="step on"></span><span class="step"></span></div>
-        <div class="route-meta">
+
+        <div class="stats">
           <div class="stat"><b id="currentStat">-</b><span>現在駅</span></div>
           <div class="stat"><b id="remainStat">-</b><span>最短残り駅数</span></div>
           <div class="stat"><b id="goalStat">-</b><span>ゴール</span></div>
         </div>
-        <div id="currentLines" class="chips"></div>
-        <div class="message" id="recommendation"></div>
+        <div class="chips center" id="currentLines"></div>
+        <div class="message recommendation" id="recommendation"></div>
+      </div>
+
+      <div class="panel network-panel">
+        <div class="section-title">
+          <div>
+            <h2>ネットワーク盤面</h2>
+            <p id="boardHint">現在地とゴールを確認できます</p>
+          </div>
+          <div class="board-tools">
+            <button class="mini-btn" id="fitBtn">全体</button>
+            <button class="mini-btn" id="centerBtn">現在地</button>
+          </div>
+        </div>
+
+        <div class="legend">
+          <span><i class="legend-node current"></i>現在地</span>
+          <span><i class="legend-node goal"></i>ゴール</span>
+          <span><i class="legend-node reachable"></i>移動可能</span>
+          <span><i class="legend-line"></i>最短ルート</span>
+        </div>
+
+        <div class="network-scroll" id="networkScroll">
+          <svg id="networkSvg" viewBox="0 0 1400 820" role="img" aria-label="東京メトロ簡易ネットワーク図"></svg>
+        </div>
+
+        <p class="notice board-note">※実際の地理位置を再現した地図ではなく、ゲーム用の簡略ネットワーク図です。線のつながりと乗換関係を優先しています。</p>
       </div>
 
       <div class="panel" id="dicePanel">
-        <div class="section-title"><h2>① 乗る路線</h2><p>乗換 0マス</p></div>
-        <div id="routeChoices" class="route-choices"></div>
-
-        <div class="section-title compact"><h2>② サイコロ</h2><p id="selectedRouteText"></p></div>
+        <div class="section-title">
+          <h2>サイコロ</h2>
+          <p id="diceStateText">振って移動可能駅を表示</p>
+        </div>
         <div class="dicebox">
           <div class="dice" id="dice">⚄</div>
           <button class="btn orange" id="rollBtn">サイコロを振る</button>
         </div>
-
-        <div id="movePanel" class="hidden">
-          <div class="section-title compact"><h2>③ 進む方向</h2><p id="diceResultText"></p></div>
-          <div id="moveChoices" class="move-choices"></div>
-          <p class="notice">ゴール駅を途中で通過する場合は、その駅で到着扱いになります。終点を越える分は終点で止まります。</p>
-        </div>
+        <div id="reachableSummary" class="message hidden"></div>
       </div>
 
       <div class="panel hidden" id="arrivalPanel">
-        <div class="section-title"><h2>移動先</h2><p id="arrivalLineText"></p></div>
+        <div class="section-title">
+          <h2>移動先</h2>
+          <p id="arrivalLineText"></p>
+        </div>
         <div class="arrival-card">
           <div class="arrival-big" id="arrivalStation">-</div>
           <div class="chips" id="arrivalCodes"></div>
+          <div class="route-guide" id="arrivalRoute"></div>
         </div>
         <div class="grid2">
           <a class="btn secondary" id="mapLink" target="_blank" rel="noopener">地図で駅を見る</a>
           <button class="btn" id="arrivedBtn">到着した</button>
         </div>
+        <button class="btn ghost gap-top" id="changeTargetBtn">移動先を選び直す</button>
       </div>
 
       <div class="panel hidden" id="questPanel">
@@ -123,12 +163,13 @@
         <h2>ゴール到着！</h2>
         <p id="finishText"></p>
         <button class="btn orange" id="restartBtn">もう一度遊ぶ</button>
-        <button class="btn secondary" id="backHomeBtn">ホームへ戻る</button>
+        <button class="btn secondary gap-top" id="backHomeBtn">ホームへ戻る</button>
       </div>
     </section>
 
-    <footer>Kimagure Metro Trip V0.3 — Tokyo Metro network prototype</footer>
+    <footer>Kimagure Metro Trip V0.4 — Network Board</footer>
   </main>
+
   <div class="toast" id="toast"></div>
   <script src="app.js"></script>
 </body>
