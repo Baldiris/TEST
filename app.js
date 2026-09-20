@@ -282,9 +282,16 @@ function renderBoard(){
         if(station===state.target){fill="#dff0ff";stroke="#1677c8";sw=5}
         g.appendChild(svgEl("circle",{cx:p.x,cy:p.y,r:radius,fill,stroke,"stroke-width":sw}));
 
+        const important=isCurrent||isGoal||isReachable;
+        const labelY=p.y-13;
         const label=svgEl("text",{
-          x:p.x,y:p.y-13,"text-anchor":"middle",fill:"#3e4943",
-          "font-size":"10","font-weight":isCurrent||isGoal||isReachable?"800":"600",
+          x:important?p.x:p.x+3,
+          y:labelY,
+          "text-anchor":important?"middle":"start",
+          fill:"#3e4943",
+          "font-size":important?"10":"9",
+          "font-weight":important?"800":"600",
+          transform:important?"":"rotate(-34 "+p.x+" "+labelY+")",
           class:"station-label"
         });
         label.textContent=raw;
