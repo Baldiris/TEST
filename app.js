@@ -429,13 +429,20 @@ function hardReset(){
 
 function fitBoard(){
   const el=$("networkScroll");
+  el.classList.add("overview");
   el.scrollTo({left:0,top:0,behavior:"smooth"});
+  $("fitBtn").textContent="全体表示中";
 }
 function centerCurrent(){
   const occ=(OCCURRENCES[state.current]||[])[0];
   if(!occ) return;
-  const p=occurrencePoint(occ.lineId,occ.pathIndex,occ.index),el=$("networkScroll");
-  el.scrollTo({left:Math.max(0,p.x-el.clientWidth/2),top:Math.max(0,p.y-el.clientHeight/2),behavior:"smooth"});
+  const el=$("networkScroll");
+  el.classList.remove("overview");
+  $("fitBtn").textContent="全体";
+  requestAnimationFrame(()=>{
+    const p=occurrencePoint(occ.lineId,occ.pathIndex,occ.index);
+    el.scrollTo({left:Math.max(0,p.x-el.clientWidth/2),top:Math.max(0,p.y-el.clientHeight/2),behavior:"smooth"});
+  });
 }
 
 $("networkStat").textContent="9路線 / "+ALL_STATIONS.length+"駅ネットワーク";
