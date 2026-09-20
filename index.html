@@ -1,419 +1,203 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#0f5132" />
-  <title>きまぐれメトロ旅 V0.1</title>
-  <style>
-    :root{
-      --bg:#f6f2e8;--panel:#fffdf7;--ink:#1f2a24;--muted:#6e776f;
-      --green:#0f5132;--green2:#176b43;--orange:#f29f05;--line:#f39700;
-      --border:#ded8ca;--shadow:0 12px 30px rgba(30,45,36,.12);
-      --danger:#a63d2f;--ok:#24794d;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--ink);background:linear-gradient(180deg,#f0eadc,#faf7ef 38%,#f6f2e8)}
-    button,input{font:inherit}
-    button{cursor:pointer}
-    .app{max-width:560px;margin:0 auto;min-height:100vh;padding:16px 14px 44px}
-    .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
-    .brand{display:flex;align-items:center;gap:10px}
-    .logo{width:42px;height:42px;border-radius:14px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:900;box-shadow:var(--shadow)}
-    .brand h1{font-size:18px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}
-    .tiny{border:1px solid var(--border);background:#fff;padding:9px 11px;border-radius:11px;color:var(--ink)}
-    .panel{background:rgba(255,253,247,.96);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
-    .hero{padding:22px 18px;background:linear-gradient(145deg,#0f5132,#176b43);color:#fff;border:none}
-    .hero .eyebrow{font-size:12px;opacity:.8}.hero h2{font-size:28px;line-height:1.25;margin:7px 0 10px}.hero p{margin:0;opacity:.9;line-height:1.7}
-    .btn{width:100%;border:none;border-radius:14px;padding:14px 16px;font-weight:800;background:var(--green);color:#fff;box-shadow:0 6px 14px rgba(15,81,50,.2)}
-    .btn:hover{filter:brightness(1.04)}.btn:disabled{opacity:.42;cursor:not-allowed}
-    .btn.secondary{background:#fff;color:var(--green);border:1px solid #b8cabb;box-shadow:none}
-    .btn.orange{background:var(--orange);color:#221b0b}
-    .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--border);box-shadow:none}
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .section-title{display:flex;justify-content:space-between;align-items:end;gap:10px;margin-bottom:14px}
-    .section-title h2{font-size:20px;margin:0}.section-title p{font-size:12px;color:var(--muted);margin:0}
-    .route-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-    .stat{background:#f6f3ea;border:1px solid #e5dfd0;border-radius:13px;padding:10px;text-align:center}
-    .stat b{display:block;font-size:18px}.stat span{font-size:11px;color:var(--muted)}
-    .route{display:flex;overflow-x:auto;padding:10px 6px 18px;gap:0;scroll-snap-type:x proximity}
-    .station{min-width:82px;position:relative;text-align:center;scroll-snap-align:center}
-    .station:not(:last-child)::after{content:"";position:absolute;top:17px;left:50%;width:100%;height:5px;background:#d9d3c7;z-index:0}
-    .station.passed:not(:last-child)::after,.station.in-range:not(:last-child)::after{background:var(--line)}
-    .dot{position:relative;z-index:1;width:34px;height:34px;margin:0 auto 7px;border:5px solid #d9d3c7;background:#fff;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:900}
-    .station.passed .dot,.station.in-range .dot{border-color:var(--line)}
-    .station.current .dot{border-color:var(--green);background:var(--green);color:#fff;transform:scale(1.14);box-shadow:0 0 0 6px rgba(15,81,50,.13)}
-    .station.goal .dot{border-color:var(--orange)}
-    .station.target .dot{animation:pulse 1s infinite alternate}
-    .sname{font-size:11px;font-weight:700;line-height:1.25}.scode{font-size:10px;color:var(--muted);margin-top:2px}
-    .badge{display:inline-block;font-size:9px;padding:2px 5px;border-radius:999px;margin-top:4px;background:#eee;color:#555}
-    .current .badge{background:#dfeee5;color:var(--green)}.goal .badge{background:#fff0cf;color:#8d5a00}
-    @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.15)}}
-    .dicebox{text-align:center;padding:12px 0 5px}
-    .dice{width:112px;height:112px;margin:4px auto 14px;border-radius:26px;background:#fff;border:3px solid #1d2a23;display:grid;place-items:center;font-size:58px;box-shadow:0 9px 0 #cfc8bb;transition:.15s}
-    .dice.rolling{animation:shake .12s infinite alternate}
-    @keyframes shake{from{transform:translate(-2px,-2px) rotate(-2deg)}to{transform:translate(2px,2px) rotate(2deg)}}
-    .message{background:#f7f4ed;border:1px solid var(--border);border-radius:14px;padding:13px 14px;line-height:1.6;margin:12px 0}
-    .message strong{color:var(--green)}
-    .slot{border:2px dashed #c8bfae;border-radius:18px;padding:18px;text-align:center;background:#fbf8f0}
-    .slot-label{font-size:12px;color:var(--muted)}.slot-value{font-size:30px;font-weight:900;margin:9px 0}
-    .quest{padding:14px;border-radius:15px;border:1px solid var(--border);background:#fff;margin:10px 0;display:flex;gap:12px;align-items:flex-start}
-    .quest-num{min-width:30px;height:30px;border-radius:10px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:900}
-    .quest h3{font-size:15px;margin:1px 0 5px}.quest p{font-size:12px;color:var(--muted);margin:0;line-height:1.5}
-    .check{margin-left:auto;border:1px solid var(--border);background:#fff;width:40px;height:40px;border-radius:12px;font-size:18px}
-    .check.done{background:#e1f1e7;border-color:#99c7aa;color:var(--ok)}
-    .timeline{display:flex;gap:8px;align-items:center;margin:14px 0 4px}
-    .step{height:6px;flex:1;border-radius:999px;background:#ddd7cb}.step.on{background:var(--green)}
-    .notice{font-size:12px;color:var(--muted);line-height:1.6}
-    .success{text-align:center;padding:8px 2px 4px}.success .big{font-size:52px}.success h2{font-size:25px;margin:7px 0}.success p{color:var(--muted);line-height:1.7}
-    .history{font-size:12px;color:var(--muted);max-height:170px;overflow:auto}
-    .history div{padding:7px 0;border-bottom:1px dashed #ddd6c8}
-    .hidden{display:none!important}
-    .toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(30px);background:#1e2e25;color:#fff;padding:11px 14px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.25s;z-index:50;max-width:90vw;text-align:center}
-    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-    .footer{text-align:center;font-size:11px;color:#8a8f89;margin-top:22px}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f5132">
+<title>きまぐれメトロ旅 V0.2</title>
+<style>
+:root{--bg:#f6f2e8;--panel:#fffdf7;--ink:#1f2a24;--muted:#6e776f;--green:#0f5132;--orange:#f29f05;--line:#f39700;--border:#ded8ca;--shadow:0 12px 30px rgba(30,45,36,.12)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--ink);background:linear-gradient(180deg,#f0eadc,#faf7ef 38%,#f6f2e8)}
+button{font:inherit;cursor:pointer}.app{max-width:620px;margin:0 auto;min-height:100vh;padding:16px 14px 44px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:10px}.logo{width:42px;height:42px;border-radius:14px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:900;box-shadow:var(--shadow)}
+.brand h1{font-size:18px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.tiny{border:1px solid var(--border);background:#fff;padding:9px 11px;border-radius:11px}
+.panel{background:rgba(255,253,247,.96);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);padding:18px;margin-bottom:14px}.hero{padding:22px 18px;background:linear-gradient(145deg,#0f5132,#176b43);color:#fff;border:none}
+.hero .eyebrow{font-size:12px;opacity:.8}.hero h2{font-size:28px;line-height:1.25;margin:7px 0 10px}.hero p{margin:0;opacity:.9;line-height:1.7}
+.btn{width:100%;border:none;border-radius:14px;padding:14px 16px;font-weight:800;background:var(--green);color:#fff;box-shadow:0 6px 14px rgba(15,81,50,.2)}.btn.secondary{background:#fff;color:var(--green);border:1px solid #b8cabb;box-shadow:none}.btn.orange{background:var(--orange);color:#221b0b}.btn:disabled{opacity:.42;cursor:not-allowed}
+.section-title{display:flex;justify-content:space-between;align-items:end;gap:10px;margin-bottom:14px}.section-title h2{font-size:20px;margin:0}.section-title p{font-size:12px;color:var(--muted);margin:0}.notice{font-size:12px;color:var(--muted);line-height:1.6}
+.line-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.line-card{border:2px solid transparent;background:#fff;border-radius:15px;padding:12px 8px;min-height:84px;text-align:center;box-shadow:0 3px 10px rgba(20,30,24,.06)}
+.line-card.selected{border-color:var(--line);box-shadow:0 0 0 3px color-mix(in srgb,var(--line) 18%,transparent)}.line-mark{width:36px;height:36px;margin:0 auto 6px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:900;font-size:13px}.line-name{font-size:12px;font-weight:800}.line-count{font-size:10px;color:var(--muted);margin-top:2px}
+.variant-box{margin-top:12px;padding:12px;border:1px solid var(--border);border-radius:14px;background:#f8f5ee}.variant-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.variant{padding:10px;border-radius:12px;border:1px solid var(--border);background:#fff;font-weight:700}.variant.selected{border-color:var(--line);background:#fffaf0}
+.slot{border:2px dashed #c8bfae;border-radius:18px;padding:18px;text-align:center;background:#fbf8f0}.slot-label{font-size:12px;color:var(--muted)}.slot-value{font-size:30px;font-weight:900;margin:9px 0}
+.timeline{display:flex;gap:8px;align-items:center;margin:14px 0 4px}.step{height:6px;flex:1;border-radius:999px;background:#ddd7cb}.step.on{background:var(--line)}
+.route-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.stat{background:#f6f3ea;border:1px solid #e5dfd0;border-radius:13px;padding:10px;text-align:center}.stat b{display:block;font-size:16px}.stat span{font-size:11px;color:var(--muted)}
+.route{display:flex;overflow-x:auto;padding:10px 6px 18px;gap:0;scroll-snap-type:x proximity}.station{min-width:84px;position:relative;text-align:center;scroll-snap-align:center}.station:not(:last-child)::after{content:"";position:absolute;top:17px;left:50%;width:100%;height:5px;background:#d9d3c7;z-index:0}.station.in-range:not(:last-child)::after,.station.passed:not(:last-child)::after{background:var(--line)}
+.dot{position:relative;z-index:1;width:34px;height:34px;margin:0 auto 7px;border:5px solid #d9d3c7;background:#fff;border-radius:50%;display:grid;place-items:center;font-size:9px;font-weight:900}.station.in-range .dot,.station.passed .dot{border-color:var(--line)}.station.current .dot{border-color:var(--green);background:var(--green);color:#fff;transform:scale(1.14);box-shadow:0 0 0 6px rgba(15,81,50,.13)}.station.goal .dot{border-color:var(--orange)}.station.target .dot{animation:pulse 1s infinite alternate}.sname{font-size:11px;font-weight:700;line-height:1.25}.scode{font-size:10px;color:var(--muted)}.badge{display:inline-block;font-size:9px;padding:2px 5px;border-radius:999px;margin-top:4px;background:#eee}.current .badge{background:#dfeee5;color:var(--green)}.goal .badge{background:#fff0cf;color:#8d5a00}
+@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.15)}}.dicebox{text-align:center;padding:12px 0 5px}.dice{width:112px;height:112px;margin:4px auto 14px;border-radius:26px;background:#fff;border:3px solid #1d2a23;display:grid;place-items:center;font-size:58px;box-shadow:0 9px 0 #cfc8bb}.dice.rolling{animation:shake .12s infinite alternate}@keyframes shake{from{transform:translate(-2px,-2px) rotate(-2deg)}to{transform:translate(2px,2px) rotate(2deg)}}
+.message{background:#f7f4ed;border:1px solid var(--border);border-radius:14px;padding:13px 14px;line-height:1.6;margin:12px 0}.message strong{color:var(--green)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quest{padding:14px;border-radius:15px;border:1px solid var(--border);background:#fff;margin:10px 0;display:flex;gap:12px;align-items:flex-start}.quest-num{min-width:30px;height:30px;border-radius:10px;background:var(--line);color:#fff;display:grid;place-items:center;font-weight:900}.quest h3{font-size:15px;margin:1px 0 5px}.quest p{font-size:12px;color:var(--muted);margin:0}.check{margin-left:auto;border:1px solid var(--border);background:#fff;width:40px;height:40px;border-radius:12px;font-size:18px}.check.done{background:#e1f1e7;border-color:#99c7aa;color:#24794d}
+.history{font-size:12px;color:var(--muted);max-height:170px;overflow:auto}.history div{padding:7px 0;border-bottom:1px dashed #ddd6c8}.success{text-align:center}.success .big{font-size:52px}.hidden{display:none!important}.footer{text-align:center;font-size:11px;color:#8a8f89;margin-top:22px}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(30px);background:#1e2e25;color:#fff;padding:11px 14px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.25s;z-index:50}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:420px){.line-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
 </head>
 <body>
-  <main class="app">
-    <header class="topbar">
-      <div class="brand">
-        <div class="logo">M</div>
-        <div><h1>きまぐれメトロ旅</h1><p>銀座線 V0.1 / ローカル保存</p></div>
-      </div>
-      <button class="tiny" id="resetBtn">初期化</button>
-    </header>
+<main class="app">
+<header class="topbar">
+  <div class="brand"><div class="logo">M</div><div><h1>きまぐれメトロ旅</h1><p>東京メトロ全9路線 V0.2</p></div></div>
+  <button class="tiny" id="resetBtn">初期化</button>
+</header>
 
-    <section id="homeView">
-      <div class="panel hero">
-        <div class="eyebrow">TOKYO METRO MINI JOURNEY</div>
-        <h2>サイコロで、<br>次の駅へ。</h2>
-        <p>出発駅とゴール駅をランダムに決め、銀座線を実際に移動して進むシンプルな駅探索ゲームです。</p>
-      </div>
-      <div class="panel">
-        <div class="section-title"><h2>はじめる</h2><p>1路線 / 19駅</p></div>
-        <button class="btn orange" id="newGameBtn">新しい旅をはじめる</button>
-        <button class="btn secondary hidden" style="margin-top:10px" id="resumeBtn">途中から再開する</button>
-        <p class="notice">ログイン・GPS・バックエンドは使いません。進行状況はこのブラウザにだけ保存されます。</p>
-      </div>
-    </section>
+<section id="homeView">
+  <div class="panel hero"><div class="eyebrow">TOKYO METRO MINI JOURNEY</div><h2>今日は、どの路線で<br>旅をする？</h2><p>東京メトロ9路線に対応。路線を選び、出発駅とゴール駅を抽選してサイコロで進みます。</p></div>
+  <div class="panel"><div class="section-title"><h2>はじめる</h2><p>9路線 / 180駅</p></div><button class="btn orange" id="newGameBtn">新しい旅をはじめる</button><button class="btn secondary hidden" style="margin-top:10px" id="resumeBtn">途中から再開する</button><p class="notice">進行状況はブラウザ内に保存されます。ログイン・GPS・バックエンドは不要です。</p></div>
+</section>
 
-    <section id="setupView" class="hidden">
-      <div class="panel">
-        <div class="section-title"><h2>旅の行き先を抽選</h2><p>出発 ≠ ゴール</p></div>
-        <div class="timeline"><span class="step on"></span><span class="step"></span><span class="step"></span></div>
-        <div class="slot">
-          <div class="slot-label">START</div>
-          <div class="slot-value" id="startSlot">？</div>
-          <button class="btn orange" id="drawStartBtn">出発駅を抽選</button>
-        </div>
-        <div class="slot" style="margin-top:12px">
-          <div class="slot-label">GOAL</div>
-          <div class="slot-value" id="goalSlot">？</div>
-          <button class="btn orange" id="drawGoalBtn" disabled>ゴール駅を抽選</button>
-        </div>
-        <button class="btn" style="margin-top:14px" id="confirmSetupBtn" disabled>この旅を開始</button>
-      </div>
-    </section>
+<section id="setupView" class="hidden">
+  <div class="panel">
+    <div class="section-title"><h2>1. 路線を選ぶ</h2><p id="selectedLineInfo">9路線</p></div>
+    <div class="line-grid" id="lineGrid"></div>
+    <div class="variant-box hidden" id="variantBox">
+      <div class="notice" style="margin-bottom:8px">丸ノ内線は本線と方南町支線を分けて遊びます。</div>
+      <div class="variant-row"><button class="variant selected" data-variant="main">本線</button><button class="variant" data-variant="branch">方南町支線</button></div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="section-title"><h2>2. 行き先を抽選</h2><p>出発 ≠ ゴール</p></div>
+    <div class="slot"><div class="slot-label">START</div><div class="slot-value" id="startSlot">？</div><button class="btn orange" id="drawStartBtn" disabled>出発駅を抽選</button></div>
+    <div class="slot" style="margin-top:12px"><div class="slot-label">GOAL</div><div class="slot-value" id="goalSlot">？</div><button class="btn orange" id="drawGoalBtn" disabled>ゴール駅を抽選</button></div>
+    <button class="btn" style="margin-top:14px" id="confirmSetupBtn" disabled>この旅を開始</button>
+  </div>
+</section>
 
-    <section id="gameView" class="hidden">
-      <div class="panel">
-        <div class="section-title"><h2>銀座線ルート</h2><p id="directionText"></p></div>
-        <div class="timeline"><span class="step on"></span><span class="step on"></span><span class="step"></span></div>
-        <div class="route-meta">
-          <div class="stat"><b id="currentStat">-</b><span>現在駅</span></div>
-          <div class="stat"><b id="remainStat">-</b><span>残り駅数</span></div>
-          <div class="stat"><b id="goalStat">-</b><span>ゴール</span></div>
-        </div>
-        <div class="route" id="route"></div>
-      </div>
+<section id="gameView" class="hidden">
+  <div class="panel">
+    <div class="section-title"><h2 id="routeTitle">路線</h2><p id="directionText"></p></div>
+    <div class="timeline"><span class="step on"></span><span class="step on"></span><span class="step"></span></div>
+    <div class="route-meta"><div class="stat"><b id="currentStat">-</b><span>現在駅</span></div><div class="stat"><b id="remainStat">-</b><span>残り駅数</span></div><div class="stat"><b id="goalStat">-</b><span>ゴール</span></div></div>
+    <div class="route" id="route"></div>
+  </div>
+  <div class="panel" id="dicePanel">
+    <div class="section-title"><h2>サイコロ</h2><p id="turnText"></p></div>
+    <div class="dicebox"><div class="dice" id="dice">⚄</div><button class="btn orange" id="rollBtn">サイコロを振る</button></div>
+    <div class="message hidden" id="moveMessage"></div>
+    <div class="grid2 hidden" id="arrivalActions"><a class="btn secondary" id="mapLink" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">地図で駅を見る</a><button class="btn" id="arrivedBtn">到着した</button></div>
+  </div>
+  <div class="panel hidden" id="questPanel"><div class="section-title"><h2 id="questTitle">駅クエスト</h2><p>任意 / 2件</p></div><div id="questList"></div><button class="btn" id="nextTurnBtn">次のサイコロへ</button></div>
+  <div class="panel"><div class="section-title"><h2>旅の履歴</h2><p>自動保存</p></div><div class="history" id="history"></div></div>
+</section>
 
-      <div class="panel" id="dicePanel">
-        <div class="section-title"><h2>サイコロ</h2><p id="turnText"></p></div>
-        <div class="dicebox">
-          <div class="dice" id="dice">⚄</div>
-          <button class="btn orange" id="rollBtn">サイコロを振る</button>
-        </div>
-        <div class="message hidden" id="moveMessage"></div>
-        <div class="grid2 hidden" id="arrivalActions">
-          <a class="btn secondary" id="mapLink" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">地図で駅を見る</a>
-          <button class="btn" id="arrivedBtn">到着した</button>
-        </div>
-      </div>
-
-      <div class="panel hidden" id="questPanel">
-        <div class="section-title"><h2 id="questTitle">駅クエスト</h2><p>任意 / 2件</p></div>
-        <div id="questList"></div>
-        <button class="btn" id="nextTurnBtn">次のサイコロへ</button>
-      </div>
-
-      <div class="panel">
-        <div class="section-title"><h2>旅の履歴</h2><p>自動保存</p></div>
-        <div class="history" id="history"></div>
-      </div>
-    </section>
-
-    <section id="finishView" class="hidden">
-      <div class="panel success">
-        <div class="timeline"><span class="step on"></span><span class="step on"></span><span class="step on"></span></div>
-        <div class="big">🎉</div>
-        <h2>ゴール到着！</h2>
-        <p id="finishText"></p>
-        <button class="btn orange" id="restartBtn">もう一度遊ぶ</button>
-        <button class="btn secondary" style="margin-top:10px" id="backHomeBtn">ホームへ戻る</button>
-      </div>
-    </section>
-
-    <div class="footer">Kimagure Metro Trip V0.1 — local only</div>
-  </main>
-  <div class="toast" id="toast"></div>
+<section id="finishView" class="hidden"><div class="panel success"><div class="big">🎉</div><h2>ゴール到着！</h2><p id="finishText"></p><button class="btn orange" id="restartBtn">もう一度遊ぶ</button><button class="btn secondary" style="margin-top:10px" id="backHomeBtn">ホームへ戻る</button></div></section>
+<div class="footer">Kimagure Metro Trip V0.2 — Tokyo Metro 9 Lines</div>
+</main>
+<div class="toast" id="toast"></div>
 
 <script>
-const STATIONS = [
-  {code:"G01",name:"渋谷"},{code:"G02",name:"表参道"},{code:"G03",name:"外苑前"},
-  {code:"G04",name:"青山一丁目"},{code:"G05",name:"赤坂見附"},{code:"G06",name:"溜池山王"},
-  {code:"G07",name:"虎ノ門"},{code:"G08",name:"新橋"},{code:"G09",name:"銀座"},
-  {code:"G10",name:"京橋"},{code:"G11",name:"日本橋"},{code:"G12",name:"三越前"},
-  {code:"G13",name:"神田"},{code:"G14",name:"末広町"},{code:"G15",name:"上野広小路"},
-  {code:"G16",name:"上野"},{code:"G17",name:"稲荷町"},{code:"G18",name:"田原町"},
-  {code:"G19",name:"浅草"}
-];
-
-const QUESTS = {
-  "渋谷":["駅周辺で『渋谷らしい』景色を1枚見つける","スクランブル交差点以外の気になる場所を1つ探す","駅出口をいつもと違う方向から出てみる"],
-  "表参道":["気になる建築やショーウィンドウを1つ見つける","並木道を5分だけ歩く","落ち着けそうな小道を1つ探す"],
-  "外苑前":["街路樹や公園の緑を探す","スポーツに関係するものを1つ見つける","駅から5分だけ知らない方向へ歩く"],
-  "青山一丁目":["交差点から見える特徴的な建物を探す","静かな道を1本歩いてみる","赤坂・青山らしい景色を1枚残す"],
-  "赤坂見附":["坂道を1つ歩いてみる","飲食店街で気になる店を1つ見つける","地名が入った看板を探す"],
-  "溜池山王":["高層ビルと古い街並みの対比を探す","神社や史跡の案内表示を見つける","駅周辺を一周して戻ってくる"],
-  "虎ノ門":["新旧の建物を1つずつ見つける","虎ノ門らしいランドマークを撮る","気になるランチ候補を1軒メモする"],
-  "新橋":["SL広場以外の象徴的な場所を探す","ガード下を歩いてみる","働く街らしい景色を1つ見つける"],
-  "銀座":["老舗と新しい店を1つずつ見つける","特徴的な建物ファサードを探す","路地を1本だけ歩く"],
-  "京橋":["アートやギャラリーの気配を探す","東京駅方面へ5分だけ歩く","古い地名が残る表示を探す"],
-  "日本橋":["橋の上から景色を見る","老舗らしい店構えを1つ探す","日本橋の地名由来を現地表示で探す"],
-  "三越前":["歴史を感じる建物を1つ見る","地下道だけでどこまで行けるか試す","日本橋エリアの気になる店を1つ保存する"],
-  "神田":["高架下を歩いてみる","昔ながらの店を1軒見つける","駅周辺の細い路地を1本歩く"],
-  "末広町":["電気街らしい店を1つ見つける","大型店ではない店に注目して歩く","気になる看板を1枚撮る"],
-  "上野広小路":["上野らしいにぎわいを感じる道を歩く","百貨店・商店街・路地を見比べる","御徒町方面へ5分だけ散歩する"],
-  "上野":["公園口以外の出口から出てみる","文化施設の案内を1つ見つける","駅舎や高架の特徴を1つ探す"],
-  "稲荷町":["仏具店街など地域らしい店を探す","静かな路地を歩く","浅草方面へ5分だけ進んでみる"],
-  "田原町":["かっぱ橋方面の看板を探す","昔ながらの店を1つ見つける","浅草とは違う街の表情を1つ探す"],
-  "浅草":["雷門以外の浅草らしい景色を見つける","裏通りを1本だけ歩く","旅の締めに気になった場所を1つ記録する"]
+const LINES={
+G:{name:"銀座線",color:"#f39700",stations:[["G01","渋谷"],["G02","表参道"],["G03","外苑前"],["G04","青山一丁目"],["G05","赤坂見附"],["G06","溜池山王"],["G07","虎ノ門"],["G08","新橋"],["G09","銀座"],["G10","京橋"],["G11","日本橋"],["G12","三越前"],["G13","神田"],["G14","末広町"],["G15","上野広小路"],["G16","上野"],["G17","稲荷町"],["G18","田原町"],["G19","浅草"]]},
+M:{name:"丸ノ内線",color:"#e60012",variants:{
+ main:{name:"本線",stations:[["M01","荻窪"],["M02","南阿佐ケ谷"],["M03","新高円寺"],["M04","東高円寺"],["M05","新中野"],["M06","中野坂上"],["M07","西新宿"],["M08","新宿"],["M09","新宿三丁目"],["M10","新宿御苑前"],["M11","四谷三丁目"],["M12","四ツ谷"],["M13","赤坂見附"],["M14","国会議事堂前"],["M15","霞ケ関"],["M16","銀座"],["M17","東京"],["M18","大手町"],["M19","淡路町"],["M20","御茶ノ水"],["M21","本郷三丁目"],["M22","後楽園"],["M23","茗荷谷"],["M24","新大塚"],["M25","池袋"]]},
+ branch:{name:"方南町支線",stations:[["M06","中野坂上"],["Mb05","中野新橋"],["Mb04","中野富士見町"],["Mb03","方南町"]]}
+}},
+H:{name:"日比谷線",color:"#9caeb7",stations:[["H01","中目黒"],["H02","恵比寿"],["H03","広尾"],["H04","六本木"],["H05","神谷町"],["H06","虎ノ門ヒルズ"],["H07","霞ケ関"],["H08","日比谷"],["H09","銀座"],["H10","東銀座"],["H11","築地"],["H12","八丁堀"],["H13","茅場町"],["H14","人形町"],["H15","小伝馬町"],["H16","秋葉原"],["H17","仲御徒町"],["H18","上野"],["H19","入谷"],["H20","三ノ輪"],["H21","南千住"],["H22","北千住"]]},
+T:{name:"東西線",color:"#00a7db",stations:[["T01","中野"],["T02","落合"],["T03","高田馬場"],["T04","早稲田"],["T05","神楽坂"],["T06","飯田橋"],["T07","九段下"],["T08","竹橋"],["T09","大手町"],["T10","日本橋"],["T11","茅場町"],["T12","門前仲町"],["T13","木場"],["T14","東陽町"],["T15","南砂町"],["T16","西葛西"],["T17","葛西"],["T18","浦安"],["T19","南行徳"],["T20","行徳"],["T21","妙典"],["T22","原木中山"],["T23","西船橋"]]},
+C:{name:"千代田線",color:"#00bb85",stations:[["C01","代々木上原"],["C02","代々木公園"],["C03","明治神宮前〈原宿〉"],["C04","表参道"],["C05","乃木坂"],["C06","赤坂"],["C07","国会議事堂前"],["C08","霞ケ関"],["C09","日比谷"],["C10","二重橋前〈丸の内〉"],["C11","大手町"],["C12","新御茶ノ水"],["C13","湯島"],["C14","根津"],["C15","千駄木"],["C16","西日暮里"],["C17","町屋"],["C18","北千住"],["C19","綾瀬"],["C20","北綾瀬"]]},
+Y:{name:"有楽町線",color:"#c1a470",stations:[["Y01","和光市"],["Y02","地下鉄成増"],["Y03","地下鉄赤塚"],["Y04","平和台"],["Y05","氷川台"],["Y06","小竹向原"],["Y07","千川"],["Y08","要町"],["Y09","池袋"],["Y10","東池袋"],["Y11","護国寺"],["Y12","江戸川橋"],["Y13","飯田橋"],["Y14","市ケ谷"],["Y15","麹町"],["Y16","永田町"],["Y17","桜田門"],["Y18","有楽町"],["Y19","銀座一丁目"],["Y20","新富町"],["Y21","月島"],["Y22","豊洲"],["Y23","辰巳"],["Y24","新木場"]]},
+Z:{name:"半蔵門線",color:"#8f76d6",stations:[["Z01","渋谷"],["Z02","表参道"],["Z03","青山一丁目"],["Z04","永田町"],["Z05","半蔵門"],["Z06","九段下"],["Z07","神保町"],["Z08","大手町"],["Z09","三越前"],["Z10","水天宮前"],["Z11","清澄白河"],["Z12","住吉"],["Z13","錦糸町"],["Z14","押上〈スカイツリー前〉"]]},
+N:{name:"南北線",color:"#00ada9",stations:[["N01","目黒"],["N02","白金台"],["N03","白金高輪"],["N04","麻布十番"],["N05","六本木一丁目"],["N06","溜池山王"],["N07","永田町"],["N08","四ツ谷"],["N09","市ケ谷"],["N10","飯田橋"],["N11","後楽園"],["N12","東大前"],["N13","本駒込"],["N14","駒込"],["N15","西ケ原"],["N16","王子"],["N17","王子神谷"],["N18","志茂"],["N19","赤羽岩淵"]]},
+F:{name:"副都心線",color:"#9c5e31",stations:[["F01","和光市"],["F02","地下鉄成増"],["F03","地下鉄赤塚"],["F04","平和台"],["F05","氷川台"],["F06","小竹向原"],["F07","千川"],["F08","要町"],["F09","池袋"],["F10","雑司が谷"],["F11","西早稲田"],["F12","東新宿"],["F13","新宿三丁目"],["F14","北参道"],["F15","明治神宮前〈原宿〉"],["F16","渋谷"]]}
 };
-
-const GENERIC = [
-  "駅名が入った看板を写真に残す",
-  "気になる店を1軒見つける",
-  "5分だけ知らない方向へ歩く",
-  "その駅らしい風景を1つ見つける",
-  "ベンチや広場で1分だけ立ち止まる"
+const ORDER=["G","M","H","T","C","Y","Z","N","F"];
+const GENERIC=[
+"駅名が入った看板を写真に残す","気になる店を1軒見つける","駅周辺でその街らしい景色を1つ探す","5分だけ知らない方向へ歩く","次に来たい場所を1つメモする","駅の出口を1つ選んで地上に出てみる","その駅ならではの建物や案内を1つ探す"
 ];
+const KEY="kimagureMetroTripV02";
+const fresh=()=>({version:"0.2",phase:"home",line:null,variant:"main",start:null,goal:null,current:null,direction:1,dice:null,target:null,pendingMove:false,turn:0,quests:{},history:[],finished:false});
+let state=load()||fresh(),setupLine=null,setupVariant="main",setupStart=null,setupGoal=null,rollingTimer=null;
+const $=id=>document.getElementById(id),views=["homeView","setupView","gameView","finishView"];
 
-const KEY = "kimagureMetroTripV01";
-const freshState = () => ({
-  version:"0.1", phase:"home", start:null, goal:null, current:null, direction:1,
-  dice:null, target:null, pendingMove:false, turn:0, quests:{}, history:[], finished:false
-});
-let state = loadState() || freshState();
-let setupStart = null, setupGoal = null;
-let rollingTimer = null;
+function save(){localStorage.setItem(KEY,JSON.stringify(state));updateResume()}
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY));return x&&x.version==="0.2"?x:null}catch(e){return null}}
+function show(id){views.forEach(v=>$(v).classList.toggle("hidden",v!==id));window.scrollTo({top:0,behavior:"smooth"})}
+function lineObj(key){return LINES[key]}
+function stationsFor(line,variant){const l=lineObj(line);return l.variants?l.variants[variant||"main"].stations:l.stations}
+function currentStations(){return stationsFor(state.line,state.variant)}
+function setupStations(){return stationsFor(setupLine,setupVariant)}
+function sName(i,list){const a=list||currentStations();return i==null?"-":a[i][1]}
+function setTheme(key){const l=lineObj(key);document.documentElement.style.setProperty("--line",l?l.color:"#f39700")}
+function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),1600)}
+function log(msg){const stamp=new Date().toLocaleTimeString("ja-JP",{hour:"2-digit",minute:"2-digit"});state.history.unshift(stamp+"  "+msg);state.history=state.history.slice(0,30)}
+function updateResume(){const ok=state&&["game","quests"].includes(state.phase)&&!state.finished;$("resumeBtn").classList.toggle("hidden",!ok)}
+function randomIndex(list,except=null){const p=list.map((_,i)=>i).filter(i=>i!==except);return p[Math.floor(Math.random()*p.length)]}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 
-const $ = id => document.getElementById(id);
-const views = ["homeView","setupView","gameView","finishView"];
-
-function saveState(){ localStorage.setItem(KEY, JSON.stringify(state)); updateResumeButton(); }
-function loadState(){
-  try{
-    const x = JSON.parse(localStorage.getItem(KEY));
-    return x && x.version === "0.1" ? x : null;
-  }catch(e){ return null; }
+function renderLineGrid(){
+ const grid=$("lineGrid");grid.innerHTML="";
+ ORDER.forEach(k=>{
+  const l=LINES[k],count=l.variants?l.variants.main.stations.length+l.variants.branch.stations.length-1:l.stations.length;
+  const b=document.createElement("button");b.className="line-card"+(setupLine===k?" selected":"");b.dataset.line=k;
+  b.innerHTML='<div class="line-mark" style="background:'+l.color+'">'+k+'</div><div class="line-name">'+l.name+'</div><div class="line-count">'+count+'駅</div>';
+  b.onclick=()=>selectLine(k);grid.appendChild(b);
+ });
 }
-function showView(id){ views.forEach(v => $(v).classList.toggle("hidden", v !== id)); window.scrollTo({top:0,behavior:"smooth"}); }
-function stationName(i){ return i == null ? "-" : STATIONS[i].name; }
-function toast(msg){
-  const t=$("toast");t.textContent=msg;t.classList.add("show");
-  clearTimeout(t._timer);t._timer=setTimeout(()=>t.classList.remove("show"),1800);
+function selectLine(k){
+ setupLine=k;setupVariant="main";setupStart=null;setupGoal=null;setTheme(k);
+ $("variantBox").classList.toggle("hidden",k!=="M");
+ document.querySelectorAll(".variant").forEach(v=>v.classList.toggle("selected",v.dataset.variant==="main"));
+ $("selectedLineInfo").textContent=LINES[k].name;
+ $("startSlot").textContent="？";$("goalSlot").textContent="？";$("drawStartBtn").disabled=false;$("drawGoalBtn").disabled=true;$("confirmSetupBtn").disabled=true;renderLineGrid();
 }
-function log(msg){
-  const stamp = new Date().toLocaleTimeString("ja-JP",{hour:"2-digit",minute:"2-digit"});
-  state.history.unshift(stamp+"  "+msg); state.history=state.history.slice(0,30);
+function changeVariant(v){
+ if(setupLine!=="M")return;setupVariant=v;setupStart=null;setupGoal=null;
+ document.querySelectorAll(".variant").forEach(x=>x.classList.toggle("selected",x.dataset.variant===v));
+ $("startSlot").textContent="？";$("goalSlot").textContent="？";$("drawStartBtn").disabled=false;$("drawGoalBtn").disabled=true;$("confirmSetupBtn").disabled=true;
 }
-function updateResumeButton(){
-  const resumable = state && ["game","quests"].includes(state.phase) && !state.finished;
-  $("resumeBtn").classList.toggle("hidden", !resumable);
-}
-function randomIndex(except=null){
-  const pool = STATIONS.map((_,i)=>i).filter(i=>i!==except);
-  return pool[Math.floor(Math.random()*pool.length)];
-}
-function slotAnimate(el, finalIndex, cb){
-  let n=0;
-  const timer=setInterval(()=>{
-    el.textContent=STATIONS[Math.floor(Math.random()*STATIONS.length)].name;
-    n++;
-    if(n>14){
-      clearInterval(timer);el.textContent=STATIONS[finalIndex].name;cb&&cb();
-    }
-  },65);
-}
-function newGame(){
-  setupStart=null;setupGoal=null;
-  $("startSlot").textContent="？";$("goalSlot").textContent="？";
-  $("drawGoalBtn").disabled=true;$("confirmSetupBtn").disabled=true;
-  showView("setupView");
-}
+function newGame(){setupLine=null;setupVariant="main";setupStart=null;setupGoal=null;setTheme("G");renderLineGrid();$("variantBox").classList.add("hidden");$("selectedLineInfo").textContent="9路線";$("startSlot").textContent="？";$("goalSlot").textContent="？";$("drawStartBtn").disabled=true;$("drawGoalBtn").disabled=true;$("confirmSetupBtn").disabled=true;show("setupView")}
+function slotAnimate(el,finalIndex,list,cb){let n=0;const timer=setInterval(()=>{el.textContent=list[Math.floor(Math.random()*list.length)][1];if(++n>12){clearInterval(timer);el.textContent=list[finalIndex][1];if(cb)cb()}},60)}
 function confirmSetup(){
-  state=freshState();
-  state.start=setupStart;state.goal=setupGoal;state.current=setupStart;
-  state.direction=setupGoal>setupStart?1:-1;state.phase="game";state.turn=1;
-  log("旅を開始："+stationName(state.start)+" → "+stationName(state.goal));
-  saveState();renderGame();showView("gameView");
+ const list=setupStations();state=fresh();state.line=setupLine;state.variant=setupVariant;state.start=setupStart;state.goal=setupGoal;state.current=setupStart;state.direction=setupGoal>setupStart?1:-1;state.phase="game";state.turn=1;
+ log(LINES[state.line].name+"で旅を開始："+sName(state.start,list)+" → "+sName(state.goal,list));save();renderGame();show("gameView")
 }
-function remaining(){
-  return Math.abs(state.goal-state.current);
-}
+function remaining(){return Math.abs(state.goal-state.current)}
 function renderRoute(){
-  const route=$("route");route.innerHTML="";
-  STATIONS.forEach((s,i)=>{
-    const el=document.createElement("div");el.className="station";
-    const min=Math.min(state.start,state.goal),max=Math.max(state.start,state.goal);
-    if(i>=min&&i<=max)el.classList.add("in-range");
-    const passed=state.direction===1 ? i<state.current&&i>=state.start : i>state.current&&i<=state.start;
-    if(passed)el.classList.add("passed");
-    if(i===state.current)el.classList.add("current");
-    if(i===state.goal)el.classList.add("goal");
-    if(i===state.target&&state.pendingMove)el.classList.add("target");
-    let badge="";
-    if(i===state.current)badge='<span class="badge">現在地</span>';
-    else if(i===state.goal)badge='<span class="badge">GOAL</span>';
-    else if(i===state.start)badge='<span class="badge">START</span>';
-    el.innerHTML='<div class="dot">'+s.code.replace("G","")+'</div><div class="sname">'+s.name+'</div><div class="scode">'+s.code+'</div>'+badge;
-    route.appendChild(el);
-  });
-  setTimeout(()=>{
-    const cur=route.querySelector(".current");
-    if(cur)cur.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
-  },50);
+ const list=currentStations(),route=$("route");route.innerHTML="";
+ list.forEach((s,i)=>{
+  const el=document.createElement("div");el.className="station";const min=Math.min(state.start,state.goal),max=Math.max(state.start,state.goal);
+  if(i>=min&&i<=max)el.classList.add("in-range");const passed=state.direction===1?i<state.current&&i>=state.start:i>state.current&&i<=state.start;if(passed)el.classList.add("passed");
+  if(i===state.current)el.classList.add("current");if(i===state.goal)el.classList.add("goal");if(i===state.target&&state.pendingMove)el.classList.add("target");
+  let badge="";if(i===state.current)badge='<span class="badge">現在地</span>';else if(i===state.goal)badge='<span class="badge">GOAL</span>';else if(i===state.start)badge='<span class="badge">START</span>';
+  el.innerHTML='<div class="dot">'+s[0]+'</div><div class="sname">'+s[1]+'</div><div class="scode">'+s[0]+'</div>'+badge;route.appendChild(el);
+ });
+ setTimeout(()=>{const c=route.querySelector(".current");if(c)c.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"})},40)
 }
-function renderHistory(){
-  $("history").innerHTML=state.history.length ? state.history.map(x=>"<div>"+escapeHtml(x)+"</div>").join("") : "<div>まだ履歴はありません。</div>";
-}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
+function renderHistory(){$("history").innerHTML=state.history.length?state.history.map(x=>"<div>"+escapeHtml(x)+"</div>").join(""):"<div>まだ履歴はありません。</div>"}
 function renderGame(){
-  $("directionText").textContent=state.direction===1?"渋谷 → 浅草 方面":"浅草 → 渋谷 方面";
-  $("currentStat").textContent=stationName(state.current);
-  $("remainStat").textContent=remaining();
-  $("goalStat").textContent=stationName(state.goal);
-  $("turnText").textContent="TURN "+state.turn;
-  $("dice").textContent=state.dice ? ["⚀","⚁","⚂","⚃","⚄","⚅"][state.dice-1] : "⚄";
-  $("rollBtn").disabled=state.pendingMove || state.phase==="quests";
-  $("moveMessage").classList.toggle("hidden",!state.pendingMove);
-  $("arrivalActions").classList.toggle("hidden",!state.pendingMove);
-  $("questPanel").classList.toggle("hidden",state.phase!=="quests");
-  $("dicePanel").classList.toggle("hidden",state.phase==="quests");
-  if(state.pendingMove){
-    const overshoot = Math.abs(state.goal-state.current) < state.dice;
-    $("moveMessage").innerHTML="<strong>"+state.dice+" が出ました。</strong><br>"+stationName(state.current)+" から <strong>"+stationName(state.target)+"</strong> へ移動してください。"+(overshoot?"<br>ゴールを越える出目なので、ゴール駅を到着駅として扱います。":"");
-    $("mapLink").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent("東京メトロ 銀座線 "+stationName(state.target)+"駅");
-  }
-  renderRoute();renderHistory();
-  if(state.phase==="quests")renderQuests();
+ const list=currentStations(),ln=LINES[state.line];setTheme(state.line);
+ $("routeTitle").textContent=ln.name+(state.line==="M"?" "+ln.variants[state.variant].name:"");
+ $("directionText").textContent=sName(0,list)+" → "+sName(list.length-1,list);
+ $("currentStat").textContent=sName(state.current,list);$("remainStat").textContent=remaining();$("goalStat").textContent=sName(state.goal,list);$("turnText").textContent="TURN "+state.turn;
+ $("dice").textContent=state.dice?["⚀","⚁","⚂","⚃","⚄","⚅"][state.dice-1]:"⚄";$("rollBtn").disabled=state.pendingMove||state.phase==="quests";
+ $("moveMessage").classList.toggle("hidden",!state.pendingMove);$("arrivalActions").classList.toggle("hidden",!state.pendingMove);$("questPanel").classList.toggle("hidden",state.phase!=="quests");$("dicePanel").classList.toggle("hidden",state.phase==="quests");
+ if(state.pendingMove){const over=Math.abs(state.goal-state.current)<state.dice;$("moveMessage").innerHTML="<strong>"+state.dice+" が出ました。</strong><br>"+sName(state.current,list)+" から <strong>"+sName(state.target,list)+"</strong> へ移動してください。"+(over?"<br>ゴールを越えるため、ゴール駅を到着駅として扱います。":"");$("mapLink").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent("東京メトロ "+ln.name+" "+sName(state.target,list)+"駅")}
+ renderRoute();renderHistory();if(state.phase==="quests")renderQuests()
 }
 function rollDice(){
-  if(state.pendingMove)return;
-  const dice=$("dice");dice.classList.add("rolling");$("rollBtn").disabled=true;
-  let ticks=0;
-  clearInterval(rollingTimer);
-  rollingTimer=setInterval(()=>{
-    const n=1+Math.floor(Math.random()*6);
-    dice.textContent=["⚀","⚁","⚂","⚃","⚄","⚅"][n-1];
-    if(++ticks>=15){
-      clearInterval(rollingTimer);dice.classList.remove("rolling");
-      const n=1+Math.floor(Math.random()*6);state.dice=n;
-      const raw=state.current+state.direction*n;
-      state.target=state.direction===1?Math.min(raw,state.goal):Math.max(raw,state.goal);
-      state.pendingMove=true;
-      log("サイコロ "+n+" → "+stationName(state.target)+"へ");
-      saveState();renderGame();
-    }
-  },70);
+ if(state.pendingMove)return;const d=$("dice");d.classList.add("rolling");$("rollBtn").disabled=true;let t=0;clearInterval(rollingTimer);
+ rollingTimer=setInterval(()=>{const n=1+Math.floor(Math.random()*6);d.textContent=["⚀","⚁","⚂","⚃","⚄","⚅"][n-1];if(++t>=15){clearInterval(rollingTimer);d.classList.remove("rolling");const n2=1+Math.floor(Math.random()*6);state.dice=n2;const raw=state.current+state.direction*n2;state.target=state.direction===1?Math.min(raw,state.goal):Math.max(raw,state.goal);state.pendingMove=true;log("サイコロ "+n2+" → "+sName(state.target)+"へ");save();renderGame()}},70)
 }
-function buildQuests(stationIndex){
-  const name=stationName(stationIndex);
-  const pool=[...(QUESTS[name]||[]),...GENERIC];
-  const shuffled=[...pool].sort(()=>Math.random()-.5);
-  const selected=[];
-  for(const q of shuffled){ if(!selected.includes(q))selected.push(q); if(selected.length===2)break; }
-  while(selected.length<2)selected.push("駅周辺で気になったものを1つ見つける");
-  return selected.map(text=>({text,done:false}));
+function buildQuests(i){
+ const st=sName(i),ln=LINES[state.line].name;
+ const pool=[st+"駅の駅名標を1枚残す",ln+"らしいものを1つ探す",st+"駅の気になる出口から地上へ出る",...GENERIC];
+ const a=[...pool].sort(()=>Math.random()-.5);return [{text:a[0],done:false},{text:a[1],done:false}]
 }
-function arrive(){
-  if(!state.pendingMove)return;
-  state.current=state.target;state.target=null;state.pendingMove=false;
-  const key=String(state.current);
-  if(!state.quests[key]) state.quests[key]=buildQuests(state.current);
-  state.phase="quests";
-  log(stationName(state.current)+" に到着");
-  saveState();renderGame();
-}
+function arrive(){if(!state.pendingMove)return;state.current=state.target;state.target=null;state.pendingMove=false;const key=state.line+":"+state.variant+":"+state.current;if(!state.quests[key])state.quests[key]=buildQuests(state.current);state.phase="quests";log(sName(state.current)+" に到着");save();renderGame()}
 function renderQuests(){
-  const key=String(state.current);
-  if(!state.quests[key])state.quests[key]=buildQuests(state.current);
-  $("questTitle").textContent=stationName(state.current)+"のクエスト";
-  $("questList").innerHTML=state.quests[key].map((q,i)=>`
-    <div class="quest">
-      <div class="quest-num">${i+1}</div>
-      <div><h3>${escapeHtml(q.text)}</h3><p>達成は任意です。未達成でも次へ進めます。</p></div>
-      <button class="check ${q.done?"done":""}" data-q="${i}" aria-label="達成切替">${q.done?"✓":"○"}</button>
-    </div>`).join("");
-  document.querySelectorAll("[data-q]").forEach(btn=>btn.onclick=()=>{
-    const i=Number(btn.dataset.q);state.quests[key][i].done=!state.quests[key][i].done;
-    saveState();renderQuests();
-  });
-  $("nextTurnBtn").textContent=state.current===state.goal?"旅を完了する":"次のサイコロへ";
+ const key=state.line+":"+state.variant+":"+state.current;if(!state.quests[key])state.quests[key]=buildQuests(state.current);$("questTitle").textContent=sName(state.current)+"のクエスト";
+ $("questList").innerHTML=state.quests[key].map((q,i)=>'<div class="quest"><div class="quest-num">'+(i+1)+'</div><div><h3>'+escapeHtml(q.text)+'</h3><p>達成は任意です。</p></div><button class="check '+(q.done?"done":"")+'" data-q="'+i+'">'+(q.done?"✓":"○")+"</button></div>").join("");
+ document.querySelectorAll("[data-q]").forEach(btn=>btn.onclick=()=>{const i=Number(btn.dataset.q);state.quests[key][i].done=!state.quests[key][i].done;save();renderQuests()});
+ $("nextTurnBtn").textContent=state.current===state.goal?"旅を完了する":"次のサイコロへ"
 }
-function nextTurn(){
-  if(state.current===state.goal){
-    state.finished=true;state.phase="finished";
-    log("ゴール "+stationName(state.goal)+" に到着して旅を完了");
-    saveState();renderFinish();showView("finishView");return;
-  }
-  state.phase="game";state.dice=null;state.turn++;
-  saveState();renderGame();
-}
-function renderFinish(){
-  const qDone=Object.values(state.quests).flat().filter(q=>q.done).length;
-  $("finishText").innerHTML="<strong>"+stationName(state.start)+"</strong> から <strong>"+stationName(state.goal)+"</strong> まで完走しました。<br>全 "+state.turn+" ターン / クエスト達成 "+qDone+" 件";
-}
-function resume(){
-  if(state.finished||!["game","quests"].includes(state.phase))return;
-  renderGame();showView("gameView");
-}
-function hardReset(){
-  if(!confirm("保存中の旅を初期化します。よろしいですか？"))return;
-  localStorage.removeItem(KEY);state=freshState();setupStart=null;setupGoal=null;updateResumeButton();showView("homeView");toast("初期化しました");
-}
-$("newGameBtn").onclick=newGame;
-$("resumeBtn").onclick=resume;
-$("drawStartBtn").onclick=()=>{
-  const i=randomIndex();setupStart=i;setupGoal=null;$("goalSlot").textContent="？";$("confirmSetupBtn").disabled=true;
-  $("drawStartBtn").disabled=true;slotAnimate($("startSlot"),i,()=>{$("drawStartBtn").disabled=false;$("drawGoalBtn").disabled=false;});
-};
-$("drawGoalBtn").onclick=()=>{
-  const i=randomIndex(setupStart);setupGoal=i;$("drawGoalBtn").disabled=true;
-  slotAnimate($("goalSlot"),i,()=>{$("drawGoalBtn").disabled=false;$("confirmSetupBtn").disabled=false;});
-};
-$("confirmSetupBtn").onclick=confirmSetup;
-$("rollBtn").onclick=rollDice;
-$("arrivedBtn").onclick=arrive;
-$("nextTurnBtn").onclick=nextTurn;
-$("restartBtn").onclick=newGame;
-$("backHomeBtn").onclick=()=>showView("homeView");
-$("resetBtn").onclick=hardReset;
+function nextTurn(){if(state.current===state.goal){state.finished=true;state.phase="finished";log("ゴール "+sName(state.goal)+" に到着");save();renderFinish();show("finishView");return}state.phase="game";state.dice=null;state.turn++;save();renderGame()}
+function renderFinish(){const done=Object.values(state.quests).flat().filter(q=>q.done).length,ln=LINES[state.line];setTheme(state.line);$("finishText").innerHTML="<strong>"+ln.name+"</strong><br>"+sName(state.start)+" → "+sName(state.goal)+" を完走しました。<br>全 "+state.turn+" ターン / クエスト達成 "+done+" 件"}
+function resume(){if(!["game","quests"].includes(state.phase)||state.finished)return;renderGame();show("gameView")}
+function hardReset(){if(!confirm("保存中の旅を初期化します。よろしいですか？"))return;localStorage.removeItem(KEY);state=fresh();updateResume();show("homeView");toast("初期化しました")}
 
-updateResumeButton();
-if(state.finished){renderFinish();}
-showView("homeView");
+$("newGameBtn").onclick=newGame;$("resumeBtn").onclick=resume;$("resetBtn").onclick=hardReset;
+$("drawStartBtn").onclick=()=>{const list=setupStations(),i=randomIndex(list);setupStart=i;setupGoal=null;$("goalSlot").textContent="？";$("confirmSetupBtn").disabled=true;$("drawStartBtn").disabled=true;slotAnimate($("startSlot"),i,list,()=>{$("drawStartBtn").disabled=false;$("drawGoalBtn").disabled=false})};
+$("drawGoalBtn").onclick=()=>{const list=setupStations(),i=randomIndex(list,setupStart);setupGoal=i;$("drawGoalBtn").disabled=true;slotAnimate($("goalSlot"),i,list,()=>{$("drawGoalBtn").disabled=false;$("confirmSetupBtn").disabled=false})};
+$("confirmSetupBtn").onclick=confirmSetup;$("rollBtn").onclick=rollDice;$("arrivedBtn").onclick=arrive;$("nextTurnBtn").onclick=nextTurn;$("restartBtn").onclick=newGame;$("backHomeBtn").onclick=()=>show("homeView");
+document.querySelectorAll(".variant").forEach(v=>v.onclick=()=>changeVariant(v.dataset.variant));
+renderLineGrid();updateResume();show("homeView");
 </script>
 </body>
 </html>
