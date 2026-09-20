@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#102a3a">
+  <title>デザインコンペ｜きまぐれメトロ旅</title>
+  <link rel="stylesheet" href="design-competition.css">
+</head>
+<body>
+  <main class="competition">
+    <header class="competition-hero">
+      <div class="hero-copy">
+        <p class="eyebrow">DESIGN COMPETITION 01</p>
+        <h1>次の「きまぐれメトロ旅」を選ぶ。</h1>
+        <p>ゲーム内容は同じ。見た目と体験だけが異なる3案を、同じ駅・同じ出目で比較できます。</p>
+      </div>
+      <a class="back-link" href="./">V0.5本編へ戻る</a>
+    </header>
+
+    <nav class="entry-switcher" aria-label="デザイン案を切り替える">
+      <button class="entry-tab active" data-theme-target="signage" aria-pressed="true">
+        <span>A</span><b>メトロ・サイン計画</b><small>迷わない</small>
+      </button>
+      <button class="entry-tab" data-theme-target="boardgame" aria-pressed="false">
+        <span>B</span><b>トラベルボードゲーム</b><small>遊びたくなる</small>
+      </button>
+      <button class="entry-tab" data-theme-target="night" aria-pressed="false">
+        <span>C</span><b>TOKYO NIGHT LINE</b><small>没入する</small>
+      </button>
+    </nav>
+
+    <section class="prototype" id="prototype" data-theme="signage" aria-live="polite">
+      <div class="prototype-bar">
+        <div class="prototype-brand">
+          <span class="metro-mark">M</span>
+          <div><b>きまぐれメトロ旅</b><small id="conceptName">A案｜メトロ・サイン計画</small></div>
+        </div>
+        <span class="turn-badge">TURN 4</span>
+      </div>
+
+      <div class="journey-card">
+        <div class="station-status current-status">
+          <span>現在駅</span><strong>大手町</strong><small><i class="line-dot marunouchi"></i>M 丸ノ内線</small>
+        </div>
+        <div class="journey-progress" aria-label="ゴールまで残り6駅">
+          <div class="progress-label"><b>GOALまで</b><strong>6駅</strong></div>
+          <div class="progress-track"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="station-status goal-status">
+          <span>ゴール</span><strong>渋谷</strong><small><i class="line-dot ginza"></i>G 銀座線</small>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="card-heading"><div><span class="heading-kicker">SHORTEST ROUTE</span><h2>ゴールへの方向</h2></div><b>残り6駅</b></div>
+        <div class="route-flow">
+          <span class="route-stop now">大手町</span><i>›</i>
+          <span class="route-stop">三越前</span><i>›</i>
+          <span class="route-stop transfer">表参道<small>乗換</small></span><i>›</i>
+          <span class="route-stop goal">渋谷</span>
+        </div>
+        <p class="route-summary"><i class="line-dot hanzomon"></i>半蔵門線で「渋谷」方面へ。表参道を経由します。</p>
+      </div>
+
+      <div class="play-layout">
+        <section class="dice-card">
+          <div class="card-heading"><div><span class="heading-kicker">ROLL</span><h2>サイコロ</h2></div><span class="dice-help">移動先を選択</span></div>
+          <div class="dice-stage"><div class="dice-face">⚃</div><div><b>4駅移動</b><small>出目は確定しました</small></div></div>
+        </section>
+
+        <section class="candidate-card">
+          <div class="card-heading"><div><span class="heading-kicker">DESTINATION</span><h2>移動先を選ぶ</h2></div><b>3駅</b></div>
+          <div class="candidate-list">
+            <button class="station-choice best"><span class="rank">1</span><span><b>表参道</b><small>ゴールへ4駅前進・残り2駅</small></span><span class="route-colors"><i class="ginza"></i><i class="hanzomon"></i><i class="chiyoda"></i></span><strong>›</strong></button>
+            <button class="station-choice"><span class="rank">2</span><span><b>銀座</b><small>ゴールへ2駅前進・残り4駅</small></span><span class="route-colors"><i class="ginza"></i><i class="marunouchi"></i><i class="hibiya"></i></span><strong>›</strong></button>
+            <button class="station-choice"><span class="rank">3</span><span><b>九段下</b><small>ゴールと同距離・残り6駅</small></span><span class="route-colors"><i class="tozai"></i><i class="hanzomon"></i></span><strong>›</strong></button>
+          </div>
+        </section>
+      </div>
+
+      <section class="board-card">
+        <div class="card-heading"><div><span class="heading-kicker">NETWORK</span><h2>ルート盤面</h2></div><div class="board-actions"><button aria-label="全体表示">全体</button><button class="active" aria-label="現在地表示">現在地</button></div></div>
+        <svg class="mini-board" viewBox="0 0 700 250" role="img" aria-label="デザイン比較用の簡略路線図">
+          <path class="board-grid" d="M0 50H700M0 100H700M0 150H700M0 200H700M70 0V250M140 0V250M210 0V250M280 0V250M350 0V250M420 0V250M490 0V250M560 0V250M630 0V250"/>
+          <path class="line-g" d="M30 70H220L300 125H665"/>
+          <path class="line-z" d="M35 200H150L300 125H660"/>
+          <path class="line-t" d="M35 155H250L360 65H665"/>
+          <path class="shortest" d="M360 65L300 125H665"/>
+          <g class="station-dots">
+            <circle cx="80" cy="70" r="7"/><circle cx="150" cy="70" r="7"/><circle cx="220" cy="70" r="7"/>
+            <circle cx="80" cy="200" r="7"/><circle cx="150" cy="200" r="7"/>
+            <circle cx="90" cy="155" r="7"/><circle cx="170" cy="155" r="7"/><circle cx="250" cy="155" r="7"/>
+            <circle class="current-node" cx="360" cy="65" r="12"/>
+            <circle class="transfer-node" cx="300" cy="125" r="13"/>
+            <circle cx="420" cy="125" r="7"/><circle cx="500" cy="125" r="7"/><circle cx="580" cy="125" r="7"/>
+            <circle class="goal-node" cx="665" cy="125" r="12"/>
+          </g>
+          <g class="board-labels"><text x="360" y="42">大手町</text><text x="300" y="107">表参道</text><text x="665" y="103">渋谷</text><text x="82" y="142">九段下</text></g>
+        </svg>
+      </section>
+
+      <footer class="concept-footer">
+        <div><span class="entry-letter" id="entryLetter">A</span><div><b id="conceptTitle">メトロ・サイン計画</b><p id="conceptDescription">駅の案内サインのように、迷わず次の操作へ進めるデザイン。</p></div></div>
+        <div class="concept-tags" id="conceptTags"><span>視認性</span><span>実用性</span><span>現行から移行しやすい</span></div>
+        <button class="vote-button" id="voteButton">A案に投票する</button>
+      </footer>
+    </section>
+
+    <div class="vote-result hidden" id="voteResult" role="status">
+      <span>あなたの投票</span><b id="voteResultText"></b><button id="clearVoteButton">投票を取り消す</button>
+    </div>
+
+    <section class="judging-panel">
+      <div class="judging-heading"><div><p class="eyebrow">JUDGING SHEET</p><h2>3案の比較</h2></div><p>★が多いほど、その評価軸に強い案です。</p></div>
+      <div class="comparison-scroll">
+        <table>
+          <thead><tr><th>評価軸</th><th>A サイン計画</th><th>B ボードゲーム</th><th>C NIGHT LINE</th></tr></thead>
+          <tbody>
+            <tr><th>盤面の視認性</th><td>★★★★★</td><td>★★★★☆</td><td>★★★★☆</td></tr>
+            <tr><th>桃鉄らしい楽しさ</th><td>★★★☆☆</td><td>★★★★★</td><td>★★★★☆</td></tr>
+            <tr><th>スマホ操作性</th><td>★★★★★</td><td>★★★★☆</td><td>★★★★☆</td></tr>
+            <tr><th>現行V0.5との連続性</th><td>★★★★★</td><td>★★★★☆</td><td>★★☆☆☆</td></tr>
+            <tr><th>個性・世界観</th><td>★★★☆☆</td><td>★★★★★</td><td>★★★★★</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="storage-note">投票はこのブラウザのLocalStorageだけに保存され、外部には送信されません。</p>
+    </section>
+  </main>
+  <script src="design-competition.js"></script>
+</body>
+</html>

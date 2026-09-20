@@ -49,3 +49,6 @@ jobs:
 
       - name: Run runtime smoke test
         run: node tests/runtime-smoke.test.js
+
+      - name: Check design competition
+        run: node --check design-competition.js && node tests/design-competition.test.js
