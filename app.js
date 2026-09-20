@@ -99,19 +99,15 @@ function shortest(start,goal){
 }
 
 function reachableExactly(start,steps){
-  let frontier = new Map([[start,{nodes:[start],edges:[]}]]);
-  for(let s=0;s<steps;s++){
-    const next = new Map();
-    for(const [node,path] of frontier){
-      for(const e of GRAPH[node]||[]){
-        const candidate={nodes:[...path.nodes,e.to],edges:[...path.edges,{from:node,to:e.to,line:e.line}]};
-        if(!next.has(e.to)) next.set(e.to,candidate);
-      }
-    }
-    frontier=next;
+  // 候補爆発を防ぐため「現在地からの最短距離がサイコロ目と一致する駅」に限定する。
+  // 同じ駅へ遠回りして帳尻を合わせるルートは候補にしない。
+  const result = new Map();
+  for(const station of ALL_STATIONS){
+    if(station===start) continue;
+    const route=shortest(start,station);
+    if(route.distance===steps) result.set(station,route);
   }
-  frontier.delete(start);
-  return frontier;
+  return result;
 }
 
 function lineChips(station){
