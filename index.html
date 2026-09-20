@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#173a2a">
-  <title>きまぐれメトロ旅 V0.4</title>
+  <title>きまぐれメトロ旅 V0.5</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
         <div class="logo">M</div>
         <div>
           <h1>きまぐれメトロ旅</h1>
-          <p>東京メトロ ネットワーク盤面 V0.4</p>
+          <p>東京メトロ ネットワーク盤面 V0.5</p>
         </div>
       </div>
       <button class="tiny" id="resetBtn">初期化</button>
@@ -29,14 +29,14 @@
 
       <div class="panel">
         <div class="section-title">
-          <h2>V0.4 Network Board</h2>
+          <h2>V0.5 Route Guide</h2>
           <p id="networkStat">9路線</p>
         </div>
         <div class="feature-grid">
-          <div class="feature"><b>ネットワーク盤面</b><span>全9路線を一望</span></div>
-          <div class="feature"><b>駅を直接タップ</b><span>路線選択を不要に</span></div>
-          <div class="feature"><b>最短ルート強調</b><span>ゴール方向を可視化</span></div>
-          <div class="feature"><b>到達駅ハイライト</b><span>サイコロ後に表示</span></div>
+          <div class="feature"><b>ネットワーク盤面</b><span>東京メトロ全9路線</span></div>
+          <div class="feature"><b>候補駅カード</b><span>スマホでも選びやすく</span></div>
+          <div class="feature"><b>ルートガイド</b><span>ゴール方向をひと目で</span></div>
+          <div class="feature"><b>乗換を強調</b><span>0マス乗換を見やすく</span></div>
         </div>
         <button class="btn orange" id="newGameBtn">新しい旅をはじめる</button>
         <button class="btn secondary hidden gap-top" id="resumeBtn">途中から再開する</button>
@@ -87,6 +87,29 @@
         </div>
         <div class="chips center" id="currentLines"></div>
         <div class="message recommendation" id="recommendation"></div>
+        <div class="route-compass" id="routeCompass" aria-label="ゴールへの最短ルート"></div>
+      </div>
+
+      <div class="panel dice-panel" id="dicePanel">
+        <div class="section-title">
+          <h2>サイコロ</h2>
+          <p id="diceStateText">振って移動可能駅を表示</p>
+        </div>
+        <div class="dicebox">
+          <div class="dice" id="dice" aria-live="polite">⚄</div>
+          <button class="btn orange roll-btn" id="rollBtn">サイコロを振る</button>
+        </div>
+        <div id="reachableSummary" class="message hidden"></div>
+        <div id="candidatePanel" class="candidate-panel hidden">
+          <div class="candidate-heading">
+            <div>
+              <b>移動先を選ぶ</b>
+              <span>ゴールに近い順</span>
+            </div>
+            <span class="candidate-count" id="candidateCount"></span>
+          </div>
+          <div class="candidate-list" id="candidateList"></div>
+        </div>
       </div>
 
       <div class="panel network-panel">
@@ -96,8 +119,8 @@
             <p id="boardHint">現在地とゴールを確認できます</p>
           </div>
           <div class="board-tools">
-            <button class="mini-btn" id="fitBtn">全体</button>
-            <button class="mini-btn" id="centerBtn">現在地</button>
+            <button class="mini-btn" id="fitBtn" aria-pressed="false">全体</button>
+            <button class="mini-btn" id="centerBtn" aria-pressed="true">現在地</button>
           </div>
         </div>
 
@@ -105,26 +128,15 @@
           <span><i class="legend-node current"></i>現在地</span>
           <span><i class="legend-node goal"></i>ゴール</span>
           <span><i class="legend-node reachable"></i>移動可能</span>
+          <span><i class="legend-node transfer"></i>乗換駅</span>
           <span><i class="legend-line"></i>最短ルート</span>
         </div>
 
         <div class="network-scroll" id="networkScroll">
-          <svg id="networkSvg" viewBox="0 0 1400 820" role="img" aria-label="東京メトロ簡易ネットワーク図"></svg>
+          <svg id="networkSvg" viewBox="0 0 1840 820" role="img" aria-label="東京メトロ簡易ネットワーク図"></svg>
         </div>
 
         <p class="notice board-note">※実際の地理位置を再現した地図ではなく、ゲーム用の簡略ネットワーク図です。線のつながりと乗換関係を優先しています。</p>
-      </div>
-
-      <div class="panel" id="dicePanel">
-        <div class="section-title">
-          <h2>サイコロ</h2>
-          <p id="diceStateText">振って移動可能駅を表示</p>
-        </div>
-        <div class="dicebox">
-          <div class="dice" id="dice">⚄</div>
-          <button class="btn orange" id="rollBtn">サイコロを振る</button>
-        </div>
-        <div id="reachableSummary" class="message hidden"></div>
       </div>
 
       <div class="panel hidden" id="arrivalPanel">
@@ -159,6 +171,7 @@
     <section id="finishView" class="hidden">
       <div class="panel success">
         <div class="timeline"><span class="step on"></span><span class="step on"></span><span class="step on"></span></div>
+        <div class="goal-celebration" aria-hidden="true"><span>●</span><span>▲</span><span>★</span><span>●</span><span>■</span></div>
         <div class="big">🎉</div>
         <h2>ゴール到着！</h2>
         <p id="finishText"></p>
@@ -167,9 +180,16 @@
       </div>
     </section>
 
-    <footer>Kimagure Metro Trip V0.4 — Network Board</footer>
+    <footer>Kimagure Metro Trip V0.5 — Route Guide</footer>
   </main>
 
+  <div class="travel-overlay hidden" id="travelOverlay" aria-live="polite">
+    <div class="travel-card">
+      <div class="train-track"><span class="travel-train">🚃</span></div>
+      <b id="travelTitle">移動中...</b>
+      <span id="travelRoute"></span>
+    </div>
+  </div>
   <div class="toast" id="toast"></div>
   <script src="app.js"></script>
 </body>

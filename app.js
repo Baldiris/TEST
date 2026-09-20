@@ -115,15 +115,17 @@ function lineChips(station){
     .map(id=>'<span class="chip"><i class="line-dot" style="background:'+LINES[id].color+'"></i>'+id+' '+LINES[id].name+'</span>').join("");
 }
 
-const KEY="kimagureMetroTripV04";
+const VERSION="0.5";
+const KEY="kimagureMetroTripV05";
+const LEGACY_KEYS=["kimagureMetroTripV04"];
 function fresh(){
   return {
-    version:"0.4",phase:"home",start:null,goal:null,current:null,dice:null,
+    version:VERSION,phase:"home",start:null,goal:null,current:null,dice:null,
     reachable:{},target:null,targetPath:null,turn:1,quests:{},history:[],finished:false
   };
 }
 let state=load()||fresh();
-let setupStart=null,setupGoal=null,rollTimer=null;
+let setupStart=null,setupGoal=null,rollTimer=null,boardMode="focus",lastBoardStation=null;
 const views=["homeView","setupView","gameView","finishView"];
 
 function save(){
@@ -133,7 +135,12 @@ function save(){
 function load(){
   try{
     const x=JSON.parse(localStorage.getItem(KEY));
-    return x&&x.version==="0.4"?x:null;
+    if(x&&x.version===VERSION) return {...fresh(),...x,version:VERSION};
+    for(const legacyKey of LEGACY_KEYS){
+      const legacy=JSON.parse(localStorage.getItem(legacyKey));
+      if(legacy&&legacy.version==="0.4") return {...fresh(),...legacy,version:VERSION};
+    }
+    return null;
   }catch{return null}
 }
 function show(id){
@@ -184,6 +191,7 @@ function updateSetupRoute(){
 function confirmSetup(){
   state=fresh();
   state.start=setupStart; state.goal=setupGoal; state.current=setupStart; state.phase="game";
+  boardMode="focus"; lastBoardStation=null;
   log("旅を開始："+state.start+" → "+state.goal);
   save(); renderGame(); show("gameView");
 }
@@ -201,8 +209,80 @@ function recommendation(){
   return "最短 "+r.distance+"駅。まず "+LINES[first.line].name+" で「"+r.nodes[1]+"」方向へ進むルートです。";
 }
 
+function routeSegments(route){
+  const segments=[];
+  for(const edge of route.edges){
+    const last=segments[segments.length-1];
+    if(last&&last.line===edge.line){last.count++;last.to=edge.to}
+    else segments.push({line:edge.line,count:1,from:edge.from,to:edge.to});
+  }
+  return segments;
+}
+function routePreviewNodes(route){
+  if(route.nodes.length<=6) return route.nodes.map(name=>({name}));
+  return [
+    {name:route.nodes[0]},
+    {name:route.nodes[1]},
+    {name:route.nodes[2]},
+    {name:"…",ellipsis:true},
+    {name:route.nodes[route.nodes.length-1]}
+  ];
+}
+function renderRouteCompass(route){
+  const el=$("routeCompass");
+  if(!route||route.distance===null){
+    el.innerHTML='<div class="route-compass-head"><b>ルートを確認できません</b></div>';
+    return;
+  }
+  if(route.distance===0){
+    el.innerHTML='<div class="route-compass-head"><b>🏁 ゴール駅に到着</b><span>クエスト後に旅を完了</span></div>';
+    return;
+  }
+  const preview=routePreviewNodes(route);
+  const stops=preview.map((item,index)=>{
+    if(item.ellipsis) return '<span class="route-arrow">…</span>';
+    const isCurrent=index===0;
+    const isGoal=item.name===state.goal;
+    return '<span class="route-stop '+(isCurrent?'current ':'')+(isGoal?'goal':'')+'" title="'+escapeHtml(item.name)+'">'+escapeHtml(item.name)+'</span>'+
+      (index<preview.length-1&&!(preview[index+1]&&preview[index+1].ellipsis)?'<span class="route-arrow">›</span>':'');
+  }).join("");
+  const detail=routeSegments(route).map((segment,index)=>
+    (index?'乗換 → ':'')+LINES[segment.line].name+' '+segment.count+'駅'
+  ).join(' / ');
+  el.innerHTML='<div class="route-compass-head"><b>ゴールへの最短ルート</b><span>残り '+route.distance+'駅</span></div>'+
+    '<div class="route-stops">'+stops+'</div><div class="route-detail">'+escapeHtml(detail)+'</div>';
+}
+
+function candidateInfo(station,route,currentGoalDistance){
+  const goalDistance=shortest(station,state.goal).distance;
+  const progress=currentGoalDistance-goalDistance;
+  const firstLine=route&&route.edges[0]?route.edges[0].line:null;
+  return {station,route,goalDistance,progress,firstLine,isGoal:station===state.goal};
+}
+function renderCandidates(){
+  const panel=$("candidatePanel");
+  const shouldShow=state.phase==="game"&&state.dice&&Object.keys(state.reachable||{}).length;
+  panel.classList.toggle("hidden",!shouldShow);
+  if(!shouldShow){$("candidateList").innerHTML="";return}
+  const currentGoalDistance=shortest(state.current,state.goal).distance;
+  const candidates=Object.entries(state.reachable).map(([station,route])=>candidateInfo(station,route,currentGoalDistance))
+    .sort((a,b)=>Number(b.isGoal)-Number(a.isGoal)||b.progress-a.progress||a.goalDistance-b.goalDistance||a.station.localeCompare(b.station,"ja"));
+  $("candidateCount").textContent=candidates.length+"駅";
+  $("candidateList").innerHTML=candidates.map((item,index)=>{
+    const label=item.isGoal?'ゴールに到着':item.progress>0?'ゴールへ '+item.progress+'駅前進':item.progress===0?'ゴールと同距離':'寄り道 '+Math.abs(item.progress)+'駅';
+    const sub=item.isGoal?'選択するとゴールへ':label+' · 残り'+item.goalDistance+'駅';
+    const lineIds=[...(LINES_AT[item.station]||[])].sort((a,b)=>LINE_ORDER.indexOf(a)-LINE_ORDER.indexOf(b));
+    const dots=lineIds.map(id=>'<i class="candidate-line-dot" style="background:'+LINES[id].color+'" title="'+LINES[id].name+'"></i>').join("");
+    return '<button class="candidate-card '+(index===0?'best ':'')+(item.isGoal?'goal':'')+'" data-candidate-index="'+index+'" aria-label="'+escapeHtml(item.station)+'を移動先にする。'+escapeHtml(sub)+'">'+
+      '<span class="candidate-rank">'+(item.isGoal?'GOAL':index+1)+'</span><span class="candidate-main"><span class="candidate-name">'+escapeHtml(item.station)+'</span><span class="candidate-meta">'+escapeHtml(sub)+'</span><span class="candidate-lines">'+dots+'</span></span><span class="candidate-go">›</span></button>';
+  }).join("");
+  document.querySelectorAll("[data-candidate-index]").forEach(btn=>{
+    btn.onclick=()=>chooseTarget(candidates[Number(btn.dataset.candidateIndex)].station);
+  });
+}
+
 const SVG_NS="http://www.w3.org/2000/svg";
-const BOARD = {left:120,top:70,dx:78,dy:86,width:2200,height:860};
+const BOARD = {left:118,top:70,dx:68,dy:86,width:1840,height:860};
 function svgEl(tag,attrs={}){
   const el=document.createElementNS(SVG_NS,tag);
   Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v));
@@ -224,6 +304,11 @@ function renderBoard(){
 
   const shortestRoute=shortest(state.current,state.goal);
   const shortestKeys=new Set(shortestRoute.edges.map(e=>[e.from,e.to,e.line].join("|")));
+  const shortestStations=new Set(shortestRoute.nodes);
+  const routeTransferStations=new Set();
+  for(let i=1;i<shortestRoute.edges.length;i++){
+    if(shortestRoute.edges[i-1].line!==shortestRoute.edges[i].line) routeTransferStations.add(shortestRoute.nodes[i]);
+  }
   const reachableSet=new Set(Object.keys(state.reachable||{}));
 
   // background
@@ -234,9 +319,15 @@ function renderBoard(){
     if(occ.length<2) continue;
     const points=occ.map(o=>({...occurrencePoint(o.lineId,o.pathIndex,o.index),lineId:o.lineId}));
     for(let i=1;i<points.length;i++){
+      const isRouteTransfer=routeTransferStations.has(station);
       svg.appendChild(svgEl("line",{
         x1:points[0].x,y1:points[0].y,x2:points[i].x,y2:points[i].y,
-        stroke:"#c8c3ba","stroke-width":"2","stroke-dasharray":"5 5","vector-effect":"non-scaling-stroke"
+        stroke:"#fffdf8","stroke-width":isRouteTransfer?"8":"6","vector-effect":"non-scaling-stroke"
+      }));
+      svg.appendChild(svgEl("line",{
+        x1:points[0].x,y1:points[0].y,x2:points[i].x,y2:points[i].y,
+        stroke:isRouteTransfer?"#173a2a":"#aab3ad","stroke-width":isRouteTransfer?"3.5":"2","stroke-dasharray":"5 5","vector-effect":"non-scaling-stroke",
+        opacity:isRouteTransfer?"0.95":"0.58"
       }));
     }
   }
@@ -261,7 +352,7 @@ function renderBoard(){
           x1:p1.x,y1:p1.y,x2:p2.x,y2:p2.y,
           stroke:isShortest?"#253a31":line.color,
           "stroke-width":isShortest?"9":"5",
-          "stroke-linecap":"round",opacity:isShortest?"0.9":"0.72"
+          "stroke-linecap":"round",opacity:isShortest?"0.96":"0.48"
         }));
       }
     });
@@ -272,18 +363,23 @@ function renderBoard(){
     line.paths.forEach((path,pathIndex)=>{
       path.forEach((raw,index)=>{
         const station=canonical(raw),p=occurrencePoint(lineId,pathIndex,index);
-        const g=svgEl("g",{class:"station-node",tabindex:"0","data-station":station});
+        const isTransfer=(OCCURRENCES[station]||[]).length>1;
         const isCurrent=station===state.current,isGoal=station===state.goal,isReachable=reachableSet.has(station);
-        const radius=(isCurrent||isGoal||isReachable)?10:6.5;
+        const interactive=isReachable&&state.phase==="game"&&state.dice;
+        const g=svgEl("g",{class:"station-node"+(isTransfer?" transfer-node":""),tabindex:interactive?"0":"-1","data-station":station,"aria-label":interactive?station+"へ移動":""});
+        if(interactive) g.setAttribute("role","button");
+        const radius=(isCurrent||isGoal||isReachable)?10:isTransfer?8:6.5;
         let fill="#fff",stroke=line.color,sw=3;
         if(isCurrent){fill="#173a2a";stroke="#173a2a";sw=4}
         if(isGoal){fill="#fff3cf";stroke="#f2a900";sw=4}
         if(isReachable){fill="#e9f8ef";stroke="#2a9d5b";sw=4}
         if(station===state.target){fill="#dff0ff";stroke="#1677c8";sw=5}
+        g.appendChild(svgEl("circle",{cx:p.x,cy:p.y,r:20,fill:"transparent",class:"station-hit"}));
+        if(isTransfer) g.appendChild(svgEl("circle",{cx:p.x,cy:p.y,r:radius+4,fill:"none",stroke:routeTransferStations.has(station)?"#173a2a":"#60736a","stroke-width":routeTransferStations.has(station)?"3":"1.8",opacity:"0.9",class:"transfer-ring"}));
         g.appendChild(svgEl("circle",{cx:p.x,cy:p.y,r:radius,fill,stroke,"stroke-width":sw}));
 
-        const important=isCurrent||isGoal||isReachable;
-        const labelY=p.y-13;
+        const important=isCurrent||isGoal||isReachable||isTransfer||shortestStations.has(station);
+        const labelY=p.y-(isTransfer?17:13);
         const label=svgEl("text",{
           x:important?p.x:p.x+3,
           y:labelY,
@@ -297,7 +393,7 @@ function renderBoard(){
         label.textContent=raw;
         g.appendChild(label);
 
-        if(isReachable && state.phase==="game" && state.dice){
+        if(interactive){
           g.classList.add("reachable-node");
           g.style.cursor="pointer";
           g.addEventListener("click",()=>chooseTarget(station));
@@ -317,26 +413,33 @@ function renderGame(){
   $("turnText").textContent="TURN "+state.turn;
   $("currentLines").innerHTML=lineChips(state.current);
   $("recommendation").textContent=recommendation();
+  renderRouteCompass(r);
   $("dice").textContent=state.dice?["⚀","⚁","⚂","⚃","⚄","⚅"][state.dice-1]:"⚄";
-  $("rollBtn").disabled=state.phase!=="game";
-  $("diceStateText").textContent=state.dice?"移動可能駅を盤面から選択":"振って移動可能駅を表示";
+  $("rollBtn").disabled=state.phase!=="game"||Boolean(state.dice);
+  $("rollBtn").textContent=state.dice?"出目確定：移動先を選んでください":"サイコロを振る";
+  $("diceStateText").textContent=state.dice?"候補カードまたは盤面から選択":"振って移動可能駅を表示";
   $("reachableSummary").classList.toggle("hidden",!state.dice||state.phase!=="game");
   if(state.dice&&state.phase==="game"){
     const names=Object.keys(state.reachable||{});
-    $("reachableSummary").innerHTML="<strong>"+state.dice+"駅移動：</strong> "+names.length+"駅が候補です。<br>盤面で緑に光っている駅をタップしてください。";
+    $("reachableSummary").innerHTML="<strong>🎲 "+state.dice+"駅移動：</strong> "+names.length+"駅が候補です。<br>カードはゴールに近づく候補から表示しています。";
   }
   $("dicePanel").classList.toggle("hidden",state.phase!=="game");
   $("arrivalPanel").classList.toggle("hidden",state.phase!=="arrival");
   $("questPanel").classList.toggle("hidden",state.phase!=="quests");
-  $("boardHint").textContent=state.dice&&state.phase==="game"?"緑の駅をタップして移動先を決定":"現在地・ゴール・最短ルートを表示";
+  $("boardHint").textContent=state.dice&&state.phase==="game"?"緑の駅はタップ可能":"二重丸は乗換駅 / 太線は最短ルート";
+  renderCandidates();
   renderBoard();
   if(state.phase==="arrival") renderArrival();
   if(state.phase==="quests") renderQuests();
   renderHistory();
+  if(boardMode==="focus"&&lastBoardStation!==state.current){
+    lastBoardStation=state.current;
+    requestAnimationFrame(()=>centerCurrent(false));
+  }
 }
 
 function rollDice(){
-  if(state.phase!=="game") return;
+  if(state.phase!=="game"||state.dice) return;
   const d=$("dice"); d.classList.add("rolling"); $("rollBtn").disabled=true;
   let ticks=0; clearInterval(rollTimer);
   rollTimer=setInterval(()=>{
@@ -353,6 +456,7 @@ function rollDice(){
       if(goalRoute.distance!==null && goalRoute.distance<=state.dice) state.reachable[state.goal]=goalRoute;
       log("サイコロ "+state.dice+"：移動候補 "+Object.keys(state.reachable).length+"駅");
       save(); renderGame();
+      requestAnimationFrame(()=>$("candidatePanel").scrollIntoView({behavior:"smooth",block:"nearest"}));
     }
   },65);
 }
@@ -377,6 +481,7 @@ function renderArrival(){
 function changeTarget(){
   state.phase="game"; state.target=null; state.targetPath=null;
   save(); renderGame();
+  requestAnimationFrame(()=>$("candidatePanel").scrollIntoView({behavior:"smooth",block:"center"}));
 }
 
 function buildQuests(station){
@@ -387,14 +492,28 @@ function buildQuests(station){
   ].sort(()=>Math.random()-.5);
   return special.slice(0,2).map(text=>({text,done:false}));
 }
+function playArrivalAnimation(station,path){
+  const overlay=$("travelOverlay");
+  $("travelTitle").textContent=station+"に到着！";
+  $("travelRoute").textContent=path&&path.nodes?path.nodes.join(" → "):"次のクエストへ";
+  overlay.classList.remove("hidden");
+  const duration=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches?120:950;
+  setTimeout(()=>{
+    overlay.classList.add("hidden");
+    $("questPanel").scrollIntoView({behavior:"smooth",block:"center"});
+  },duration);
+}
 function arrive(){
   if(state.phase!=="arrival"||!state.target) return;
+  const arrivedAt=state.target;
+  const travelledPath=state.targetPath;
   state.current=state.target;
   state.target=null; state.targetPath=null; state.reachable={}; state.dice=null;
   if(!state.quests[state.current]) state.quests[state.current]=buildQuests(state.current);
   state.phase="quests";
   log(state.current+" に到着");
   save(); renderGame();
+  playArrivalAnimation(arrivedAt,travelledPath);
 }
 function renderQuests(){
   const q=state.quests[state.current]||(state.quests[state.current]=buildQuests(state.current));
@@ -416,6 +535,7 @@ function nextTurn(){
   }
   state.phase="game"; state.turn++;
   save(); renderGame();
+  requestAnimationFrame(()=>$("dicePanel").scrollIntoView({behavior:"smooth",block:"start"}));
 }
 function renderFinish(){
   const done=Object.values(state.quests).flat().filter(q=>q.done).length;
@@ -426,25 +546,32 @@ function resume(){
 }
 function hardReset(){
   if(!confirm("保存中の旅を初期化します。よろしいですか？")) return;
-  localStorage.removeItem(KEY); state=fresh(); setupStart=setupGoal=null;
+  localStorage.removeItem(KEY); LEGACY_KEYS.forEach(key=>localStorage.removeItem(key));
+  state=fresh(); setupStart=setupGoal=null; boardMode="focus"; lastBoardStation=null;
   updateResume(); show("homeView"); toast("初期化しました");
 }
 
 function fitBoard(){
   const el=$("networkScroll");
+  boardMode="overview";
   el.classList.add("overview");
   el.scrollTo({left:0,top:0,behavior:"smooth"});
   $("fitBtn").textContent="全体表示中";
+  $("fitBtn").setAttribute("aria-pressed","true");
+  $("centerBtn").setAttribute("aria-pressed","false");
 }
-function centerCurrent(){
+function centerCurrent(smooth=true){
   const occ=(OCCURRENCES[state.current]||[])[0];
   if(!occ) return;
   const el=$("networkScroll");
+  boardMode="focus";
   el.classList.remove("overview");
   $("fitBtn").textContent="全体";
+  $("fitBtn").setAttribute("aria-pressed","false");
+  $("centerBtn").setAttribute("aria-pressed","true");
   requestAnimationFrame(()=>{
     const p=occurrencePoint(occ.lineId,occ.pathIndex,occ.index);
-    el.scrollTo({left:Math.max(0,p.x-el.clientWidth/2),top:Math.max(0,p.y-el.clientHeight/2),behavior:"smooth"});
+    el.scrollTo({left:Math.max(0,p.x-el.clientWidth/2),top:Math.max(0,p.y-el.clientHeight/2),behavior:smooth?"smooth":"auto"});
   });
 }
 
