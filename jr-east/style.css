@@ -186,3 +186,17 @@ footer{text-align:center;font-size:11px;color:#8a8f89;margin-top:22px}
   .core-map-scroll{height:410px}
   .core-map-mount{min-width:700px;min-height:470px}
 }
+
+/* JR East V0.3 — multi-scale map architecture */
+.overview-map{border:1px solid #ded8cc;border-radius:16px;background:#fffdf8;overflow:hidden}
+.overview-map svg{display:block;width:100%;height:auto;aspect-ratio:10/7}
+.overview-caption{padding:10px 12px;border-top:1px solid #e3ddd1;background:#f8f5ee;font-size:12px;font-weight:800;color:#415047}
+.overview-node circle{transition:transform .18s ease,filter .18s ease}
+.overview-node:hover circle{filter:drop-shadow(0 0 5px rgba(23,58,42,.28))}
+.overview-label{font-family:system-ui,-apple-system,"Segoe UI","Yu Gothic",sans-serif;paint-order:stroke;stroke:#fffdf8;stroke-width:4px;stroke-linejoin:round}
+.map-mode-tabs{position:sticky;top:0;z-index:3;padding:6px 0;background:linear-gradient(180deg,#fffdf8 70%,rgba(255,253,248,0))}
+.map-mode-btn{flex:1}
+@media(max-width:580px){
+  .overview-label{font-size:17px}
+  .overview-caption{font-size:11px}
+}
