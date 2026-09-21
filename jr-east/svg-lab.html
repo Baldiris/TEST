@@ -1,0 +1,17 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JR SVG Lab</title>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,"Yu Gothic",sans-serif;background:#f4f2ec;color:#1f2923}
+main{max-width:1180px;margin:auto;padding:20px}.head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:18px}
+h1{margin:0;font-size:28px}p{line-height:1.6}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:#fff;border:1px solid #d9d4c8;border-radius:18px;padding:14px}
+.card h2{font-size:15px;margin:0 0 10px}.frame{aspect-ratio:700/470;display:grid;place-items:center;overflow:hidden;background:#fff;border-radius:12px}
+.frame img{width:100%;height:100%;object-fit:contain}.note{font-size:12px;color:#68726c}.badge{padding:6px 10px;border-radius:999px;background:#0b5d32;color:#fff;font-size:12px;font-weight:800}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}}
+</style></head><body><main>
+<div class="head"><div><h1>東京コアSVG 再現ラボ</h1><p>元画像の構造をベクトルへ再構成。まだV0.1で、駅名配置と一部枝線をループ改善していきます。</p></div><span class="badge">SVG V0.1</span></div>
+<div class="grid">
+<section class="card"><h2>Reference</h2><div class="frame"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Tokunai-pass.png" alt="Tokunai-pass.png reference"></div></section>
+<section class="card"><h2>Vector reconstruction</h2><div class="frame"><img src="tokyo-core-map.svg" alt="東京コアSVG"></div></section>
+</div>
+<p class="note">Reference: “Tokunai-pass.png”, Highexpress~commonswiki, Wikimedia Commons, CC BY-SA 4.0. SVG is an adapted/redrawn work and is provided under CC BY-SA 4.0. The game UI/code remains separately authored.</p>
+<p><a href="./">JR東日本版に戻る</a></p>
+</main></body></html>
