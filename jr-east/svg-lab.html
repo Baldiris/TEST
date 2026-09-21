@@ -5,10 +5,10 @@ main{max-width:1180px;margin:auto;padding:20px}.head{display:flex;justify-conten
 h1{margin:0;font-size:28px}p{line-height:1.6}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:#fff;border:1px solid #d9d4c8;border-radius:18px;padding:14px}
 .card h2{font-size:15px;margin:0 0 10px}.frame{aspect-ratio:700/470;display:grid;place-items:center;overflow:hidden;background:#fff;border-radius:12px}
 .frame img{width:100%;height:100%;object-fit:contain}.note{font-size:12px;color:#68726c}.badge{padding:6px 10px;border-radius:999px;background:#0b5d32;color:#fff;font-size:12px;font-weight:800}
-.overlay-card{margin-top:16px}.overlay-frame{position:relative;aspect-ratio:700/470;overflow:hidden;border:1px solid #ddd;border-radius:12px;background:#fff}.overlay-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}.overlay-frame .vector{opacity:.5}.slider-label{display:flex;align-items:center;gap:12px;margin-top:12px;font-size:13px}.slider-label input{flex:1}
+.overlay-card,.interactive-card{margin-top:16px}.overlay-frame{position:relative;aspect-ratio:700/470;overflow:hidden;border:1px solid #ddd;border-radius:12px;background:#fff}.overlay-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}.overlay-frame .vector{opacity:.5}.slider-label{display:flex;align-items:center;gap:12px;margin-top:12px;font-size:13px}.slider-label input{flex:1}.interactive-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.mode-btn{border:1px solid #cfc9bd;background:#fff;padding:7px 10px;border-radius:9px;font-weight:700}.mode-btn.active{background:#173a2a;color:#fff;border-color:#173a2a}.inline-map{aspect-ratio:700/470;background:#fff;border:1px solid #ddd;border-radius:12px;overflow:hidden}.inline-map svg{width:100%;height:100%;display:block}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}}
 </style></head><body><main>
-<div class="head"><div><h1>東京コアSVG 再現ラボ</h1><p>元画像の構造をベクトルへ再構成。V0.3では駅位置を維持しつつ、山手線と主要枝線を曲線化。下のオーバーレイで元画像とのズレを確認できます。</p></div><span class="badge">SVG V0.3</span></div>
+<div class="head"><div><h1>東京コアSVG 再現ラボ</h1><p>元画像の構造をベクトルへ再構成。V0.4では主要駅と一般駅のラベルを分離。全体表示と詳細表示の切替を検証できます。</p></div><span class="badge">SVG V0.4</span></div>
 <div class="grid">
 <section class="card"><h2>Reference</h2><div class="frame"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Tokunai-pass.png" alt="Tokunai-pass.png reference"></div></section>
 <section class="card"><h2>Vector reconstruction</h2><div class="frame"><img src="tokyo-core-map.svg" alt="東京コアSVG"></div></section>
@@ -21,6 +21,16 @@ h1{margin:0;font-size:28px}p{line-height:1.6}.grid{display:grid;grid-template-co
   </div>
   <label class="slider-label">SVG opacity <input id="opacitySlider" type="range" min="0" max="100" value="50"><b id="opacityValue">50%</b></label>
 </section>
+<section class="card interactive-card">
+  <div class="interactive-head">
+    <h2>Game-ready label test</h2>
+    <div>
+      <button id="allLabelsBtn" class="mode-btn active">全駅名</button>
+      <button id="majorLabelsBtn" class="mode-btn">主要駅のみ</button>
+    </div>
+  </div>
+  <div class="inline-map" id="inlineMap">SVG loading...</div>
+</section>
 <p class="note">Reference: “Tokunai-pass.png”, Highexpress~commonswiki, Wikimedia Commons, CC BY-SA 4.0. SVG is an adapted/redrawn work and is provided under CC BY-SA 4.0. The game UI/code remains separately authored.</p>
 <p><a href="./">JR東日本版に戻る</a></p>
 </main>
@@ -29,5 +39,19 @@ const slider=document.getElementById("opacitySlider");
 const overlay=document.getElementById("vectorOverlay");
 const value=document.getElementById("opacityValue");
 slider.addEventListener("input",()=>{const v=Number(slider.value);overlay.style.opacity=v/100;value.textContent=v+"%"});
+const allBtn=document.getElementById("allLabelsBtn");
+const majorBtn=document.getElementById("majorLabelsBtn");
+fetch("tokyo-core-map.svg").then(r=>r.text()).then(text=>{
+  const host=document.getElementById("inlineMap");
+  host.innerHTML=text;
+  const svg=host.querySelector("svg");
+  const setMode=majorOnly=>{
+    svg.classList.toggle("labels-major-only",majorOnly);
+    allBtn.classList.toggle("active",!majorOnly);
+    majorBtn.classList.toggle("active",majorOnly);
+  };
+  allBtn.onclick=()=>setMode(false);
+  majorBtn.onclick=()=>setMode(true);
+});
 </script>
 </body></html>
