@@ -523,6 +523,11 @@ async function initCoreMap(){
     setMapMode("full",true);
   }
 }
+function ensureMapModeForState(){
+  if(!coreMapReady||!state.current||!state.goal) return;
+  const bothInside=coreMapStations.has(state.current)&&coreMapStations.has(state.goal);
+  if(!bothInside&&mapMode==="core") setMapMode("full",true);
+}
 function updateMapCoverageHint(){
   const hint=$("mapCoverageHint");
   if(!coreMapReady){hint.classList.add("hidden");return}
@@ -560,6 +565,7 @@ function renderGame(){
   $("boardHint").textContent=mapMode==="core"
     ? (state.dice&&state.phase==="game"?"東京コア図の緑の駅はタップ可能":"東京コア図 / 現在地・ゴール・おすすめ経路")
     : (state.dice&&state.phase==="game"?"緑の駅はタップ可能":"二重丸は乗換駅 / 太線は最短ルート");
+  ensureMapModeForState();
   renderCandidates();
   renderBoard();
   updateCoreMap();
