@@ -117,6 +117,7 @@ function fresh(){
 let state=load()||fresh();
 let setupStart=null,setupGoal=null,rollTimer=null,boardMode="focus",lastBoardStation=null;
 let mapMode="core",coreMapReady=false,coreMapStations=new Set();
+const overviewHubCache=new Map();
 const views=["homeView","setupView","gameView","finishView"];
 
 function save(){
@@ -417,6 +418,102 @@ function renderBoard(){
 }
 
 
+function nearestOverviewHub(station){
+  if(!station) return null;
+  if(OVERVIEW.nodes[station]) return {hub:station,distance:0};
+  if(overviewHubCache.has(station)) return overviewHubCache.get(station);
+  let best=null;
+  for(const hub of Object.keys(OVERVIEW.nodes||{})){
+    const r=shortest(station,hub);
+    if(r.distance===null) continue;
+    if(!best||r.distance<best.distance) best={hub,distance:r.distance};
+  }
+  overviewHubCache.set(station,best);
+  return best;
+}
+function overviewHubRoute(startHub,goalHub){
+  if(!startHub||!goalHub) return [];
+  if(startHub===goalHub) return [startHub];
+  const adj={};
+  for(const [a,b] of OVERVIEW.edges||[]){
+    (adj[a]??=[]).push(b); (adj[b]??=[]).push(a);
+  }
+  const q=[startHub],prev={[startHub]:null};
+  for(let i=0;i<q.length;i++){
+    const u=q[i];
+    for(const v of adj[u]||[]){
+      if(Object.prototype.hasOwnProperty.call(prev,v)) continue;
+      prev[v]=u;
+      if(v===goalHub){
+        const path=[v]; let cur=v;
+        while(prev[cur]){cur=prev[cur];path.unshift(cur)}
+        return path;
+      }
+      q.push(v);
+    }
+  }
+  return [];
+}
+function renderOverviewMap(){
+  const svg=$("overviewSvg");
+  if(!svg) return;
+  const [vx,vy,vw,vh]=OVERVIEW.viewBox||[0,0,1000,700];
+  svg.setAttribute("viewBox",[vx,vy,vw,vh].join(" "));
+  svg.innerHTML="";
+  svg.appendChild(svgEl("rect",{x:vx,y:vy,width:vw,height:vh,rx:24,fill:"#fffdf8"}));
+
+  const currentHub=nearestOverviewHub(state.current);
+  const goalHub=nearestOverviewHub(state.goal);
+  const hubRoute=overviewHubRoute(currentHub?.hub,goalHub?.hub);
+  const routeKeys=new Set();
+  for(let i=0;i<hubRoute.length-1;i++){
+    routeKeys.add([hubRoute[i],hubRoute[i+1]].sort().join("|"));
+  }
+
+  for(const [a,b] of OVERVIEW.edges||[]){
+    const pa=OVERVIEW.nodes[a],pb=OVERVIEW.nodes[b];
+    if(!pa||!pb) continue;
+    const active=routeKeys.has([a,b].sort().join("|"));
+    svg.appendChild(svgEl("line",{
+      x1:pa[0],y1:pa[1],x2:pb[0],y2:pb[1],
+      stroke:active?"#173a2a":"#b4b9b5",
+      "stroke-width":active?"9":"5",
+      "stroke-linecap":"round",
+      opacity:active?"0.88":"0.55"
+    }));
+  }
+
+  for(const [name,p] of Object.entries(OVERVIEW.nodes||{})){
+    const isCurrent=currentHub?.hub===name;
+    const isGoal=goalHub?.hub===name;
+    const g=svgEl("g",{class:"overview-node","data-overview-station":name});
+    let fill="#fff",stroke="#6d756f",sw=2,r=9;
+    if(isCurrent){fill="#173a2a";stroke="#173a2a";sw=4;r=13}
+    if(isGoal){fill="#fff3cf";stroke="#f2a900";sw=4;r=13}
+    g.appendChild(svgEl("circle",{cx:p[0],cy:p[1],r,fill,stroke,"stroke-width":sw}));
+    const label=svgEl("text",{
+      x:p[0],y:p[1]-16,"text-anchor":"middle",
+      fill:"#26322c","font-size":isCurrent||isGoal?"18":"15",
+      "font-weight":isCurrent||isGoal?"900":"750",
+      class:"overview-label"
+    });
+    label.textContent=name;
+    g.appendChild(label);
+    svg.appendChild(g);
+  }
+
+  const cap=$("overviewCaption");
+  if(cap){
+    const cText=currentHub
+      ? (state.current===currentHub.hub?state.current:state.current+"（"+currentHub.hub+"方面）")
+      : state.current||"-";
+    const gText=goalHub
+      ? (state.goal===goalHub.hub?state.goal:state.goal+"（"+goalHub.hub+"方面）")
+      : state.goal||"-";
+    cap.textContent="現在地 "+cText+" → ゴール "+gText;
+  }
+}
+
 function coreStationElement(station){
   const root=$("coreMapMount");
   if(!root) return null;
@@ -431,13 +528,17 @@ function corePoint(station){
 }
 function setMapMode(mode,auto=false){
   mapMode=mode;
-  const core=mode==="core";
+  const overview=mode==="overview",core=mode==="core",full=mode==="full";
+  $("overviewMapWrap").classList.toggle("hidden",!overview);
   $("coreMapScroll").classList.toggle("hidden",!core);
-  $("networkScroll").classList.toggle("hidden",core);
+  $("networkScroll").classList.toggle("hidden",!full);
+  $("overviewMapBtn").classList.toggle("active",overview);
   $("coreMapBtn").classList.toggle("active",core);
-  $("fullMapBtn").classList.toggle("active",!core);
+  $("fullMapBtn").classList.toggle("active",full);
+  $("overviewMapBtn").setAttribute("aria-pressed",String(overview));
   $("coreMapBtn").setAttribute("aria-pressed",String(core));
-  $("fullMapBtn").setAttribute("aria-pressed",String(!core));
+  $("fullMapBtn").setAttribute("aria-pressed",String(full));
+  if(overview) renderOverviewMap();
   if(!auto){
     boardMode="focus";
     requestAnimationFrame(()=>centerCurrent(false));
@@ -680,7 +781,9 @@ function hardReset(){
 
 function fitBoard(){
   boardMode="overview";
-  if(mapMode==="core"){
+  if(mapMode==="overview"){
+    renderOverviewMap();
+  }else if(mapMode==="core"){
     const el=$("coreMapScroll"),svg=$("coreMapMount").querySelector("svg");
     el.classList.add("overview");
     if(svg) svg.classList.add("labels-major-only");
@@ -700,6 +803,10 @@ function centerCurrent(smooth=true){
   $("fitBtn").setAttribute("aria-pressed","false");
   $("centerBtn").setAttribute("aria-pressed","true");
 
+  if(mapMode==="overview"){
+    renderOverviewMap();
+    return;
+  }
   if(mapMode==="core"){
     const el=$("coreMapScroll"),svg=$("coreMapMount").querySelector("svg");
     el.classList.remove("overview");
@@ -755,6 +862,7 @@ $("backHomeBtn").onclick=()=>show("homeView");
 $("resetBtn").onclick=hardReset;
 $("fitBtn").onclick=fitBoard;
 $("centerBtn").onclick=centerCurrent;
+$("overviewMapBtn").onclick=()=>setMapMode("overview");
 $("coreMapBtn").onclick=()=>setMapMode("core");
 $("fullMapBtn").onclick=()=>setMapMode("full");
 
