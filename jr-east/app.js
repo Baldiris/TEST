@@ -118,6 +118,7 @@ let state=load()||fresh();
 let setupStart=null,setupGoal=null,rollTimer=null,boardMode="focus",lastBoardStation=null;
 let mapMode="core",coreMapReady=false,coreMapStations=new Set();
 const overviewHubCache=new Map();
+const stationRegionCache=new Map();
 const views=["homeView","setupView","gameView","finishView"];
 
 function save(){
@@ -418,6 +419,21 @@ function renderBoard(){
 }
 
 
+function regionForStation(station){
+  if(!station) return null;
+  if(stationRegionCache.has(station)) return stationRegionCache.get(station);
+  let best=null;
+  for(const [id,region] of Object.entries(REGIONS)){
+    for(const hub of region.hubs||[]){
+      const r=shortest(station,hub);
+      if(r.distance===null) continue;
+      if(!best||r.distance<best.distance) best={id,name:region.name,distance:r.distance,hub};
+    }
+  }
+  stationRegionCache.set(station,best);
+  return best;
+}
+
 function nearestOverviewHub(station){
   if(!station) return null;
   if(OVERVIEW.nodes[station]) return {hub:station,distance:0};
@@ -510,7 +526,9 @@ function renderOverviewMap(){
     const gText=goalHub
       ? (state.goal===goalHub.hub?state.goal:state.goal+"（"+goalHub.hub+"方面）")
       : state.goal||"-";
-    cap.textContent="現在地 "+cText+" → ゴール "+gText;
+    const cr=regionForStation(state.current),gr=regionForStation(state.goal);
+    const regionText=cr&&gr ? " / "+cr.name+(cr.id===gr.id?"":" → "+gr.name) : "";
+    cap.textContent="現在地 "+cText+" → ゴール "+gText+regionText;
   }
 }
 
