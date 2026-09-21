@@ -181,6 +181,7 @@ footer{text-align:center;font-size:11px;color:#8a8f89;margin-top:22px}
 .core-map-mount [data-station].game-goal{fill:#fff3cf!important;stroke:#f2a900!important;stroke-width:3!important;filter:drop-shadow(0 0 4px rgba(242,169,0,.55));transform:scale(1.35)}
 .core-map-mount [data-station].game-reachable{fill:#e9f8ef!important;stroke:#2a9d5b!important;stroke-width:3!important;filter:drop-shadow(0 0 5px rgba(42,157,91,.65));transform:scale(1.4)}
 .core-map-mount [data-station].game-target{fill:#dff0ff!important;stroke:#1677c8!important;stroke-width:3.5!important;filter:drop-shadow(0 0 5px rgba(22,119,200,.55));transform:scale(1.45)}
+.core-map-mount [data-station].game-goal.game-reachable:not(.game-target){fill:#fff3cf!important;stroke:#f2a900!important;filter:drop-shadow(0 0 5px rgba(42,157,91,.65))}
 .core-map-mount [data-station].game-reachable:hover,
 .core-map-mount [data-station].game-reachable:focus{outline:none;filter:drop-shadow(0 0 8px rgba(42,157,91,.9));transform:scale(1.65)}
 .core-map-mount #game-route-overlay{filter:drop-shadow(0 1px 1px rgba(255,255,255,.9))}

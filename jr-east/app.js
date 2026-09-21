@@ -623,6 +623,7 @@ async function loadRegionMap(regionId,{autoMode=true}={}){
     coreMapStations=new Set([...svg.querySelectorAll("[data-station]")].map(el=>el.getAttribute("data-station")));
     coreMapReady=true;
     activeRegionId=regionId;
+    $("coreMapMount").setAttribute("aria-label",region.name+"ゲーム用路線図");
     $("coreMapBtn").textContent="地域: "+region.name;
     updateCoreMap();
     if(autoMode){
@@ -721,7 +722,7 @@ function renderGame(){
   $("arrivalPanel").classList.toggle("hidden",state.phase!=="arrival");
   $("questPanel").classList.toggle("hidden",state.phase!=="quests");
   $("boardHint").textContent=mapMode==="core"
-    ? (state.dice&&state.phase==="game"?"東京コア図の緑の駅はタップ可能":"東京コア図 / 現在地・ゴール・おすすめ経路")
+    ? (state.dice&&state.phase==="game"?"候補駅をタップして移動先を選択":"地域図 / 現在地・ゴール・おすすめ経路")
     : (state.dice&&state.phase==="game"?"緑の駅はタップ可能":"二重丸は乗換駅 / 太線は最短ルート");
   syncRegionalMapForState();
   ensureMapModeForState();

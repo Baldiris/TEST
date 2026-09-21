@@ -35,7 +35,7 @@ async function boot(suite=false){
   }
   state.dice=fixture==='north'?2:1;state.reachable=Object.fromEntries(reachableExactly(state.current,state.dice));
   const route=shortest(state.current,state.goal);if(route.distance<=state.dice)state.reachable[state.goal]=route;
-  renderGame();setMapMode(fixture==='outside'?'full':'core',true);centerCurrent(false);
+  renderGame();if(fixture!=='outside')setMapMode('core',true);centerCurrent(false);
   check(coreStationElement(state.current).classList.contains('game-current'),'現在地の強調');
   if(fixture!=='outside')check(coreStationElement(state.goal).classList.contains('game-goal'),'ゴールの強調');
   check(document.querySelectorAll('#coreMapMount .game-reachable').length>0,'候補駅の強調');
@@ -56,7 +56,7 @@ async function boot(suite=false){
    }
    state={...fresh(),current:'横浜',goal:'川崎',start:'横浜',phase:'game'};renderGame();show('gameView');setMapMode('core');
   }
-  parent.postMessage({type:'jr-region-check',text:log.join('\\n')},location.origin);
+  parent.postMessage({type:'jr-region-check',text:log.join('\\n')},new URL(document.baseURI).origin);
  }catch(e){parent.postMessage({type:'jr-region-check',text:log.join('\\n')+'\\nFAIL '+e.message},location.origin)}
 })();`;
   const inline=code=>'<script>'+code.replace(/<\/script/gi,'<\\/script')+'<\/script>';

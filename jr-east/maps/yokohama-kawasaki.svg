@@ -106,7 +106,7 @@
 <text class="minor-label" x="445" y="369" text-anchor="middle">武蔵新城</text>
 <text class="minor-label" x="525" y="300" text-anchor="middle">武蔵中原</text>
 <text class="major-label" x="625" y="311" text-anchor="start">武蔵小杉</text>
-<text class="minor-label" x="647" y="395" text-anchor="end">向河原</text>
+<text class="minor-label" x="685" y="375" text-anchor="start">向河原</text>
 <text class="minor-label" x="707" y="445" text-anchor="end">平間</text>
 <text class="minor-label" x="767" y="495" text-anchor="end">鹿島田</text>
 <text class="minor-label" x="827" y="545" text-anchor="end">矢向</text>
