@@ -169,6 +169,16 @@ function randomStation(except){
   const pool=ALL_STATIONS.filter(x=>x!==except);
   return pool[Math.floor(Math.random()*pool.length)];
 }
+function randomGoalFrom(start){
+  const preferred=ALL_STATIONS.filter(st=>{
+    if(st===start) return false;
+    const d=shortest(start,st).distance;
+    return d!==null && d>=5 && d<=15;
+  });
+  const fallback=ALL_STATIONS.filter(st=>st!==start);
+  const pool=preferred.length?preferred:fallback;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
 function slotAnimate(el,final,cb){
   let n=0;
   const t=setInterval(()=>{
@@ -603,7 +613,7 @@ $("drawStartBtn").onclick=()=>{
   });
 };
 $("drawGoalBtn").onclick=()=>{
-  setupGoal=randomStation(setupStart); $("drawGoalBtn").disabled=true;
+  setupGoal=randomGoalFrom(setupStart); $("drawGoalBtn").disabled=true;
   slotAnimate($("goalSlot"),setupGoal,()=>{
     $("drawGoalBtn").disabled=false; $("confirmSetupBtn").disabled=false;
     $("goalLines").innerHTML=lineChips(setupGoal); updateSetupRoute();
