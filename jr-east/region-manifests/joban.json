@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "joban",
+  "name": "常磐",
+  "description": "常磐線快速の東葛・茨城南部方面",
+  "hubs": [
+    "北千住",
+    "松戸",
+    "柏",
+    "取手"
+  ],
+  "map": null,
+  "stations": [
+    "我孫子",
+    "取手",
+    "松戸",
+    "天王台",
+    "南千住",
+    "柏",
+    "北千住"
+  ],
+  "boundaryStations": [
+    "三河島"
+  ],
+  "edges": [
+    {
+      "from": "我孫子",
+      "to": "柏",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "我孫子",
+      "to": "天王台",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "取手",
+      "to": "天王台",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "松戸",
+      "to": "北千住",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "松戸",
+      "to": "柏",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "南千住",
+      "to": "北千住",
+      "services": [
+        "JJ"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "南千住",
+      "to": "三河島",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JJ"
+      ]
+    }
+  ]
+}
