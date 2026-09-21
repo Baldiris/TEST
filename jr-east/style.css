@@ -162,3 +162,27 @@ footer{text-align:center;font-size:11px;color:#8a8f89;margin-top:22px}
 /* JR East Kanto V0.1 */
 :root{--green:#0b5d32;--green2:#16713f}
 .logo{font-size:12px;letter-spacing:-.04em}
+
+/* JR East Production V0.2 — interactive Tokyo core map */
+.map-mode-tabs{display:flex;gap:7px;margin:10px 0 11px}
+.map-mode-btn{border:1px solid var(--border);background:#fff;color:var(--ink);border-radius:11px;padding:8px 11px;font-size:11px;font-weight:800}
+.map-mode-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
+.map-coverage-hint{margin:8px 0 10px;padding:9px 11px;border-radius:11px;background:#fff5d9;border:1px solid #e8c66d;color:#70520b;font-size:11px;font-weight:700}
+.core-map-scroll{background:#fff;height:470px}
+.core-map-mount{min-width:700px;min-height:470px;background:#fff;position:relative}
+.core-map-mount>svg{display:block;width:700px;height:470px;max-width:none}
+.core-map-scroll.overview{height:auto;overflow:hidden}
+.core-map-scroll.overview .core-map-mount{min-width:0;min-height:0}
+.core-map-scroll.overview .core-map-mount>svg{width:100%;height:auto}
+.core-map-mount [data-station]{transition:filter .18s ease,stroke .18s ease,fill .18s ease,transform .18s ease;transform-box:fill-box;transform-origin:center}
+.core-map-mount [data-station].game-current{fill:#173a2a!important;stroke:#173a2a!important;filter:drop-shadow(0 0 4px rgba(23,58,42,.6));transform:scale(1.35)}
+.core-map-mount [data-station].game-goal{fill:#fff3cf!important;stroke:#f2a900!important;stroke-width:3!important;filter:drop-shadow(0 0 4px rgba(242,169,0,.55));transform:scale(1.35)}
+.core-map-mount [data-station].game-reachable{fill:#e9f8ef!important;stroke:#2a9d5b!important;stroke-width:3!important;filter:drop-shadow(0 0 5px rgba(42,157,91,.65));transform:scale(1.4)}
+.core-map-mount [data-station].game-target{fill:#dff0ff!important;stroke:#1677c8!important;stroke-width:3.5!important;filter:drop-shadow(0 0 5px rgba(22,119,200,.55));transform:scale(1.45)}
+.core-map-mount [data-station].game-reachable:hover,
+.core-map-mount [data-station].game-reachable:focus{outline:none;filter:drop-shadow(0 0 8px rgba(42,157,91,.9));transform:scale(1.65)}
+.core-map-mount #game-route-overlay{filter:drop-shadow(0 1px 1px rgba(255,255,255,.9))}
+@media(max-width:580px){
+  .core-map-scroll{height:410px}
+  .core-map-mount{min-width:700px;min-height:470px}
+}
