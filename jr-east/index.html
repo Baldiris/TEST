@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#173a2a">
-  <title>きまぐれJR旅 V0.2</title>
+  <title>きまぐれJR旅 V0.3</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
         <div class="logo">JR</div>
         <div>
           <h1>きまぐれJR旅</h1>
-          <p>JR東日本 関東近郊ネットワーク V0.2</p>
+          <p>JR東日本 関東近郊ネットワーク V0.3</p>
         </div>
       </div>
       <button class="tiny" id="resetBtn">初期化</button>
@@ -29,7 +29,7 @@
 
       <div class="panel">
         <div class="section-title">
-          <h2>V0.2 Interactive Map</h2>
+          <h2>V0.3 Interactive Map</h2>
           <p id="networkStat">16路線</p>
         </div>
         <div class="feature-grid">
@@ -191,7 +191,7 @@
       </div>
     </section>
 
-    <footer>Kimagure JR East Trip V0.2 — Interactive Tokyo Core</footer>
+    <footer>Kimagure JR East Trip V0.3 — Architecture Split</footer>
   </main>
 
   <div class="travel-overlay hidden" id="travelOverlay" aria-live="polite">
@@ -202,6 +202,7 @@
     </div>
   </div>
   <div class="toast" id="toast"></div>
+  <script src="network-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
