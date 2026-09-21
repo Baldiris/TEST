@@ -119,9 +119,9 @@ function lineChips(station){
     .map(id=>'<span class="chip"><i class="line-dot" style="background:'+LINES[id].color+'"></i>'+id+' '+LINES[id].name+'</span>').join("");
 }
 
-const VERSION="0.1";
-const KEY="kimagureJREastKantoV01";
-const LEGACY_KEYS=[];
+const VERSION="0.2";
+const KEY="kimagureJREastKantoV02";
+const LEGACY_KEYS=["kimagureJREastKantoV01"];
 function fresh(){
   return {
     version:VERSION,phase:"home",start:null,goal:null,current:null,dice:null,
@@ -130,6 +130,7 @@ function fresh(){
 }
 let state=load()||fresh();
 let setupStart=null,setupGoal=null,rollTimer=null,boardMode="focus",lastBoardStation=null;
+let mapMode="core",coreMapReady=false,coreMapStations=new Set();
 const views=["homeView","setupView","gameView","finishView"];
 
 function save(){
@@ -142,7 +143,7 @@ function load(){
     if(x&&x.version===VERSION) return {...fresh(),...x,version:VERSION};
     for(const legacyKey of LEGACY_KEYS){
       const legacy=JSON.parse(localStorage.getItem(legacyKey));
-      if(legacy&&legacy.version===VERSION) return {...fresh(),...legacy,version:VERSION};
+      if(legacy&&legacy.version==="0.1") return {...fresh(),...legacy,version:VERSION};
     }
     return null;
   }catch{return null}
@@ -429,6 +430,112 @@ function renderBoard(){
   }
 }
 
+
+function coreStationElement(station){
+  const root=$("coreMapMount");
+  if(!root) return null;
+  return [...root.querySelectorAll("[data-station]")].find(el=>el.getAttribute("data-station")===station)||null;
+}
+function corePoint(station){
+  const el=coreStationElement(station);
+  if(!el) return null;
+  const x=Number(el.getAttribute("cx")||el.getAttribute("x")||0);
+  const y=Number(el.getAttribute("cy")||el.getAttribute("y")||0);
+  return {x,y};
+}
+function setMapMode(mode,auto=false){
+  mapMode=mode;
+  const core=mode==="core";
+  $("coreMapScroll").classList.toggle("hidden",!core);
+  $("networkScroll").classList.toggle("hidden",core);
+  $("coreMapBtn").classList.toggle("active",core);
+  $("fullMapBtn").classList.toggle("active",!core);
+  $("coreMapBtn").setAttribute("aria-pressed",String(core));
+  $("fullMapBtn").setAttribute("aria-pressed",String(!core));
+  if(!auto){
+    boardMode="focus";
+    requestAnimationFrame(()=>centerCurrent(false));
+  }
+}
+function updateCoreMap(){
+  if(!coreMapReady) return false;
+  const mount=$("coreMapMount");
+  const svg=mount.querySelector("svg");
+  if(!svg) return false;
+
+  const reachableSet=new Set(Object.keys(state.reachable||{}));
+  const route=shortest(state.current,state.goal);
+  mount.querySelectorAll("[data-station]").forEach(el=>{
+    const station=el.getAttribute("data-station");
+    el.classList.remove("game-current","game-goal","game-reachable","game-target");
+    if(station===state.current) el.classList.add("game-current");
+    if(station===state.goal) el.classList.add("game-goal");
+    if(reachableSet.has(station)&&state.phase==="game"&&state.dice){
+      el.classList.add("game-reachable");
+      el.style.cursor="pointer";
+      el.onclick=()=>chooseTarget(station);
+      el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();chooseTarget(station)}};
+      el.setAttribute("tabindex","0");
+      el.setAttribute("role","button");
+    }else{
+      el.style.cursor="";
+      el.onclick=null;
+      el.onkeydown=null;
+      el.removeAttribute("tabindex");
+      el.removeAttribute("role");
+    }
+    if(station===state.target) el.classList.add("game-target");
+  });
+
+  const old=svg.querySelector("#game-route-overlay");
+  if(old) old.remove();
+  const pts=(route.nodes||[]).map(corePoint).filter(Boolean);
+  if(pts.length>=2 && pts.length===route.nodes.length){
+    const path=svgEl("path",{
+      id:"game-route-overlay",
+      d:pts.map((p,i)=>(i?"L ":"M ")+p.x+" "+p.y).join(" "),
+      fill:"none",stroke:"#173a2a","stroke-width":"5.8",
+      "stroke-linecap":"round","stroke-linejoin":"round",opacity:"0.72",
+      "pointer-events":"none"
+    });
+    svg.insertBefore(path,svg.querySelector("[data-station]"));
+  }
+  return true;
+}
+async function initCoreMap(){
+  if(typeof fetch!=="function") return;
+  try{
+    const res=await fetch("tokyo-core-map.svg",{cache:"no-cache"});
+    if(!res.ok) throw new Error("SVG load failed");
+    const text=await res.text();
+    $("coreMapMount").innerHTML=text;
+    const svg=$("coreMapMount").querySelector("svg");
+    if(!svg) throw new Error("SVG not found");
+    svg.removeAttribute("width"); svg.removeAttribute("height");
+    coreMapStations=new Set([...svg.querySelectorAll("[data-station]")].map(el=>el.getAttribute("data-station")));
+    coreMapReady=true;
+    updateCoreMap();
+    if(state.current && (!coreMapStations.has(state.current)||!coreMapStations.has(state.goal))) setMapMode("full",true);
+    else setMapMode("core",true);
+  }catch(err){
+    coreMapReady=false;
+    $("coreMapMount").textContent="東京コア路線図を読み込めませんでした。全域ネットワークを利用してください。";
+    setMapMode("full",true);
+  }
+}
+function updateMapCoverageHint(){
+  const hint=$("mapCoverageHint");
+  if(!coreMapReady){hint.classList.add("hidden");return}
+  const missing=[state.current,state.goal].filter(Boolean).filter(st=>!coreMapStations.has(st));
+  if(missing.length){
+    hint.classList.remove("hidden");
+    hint.textContent="東京コア図の範囲外：" + [...new Set(missing)].join("・") + "。全域ネットワークで確認できます。";
+  }else{
+    hint.classList.add("hidden");
+    hint.textContent="";
+  }
+}
+
 function renderGame(){
   const r=shortest(state.current,state.goal);
   $("currentStat").textContent=displayStation(state.current);
@@ -450,9 +557,13 @@ function renderGame(){
   $("dicePanel").classList.toggle("hidden",state.phase!=="game");
   $("arrivalPanel").classList.toggle("hidden",state.phase!=="arrival");
   $("questPanel").classList.toggle("hidden",state.phase!=="quests");
-  $("boardHint").textContent=state.dice&&state.phase==="game"?"緑の駅はタップ可能":"二重丸は乗換駅 / 太線は最短ルート";
+  $("boardHint").textContent=mapMode==="core"
+    ? (state.dice&&state.phase==="game"?"東京コア図の緑の駅はタップ可能":"東京コア図 / 現在地・ゴール・おすすめ経路")
+    : (state.dice&&state.phase==="game"?"緑の駅はタップ可能":"二重丸は乗換駅 / 太線は最短ルート");
   renderCandidates();
   renderBoard();
+  updateCoreMap();
+  updateMapCoverageHint();
   if(state.phase==="arrival") renderArrival();
   if(state.phase==="quests") renderQuests();
   renderHistory();
@@ -576,23 +687,46 @@ function hardReset(){
 }
 
 function fitBoard(){
-  const el=$("networkScroll");
   boardMode="overview";
-  el.classList.add("overview");
-  el.scrollTo({left:0,top:0,behavior:"smooth"});
+  if(mapMode==="core"){
+    const el=$("coreMapScroll"),svg=$("coreMapMount").querySelector("svg");
+    el.classList.add("overview");
+    if(svg) svg.classList.add("labels-major-only");
+    el.scrollTo({left:0,top:0,behavior:"smooth"});
+  }else{
+    const el=$("networkScroll");
+    el.classList.add("overview");
+    el.scrollTo({left:0,top:0,behavior:"smooth"});
+  }
   $("fitBtn").textContent="全体表示中";
   $("fitBtn").setAttribute("aria-pressed","true");
   $("centerBtn").setAttribute("aria-pressed","false");
 }
 function centerCurrent(smooth=true){
-  const occ=(OCCURRENCES[state.current]||[])[0];
-  if(!occ) return;
-  const el=$("networkScroll");
   boardMode="focus";
-  el.classList.remove("overview");
   $("fitBtn").textContent="全体";
   $("fitBtn").setAttribute("aria-pressed","false");
   $("centerBtn").setAttribute("aria-pressed","true");
+
+  if(mapMode==="core"){
+    const el=$("coreMapScroll"),svg=$("coreMapMount").querySelector("svg");
+    el.classList.remove("overview");
+    if(svg) svg.classList.remove("labels-major-only");
+    const node=coreStationElement(state.current);
+    if(!node) return;
+    requestAnimationFrame(()=>{
+      const box=node.getBBox(),vb=svg.viewBox.baseVal;
+      const scale=svg.getBoundingClientRect().width/vb.width;
+      const x=(box.x+box.width/2)*scale;
+      const y=(box.y+box.height/2)*scale;
+      el.scrollTo({left:Math.max(0,x-el.clientWidth/2),top:Math.max(0,y-el.clientHeight/2),behavior:smooth?"smooth":"auto"});
+    });
+    return;
+  }
+  const occ=(OCCURRENCES[state.current]||[])[0];
+  if(!occ) return;
+  const el=$("networkScroll");
+  el.classList.remove("overview");
   requestAnimationFrame(()=>{
     const p=occurrencePoint(occ.lineId,occ.pathIndex,occ.index);
     el.scrollTo({left:Math.max(0,p.x-el.clientWidth/2),top:Math.max(0,p.y-el.clientHeight/2),behavior:smooth?"smooth":"auto"});
@@ -629,6 +763,9 @@ $("backHomeBtn").onclick=()=>show("homeView");
 $("resetBtn").onclick=hardReset;
 $("fitBtn").onclick=fitBoard;
 $("centerBtn").onclick=centerCurrent;
+$("coreMapBtn").onclick=()=>setMapMode("core");
+$("fullMapBtn").onclick=()=>setMapMode("full");
 
 updateResume();
 show("homeView");
+initCoreMap();
