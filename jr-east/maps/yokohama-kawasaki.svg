@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 1240" class="yokohama-map" role="img" aria-labelledby="yk-title yk-desc">
+<title id="yk-title">横浜・川崎 JR地域路線図</title><desc id="yk-desc">地域内35駅と境界7駅。北は東京、西は多摩、南は湘南へ。路線の交差は駅丸がある場所だけ乗換可能。</desc>
+<style>.yokohama-map{font-family:"Noto Sans CJK JP","Yu Gothic",sans-serif;background:#fcfbf7}.yokohama-map text{fill:#243b3b}.yokohama-map .minor-label{font-size:16px;font-weight:600;paint-order:stroke;stroke:#fcfbf7;stroke-width:5;stroke-linejoin:round}.yokohama-map .major-label{font-size:21px;font-weight:800;paint-order:stroke;stroke:#fcfbf7;stroke-width:6}.yokohama-map .direction{font-size:15px;fill:#637775}.yokohama-map.labels-major-only .minor-label{display:none}.yokohama-map .rail{fill:none;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}.yokohama-map .station{fill:#fff;stroke:#334c49;stroke-width:2.5}.yokohama-map .boundary{stroke-dasharray:3 2}.yokohama-map .hub{stroke-width:4}</style>
+<rect width="1140" height="1240" fill="#fcfbf7"/><path d="M1120 855 L1045 905 L1020 1240 H1140 V855Z" fill="#e9f1f2"/>
+<text x="45" y="53" font-size="30" font-weight="800">横浜・川崎</text><text x="45" y="80" font-size="12" letter-spacing="3" fill="#637775">YOKOHAMA / KAWASAKI</text>
+<text x="85" y="127" class="direction">↖ 多摩・立川方面</text><text x="605" y="127" class="direction">↑ 東京方面</text><text x="930" y="127" class="direction">↑ 品川・東京方面</text>
+<text x="45" y="607" class="direction">← 町田・八王子方面</text><text x="500" y="1210" class="direction" text-anchor="middle">↓ 湘南・鎌倉方面</text><text x="900" y="1210" class="direction" text-anchor="middle">↓ 大船方面</text>
+<path d="M60 930 H98" stroke="#f68b1e" stroke-width="7"/><text x="112" y="936" font-size="17">JT　東海道線</text>
+<path d="M60 973 H98" stroke="#00a7c4" stroke-width="7"/><text x="112" y="979" font-size="17">JK　京浜東北・根岸線</text>
+<path d="M60 1016 H98" stroke="#0067c0" stroke-width="7"/><text x="112" y="1022" font-size="17">JO　横須賀線</text>
+<path d="M60 1059 H98" stroke="#ffd400" stroke-width="7"/><text x="112" y="1065" font-size="17">JN　南武線</text>
+<path d="M60 1102 H98" stroke="#8fc31f" stroke-width="7"/><text x="112" y="1108" font-size="17">JH　横浜線</text>
+<text x="60" y="1175" class="direction">破線の駅丸：隣接地域の境界駅</text><text x="60" y="1200" class="direction">駅丸のない交差では乗り換えできません</text>
+<path class="rail" d="M755 850 L755 770" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M755 850 L755 770" stroke="#00a7c4"/>
+<path class="rail" d="M755 850 L900 910" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M755 850 L900 910" stroke="#00a7c4"/>
+<path class="rail" d="M755 850 L795 850 L1050 815 L1050 705 L975 630" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M755 850 L795 850 L1050 815 L1050 705 L975 630" stroke="#f68b1e"/>
+<path class="rail" d="M755 850 L625 900 L540 1020 L500 1060" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M755 850 L625 900 L540 1020 L500 1060" stroke="#f68b1e"/>
+<path class="rail" d="M755 850 L680 850 L570 740 L570 560 L605 495" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M755 850 L680 850 L570 740 L570 560 L605 495" stroke="#0067c0"/>
+<path class="rail" d="M755 850 L500 920" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M755 850 L500 920" stroke="#0067c0"/>
+<path class="rail" d="M975 480 L975 630" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M975 480 L975 630" stroke="#00a7c4"/>
+<path class="rail" d="M365 650 L435 650" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M365 650 L435 650" stroke="#8fc31f"/>
+<path class="rail" d="M365 650 L295 650" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M365 650 L295 650" stroke="#8fc31f"/>
+<path class="rail" d="M900 960 L900 910" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M900 960 L900 910" stroke="#00a7c4"/>
+<path class="rail" d="M900 960 L900 1010" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M900 960 L900 1010" stroke="#00a7c4"/>
+<path class="rail" d="M595 650 L675 700" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M595 650 L675 700" stroke="#8fc31f"/>
+<path class="rail" d="M595 650 L515 650" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M595 650 L515 650" stroke="#8fc31f"/>
+<path class="rail" d="M225 250 L295 290" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M225 250 L295 290" stroke="#ffd400"/>
+<path class="rail" d="M225 250 L155 210" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M225 250 L155 210" stroke="#ffd400"/>
+<path class="rail" d="M500 1060 L500 990" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M500 1060 L500 990" stroke="#0067c0"/>
+<path class="rail" d="M665 380 L725 430" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M665 380 L725 430" stroke="#ffd400"/>
+<path class="rail" d="M665 380 L605 330" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M665 380 L605 330" stroke="#ffd400"/>
+<path class="rail" d="M900 1110 L900 1060" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M900 1110 L900 1060" stroke="#00a7c4"/>
+<path class="rail" d="M900 1060 L900 1010" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M900 1060 L900 1010" stroke="#00a7c4"/>
+<path class="rail" d="M785 480 L845 530" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M785 480 L845 530" stroke="#ffd400"/>
+<path class="rail" d="M785 480 L725 430" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M785 480 L725 430" stroke="#ffd400"/>
+<path class="rail" d="M225 650 L295 650" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M225 650 L295 650" stroke="#8fc31f"/>
+<path class="rail" d="M225 650 L155 650" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M225 650 L155 650" stroke="#8fc31f"/>
+<path class="rail" d="M435 650 L515 650" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M435 650 L515 650" stroke="#8fc31f"/>
+<path class="rail" d="M905 580 L975 630" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M905 580 L975 630" stroke="#ffd400"/>
+<path class="rail" d="M905 580 L845 530" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M905 580 L845 530" stroke="#ffd400"/>
+<path class="rail" d="M895 750 L975 700" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M895 750 L975 700" stroke="#00a7c4"/>
+<path class="rail" d="M895 750 L755 770" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M895 750 L755 770" stroke="#00a7c4"/>
+<path class="rail" d="M605 495 L605 330" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M605 495 L605 330" stroke="#0067c0"/>
+<path class="rail" d="M975 630 L975 700" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M975 630 L975 700" stroke="#00a7c4"/>
+<path class="rail" d="M675 700 L755 770" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M675 700 L755 770" stroke="#8fc31f"/>
+<path class="rail" d="M295 290 L365 330" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M295 290 L365 330" stroke="#ffd400"/>
+<path class="rail" d="M500 990 L500 920" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M500 990 L500 920" stroke="#0067c0"/>
+<path class="rail" d="M365 330 L445 330" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M365 330 L445 330" stroke="#ffd400"/>
+<path class="rail" d="M605 330 L525 330" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M605 330 L525 330" stroke="#ffd400"/>
+<path class="rail" d="M445 330 L525 330" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M445 330 L525 330" stroke="#ffd400"/>
+<path class="rail" d="M975 480 L975 350" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M975 480 L975 350" stroke="#00a7c4"/>
+<path class="rail" d="M500 1060 L491 1080 L491 1140 L500 1160" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M500 1060 L491 1080 L491 1140 L500 1160" stroke="#0067c0"/>
+<path class="rail" d="M500 1060 L509 1080 L509 1140 L500 1160" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M500 1060 L509 1080 L509 1140 L500 1160" stroke="#f68b1e"/>
+<path class="rail" d="M900 1110 L900 1160" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M900 1110 L900 1160" stroke="#00a7c4"/>
+<path class="rail" d="M155 210 L85 170" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M155 210 L85 170" stroke="#ffd400"/>
+<path class="rail" d="M975 630 L1060 550 L1060 170" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M975 630 L1060 550 L1060 170" stroke="#f68b1e"/>
+<path class="rail" d="M155 650 L85 650" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M155 650 L85 650" stroke="#8fc31f"/>
+<path class="rail" d="M605 330 L605 170" stroke="#fcfbf7" style="stroke-width:13"/><path class="rail" d="M605 330 L605 170" stroke="#0067c0"/>
+<circle class="station boundary" data-station="登戸" cx="85" cy="170" r="9" aria-label="登戸"><title>登戸</title></circle>
+<circle class="station" data-station="宿河原" cx="155" cy="210" r="9" aria-label="宿河原"><title>宿河原</title></circle>
+<circle class="station" data-station="久地" cx="225" cy="250" r="9" aria-label="久地"><title>久地</title></circle>
+<circle class="station" data-station="津田山" cx="295" cy="290" r="9" aria-label="津田山"><title>津田山</title></circle>
+<circle class="station" data-station="武蔵溝ノ口" cx="365" cy="330" r="9" aria-label="武蔵溝ノ口"><title>武蔵溝ノ口</title></circle>
+<circle class="station" data-station="武蔵新城" cx="445" cy="330" r="9" aria-label="武蔵新城"><title>武蔵新城</title></circle>
+<circle class="station" data-station="武蔵中原" cx="525" cy="330" r="9" aria-label="武蔵中原"><title>武蔵中原</title></circle>
+<circle class="station hub" data-station="武蔵小杉" cx="605" cy="330" r="12" aria-label="武蔵小杉"><title>武蔵小杉</title></circle>
+<circle class="station" data-station="向河原" cx="665" cy="380" r="9" aria-label="向河原"><title>向河原</title></circle>
+<circle class="station" data-station="平間" cx="725" cy="430" r="9" aria-label="平間"><title>平間</title></circle>
+<circle class="station" data-station="鹿島田" cx="785" cy="480" r="9" aria-label="鹿島田"><title>鹿島田</title></circle>
+<circle class="station" data-station="矢向" cx="845" cy="530" r="9" aria-label="矢向"><title>矢向</title></circle>
+<circle class="station" data-station="尻手" cx="905" cy="580" r="9" aria-label="尻手"><title>尻手</title></circle>
+<circle class="station hub" data-station="川崎" cx="975" cy="630" r="12" aria-label="川崎"><title>川崎</title></circle>
+<circle class="station boundary" data-station="西大井" cx="605" cy="170" r="9" aria-label="西大井"><title>西大井</title></circle>
+<circle class="station" data-station="新川崎" cx="605" cy="495" r="9" aria-label="新川崎"><title>新川崎</title></circle>
+<circle class="station boundary" data-station="品川" cx="1060" cy="170" r="9" aria-label="品川"><title>品川</title></circle>
+<circle class="station boundary" data-station="大森" cx="975" cy="350" r="9" aria-label="大森"><title>大森</title></circle>
+<circle class="station" data-station="蒲田" cx="975" cy="480" r="9" aria-label="蒲田"><title>蒲田</title></circle>
+<circle class="station boundary" data-station="成瀬" cx="85" cy="650" r="9" aria-label="成瀬"><title>成瀬</title></circle>
+<circle class="station" data-station="長津田" cx="155" cy="650" r="9" aria-label="長津田"><title>長津田</title></circle>
+<circle class="station" data-station="十日市場" cx="225" cy="650" r="9" aria-label="十日市場"><title>十日市場</title></circle>
+<circle class="station" data-station="中山" cx="295" cy="650" r="9" aria-label="中山"><title>中山</title></circle>
+<circle class="station" data-station="鴨居" cx="365" cy="650" r="9" aria-label="鴨居"><title>鴨居</title></circle>
+<circle class="station" data-station="小机" cx="435" cy="650" r="9" aria-label="小机"><title>小机</title></circle>
+<circle class="station hub" data-station="新横浜" cx="515" cy="650" r="12" aria-label="新横浜"><title>新横浜</title></circle>
+<circle class="station" data-station="菊名" cx="595" cy="650" r="9" aria-label="菊名"><title>菊名</title></circle>
+<circle class="station" data-station="大口" cx="675" cy="700" r="9" aria-label="大口"><title>大口</title></circle>
+<circle class="station" data-station="東神奈川" cx="755" cy="770" r="9" aria-label="東神奈川"><title>東神奈川</title></circle>
+<circle class="station" data-station="鶴見" cx="975" cy="700" r="9" aria-label="鶴見"><title>鶴見</title></circle>
+<circle class="station" data-station="新子安" cx="895" cy="750" r="9" aria-label="新子安"><title>新子安</title></circle>
+<circle class="station hub" data-station="横浜" cx="755" cy="850" r="12" aria-label="横浜"><title>横浜</title></circle>
+<circle class="station" data-station="保土ケ谷" cx="500" cy="920" r="9" aria-label="保土ケ谷"><title>保土ケ谷</title></circle>
+<circle class="station" data-station="東戸塚" cx="500" cy="990" r="9" aria-label="東戸塚"><title>東戸塚</title></circle>
+<circle class="station" data-station="戸塚" cx="500" cy="1060" r="9" aria-label="戸塚"><title>戸塚</title></circle>
+<circle class="station boundary" data-station="大船" cx="500" cy="1160" r="9" aria-label="大船"><title>大船</title></circle>
+<circle class="station" data-station="桜木町" cx="900" cy="910" r="9" aria-label="桜木町"><title>桜木町</title></circle>
+<circle class="station" data-station="関内" cx="900" cy="960" r="9" aria-label="関内"><title>関内</title></circle>
+<circle class="station" data-station="石川町" cx="900" cy="1010" r="9" aria-label="石川町"><title>石川町</title></circle>
+<circle class="station" data-station="山手" cx="900" cy="1060" r="9" aria-label="山手"><title>山手</title></circle>
+<circle class="station" data-station="根岸" cx="900" cy="1110" r="9" aria-label="根岸"><title>根岸</title></circle>
+<circle class="station boundary" data-station="磯子" cx="900" cy="1160" r="9" aria-label="磯子"><title>磯子</title></circle>
+<text class="minor-label" x="69" y="176" text-anchor="end">登戸</text>
+<text class="minor-label" x="139" y="216" text-anchor="end">宿河原</text>
+<text class="minor-label" x="209" y="256" text-anchor="end">久地</text>
+<text class="minor-label" x="279" y="296" text-anchor="end">津田山</text>
+<text class="minor-label" x="365" y="300" text-anchor="middle">武蔵溝ノ口</text>
+<text class="minor-label" x="445" y="369" text-anchor="middle">武蔵新城</text>
+<text class="minor-label" x="525" y="300" text-anchor="middle">武蔵中原</text>
+<text class="major-label" x="625" y="311" text-anchor="start">武蔵小杉</text>
+<text class="minor-label" x="647" y="395" text-anchor="end">向河原</text>
+<text class="minor-label" x="707" y="445" text-anchor="end">平間</text>
+<text class="minor-label" x="767" y="495" text-anchor="end">鹿島田</text>
+<text class="minor-label" x="827" y="545" text-anchor="end">矢向</text>
+<text class="minor-label" x="887" y="595" text-anchor="end">尻手</text>
+<text class="major-label" x="955" y="608" text-anchor="end">川崎</text>
+<text class="minor-label" x="623" y="176" text-anchor="start">西大井</text>
+<text class="minor-label" x="585" y="501" text-anchor="end">新川崎</text>
+<text class="minor-label" x="1040" y="176" text-anchor="end">品川</text>
+<text class="minor-label" x="955" y="356" text-anchor="end">大森</text>
+<text class="minor-label" x="955" y="486" text-anchor="end">蒲田</text>
+<text class="minor-label" x="85" y="628" text-anchor="middle">成瀬</text>
+<text class="minor-label" x="155" y="685" text-anchor="middle">長津田</text>
+<text class="minor-label" x="225" y="628" text-anchor="middle">十日市場</text>
+<text class="minor-label" x="295" y="685" text-anchor="middle">中山</text>
+<text class="minor-label" x="365" y="628" text-anchor="middle">鴨居</text>
+<text class="minor-label" x="435" y="685" text-anchor="middle">小机</text>
+<text class="major-label" x="515" y="628" text-anchor="middle">新横浜</text>
+<text class="minor-label" x="595" y="685" text-anchor="middle">菊名</text>
+<text class="minor-label" x="693" y="706" text-anchor="start">大口</text>
+<text class="minor-label" x="735" y="778" text-anchor="end">東神奈川</text>
+<text class="minor-label" x="955" y="706" text-anchor="end">鶴見</text>
+<text class="minor-label" x="895" y="779" text-anchor="middle">新子安</text>
+<text class="major-label" x="773" y="885" text-anchor="start">横浜</text>
+<text class="minor-label" x="480" y="926" text-anchor="end">保土ケ谷</text>
+<text class="minor-label" x="480" y="996" text-anchor="end">東戸塚</text>
+<text class="minor-label" x="480" y="1066" text-anchor="end">戸塚</text>
+<text class="minor-label" x="480" y="1166" text-anchor="end">大船</text>
+<text class="minor-label" x="918" y="916" text-anchor="start">桜木町</text>
+<text class="minor-label" x="918" y="966" text-anchor="start">関内</text>
+<text class="minor-label" x="918" y="1016" text-anchor="start">石川町</text>
+<text class="minor-label" x="918" y="1066" text-anchor="start">山手</text>
+<text class="minor-label" x="918" y="1116" text-anchor="start">根岸</text>
+<text class="minor-label" x="918" y="1166" text-anchor="start">磯子</text>
+</svg>

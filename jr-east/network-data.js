@@ -65,7 +65,7 @@ window.JR_KANTO_DATA = Object.freeze({
       name:"横浜・川崎",
       hubs:["川崎","横浜","武蔵小杉","新横浜"],
       description:"川崎・横浜都市圏",
-      map:null
+      map:"maps/yokohama-kawasaki.svg"
     },
     "shonan": {
       name:"湘南・鎌倉",
@@ -100,3 +100,4 @@ window.JR_KANTO_DATA = Object.freeze({
     ]
   }
 });
+

@@ -9,7 +9,7 @@
     "武蔵小杉",
     "新横浜"
   ],
-  "map": null,
+  "map": "maps/yokohama-kawasaki.svg",
   "stations": [
     "横浜",
     "蒲田",

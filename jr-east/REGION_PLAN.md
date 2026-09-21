@@ -5,7 +5,7 @@
 - 16 services
 - 299 game stations
 - 9 presentation regions
-- Tokyo core is the only finished interactive regional SVG
+- Tokyo core and Yokohama / Kawasaki have interactive regional SVGs
 
 ## Current region assignment estimate
 
@@ -165,3 +165,4 @@ Preferred order:
 4. then draw the corresponding SVG
 
 This prevents visual maps from getting ahead of gameplay data.
+
