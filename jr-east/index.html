@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#173a2a">
+  <title>きまぐれJR旅 V0.1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">JR</div>
+        <div>
+          <h1>きまぐれJR旅</h1>
+          <p>JR東日本 関東近郊ネットワーク V0.1</p>
+        </div>
+      </div>
+      <button class="tiny" id="resetBtn">初期化</button>
+    </header>
+
+    <section id="homeView">
+      <div class="panel hero">
+        <div class="eyebrow">JR EAST KANTO NETWORK JOURNEY</div>
+        <h2>路線図を見ながら、<br>サイコロで関東を進む。</h2>
+        <p>現在地・ゴール・おすすめ経路・サイコロで行ける駅を、ひとつのネットワーク盤面で確認できます。</p>
+      </div>
+
+      <div class="panel">
+        <div class="section-title">
+          <h2>V0.1 Kanto Core</h2>
+          <p id="networkStat">16路線</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature"><b>ネットワーク盤面</b><span>関東近郊 主要16路線</span></div>
+          <div class="feature"><b>候補駅カード</b><span>スマホでも選びやすく</span></div>
+          <div class="feature"><b>ルートガイド</b><span>ゴール方向をひと目で</span></div>
+          <div class="feature"><b>乗換を強調</b><span>0マス乗換を見やすく</span></div>
+        </div>
+        <button class="btn orange" id="newGameBtn">新しい旅をはじめる</button>
+        <button class="btn secondary hidden gap-top" id="resumeBtn">途中から再開する</button>
+        <p class="notice">ログイン・GPS・AI API・バックエンドは使いません。進行状況はこのブラウザだけに保存されます。</p>
+      </div>
+    </section>
+
+    <section id="setupView" class="hidden">
+      <div class="panel">
+        <div class="section-title">
+          <h2>旅の行き先を抽選</h2>
+          <p>JR東日本 東京近郊コア</p>
+        </div>
+        <div class="timeline"><span class="step on"></span><span class="step"></span><span class="step"></span></div>
+
+        <div class="slot">
+          <div class="slot-label">START</div>
+          <div class="slot-value" id="startSlot">？</div>
+          <div class="chips" id="startLines"></div>
+          <button class="btn orange" id="drawStartBtn">出発駅を抽選</button>
+        </div>
+
+        <div class="slot">
+          <div class="slot-label">GOAL</div>
+          <div class="slot-value" id="goalSlot">？</div>
+          <div class="chips" id="goalLines"></div>
+          <button class="btn orange" id="drawGoalBtn" disabled>ゴール駅を抽選</button>
+        </div>
+
+        <div class="message hidden" id="setupRoute"></div>
+        <button class="btn" id="confirmSetupBtn" disabled>この旅を開始</button>
+        <button class="btn ghost gap-top" id="cancelSetupBtn">ホームへ戻る</button>
+      </div>
+    </section>
+
+    <section id="gameView" class="hidden">
+      <div class="panel compact-panel">
+        <div class="section-title">
+          <h2>旅の状況</h2>
+          <p id="turnText">TURN 1</p>
+        </div>
+        <div class="timeline"><span class="step on"></span><span class="step on"></span><span class="step"></span></div>
+
+        <div class="stats">
+          <div class="stat"><b id="currentStat">-</b><span>現在駅</span></div>
+          <div class="stat"><b id="remainStat">-</b><span>最短残り駅数</span></div>
+          <div class="stat"><b id="goalStat">-</b><span>ゴール</span></div>
+        </div>
+        <div class="chips center" id="currentLines"></div>
+        <div class="message recommendation" id="recommendation"></div>
+        <div class="route-compass" id="routeCompass" aria-label="ゴールへの最短ルート"></div>
+      </div>
+
+      <div class="panel dice-panel" id="dicePanel">
+        <div class="section-title">
+          <h2>サイコロ</h2>
+          <p id="diceStateText">振って移動可能駅を表示</p>
+        </div>
+        <div class="dicebox">
+          <div class="dice" id="dice" aria-live="polite">⚄</div>
+          <button class="btn orange roll-btn" id="rollBtn">サイコロを振る</button>
+        </div>
+        <div id="reachableSummary" class="message hidden"></div>
+        <div id="candidatePanel" class="candidate-panel hidden">
+          <div class="candidate-heading">
+            <div>
+              <b>移動先を選ぶ</b>
+              <span>ゴールに近い順</span>
+            </div>
+            <span class="candidate-count" id="candidateCount"></span>
+          </div>
+          <div class="candidate-list" id="candidateList"></div>
+        </div>
+      </div>
+
+      <div class="panel network-panel">
+        <div class="section-title">
+          <div>
+            <h2>ネットワーク盤面</h2>
+            <p id="boardHint">現在地とゴールを確認できます</p>
+          </div>
+          <div class="board-tools">
+            <button class="mini-btn" id="fitBtn" aria-pressed="false">全体</button>
+            <button class="mini-btn" id="centerBtn" aria-pressed="true">現在地</button>
+          </div>
+        </div>
+
+        <div class="legend">
+          <span><i class="legend-node current"></i>現在地</span>
+          <span><i class="legend-node goal"></i>ゴール</span>
+          <span><i class="legend-node reachable"></i>移動可能</span>
+          <span><i class="legend-node transfer"></i>乗換駅</span>
+          <span><i class="legend-line"></i>最短ルート</span>
+        </div>
+
+        <div class="network-scroll" id="networkScroll">
+          <svg id="networkSvg" viewBox="0 0 1840 820" role="img" aria-label="JR東日本関東近郊簡易ネットワーク図"></svg>
+        </div>
+
+        <p class="notice board-note">※実際の地理位置を再現した地図ではなく、ゲーム用の簡略ネットワーク図です。V0.1は東京近郊の主要16路線を収録し、房総・青梅五日市などは今後拡張します。</p>
+      </div>
+
+      <div class="panel hidden" id="arrivalPanel">
+        <div class="section-title">
+          <h2>移動先</h2>
+          <p id="arrivalLineText"></p>
+        </div>
+        <div class="arrival-card">
+          <div class="arrival-big" id="arrivalStation">-</div>
+          <div class="chips" id="arrivalCodes"></div>
+          <div class="route-guide" id="arrivalRoute"></div>
+        </div>
+        <div class="grid2">
+          <a class="btn secondary" id="mapLink" target="_blank" rel="noopener">地図で駅を見る</a>
+          <button class="btn" id="arrivedBtn">到着した</button>
+        </div>
+        <button class="btn ghost gap-top" id="changeTargetBtn">移動先を選び直す</button>
+      </div>
+
+      <div class="panel hidden" id="questPanel">
+        <div class="section-title"><h2 id="questTitle">駅クエスト</h2><p>任意 / 2件</p></div>
+        <div id="questList"></div>
+        <button class="btn" id="nextTurnBtn">次のサイコロへ</button>
+      </div>
+
+      <div class="panel">
+        <div class="section-title"><h2>旅の履歴</h2><p>自動保存</p></div>
+        <div class="history" id="history"></div>
+      </div>
+    </section>
+
+    <section id="finishView" class="hidden">
+      <div class="panel success">
+        <div class="timeline"><span class="step on"></span><span class="step on"></span><span class="step on"></span></div>
+        <div class="goal-celebration" aria-hidden="true"><span>●</span><span>▲</span><span>★</span><span>●</span><span>■</span></div>
+        <div class="big">🎉</div>
+        <h2>ゴール到着！</h2>
+        <p id="finishText"></p>
+        <button class="btn orange" id="restartBtn">もう一度遊ぶ</button>
+        <button class="btn secondary gap-top" id="backHomeBtn">ホームへ戻る</button>
+      </div>
+    </section>
+
+    <footer>Kimagure JR East Trip V0.1 — Kanto Core</footer>
+  </main>
+
+  <div class="travel-overlay hidden" id="travelOverlay" aria-live="polite">
+    <div class="travel-card">
+      <div class="train-track"><span class="travel-train">🚃</span></div>
+      <b id="travelTitle">移動中...</b>
+      <span id="travelRoute"></span>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
