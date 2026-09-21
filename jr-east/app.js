@@ -1,26 +1,12 @@
 const $ = id => document.getElementById(id);
 
-const LINES = {
-  JY:{name:"山手線",color:"#9acd32",closed:true,paths:[["東京","神田","秋葉原","御徒町","上野","鶯谷","日暮里","西日暮里","田端","駒込","巣鴨","大塚","池袋","目白","高田馬場","新大久保","新宿","代々木","原宿","渋谷","恵比寿","目黒","五反田","大崎","品川","高輪ゲートウェイ","田町","浜松町","新橋","有楽町"]]},
-  JK:{name:"京浜東北・根岸線",color:"#00a7c4",paths:[["大宮","さいたま新都心","与野","北浦和","浦和","南浦和","蕨","西川口","川口","赤羽","東十条","王子","上中里","田端","西日暮里","日暮里","鶯谷","上野","御徒町","秋葉原","神田","東京","有楽町","新橋","浜松町","田町","高輪ゲートウェイ","品川","大井町","大森","蒲田","川崎","鶴見","新子安","東神奈川","横浜","桜木町","関内","石川町","山手","根岸","磯子","新杉田","洋光台","港南台","本郷台","大船"]]},
-  JC:{name:"中央線快速",color:"#f15a22",paths:[["東京","神田","御茶ノ水","四ツ谷","新宿","中野","高円寺","阿佐ケ谷","荻窪","西荻窪","吉祥寺","三鷹","武蔵境","東小金井","武蔵小金井","国分寺","西国分寺","国立","立川","日野","豊田","八王子","西八王子","高尾"]]},
-  JB:{name:"中央・総武線各駅停車",color:"#ffd400",paths:[["三鷹","吉祥寺","西荻窪","荻窪","阿佐ケ谷","高円寺","中野","東中野","大久保","新宿","代々木","千駄ケ谷","信濃町","四ツ谷","市ケ谷","飯田橋","水道橋","御茶ノ水","秋葉原","浅草橋","両国","錦糸町","亀戸","平井","新小岩","小岩","市川","本八幡","下総中山","西船橋","船橋","東船橋","津田沼","幕張本郷","幕張","新検見川","稲毛","西千葉","千葉"]]},
-  JA:{name:"埼京線",color:"#00a65a",paths:[["大崎","恵比寿","渋谷","新宿","池袋","板橋","十条","赤羽","北赤羽","浮間舟渡","戸田公園","戸田","北戸田","武蔵浦和","中浦和","南与野","与野本町","北与野","大宮"]]},
-  JT:{name:"東海道線",color:"#f68b1e",paths:[["東京","新橋","品川","川崎","横浜","戸塚","大船","藤沢","辻堂","茅ケ崎","平塚","大磯","二宮","国府津","鴨宮","小田原","早川","根府川","真鶴","湯河原","熱海"]]},
-  JO:{name:"横須賀線",color:"#0067c0",paths:[["東京","新橋","品川","西大井","武蔵小杉","新川崎","横浜","保土ケ谷","東戸塚","戸塚","大船","北鎌倉","鎌倉","逗子","東逗子","田浦","横須賀","衣笠","久里浜"]]},
-  JE:{name:"京葉線",color:"#c9252d",paths:[["東京","八丁堀","越中島","潮見","新木場","葛西臨海公園","舞浜","新浦安","市川塩浜","二俣新町","南船橋","新習志野","幕張豊砂","海浜幕張","検見川浜","稲毛海岸","千葉みなと","蘇我"]]},
-  JM:{name:"武蔵野線",color:"#f15a22",paths:[["府中本町","北府中","西国分寺","新小平","新秋津","東所沢","新座","北朝霞","西浦和","武蔵浦和","南浦和","東浦和","東川口","南越谷","越谷レイクタウン","吉川","吉川美南","新三郷","三郷","南流山","新松戸","新八柱","東松戸","市川大野","船橋法典","西船橋"]]},
-  JN:{name:"南武線",color:"#ffd400",paths:[["川崎","尻手","矢向","鹿島田","平間","向河原","武蔵小杉","武蔵中原","武蔵新城","武蔵溝ノ口","津田山","久地","宿河原","登戸","中野島","稲田堤","矢野口","稲城長沼","南多摩","府中本町","分倍河原","西府","谷保","矢川","西国立","立川"]]},
-  JH:{name:"横浜線",color:"#8fc31f",paths:[["東神奈川","大口","菊名","新横浜","小机","鴨居","中山","十日市場","長津田","成瀬","町田","古淵","淵野辺","矢部","相模原","橋本","相原","八王子みなみ野","片倉","八王子"]]},
-  SG:{name:"相模線",color:"#009793",paths:[["茅ケ崎","北茅ケ崎","香川","寒川","宮山","倉見","門沢橋","社家","厚木","海老名","入谷","相武台下","下溝","原当麻","番田","上溝","南橋本","橋本"]]},
-  JJ:{name:"常磐線快速",color:"#00a66a",paths:[["上野","日暮里","三河島","南千住","北千住","松戸","柏","我孫子","天王台","取手"]]},
-  JU:{name:"宇都宮線",color:"#f68b1e",paths:[["上野","尾久","赤羽","浦和","さいたま新都心","大宮","土呂","東大宮","蓮田","白岡","新白岡","久喜","東鷲宮","栗橋","古河","野木","間々田","小山","小金井","自治医大","石橋","雀宮","宇都宮"]]},
-  TAK:{name:"高崎線",color:"#c05a9d",paths:[["上野","尾久","赤羽","浦和","さいたま新都心","大宮","宮原","上尾","北上尾","桶川","北本","鴻巣","北鴻巣","吹上","行田","熊谷","籠原","深谷","岡部","本庄","神保原","新町","倉賀野","高崎"]]},
-  KW:{name:"川越線",color:"#00a65a",paths:[["大宮","日進","西大宮","指扇","南古谷","川越","西川越","的場","笠幡","武蔵高萩","高麗川"]]}
-};
-
-const LINE_ORDER = ["JY","JK","JC","JB","JA","JT","JO","JE","JM","JN","JH","SG","JJ","JU","TAK","KW"];
-const TRANSFER_GROUPS = [];
+const DATA=window.JR_KANTO_DATA;
+if(!DATA) throw new Error("JR_KANTO_DATA is not loaded");
+const LINES=DATA.services;
+const LINE_ORDER=DATA.serviceOrder;
+const TRANSFER_GROUPS=DATA.transferGroups||[];
+const REGIONS=DATA.regions||{};
+const OVERVIEW=DATA.overview||{nodes:{},edges:[],viewBox:[0,0,1000,700]};
 
 const GROUP_OF = {};
 TRANSFER_GROUPS.forEach(group => group.forEach(name => GROUP_OF[name] = group));
@@ -119,9 +105,9 @@ function lineChips(station){
     .map(id=>'<span class="chip"><i class="line-dot" style="background:'+LINES[id].color+'"></i>'+id+' '+LINES[id].name+'</span>').join("");
 }
 
-const VERSION="0.2";
-const KEY="kimagureJREastKantoV02";
-const LEGACY_KEYS=["kimagureJREastKantoV01"];
+const VERSION="0.3";
+const KEY="kimagureJREastKantoV03";
+const LEGACY_KEYS=["kimagureJREastKantoV02","kimagureJREastKantoV01"];
 function fresh(){
   return {
     version:VERSION,phase:"home",start:null,goal:null,current:null,dice:null,
@@ -130,7 +116,9 @@ function fresh(){
 }
 let state=load()||fresh();
 let setupStart=null,setupGoal=null,rollTimer=null,boardMode="focus",lastBoardStation=null;
-let mapMode="core",coreMapReady=false,coreMapStations=new Set();
+let mapMode="core",coreMapReady=false,coreMapStations=new Set(),activeRegionId="tokyo-core",loadingRegionId=null;
+const overviewHubCache=new Map();
+const stationRegionCache=new Map();
 const views=["homeView","setupView","gameView","finishView"];
 
 function save(){
@@ -143,7 +131,7 @@ function load(){
     if(x&&x.version===VERSION) return {...fresh(),...x,version:VERSION};
     for(const legacyKey of LEGACY_KEYS){
       const legacy=JSON.parse(localStorage.getItem(legacyKey));
-      if(legacy&&legacy.version==="0.1") return {...fresh(),...legacy,version:VERSION};
+      if(legacy&&["0.1","0.2"].includes(legacy.version)) return {...fresh(),...legacy,version:VERSION};
     }
     return null;
   }catch{return null}
@@ -431,6 +419,119 @@ function renderBoard(){
 }
 
 
+function regionForStation(station){
+  if(!station) return null;
+  if(stationRegionCache.has(station)) return stationRegionCache.get(station);
+  let best=null;
+  for(const [id,region] of Object.entries(REGIONS)){
+    for(const hub of region.hubs||[]){
+      const r=shortest(station,hub);
+      if(r.distance===null) continue;
+      if(!best||r.distance<best.distance) best={id,name:region.name,distance:r.distance,hub};
+    }
+  }
+  stationRegionCache.set(station,best);
+  return best;
+}
+
+function nearestOverviewHub(station){
+  if(!station) return null;
+  if(OVERVIEW.nodes[station]) return {hub:station,distance:0};
+  if(overviewHubCache.has(station)) return overviewHubCache.get(station);
+  let best=null;
+  for(const hub of Object.keys(OVERVIEW.nodes||{})){
+    const r=shortest(station,hub);
+    if(r.distance===null) continue;
+    if(!best||r.distance<best.distance) best={hub,distance:r.distance};
+  }
+  overviewHubCache.set(station,best);
+  return best;
+}
+function overviewHubRoute(startHub,goalHub){
+  if(!startHub||!goalHub) return [];
+  if(startHub===goalHub) return [startHub];
+  const adj={};
+  for(const [a,b] of OVERVIEW.edges||[]){
+    (adj[a]??=[]).push(b); (adj[b]??=[]).push(a);
+  }
+  const q=[startHub],prev={[startHub]:null};
+  for(let i=0;i<q.length;i++){
+    const u=q[i];
+    for(const v of adj[u]||[]){
+      if(Object.prototype.hasOwnProperty.call(prev,v)) continue;
+      prev[v]=u;
+      if(v===goalHub){
+        const path=[v]; let cur=v;
+        while(prev[cur]){cur=prev[cur];path.unshift(cur)}
+        return path;
+      }
+      q.push(v);
+    }
+  }
+  return [];
+}
+function renderOverviewMap(){
+  const svg=$("overviewSvg");
+  if(!svg) return;
+  const [vx,vy,vw,vh]=OVERVIEW.viewBox||[0,0,1000,700];
+  svg.setAttribute("viewBox",[vx,vy,vw,vh].join(" "));
+  svg.innerHTML="";
+  svg.appendChild(svgEl("rect",{x:vx,y:vy,width:vw,height:vh,rx:24,fill:"#fffdf8"}));
+
+  const currentHub=nearestOverviewHub(state.current);
+  const goalHub=nearestOverviewHub(state.goal);
+  const hubRoute=overviewHubRoute(currentHub?.hub,goalHub?.hub);
+  const routeKeys=new Set();
+  for(let i=0;i<hubRoute.length-1;i++){
+    routeKeys.add([hubRoute[i],hubRoute[i+1]].sort().join("|"));
+  }
+
+  for(const [a,b] of OVERVIEW.edges||[]){
+    const pa=OVERVIEW.nodes[a],pb=OVERVIEW.nodes[b];
+    if(!pa||!pb) continue;
+    const active=routeKeys.has([a,b].sort().join("|"));
+    svg.appendChild(svgEl("line",{
+      x1:pa[0],y1:pa[1],x2:pb[0],y2:pb[1],
+      stroke:active?"#173a2a":"#b4b9b5",
+      "stroke-width":active?"9":"5",
+      "stroke-linecap":"round",
+      opacity:active?"0.88":"0.55"
+    }));
+  }
+
+  for(const [name,p] of Object.entries(OVERVIEW.nodes||{})){
+    const isCurrent=currentHub?.hub===name;
+    const isGoal=goalHub?.hub===name;
+    const g=svgEl("g",{class:"overview-node","data-overview-station":name});
+    let fill="#fff",stroke="#6d756f",sw=2,r=9;
+    if(isCurrent){fill="#173a2a";stroke="#173a2a";sw=4;r=13}
+    if(isGoal){fill="#fff3cf";stroke="#f2a900";sw=4;r=13}
+    g.appendChild(svgEl("circle",{cx:p[0],cy:p[1],r,fill,stroke,"stroke-width":sw}));
+    const label=svgEl("text",{
+      x:p[0],y:p[1]-16,"text-anchor":"middle",
+      fill:"#26322c","font-size":isCurrent||isGoal?"18":"15",
+      "font-weight":isCurrent||isGoal?"900":"750",
+      class:"overview-label"
+    });
+    label.textContent=name;
+    g.appendChild(label);
+    svg.appendChild(g);
+  }
+
+  const cap=$("overviewCaption");
+  if(cap){
+    const cText=currentHub
+      ? (state.current===currentHub.hub?state.current:state.current+"（"+currentHub.hub+"方面）")
+      : state.current||"-";
+    const gText=goalHub
+      ? (state.goal===goalHub.hub?state.goal:state.goal+"（"+goalHub.hub+"方面）")
+      : state.goal||"-";
+    const cr=regionForStation(state.current),gr=regionForStation(state.goal);
+    const regionText=cr&&gr ? " / "+cr.name+(cr.id===gr.id?"":" → "+gr.name) : "";
+    cap.textContent="現在地 "+cText+" → ゴール "+gText+regionText;
+  }
+}
+
 function coreStationElement(station){
   const root=$("coreMapMount");
   if(!root) return null;
@@ -445,13 +546,17 @@ function corePoint(station){
 }
 function setMapMode(mode,auto=false){
   mapMode=mode;
-  const core=mode==="core";
+  const overview=mode==="overview",core=mode==="core",full=mode==="full";
+  $("overviewMapWrap").classList.toggle("hidden",!overview);
   $("coreMapScroll").classList.toggle("hidden",!core);
-  $("networkScroll").classList.toggle("hidden",core);
+  $("networkScroll").classList.toggle("hidden",!full);
+  $("overviewMapBtn").classList.toggle("active",overview);
   $("coreMapBtn").classList.toggle("active",core);
-  $("fullMapBtn").classList.toggle("active",!core);
+  $("fullMapBtn").classList.toggle("active",full);
+  $("overviewMapBtn").setAttribute("aria-pressed",String(overview));
   $("coreMapBtn").setAttribute("aria-pressed",String(core));
-  $("fullMapBtn").setAttribute("aria-pressed",String(!core));
+  $("fullMapBtn").setAttribute("aria-pressed",String(full));
+  if(overview) renderOverviewMap();
   if(!auto){
     boardMode="focus";
     requestAnimationFrame(()=>centerCurrent(false));
@@ -502,11 +607,14 @@ function updateCoreMap(){
   }
   return true;
 }
-async function initCoreMap(){
-  if(typeof fetch!=="function") return;
+async function loadRegionMap(regionId,{autoMode=true}={}){
+  if(typeof fetch!=="function") return false;
+  const region=REGIONS[regionId];
+  if(!region||!region.map) return false;
   try{
-    const res=await fetch("tokyo-core-map.svg",{cache:"no-cache"});
-    if(!res.ok) throw new Error("SVG load failed");
+    $("coreMapMount").textContent=region.name+"の路線図を読み込んでいます...";
+    const res=await fetch(region.map,{cache:"no-cache"});
+    if(!res.ok) throw new Error("SVG load failed: "+region.map);
     const text=await res.text();
     $("coreMapMount").innerHTML=text;
     const svg=$("coreMapMount").querySelector("svg");
@@ -514,27 +622,77 @@ async function initCoreMap(){
     svg.removeAttribute("width"); svg.removeAttribute("height");
     coreMapStations=new Set([...svg.querySelectorAll("[data-station]")].map(el=>el.getAttribute("data-station")));
     coreMapReady=true;
+    activeRegionId=regionId;
+    $("coreMapBtn").textContent="地域: "+region.name;
     updateCoreMap();
-    if(state.current && (!coreMapStations.has(state.current)||!coreMapStations.has(state.goal))) setMapMode("full",true);
-    else setMapMode("core",true);
+    if(autoMode){
+      if(state.current && (!coreMapStations.has(state.current)||!coreMapStations.has(state.goal))) setMapMode("full",true);
+      else setMapMode("core",true);
+    }
+    return true;
   }catch(err){
     coreMapReady=false;
-    $("coreMapMount").textContent="東京コア路線図を読み込めませんでした。全域ネットワークを利用してください。";
-    setMapMode("full",true);
+    $("coreMapMount").textContent=region.name+"の地域図を読み込めませんでした。全駅表示を利用してください。";
+    if(autoMode) setMapMode("full",true);
+    return false;
   }
 }
+async function initCoreMap(){
+  return loadRegionMap("tokyo-core");
+}
+function syncRegionalMapForState(){
+  if(!state.current) return;
+  const resolved=regionForStation(state.current);
+  if(!resolved) return;
+  const region=REGIONS[resolved.id];
+  const btn=$("coreMapBtn");
+  if(!region?.map){
+    btn.disabled=true;
+    btn.textContent="地域: "+resolved.name+"（準備中）";
+    if(mapMode==="core") setMapMode("full",true);
+    return;
+  }
+
+  btn.disabled=false;
+  if(activeRegionId===resolved.id&&coreMapReady){
+    btn.textContent="地域: "+region.name;
+    return;
+  }
+  if(loadingRegionId===resolved.id) return;
+
+  loadingRegionId=resolved.id;
+  btn.textContent="地域: "+region.name+"（読込中）";
+  loadRegionMap(resolved.id,{autoMode:false}).then(ok=>{
+    loadingRegionId=null;
+    if(ok){
+      btn.textContent="地域: "+region.name;
+      updateCoreMap();
+      updateMapCoverageHint();
+    }else{
+      btn.textContent="地域: "+region.name+"（読込失敗）";
+      btn.disabled=true;
+      if(mapMode==="core") setMapMode("full",true);
+    }
+  });
+}
+
 function ensureMapModeForState(){
-  if(!coreMapReady||!state.current||!state.goal) return;
+  if(!state.current||!state.goal) return;
+  const resolved=regionForStation(state.current);
+  const region=resolved&&REGIONS[resolved.id];
+  if(region?.map && resolved.id!==activeRegionId) return;
+  if(!coreMapReady) return;
   const bothInside=coreMapStations.has(state.current)&&coreMapStations.has(state.goal);
   if(!bothInside&&mapMode==="core") setMapMode("full",true);
 }
 function updateMapCoverageHint(){
   const hint=$("mapCoverageHint");
+  const activeRegion=REGIONS[activeRegionId];
   if(!coreMapReady){hint.classList.add("hidden");return}
   const missing=[state.current,state.goal].filter(Boolean).filter(st=>!coreMapStations.has(st));
   if(missing.length){
     hint.classList.remove("hidden");
-    hint.textContent="東京コア図の範囲外：" + [...new Set(missing)].join("・") + "。全域ネットワークで確認できます。";
+    hint.textContent=(activeRegion?.name||"地域図")+"の範囲外：" + [...new Set(missing)].join("・") + "。全駅表示で確認できます。";
   }else{
     hint.classList.add("hidden");
     hint.textContent="";
@@ -565,6 +723,7 @@ function renderGame(){
   $("boardHint").textContent=mapMode==="core"
     ? (state.dice&&state.phase==="game"?"東京コア図の緑の駅はタップ可能":"東京コア図 / 現在地・ゴール・おすすめ経路")
     : (state.dice&&state.phase==="game"?"緑の駅はタップ可能":"二重丸は乗換駅 / 太線は最短ルート");
+  syncRegionalMapForState();
   ensureMapModeForState();
   renderCandidates();
   renderBoard();
@@ -694,7 +853,9 @@ function hardReset(){
 
 function fitBoard(){
   boardMode="overview";
-  if(mapMode==="core"){
+  if(mapMode==="overview"){
+    renderOverviewMap();
+  }else if(mapMode==="core"){
     const el=$("coreMapScroll"),svg=$("coreMapMount").querySelector("svg");
     el.classList.add("overview");
     if(svg) svg.classList.add("labels-major-only");
@@ -714,6 +875,10 @@ function centerCurrent(smooth=true){
   $("fitBtn").setAttribute("aria-pressed","false");
   $("centerBtn").setAttribute("aria-pressed","true");
 
+  if(mapMode==="overview"){
+    renderOverviewMap();
+    return;
+  }
   if(mapMode==="core"){
     const el=$("coreMapScroll"),svg=$("coreMapMount").querySelector("svg");
     el.classList.remove("overview");
@@ -769,7 +934,10 @@ $("backHomeBtn").onclick=()=>show("homeView");
 $("resetBtn").onclick=hardReset;
 $("fitBtn").onclick=fitBoard;
 $("centerBtn").onclick=centerCurrent;
-$("coreMapBtn").onclick=()=>setMapMode("core");
+$("overviewMapBtn").onclick=()=>setMapMode("overview");
+$("coreMapBtn").onclick=()=>{
+  if(!$("coreMapBtn").disabled) setMapMode("core");
+};
 $("fullMapBtn").onclick=()=>setMapMode("full");
 
 updateResume();

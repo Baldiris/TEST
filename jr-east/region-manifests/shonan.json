@@ -1,0 +1,252 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "shonan",
+  "name": "湘南・鎌倉",
+  "description": "湘南・鎌倉・横須賀方面",
+  "hubs": [
+    "大船",
+    "藤沢",
+    "茅ケ崎",
+    "鎌倉",
+    "逗子"
+  ],
+  "map": null,
+  "stations": [
+    "衣笠",
+    "磯子",
+    "横須賀",
+    "鎌倉",
+    "茅ケ崎",
+    "寒川",
+    "久里浜",
+    "宮山",
+    "厚木",
+    "港南台",
+    "香川",
+    "社家",
+    "新杉田",
+    "逗子",
+    "倉見",
+    "大船",
+    "辻堂",
+    "田浦",
+    "東逗子",
+    "藤沢",
+    "北鎌倉",
+    "北茅ケ崎",
+    "本郷台",
+    "門沢橋",
+    "洋光台"
+  ],
+  "boundaryStations": [
+    "海老名",
+    "戸塚",
+    "根岸",
+    "平塚"
+  ],
+  "edges": [
+    {
+      "from": "衣笠",
+      "to": "横須賀",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "衣笠",
+      "to": "久里浜",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "磯子",
+      "to": "新杉田",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "横須賀",
+      "to": "田浦",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "鎌倉",
+      "to": "北鎌倉",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "鎌倉",
+      "to": "逗子",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "茅ケ崎",
+      "to": "辻堂",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "茅ケ崎",
+      "to": "北茅ケ崎",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "寒川",
+      "to": "香川",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "寒川",
+      "to": "宮山",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "宮山",
+      "to": "倉見",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "厚木",
+      "to": "社家",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "港南台",
+      "to": "洋光台",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "港南台",
+      "to": "本郷台",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "香川",
+      "to": "北茅ケ崎",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "社家",
+      "to": "門沢橋",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "新杉田",
+      "to": "洋光台",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "逗子",
+      "to": "東逗子",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "倉見",
+      "to": "門沢橋",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "大船",
+      "to": "本郷台",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "大船",
+      "to": "藤沢",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "大船",
+      "to": "北鎌倉",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "辻堂",
+      "to": "藤沢",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "田浦",
+      "to": "東逗子",
+      "services": [
+        "JO"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "磯子",
+      "to": "根岸",
+      "toRegion": "yokohama-kawasaki",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "茅ケ崎",
+      "to": "平塚",
+      "toRegion": "west-kanagawa",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "厚木",
+      "to": "海老名",
+      "toRegion": "tama-west",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "大船",
+      "to": "戸塚",
+      "toRegion": "yokohama-kawasaki",
+      "services": [
+        "JO",
+        "JT"
+      ]
+    }
+  ]
+}

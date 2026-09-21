@@ -49,9 +49,17 @@ jobs:
             test -s jr-east/index.html
             test -s jr-east/style.css
             test -s jr-east/app.js
+            test -s jr-east/network-data.js
+            node --check jr-east/network-data.js
             node --check jr-east/app.js
-            node -e 'const fs=require("fs");const html=fs.readFileSync("jr-east/index.html","utf8");const js=fs.readFileSync("jr-east/app.js","utf8");const ids=[...new Set([...js.matchAll(/\\$\\("([^"]+)"\\)/g)].map(m=>m[1]))];const missing=ids.filter(id=>!html.includes(`id="${id}"`));if(missing.length){console.error("JR East missing HTML ids:",missing.join(", "));process.exit(1)}console.log("Validated JR East",ids.length,"HTML id references.")'
+            node -e 'const fs=require("fs");const html=fs.readFileSync("jr-east/index.html","utf8");const js=fs.readFileSync("jr-east/app.js","utf8");const ids=[...new Set([...js.matchAll(/\\$\\("([^"]+)"\\)/g)].map(m=>m[1]))];const missing=ids.filter(id=>!html.includes(`id="${id}"`));if(missing.length){console.error("JR East missing HTML ids:",missing.join(", "));process.exit(1)}if(html.indexOf("network-data.js")<0||html.indexOf("network-data.js")>html.indexOf("app.js")){console.error("JR East data layer must load before app.js");process.exit(1)}console.log("Validated JR East",ids.length,"HTML id references and data load order.")'
           fi
+
+      - name: Test JR map contract
+        run: node tests/jr-map-contract.test.js
+
+      - name: Check JR region manifests
+        run: node scripts/generate-jr-region-manifests.js --check
 
       - name: Test game logic
         run: node tests/logic.test.js

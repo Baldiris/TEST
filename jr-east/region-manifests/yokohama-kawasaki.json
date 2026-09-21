@@ -1,0 +1,379 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "yokohama-kawasaki",
+  "name": "横浜・川崎",
+  "description": "川崎・横浜都市圏",
+  "hubs": [
+    "川崎",
+    "横浜",
+    "武蔵小杉",
+    "新横浜"
+  ],
+  "map": null,
+  "stations": [
+    "横浜",
+    "蒲田",
+    "鴨居",
+    "関内",
+    "菊名",
+    "久地",
+    "戸塚",
+    "向河原",
+    "根岸",
+    "桜木町",
+    "山手",
+    "鹿島田",
+    "十日市場",
+    "宿河原",
+    "小机",
+    "尻手",
+    "新横浜",
+    "新子安",
+    "新川崎",
+    "石川町",
+    "川崎",
+    "大口",
+    "中山",
+    "長津田",
+    "津田山",
+    "鶴見",
+    "東戸塚",
+    "東神奈川",
+    "武蔵溝ノ口",
+    "武蔵小杉",
+    "武蔵新城",
+    "武蔵中原",
+    "平間",
+    "保土ケ谷",
+    "矢向"
+  ],
+  "boundaryStations": [
+    "磯子",
+    "成瀬",
+    "西大井",
+    "大森",
+    "大船",
+    "登戸",
+    "品川"
+  ],
+  "edges": [
+    {
+      "from": "横浜",
+      "to": "東神奈川",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "横浜",
+      "to": "桜木町",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "横浜",
+      "to": "川崎",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "横浜",
+      "to": "戸塚",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "横浜",
+      "to": "新川崎",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "横浜",
+      "to": "保土ケ谷",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "蒲田",
+      "to": "川崎",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "鴨居",
+      "to": "小机",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "鴨居",
+      "to": "中山",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "関内",
+      "to": "桜木町",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "関内",
+      "to": "石川町",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "菊名",
+      "to": "大口",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "菊名",
+      "to": "新横浜",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "久地",
+      "to": "津田山",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "久地",
+      "to": "宿河原",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "戸塚",
+      "to": "東戸塚",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "向河原",
+      "to": "平間",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "向河原",
+      "to": "武蔵小杉",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "根岸",
+      "to": "山手",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "山手",
+      "to": "石川町",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "鹿島田",
+      "to": "矢向",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "鹿島田",
+      "to": "平間",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "十日市場",
+      "to": "中山",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "十日市場",
+      "to": "長津田",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "小机",
+      "to": "新横浜",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "尻手",
+      "to": "川崎",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "尻手",
+      "to": "矢向",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "新子安",
+      "to": "鶴見",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "新子安",
+      "to": "東神奈川",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "新川崎",
+      "to": "武蔵小杉",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "川崎",
+      "to": "鶴見",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "大口",
+      "to": "東神奈川",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "津田山",
+      "to": "武蔵溝ノ口",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "東戸塚",
+      "to": "保土ケ谷",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "武蔵溝ノ口",
+      "to": "武蔵新城",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "武蔵小杉",
+      "to": "武蔵中原",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "武蔵新城",
+      "to": "武蔵中原",
+      "services": [
+        "JN"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "蒲田",
+      "to": "大森",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "戸塚",
+      "to": "大船",
+      "toRegion": "shonan",
+      "services": [
+        "JO",
+        "JT"
+      ]
+    },
+    {
+      "from": "根岸",
+      "to": "磯子",
+      "toRegion": "shonan",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "宿河原",
+      "to": "登戸",
+      "toRegion": "tama-west",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "川崎",
+      "to": "品川",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "長津田",
+      "to": "成瀬",
+      "toRegion": "tama-west",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "武蔵小杉",
+      "to": "西大井",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JO"
+      ]
+    }
+  ]
+}

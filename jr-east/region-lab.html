@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JR Regional Map Lab</title>
+<style>
+:root{--bg:#f4f0e6;--panel:#fffdf8;--ink:#203028;--muted:#718078;--green:#173a2a;--border:#ddd6c8}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Yu Gothic",sans-serif;background:var(--bg);color:var(--ink)}
+main{max-width:1100px;margin:auto;padding:20px}.head{display:flex;justify-content:space-between;gap:16px;align-items:end}.head h1{margin:0}.head p{margin:5px 0 0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:14px;text-align:left}
+.card button{width:100%;border:0;background:transparent;text-align:left;color:inherit;padding:0;cursor:pointer}.name{font-size:17px;font-weight:900}.meta{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.5}
+.status{display:inline-block;margin-top:9px;border-radius:99px;padding:4px 8px;font-size:10px;font-weight:900}.ready{background:#e7f5eb;color:#176139}.todo{background:#eeeae2;color:#756d62}
+.viewer{margin-top:18px;background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px}.viewer h2{margin:0 0 4px}.viewer-info{font-size:12px;color:var(--muted);margin-bottom:12px}.map-frame{min-height:360px;display:grid;place-items:center;border:1px solid #ddd;border-radius:14px;overflow:auto;background:#fffdf8}.map-frame svg{display:block;max-width:100%;height:auto}.empty{padding:50px;color:var(--muted);text-align:center}
+.back{color:var(--green);font-weight:800;text-decoration:none}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.grid{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<main>
+<div class="head">
+  <div><h1>JR Regional Map Lab</h1><p>地域分割・SVG実装状況・駅数を確認する開発用ページ</p></div>
+  <a class="back" href="./">JR本番へ戻る</a>
+</div>
+<div class="grid" id="grid"></div>
+<section class="viewer">
+  <h2 id="viewerTitle">地域を選択</h2>
+  <div class="viewer-info" id="viewerInfo">カードを選ぶとマニフェストとSVGを確認できます。</div>
+  <div class="map-frame" id="mapFrame"><div class="empty">No region selected</div></div>
+</section>
+</main>
+<script src="network-data.js"></script>
+<script>
+const D=window.JR_KANTO_DATA;
+const grid=document.getElementById("grid");
+const title=document.getElementById("viewerTitle");
+const info=document.getElementById("viewerInfo");
+const frame=document.getElementById("mapFrame");
+
+async function loadManifest(id){
+  const r=await fetch("region-manifests/"+id+".json",{cache:"no-cache"});
+  if(!r.ok) throw new Error("manifest");
+  return r.json();
+}
+async function selectRegion(id){
+  const region=D.regions[id];
+  title.textContent=region.name;
+  frame.innerHTML='<div class="empty">読み込み中...</div>';
+  try{
+    const m=await loadManifest(id);
+    info.textContent=m.stations.length+"駅 / "+m.edges.length+"地域内エッジ / 境界駅 "+m.boundaryStations.length+"駅";
+    if(region.map){
+      const r=await fetch(region.map,{cache:"no-cache"});
+      if(!r.ok) throw new Error("map");
+      frame.innerHTML=await r.text();
+    }else{
+      frame.innerHTML='<div class="empty">SVG未実装<br><small>Manifest: region-manifests/'+id+'.json</small></div>';
+    }
+  }catch(e){
+    info.textContent="読み込みに失敗しました。";
+    frame.innerHTML='<div class="empty">Load error</div>';
+  }
+}
+async function build(){
+  for(const [id,r] of Object.entries(D.regions)){
+    let m=null;
+    try{m=await loadManifest(id)}catch{}
+    const card=document.createElement("div");
+    card.className="card";
+    card.innerHTML='<button><div class="name">'+r.name+'</div><div class="meta">'+
+      (m?m.stations.length+"駅 / "+m.edges.length+"エッジ":"manifest unavailable")+
+      '<br>'+r.description+'</div><span class="status '+(r.map?"ready":"todo")+'">'+(r.map?"SVG READY":"SVG TODO")+'</span></button>';
+    card.querySelector("button").onclick=()=>selectRegion(id);
+    grid.appendChild(card);
+  }
+}
+build();
+</script>
+</body>
+</html>

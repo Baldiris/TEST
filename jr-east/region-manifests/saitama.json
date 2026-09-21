@@ -1,0 +1,542 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "saitama",
+  "name": "埼玉",
+  "description": "大宮を中心とする埼玉南部・川越方面",
+  "hubs": [
+    "大宮",
+    "浦和",
+    "川越",
+    "武蔵浦和"
+  ],
+  "map": null,
+  "stations": [
+    "さいたま新都心",
+    "浦和",
+    "越谷レイクタウン",
+    "王子",
+    "桶川",
+    "笠幡",
+    "吉川",
+    "吉川美南",
+    "久喜",
+    "宮原",
+    "戸田",
+    "戸田公園",
+    "高麗川",
+    "指扇",
+    "上尾",
+    "新座",
+    "新三郷",
+    "新白岡",
+    "西浦和",
+    "西川越",
+    "西川口",
+    "西大宮",
+    "赤羽",
+    "川越",
+    "川口",
+    "大宮",
+    "中浦和",
+    "的場",
+    "土呂",
+    "東浦和",
+    "東十条",
+    "東所沢",
+    "東川口",
+    "東大宮",
+    "南浦和",
+    "南越谷",
+    "南古谷",
+    "南与野",
+    "日進",
+    "白岡",
+    "浮間舟渡",
+    "武蔵浦和",
+    "武蔵高萩",
+    "北浦和",
+    "北戸田",
+    "北上尾",
+    "北赤羽",
+    "北朝霞",
+    "北本",
+    "北与野",
+    "与野",
+    "与野本町",
+    "蓮田",
+    "蕨"
+  ],
+  "boundaryStations": [
+    "鴻巣",
+    "三郷",
+    "十条",
+    "上中里",
+    "新秋津",
+    "東鷲宮",
+    "尾久"
+  ],
+  "edges": [
+    {
+      "from": "さいたま新都心",
+      "to": "大宮",
+      "services": [
+        "JK",
+        "JU",
+        "TAK"
+      ]
+    },
+    {
+      "from": "さいたま新都心",
+      "to": "与野",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "さいたま新都心",
+      "to": "浦和",
+      "services": [
+        "JU",
+        "TAK"
+      ]
+    },
+    {
+      "from": "浦和",
+      "to": "北浦和",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "浦和",
+      "to": "南浦和",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "浦和",
+      "to": "赤羽",
+      "services": [
+        "JU",
+        "TAK"
+      ]
+    },
+    {
+      "from": "越谷レイクタウン",
+      "to": "南越谷",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "越谷レイクタウン",
+      "to": "吉川",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "王子",
+      "to": "東十条",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "桶川",
+      "to": "北上尾",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "桶川",
+      "to": "北本",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "笠幡",
+      "to": "的場",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "笠幡",
+      "to": "武蔵高萩",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "吉川",
+      "to": "吉川美南",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "吉川美南",
+      "to": "新三郷",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "久喜",
+      "to": "新白岡",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "宮原",
+      "to": "大宮",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "宮原",
+      "to": "上尾",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "戸田",
+      "to": "戸田公園",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "戸田",
+      "to": "北戸田",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "戸田公園",
+      "to": "浮間舟渡",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "高麗川",
+      "to": "武蔵高萩",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "指扇",
+      "to": "西大宮",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "指扇",
+      "to": "南古谷",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "上尾",
+      "to": "北上尾",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "新座",
+      "to": "東所沢",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "新座",
+      "to": "北朝霞",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "新白岡",
+      "to": "白岡",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "西浦和",
+      "to": "北朝霞",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "西浦和",
+      "to": "武蔵浦和",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "西川越",
+      "to": "川越",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "西川越",
+      "to": "的場",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "西川口",
+      "to": "蕨",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "西川口",
+      "to": "川口",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "西大宮",
+      "to": "日進",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "赤羽",
+      "to": "川口",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "赤羽",
+      "to": "東十条",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "赤羽",
+      "to": "北赤羽",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "川越",
+      "to": "南古谷",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "大宮",
+      "to": "北与野",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "大宮",
+      "to": "土呂",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "大宮",
+      "to": "日進",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "中浦和",
+      "to": "武蔵浦和",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "中浦和",
+      "to": "南与野",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "土呂",
+      "to": "東大宮",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "東浦和",
+      "to": "南浦和",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "東浦和",
+      "to": "東川口",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "東川口",
+      "to": "南越谷",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "東大宮",
+      "to": "蓮田",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "南浦和",
+      "to": "蕨",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "南浦和",
+      "to": "武蔵浦和",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "南与野",
+      "to": "与野本町",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "白岡",
+      "to": "蓮田",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "浮間舟渡",
+      "to": "北赤羽",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "武蔵浦和",
+      "to": "北戸田",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "北浦和",
+      "to": "与野",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "北与野",
+      "to": "与野本町",
+      "services": [
+        "JA"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "王子",
+      "to": "上中里",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "久喜",
+      "to": "東鷲宮",
+      "toRegion": "north-kanto",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "新三郷",
+      "to": "三郷",
+      "toRegion": "chiba",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "赤羽",
+      "to": "十条",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "赤羽",
+      "to": "尾久",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JU",
+        "TAK"
+      ]
+    },
+    {
+      "from": "東所沢",
+      "to": "新秋津",
+      "toRegion": "tama-west",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "北本",
+      "to": "鴻巣",
+      "toRegion": "north-kanto",
+      "services": [
+        "TAK"
+      ]
+    }
+  ]
+}

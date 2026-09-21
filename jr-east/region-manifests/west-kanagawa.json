@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "west-kanagawa",
+  "name": "西湘",
+  "description": "東海道線西湘方面",
+  "hubs": [
+    "平塚",
+    "国府津",
+    "小田原",
+    "熱海"
+  ],
+  "map": null,
+  "stations": [
+    "鴨宮",
+    "国府津",
+    "根府川",
+    "小田原",
+    "真鶴",
+    "早川",
+    "大磯",
+    "湯河原",
+    "二宮",
+    "熱海",
+    "平塚"
+  ],
+  "boundaryStations": [
+    "茅ケ崎"
+  ],
+  "edges": [
+    {
+      "from": "鴨宮",
+      "to": "国府津",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "鴨宮",
+      "to": "小田原",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "国府津",
+      "to": "二宮",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "根府川",
+      "to": "早川",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "根府川",
+      "to": "真鶴",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "小田原",
+      "to": "早川",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "真鶴",
+      "to": "湯河原",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "大磯",
+      "to": "平塚",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "大磯",
+      "to": "二宮",
+      "services": [
+        "JT"
+      ]
+    },
+    {
+      "from": "湯河原",
+      "to": "熱海",
+      "services": [
+        "JT"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "平塚",
+      "to": "茅ケ崎",
+      "toRegion": "shonan",
+      "services": [
+        "JT"
+      ]
+    }
+  ]
+}

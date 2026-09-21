@@ -1,0 +1,709 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "tokyo-core",
+  "name": "東京コア",
+  "description": "山手線内と都区内の高密度表示",
+  "hubs": [
+    "東京",
+    "新宿",
+    "池袋",
+    "上野",
+    "渋谷",
+    "品川"
+  ],
+  "map": "tokyo-core-map.svg",
+  "stations": [
+    "阿佐ケ谷",
+    "越中島",
+    "葛西臨海公園",
+    "亀戸",
+    "錦糸町",
+    "駒込",
+    "恵比寿",
+    "原宿",
+    "五反田",
+    "御茶ノ水",
+    "御徒町",
+    "高円寺",
+    "高田馬場",
+    "高輪ゲートウェイ",
+    "三河島",
+    "四ツ谷",
+    "市ケ谷",
+    "市川塩浜",
+    "秋葉原",
+    "十条",
+    "渋谷",
+    "上中里",
+    "上野",
+    "信濃町",
+    "新浦安",
+    "新橋",
+    "新宿",
+    "新大久保",
+    "新木場",
+    "神田",
+    "水道橋",
+    "西大井",
+    "西日暮里",
+    "千駄ケ谷",
+    "浅草橋",
+    "巣鴨",
+    "代々木",
+    "大井町",
+    "大久保",
+    "大崎",
+    "大森",
+    "大塚",
+    "池袋",
+    "中野",
+    "潮見",
+    "田端",
+    "田町",
+    "東京",
+    "東中野",
+    "日暮里",
+    "八丁堀",
+    "板橋",
+    "飯田橋",
+    "尾久",
+    "品川",
+    "浜松町",
+    "舞浜",
+    "目黒",
+    "目白",
+    "有楽町",
+    "両国",
+    "鶯谷"
+  ],
+  "boundaryStations": [
+    "王子",
+    "荻窪",
+    "蒲田",
+    "赤羽",
+    "川崎",
+    "南千住",
+    "二俣新町",
+    "武蔵小杉",
+    "平井"
+  ],
+  "edges": [
+    {
+      "from": "阿佐ケ谷",
+      "to": "高円寺",
+      "services": [
+        "JB",
+        "JC"
+      ]
+    },
+    {
+      "from": "越中島",
+      "to": "八丁堀",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "越中島",
+      "to": "潮見",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "葛西臨海公園",
+      "to": "新木場",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "葛西臨海公園",
+      "to": "舞浜",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "亀戸",
+      "to": "錦糸町",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "錦糸町",
+      "to": "両国",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "駒込",
+      "to": "田端",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "駒込",
+      "to": "巣鴨",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "恵比寿",
+      "to": "渋谷",
+      "services": [
+        "JA",
+        "JY"
+      ]
+    },
+    {
+      "from": "恵比寿",
+      "to": "目黒",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "恵比寿",
+      "to": "大崎",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "原宿",
+      "to": "代々木",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "原宿",
+      "to": "渋谷",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "五反田",
+      "to": "目黒",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "五反田",
+      "to": "大崎",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "御茶ノ水",
+      "to": "神田",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "御茶ノ水",
+      "to": "四ツ谷",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "御茶ノ水",
+      "to": "水道橋",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "御茶ノ水",
+      "to": "秋葉原",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "御徒町",
+      "to": "秋葉原",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "御徒町",
+      "to": "上野",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "高円寺",
+      "to": "中野",
+      "services": [
+        "JB",
+        "JC"
+      ]
+    },
+    {
+      "from": "高田馬場",
+      "to": "目白",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "高田馬場",
+      "to": "新大久保",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "高輪ゲートウェイ",
+      "to": "品川",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "高輪ゲートウェイ",
+      "to": "田町",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "三河島",
+      "to": "日暮里",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "四ツ谷",
+      "to": "新宿",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "四ツ谷",
+      "to": "信濃町",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "四ツ谷",
+      "to": "市ケ谷",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "市ケ谷",
+      "to": "飯田橋",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "市川塩浜",
+      "to": "新浦安",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "秋葉原",
+      "to": "神田",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "秋葉原",
+      "to": "浅草橋",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "十条",
+      "to": "板橋",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "渋谷",
+      "to": "新宿",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "上中里",
+      "to": "田端",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "上野",
+      "to": "鶯谷",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "上野",
+      "to": "日暮里",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "上野",
+      "to": "尾久",
+      "services": [
+        "JU",
+        "TAK"
+      ]
+    },
+    {
+      "from": "信濃町",
+      "to": "千駄ケ谷",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "新浦安",
+      "to": "舞浜",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "新橋",
+      "to": "浜松町",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "新橋",
+      "to": "有楽町",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "新橋",
+      "to": "東京",
+      "services": [
+        "JO",
+        "JT"
+      ]
+    },
+    {
+      "from": "新橋",
+      "to": "品川",
+      "services": [
+        "JO",
+        "JT"
+      ]
+    },
+    {
+      "from": "新宿",
+      "to": "新大久保",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "新宿",
+      "to": "代々木",
+      "services": [
+        "JB",
+        "JY"
+      ]
+    },
+    {
+      "from": "新宿",
+      "to": "中野",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "新宿",
+      "to": "大久保",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "新宿",
+      "to": "池袋",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "新木場",
+      "to": "潮見",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "神田",
+      "to": "東京",
+      "services": [
+        "JC",
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "水道橋",
+      "to": "飯田橋",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "西大井",
+      "to": "品川",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "西日暮里",
+      "to": "日暮里",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "西日暮里",
+      "to": "田端",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "千駄ケ谷",
+      "to": "代々木",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "浅草橋",
+      "to": "両国",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "巣鴨",
+      "to": "大塚",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "大井町",
+      "to": "品川",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "大井町",
+      "to": "大森",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "大久保",
+      "to": "東中野",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "大崎",
+      "to": "品川",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "大塚",
+      "to": "池袋",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "池袋",
+      "to": "目白",
+      "services": [
+        "JY"
+      ]
+    },
+    {
+      "from": "池袋",
+      "to": "板橋",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "中野",
+      "to": "東中野",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "田町",
+      "to": "浜松町",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "東京",
+      "to": "有楽町",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "東京",
+      "to": "八丁堀",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "日暮里",
+      "to": "鶯谷",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "阿佐ケ谷",
+      "to": "荻窪",
+      "toRegion": "tama-west",
+      "services": [
+        "JB",
+        "JC"
+      ]
+    },
+    {
+      "from": "亀戸",
+      "to": "平井",
+      "toRegion": "chiba",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "三河島",
+      "to": "南千住",
+      "toRegion": "joban",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "市川塩浜",
+      "to": "二俣新町",
+      "toRegion": "chiba",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "十条",
+      "to": "赤羽",
+      "toRegion": "saitama",
+      "services": [
+        "JA"
+      ]
+    },
+    {
+      "from": "上中里",
+      "to": "王子",
+      "toRegion": "saitama",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "西大井",
+      "to": "武蔵小杉",
+      "toRegion": "yokohama-kawasaki",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "大森",
+      "to": "蒲田",
+      "toRegion": "yokohama-kawasaki",
+      "services": [
+        "JK"
+      ]
+    },
+    {
+      "from": "尾久",
+      "to": "赤羽",
+      "toRegion": "saitama",
+      "services": [
+        "JU",
+        "TAK"
+      ]
+    },
+    {
+      "from": "品川",
+      "to": "川崎",
+      "toRegion": "yokohama-kawasaki",
+      "services": [
+        "JT"
+      ]
+    }
+  ]
+}
