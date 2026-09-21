@@ -11,6 +11,8 @@ for(const start of ALL_STATIONS){for(let roll=1;roll<=6;roll++){
  if(distance>0&&distance<=roll)assert(options.some(([s])=>s===goal));
 }}
 assert.equal(shortest('大手町','半蔵門').distance,3);
+assert.equal(travelRoute('半蔵門','渋谷').distance,4);
+assert.equal(transfers(travelRoute('半蔵門','渋谷')),0,'equal-distance routes avoid unnecessary transfers');
 `,{assert});
 assert(!js.includes('localStorage'),'prototype must not change saves');
 console.log('Design lab: shared network parity, IDs, all stations × six dice, isolated saves PASS');
