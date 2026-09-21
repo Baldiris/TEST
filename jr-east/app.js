@@ -116,7 +116,7 @@ function fresh(){
 }
 let state=load()||fresh();
 let setupStart=null,setupGoal=null,rollTimer=null,boardMode="focus",lastBoardStation=null;
-let mapMode="core",coreMapReady=false,coreMapStations=new Set(),activeRegionId="tokyo-core";
+let mapMode="core",coreMapReady=false,coreMapStations=new Set(),activeRegionId="tokyo-core",loadingRegionId=null;
 const overviewHubCache=new Map();
 const stationRegionCache=new Map();
 const views=["homeView","setupView","gameView","finishView"];
@@ -640,8 +640,48 @@ async function loadRegionMap(regionId,{autoMode=true}={}){
 async function initCoreMap(){
   return loadRegionMap("tokyo-core");
 }
+function syncRegionalMapForState(){
+  if(!state.current) return;
+  const resolved=regionForStation(state.current);
+  if(!resolved) return;
+  const region=REGIONS[resolved.id];
+  const btn=$("coreMapBtn");
+  if(!region?.map){
+    btn.disabled=true;
+    btn.textContent="地域: "+resolved.name+"（準備中）";
+    if(mapMode==="core") setMapMode("full",true);
+    return;
+  }
+
+  btn.disabled=false;
+  if(activeRegionId===resolved.id&&coreMapReady){
+    btn.textContent="地域: "+region.name;
+    return;
+  }
+  if(loadingRegionId===resolved.id) return;
+
+  loadingRegionId=resolved.id;
+  btn.textContent="地域: "+region.name+"（読込中）";
+  loadRegionMap(resolved.id,{autoMode:false}).then(ok=>{
+    loadingRegionId=null;
+    if(ok){
+      btn.textContent="地域: "+region.name;
+      updateCoreMap();
+      updateMapCoverageHint();
+    }else{
+      btn.textContent="地域: "+region.name+"（読込失敗）";
+      btn.disabled=true;
+      if(mapMode==="core") setMapMode("full",true);
+    }
+  });
+}
+
 function ensureMapModeForState(){
-  if(!coreMapReady||!state.current||!state.goal) return;
+  if(!state.current||!state.goal) return;
+  const resolved=regionForStation(state.current);
+  const region=resolved&&REGIONS[resolved.id];
+  if(region?.map && resolved.id!==activeRegionId) return;
+  if(!coreMapReady) return;
   const bothInside=coreMapStations.has(state.current)&&coreMapStations.has(state.goal);
   if(!bothInside&&mapMode==="core") setMapMode("full",true);
 }
@@ -683,6 +723,7 @@ function renderGame(){
   $("boardHint").textContent=mapMode==="core"
     ? (state.dice&&state.phase==="game"?"東京コア図の緑の駅はタップ可能":"東京コア図 / 現在地・ゴール・おすすめ経路")
     : (state.dice&&state.phase==="game"?"緑の駅はタップ可能":"二重丸は乗換駅 / 太線は最短ルート");
+  syncRegionalMapForState();
   ensureMapModeForState();
   renderCandidates();
   renderBoard();
@@ -894,7 +935,9 @@ $("resetBtn").onclick=hardReset;
 $("fitBtn").onclick=fitBoard;
 $("centerBtn").onclick=centerCurrent;
 $("overviewMapBtn").onclick=()=>setMapMode("overview");
-$("coreMapBtn").onclick=()=>setMapMode("core");
+$("coreMapBtn").onclick=()=>{
+  if(!$("coreMapBtn").disabled) setMapMode("core");
+};
 $("fullMapBtn").onclick=()=>setMapMode("full");
 
 updateResume();
