@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - "feature/kimagure-metro-*"
+      - "feature/jr-east-*"
   pull_request:
     branches: [master]
 
@@ -40,6 +41,17 @@ jobs:
 
       - name: Check required files
         run: test -s index.html && test -s style.css && test -s app.js
+
+      - name: Check JR East app when present
+        shell: bash
+        run: |
+          if [ -d jr-east ]; then
+            test -s jr-east/index.html
+            test -s jr-east/style.css
+            test -s jr-east/app.js
+            node --check jr-east/app.js
+            node -e 'const fs=require("fs");const html=fs.readFileSync("jr-east/index.html","utf8");const js=fs.readFileSync("jr-east/app.js","utf8");const ids=[...new Set([...js.matchAll(/\\$\\("([^"]+)"\\)/g)].map(m=>m[1]))];const missing=ids.filter(id=>!html.includes(`id="${id}"`));if(missing.length){console.error("JR East missing HTML ids:",missing.join(", "));process.exit(1)}console.log("Validated JR East",ids.length,"HTML id references.")'
+          fi
 
       - name: Test game logic
         run: node tests/logic.test.js
