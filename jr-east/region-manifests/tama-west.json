@@ -1,0 +1,463 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "tama-west",
+  "name": "多摩・西東京",
+  "description": "中央線・南武線・横浜線西側",
+  "hubs": [
+    "立川",
+    "八王子",
+    "三鷹",
+    "府中本町",
+    "橋本"
+  ],
+  "map": null,
+  "stations": [
+    "稲城長沼",
+    "稲田堤",
+    "荻窪",
+    "下溝",
+    "海老名",
+    "吉祥寺",
+    "橋本",
+    "原当麻",
+    "古淵",
+    "高尾",
+    "国分寺",
+    "国立",
+    "三鷹",
+    "上溝",
+    "新秋津",
+    "新小平",
+    "成瀬",
+    "西荻窪",
+    "西国分寺",
+    "西国立",
+    "西八王子",
+    "西府",
+    "相原",
+    "相武台下",
+    "相模原",
+    "谷保",
+    "中野島",
+    "町田",
+    "登戸",
+    "東小金井",
+    "南橋本",
+    "南多摩",
+    "日野",
+    "入谷",
+    "八王子",
+    "八王子みなみ野",
+    "番田",
+    "府中本町",
+    "武蔵境",
+    "武蔵小金井",
+    "淵野辺",
+    "分倍河原",
+    "片倉",
+    "豊田",
+    "北府中",
+    "矢川",
+    "矢部",
+    "矢野口",
+    "立川"
+  ],
+  "boundaryStations": [
+    "阿佐ケ谷",
+    "厚木",
+    "宿河原",
+    "長津田",
+    "東所沢"
+  ],
+  "edges": [
+    {
+      "from": "稲城長沼",
+      "to": "矢野口",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "稲城長沼",
+      "to": "南多摩",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "稲田堤",
+      "to": "中野島",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "稲田堤",
+      "to": "矢野口",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "荻窪",
+      "to": "西荻窪",
+      "services": [
+        "JB",
+        "JC"
+      ]
+    },
+    {
+      "from": "下溝",
+      "to": "相武台下",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "下溝",
+      "to": "原当麻",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "海老名",
+      "to": "入谷",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "吉祥寺",
+      "to": "西荻窪",
+      "services": [
+        "JB",
+        "JC"
+      ]
+    },
+    {
+      "from": "吉祥寺",
+      "to": "三鷹",
+      "services": [
+        "JB",
+        "JC"
+      ]
+    },
+    {
+      "from": "橋本",
+      "to": "相模原",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "橋本",
+      "to": "相原",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "橋本",
+      "to": "南橋本",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "原当麻",
+      "to": "番田",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "古淵",
+      "to": "町田",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "古淵",
+      "to": "淵野辺",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "高尾",
+      "to": "西八王子",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "国分寺",
+      "to": "武蔵小金井",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "国分寺",
+      "to": "西国分寺",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "国立",
+      "to": "西国分寺",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "国立",
+      "to": "立川",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "三鷹",
+      "to": "武蔵境",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "上溝",
+      "to": "番田",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "上溝",
+      "to": "南橋本",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "新秋津",
+      "to": "新小平",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "新小平",
+      "to": "西国分寺",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "成瀬",
+      "to": "町田",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "西国分寺",
+      "to": "北府中",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "西国立",
+      "to": "矢川",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "西国立",
+      "to": "立川",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "西八王子",
+      "to": "八王子",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "西府",
+      "to": "分倍河原",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "西府",
+      "to": "谷保",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "相原",
+      "to": "八王子みなみ野",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "相武台下",
+      "to": "入谷",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "相模原",
+      "to": "矢部",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "谷保",
+      "to": "矢川",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "中野島",
+      "to": "登戸",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "東小金井",
+      "to": "武蔵境",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "東小金井",
+      "to": "武蔵小金井",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "南多摩",
+      "to": "府中本町",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "日野",
+      "to": "立川",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "日野",
+      "to": "豊田",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "八王子",
+      "to": "豊田",
+      "services": [
+        "JC"
+      ]
+    },
+    {
+      "from": "八王子",
+      "to": "片倉",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "八王子みなみ野",
+      "to": "片倉",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "府中本町",
+      "to": "北府中",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "府中本町",
+      "to": "分倍河原",
+      "services": [
+        "JN"
+      ]
+    },
+    {
+      "from": "淵野辺",
+      "to": "矢部",
+      "services": [
+        "JH"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "荻窪",
+      "to": "阿佐ケ谷",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JB",
+        "JC"
+      ]
+    },
+    {
+      "from": "海老名",
+      "to": "厚木",
+      "toRegion": "shonan",
+      "services": [
+        "SG"
+      ]
+    },
+    {
+      "from": "新秋津",
+      "to": "東所沢",
+      "toRegion": "saitama",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "成瀬",
+      "to": "長津田",
+      "toRegion": "yokohama-kawasaki",
+      "services": [
+        "JH"
+      ]
+    },
+    {
+      "from": "登戸",
+      "to": "宿河原",
+      "toRegion": "yokohama-kawasaki",
+      "services": [
+        "JN"
+      ]
+    }
+  ]
+}
