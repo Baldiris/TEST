@@ -54,4 +54,4 @@ jobs:
         run: node --check design-competition.js && node tests/design-competition.test.js
 
       - name: Check design study
-        run: node --check design-lab.js && node tests/design-lab.test.js
+        run: node --check design-lab.js && node tests/design-lab.test.js && node tests/design-motion.test.js

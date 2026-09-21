@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ja">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f5f0"><title>きまぐれメトロ旅 — Design study 03</title><link rel="stylesheet" href="design-lab.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f5f0"><title>きまぐれメトロ旅 — Design study 03</title><link rel="stylesheet" href="design-lab.css?v=motion1"></head>
 <body>
 <header class="appbar"><a class="brand" href="index.html"><span class="brandmark" aria-hidden="true">m<span>↗</span></span><span>きまぐれ<br>メトロ旅</span></a><span class="edition">TOKYO / 小さな寄り道、大きな発見。</span><nav><button id="restart">最初から</button><a href="design-competition.html">旧案と比較 ↗</a></nav></header>
 <main class="workspace">
@@ -15,12 +15,20 @@
   <div id="selection-screen">
    <div class="roll-heading"><div><span class="eyebrow">MAKE YOUR MOVE</span><h2 id="panel-title">行き先を選ぶ</h2></div><div class="die" aria-label="出目3"><span id="die-number">3</span><small>マス</small></div></div>
    <p class="hint" id="hint">ゴールに近い順。気になる駅を選ぼう。</p>
+   <div class="play-preferences"><button id="sound" aria-pressed="false">効果音 OFF</button><span>音はお好みで</span></div>
+   <div id="roll-stage" class="roll-stage">
+    <span class="eyebrow" id="reel-caption">ひと振りで、旅が動く。</span>
+    <div class="slot-housing" aria-hidden="true"><span class="slot-pointer">›</span><div class="slot-window"><div id="reel-track" class="reel-track"><span>6</span><span>?</span><span>1</span></div></div><span class="slot-pointer">‹</span></div>
+    <p id="reel-message">次の一駅は、まだ知らない。</p>
+   </div>
+   <p id="roll-result" class="roll-result" hidden></p>
    <div id="candidates" class="candidates" aria-label="移動候補"></div>
-   <div class="action-area"><div id="route-detail" class="route-detail"></div><button id="move" class="primary">この駅へ進む <span>↗</span></button><button id="roll" class="primary" hidden>サイコロを振る <span>⚄</span></button><p class="rule">乗換は0マス · 遠回りなし</p></div>
+   <div class="action-area"><div id="route-detail" class="route-detail"></div><button id="move" class="primary" hidden>この駅へ進む <span>↗</span></button><button id="roll" class="primary">サイコロを振る <span>⚄</span></button><button id="skip-spin" class="primary" hidden>結果を見る <span>↓</span></button><p class="rule">乗換は0マス · 遠回りなし</p></div>
   </div>
-  <section id="arrival-screen" hidden aria-live="polite"><span class="eyebrow">A LITTLE DETOUR</span><div class="arrival-symbol" aria-hidden="true">↗</div><h2 id="arrival-title"></h2><p>ここでしか出会えないものを、ふたつ。</p><div id="quests"></div><button id="continue" class="primary">旅を続ける <span>→</span></button></section>
+  <section id="arrival-screen" hidden aria-live="polite"><span class="eyebrow" id="arrival-kicker">A LITTLE DETOUR</span><div id="celebration" class="celebration" aria-hidden="true"></div><div class="arrival-symbol" id="arrival-symbol" aria-hidden="true">↗</div><h2 id="arrival-title"></h2><p id="arrival-message">ここでしか出会えないものを、ふたつ。</p><div id="quests"></div><button id="continue" class="primary">旅を続ける <span>→</span></button></section>
  </aside>
 </main>
-<footer class="study-note"><span>DESIGN STUDY 03</span><p>操作検証用プロトタイプ / 初回は大手町・出目3で開始。保存なし。本編のデータには影響しません。</p><button id="mobile-preview" aria-pressed="false">スマホ幅で試す</button></footer>
-<script src="design-lab-core.js"></script><script src="design-lab.js?v=03b"></script>
+<footer class="study-note"><span>DESIGN STUDY 03</span><p>操作検証用プロトタイプ / 大手町からスタート。出目1〜6は等確率。保存なし。本編のデータには影響しません。</p><button id="mobile-preview" aria-pressed="false">スマホ幅で試す</button></footer>
+<p id="play-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+<script src="design-lab-core.js"></script><script src="design-lab.js?v=motion1"></script>
 </body></html>
