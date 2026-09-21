@@ -72,6 +72,13 @@ for(const [regionId,region] of Object.entries(data.regions)){
   for(const hub of region.hubs){
     if(!mapStations.includes(hub)) fail(regionId+" SVG is missing region hub: "+hub);
   }
+  if(regionId==="yokohama-kawasaki"){
+    const manifest=JSON.parse(fs.readFileSync(path.join(root,"jr-east/region-manifests",regionId+".json"),"utf8"));
+    const expected=[...manifest.stations,...manifest.boundaryStations];
+    for(const station of expected) if(!mapStations.includes(station)) fail(regionId+" missing manifest station: "+station);
+    if(mapStations.length!==expected.length) fail(regionId+" station coverage differs from manifest");
+    if(!/viewBox="0 0 1140 1240"/.test(svg)) fail(regionId+" invalid layout bounds");
+  }
 }
 
 console.log("JR map contract OK:",serviceIds.length+" services,",stations.size+" stations,",regionIds.length+" regions");

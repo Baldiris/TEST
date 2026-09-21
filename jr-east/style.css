@@ -171,6 +171,8 @@ footer{text-align:center;font-size:11px;color:#8a8f89;margin-top:22px}
 .core-map-scroll{background:#fff;height:470px}
 .core-map-mount{min-width:700px;min-height:470px;background:#fff;position:relative}
 .core-map-mount>svg{display:block;width:700px;height:470px;max-width:none}
+/* Regional layout keeps legible labels in focus mode; fit mode still scales to the viewport. */
+.core-map-mount>svg.yokohama-map{width:1140px;height:1240px}
 .core-map-scroll.overview{height:auto;overflow:hidden}
 .core-map-scroll.overview .core-map-mount{min-width:0;min-height:0}
 .core-map-scroll.overview .core-map-mount>svg{width:100%;height:auto}

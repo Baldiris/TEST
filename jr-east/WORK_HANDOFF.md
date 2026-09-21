@@ -11,6 +11,14 @@ GitHub Pages:
 - 地域マップ開発ラボ: https://baldiris.github.io/TEST/jr-east/region-lab.html
 - 東京コアSVG比較ラボ: https://baldiris.github.io/TEST/jr-east/svg-lab.html
 
+## 横浜・川崎 実装追記
+
+- `maps/yokohama-kawasaki.svg` を本番ローダーへ登録。35地域駅＋7境界駅、5路線。
+- 座標はSVG内だけに保持し、16路線・299駅のゲームグラフは変更なし。
+- 通常表示は文字サイズを保持したスクロール、全体表示は縮小。
+- `region-check.html` で390px／1000pxの実アプリ、移動・クエスト・保存移行を検証可能。保存はiframe内メモリーだけ。
+- map contractに横浜・川崎の全駅・境界駅の網羅性検査を追加。
+
 ## 現在の完成状態
 
 - 16路線 / 299駅のゲームネットワーク
@@ -199,3 +207,4 @@ GitHub Actionsの **Quality Check** がSUCCESSになることも確認してく�
 です。
 
 地域SVGが揃った後に、自動地域切替とUXをさらに改善してください。
+

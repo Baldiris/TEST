@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JR地域SVG 実アプリ検証</title>
+<style>body{font-family:system-ui,sans-serif;margin:24px;background:#f4f0e6;color:#203028}button,select{font:inherit;padding:10px;margin:4px}iframe{display:block;border:1px solid #aaa;background:white;height:900px;max-width:100%}pre{white-space:pre-wrap}a{color:inherit}</style>
+<h1>地域SVG 実アプリ検証</h1><p>実アプリを独立したメモリー内保存で起動します。本番の旅の保存データは変更しません。</p>
+<label>画面幅 <select id="width"><option value="390">390px（スマホ）</option><option value="1000">1000px（デスクトップ）</option></select></label>
+<label>ケース <select id="fixture"><option value="local">横浜 → 川崎 / 出目1</option><option value="north">武蔵小杉 → 新横浜 / 出目2</option><option value="boundary">戸塚 → 大船 / 出目1</option><option value="outside">横浜 → 東京 / 地域外ゴール</option><option value="legacy">V0.2保存移行 / 横浜 → 川崎</option></select></label>
+<button id="run">実行</button><button id="suite">自動回帰検証</button><a href="./">本番へ</a>
+<pre id="result" role="status">準備中</pre><iframe id="app" title="390px 実アプリ" style="width:390px"></iframe>
+<script>
+const frame=document.querySelector('#app'),result=document.querySelector('#result');
+let assets;
+async function boot(suite=false){
+ result.textContent='検証中…';
+ try{
+  assets ||= await Promise.all(['index.html','style.css','network-data.js','app.js'].map(async p=>{const r=await fetch(p,{cache:'no-cache'});if(!r.ok)throw Error(p);return r.text()}));
+  const [html,css,data,app]=assets;
+  const fixture=document.querySelector('#fixture').value;
+  frame.style.width=document.querySelector('#width').value+'px';frame.title=document.querySelector('#width').value+'px 実アプリ';
+  const setup=`const memory=new Map();Object.defineProperty(window,'localStorage',{value:{getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,String(v)),removeItem:k=>memory.delete(k)}});`;
+  const checks=`
+(async()=>{
+ const log=[];const check=(condition,label)=>{if(!condition)throw Error(label);log.push('PASS '+label)};
+ try{
+  await initCoreMap();
+  const fixture=${JSON.stringify(fixture)};
+  setupStart=fixture==='north'?'武蔵小杉':fixture==='boundary'?'戸塚':'横浜';
+  setupGoal=fixture==='north'?'新横浜':fixture==='boundary'?'大船':fixture==='outside'?'東京':'川崎';
+  confirmSetup();
+  await loadRegionMap('yokohama-kawasaki');
+  check(coreMapReady&&coreMapStations.size===42,'42駅の地域SVGロード');
+  if(fixture==='legacy'){
+   localStorage.removeItem(KEY);localStorage.setItem(LEGACY_KEYS[0],JSON.stringify({...state,version:'0.2'}));
+   state=load();check(state.version==='0.3'&&state.current==='横浜','V0.2 → V0.3 保存移行');
+  }
+  state.dice=fixture==='north'?2:1;state.reachable=Object.fromEntries(reachableExactly(state.current,state.dice));
+  const route=shortest(state.current,state.goal);if(route.distance<=state.dice)state.reachable[state.goal]=route;
+  renderGame();setMapMode(fixture==='outside'?'full':'core',true);centerCurrent(false);
+  check(coreStationElement(state.current).classList.contains('game-current'),'現在地の強調');
+  if(fixture!=='outside')check(coreStationElement(state.goal).classList.contains('game-goal'),'ゴールの強調');
+  check(document.querySelectorAll('#coreMapMount .game-reachable').length>0,'候補駅の強調');
+  if(fixture==='outside')check(mapMode==='full'&&!$('networkScroll').classList.contains('hidden'),'地域外ゴールの全駅表示');
+  if(${suite}){
+   for(const station of ['川崎','横浜','武蔵小杉','新横浜']){
+    state.current=station;state.goal=station==='横浜'?'川崎':'横浜';state.dice=1;state.phase='game';state.reachable=Object.fromEntries(reachableExactly(station,1));
+    renderGame();check(coreStationElement(station).classList.contains('game-current'),station+' 現在地');
+   }
+   state.current='横浜';state.goal='川崎';state.phase='game';state.dice=1;state.reachable=Object.fromEntries(reachableExactly('横浜',1));renderGame();
+   const target=coreStationElement('川崎');check(target.getAttribute('role')==='button','候補駅の操作属性');
+   target.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));check(state.target==='川崎'&&state.phase==='arrival','駅Enter選択');
+   arrive();check(state.current==='川崎'&&state.quests['川崎'].length===2,'到着・クエスト2件');
+   nextTurn();check(state.finished,'ゴール到着完了');
+   for(const version of ['0.1','0.2']){
+    memory.clear();localStorage.setItem(version==='0.1'?LEGACY_KEYS[1]:LEGACY_KEYS[0],JSON.stringify({...fresh(),version,current:'横浜',goal:'川崎',phase:'game'}));
+    const migrated=load();check(migrated.version==='0.3'&&migrated.current==='横浜',version+' 保存移行');
+   }
+   state={...fresh(),current:'横浜',goal:'川崎',start:'横浜',phase:'game'};renderGame();show('gameView');setMapMode('core');
+  }
+  parent.postMessage({type:'jr-region-check',text:log.join('\\n')},location.origin);
+ }catch(e){parent.postMessage({type:'jr-region-check',text:log.join('\\n')+'\\nFAIL '+e.message},location.origin)}
+})();`;
+  const inline=code=>'<script>'+code.replace(/<\/script/gi,'<\\/script')+'<\/script>';
+  frame.srcdoc=html.replace('<head>','<head><base href="'+new URL('./',location.href).href+'">')
+   .replace(/<link[^>]+href="style.css"[^>]*>/,'<style>'+css+'</style>')
+   .replace('<script src="network-data.js"><\/script>',inline(setup+data))
+   .replace('<script src="app.js"><\/script>',inline(app+checks));
+ }catch(e){result.textContent='FAIL '+e.message}
+}
+window.addEventListener('message',e=>{if(e.source===frame.contentWindow&&e.origin===location.origin&&e.data?.type==='jr-region-check')result.textContent=e.data.text});
+document.querySelector('#run').onclick=()=>boot();document.querySelector('#suite').onclick=()=>boot(true);boot();
+</script></html>

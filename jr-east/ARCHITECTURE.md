@@ -68,7 +68,7 @@ Purpose:
 - direct station tapping after dice roll
 - current / goal / reachable highlights
 
-This is currently the only finished regional SVG.
+Tokyo core and Yokohama / Kawasaki have interactive regional SVGs.
 
 ### All stations
 
@@ -154,3 +154,4 @@ Legacy state from V0.1 / V0.2 should migrate automatically.
 10. Add automatic region-map switching
 11. Tune labels and mobile layout
 12. Remove or demote fallback only after regional coverage is complete
+
