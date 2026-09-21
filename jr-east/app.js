@@ -116,7 +116,7 @@ function fresh(){
 }
 let state=load()||fresh();
 let setupStart=null,setupGoal=null,rollTimer=null,boardMode="focus",lastBoardStation=null;
-let mapMode="core",coreMapReady=false,coreMapStations=new Set();
+let mapMode="core",coreMapReady=false,coreMapStations=new Set(),activeRegionId="tokyo-core";
 const overviewHubCache=new Map();
 const stationRegionCache=new Map();
 const views=["homeView","setupView","gameView","finishView"];
@@ -607,11 +607,14 @@ function updateCoreMap(){
   }
   return true;
 }
-async function initCoreMap(){
-  if(typeof fetch!=="function") return;
+async function loadRegionMap(regionId,{autoMode=true}={}){
+  if(typeof fetch!=="function") return false;
+  const region=REGIONS[regionId];
+  if(!region||!region.map) return false;
   try{
-    const res=await fetch("tokyo-core-map.svg",{cache:"no-cache"});
-    if(!res.ok) throw new Error("SVG load failed");
+    $("coreMapMount").textContent=region.name+"の路線図を読み込んでいます...";
+    const res=await fetch(region.map,{cache:"no-cache"});
+    if(!res.ok) throw new Error("SVG load failed: "+region.map);
     const text=await res.text();
     $("coreMapMount").innerHTML=text;
     const svg=$("coreMapMount").querySelector("svg");
@@ -619,14 +622,23 @@ async function initCoreMap(){
     svg.removeAttribute("width"); svg.removeAttribute("height");
     coreMapStations=new Set([...svg.querySelectorAll("[data-station]")].map(el=>el.getAttribute("data-station")));
     coreMapReady=true;
+    activeRegionId=regionId;
+    $("coreMapBtn").textContent="地域: "+region.name;
     updateCoreMap();
-    if(state.current && (!coreMapStations.has(state.current)||!coreMapStations.has(state.goal))) setMapMode("full",true);
-    else setMapMode("core",true);
+    if(autoMode){
+      if(state.current && (!coreMapStations.has(state.current)||!coreMapStations.has(state.goal))) setMapMode("full",true);
+      else setMapMode("core",true);
+    }
+    return true;
   }catch(err){
     coreMapReady=false;
-    $("coreMapMount").textContent="東京コア路線図を読み込めませんでした。全域ネットワークを利用してください。";
-    setMapMode("full",true);
+    $("coreMapMount").textContent=region.name+"の地域図を読み込めませんでした。全駅表示を利用してください。";
+    if(autoMode) setMapMode("full",true);
+    return false;
   }
+}
+async function initCoreMap(){
+  return loadRegionMap("tokyo-core");
 }
 function ensureMapModeForState(){
   if(!coreMapReady||!state.current||!state.goal) return;
@@ -635,11 +647,12 @@ function ensureMapModeForState(){
 }
 function updateMapCoverageHint(){
   const hint=$("mapCoverageHint");
+  const activeRegion=REGIONS[activeRegionId];
   if(!coreMapReady){hint.classList.add("hidden");return}
   const missing=[state.current,state.goal].filter(Boolean).filter(st=>!coreMapStations.has(st));
   if(missing.length){
     hint.classList.remove("hidden");
-    hint.textContent="東京コア図の範囲外：" + [...new Set(missing)].join("・") + "。全域ネットワークで確認できます。";
+    hint.textContent=(activeRegion?.name||"地域図")+"の範囲外：" + [...new Set(missing)].join("・") + "。全駅表示で確認できます。";
   }else{
     hint.classList.add("hidden");
     hint.textContent="";
