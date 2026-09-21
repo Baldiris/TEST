@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f5f0"><title>きまぐれメトロ旅 — Design study 03</title><link rel="stylesheet" href="design-lab.css"></head>
+<body>
+<header class="appbar"><a class="brand" href="index.html"><span class="brandmark" aria-hidden="true">m<span>↗</span></span><span>きまぐれ<br>メトロ旅</span></a><span class="edition">TOKYO / 小さな寄り道、大きな発見。</span><nav><button id="restart">最初から</button><a href="design-competition.html">旧案と比較 ↗</a></nav></header>
+<main class="workspace">
+ <section class="atlas" aria-label="選択した行き先の経路図">
+  <div class="trip-heading"><span class="eyebrow">YOUR NEXT STOP</span><h1 id="heading">今日は、どこへ。</h1><p id="map-caption">行き先を選んで、いつもと違う東京へ。</p></div>
+  <div class="destination"><span class="eyebrow">DESTINATION</span><strong>渋谷 <span>↗</span></strong><span id="remaining"></span></div>
+  <div class="map-wrap"><svg id="journey-map" viewBox="0 0 800 580" role="img" aria-label="経路図"></svg></div>
+  <div class="map-foot"><span><i></i>今回の移動 <i class="muted-dot"></i>ゴールまで</span><span>経路模式図 · 地理的な位置とは異なります</span></div>
+ </section>
+ <aside class="inspector" aria-label="移動操作">
+  <div class="current"><span class="live-dot"></span><span>現在地</span><strong id="current"></strong><span id="turn"></span></div>
+  <div id="selection-screen">
+   <div class="roll-heading"><div><span class="eyebrow">MAKE YOUR MOVE</span><h2 id="panel-title">行き先を選ぶ</h2></div><div class="die" aria-label="出目3"><span id="die-number">3</span><small>マス</small></div></div>
+   <p class="hint" id="hint">ゴールに近い順。気になる駅を選ぼう。</p>
+   <div id="candidates" class="candidates" aria-label="移動候補"></div>
+   <div class="action-area"><div id="route-detail" class="route-detail"></div><button id="move" class="primary">この駅へ進む <span>↗</span></button><button id="roll" class="primary" hidden>サイコロを振る <span>⚄</span></button><p class="rule">乗換は0マス · 遠回りなし</p></div>
+  </div>
+  <section id="arrival-screen" hidden aria-live="polite"><span class="eyebrow">A LITTLE DETOUR</span><div class="arrival-symbol" aria-hidden="true">↗</div><h2 id="arrival-title"></h2><p>ここでしか出会えないものを、ふたつ。</p><div id="quests"></div><button id="continue" class="primary">旅を続ける <span>→</span></button></section>
+ </aside>
+</main>
+<footer class="study-note"><span>DESIGN STUDY 03</span><p>操作検証用プロトタイプ / 初回は大手町・出目3で開始。保存なし。本編のデータには影響しません。</p><button id="mobile-preview" aria-pressed="false">スマホ幅で試す</button></footer>
+<script src="design-lab-core.js"></script><script src="design-lab.js"></script>
+</body></html>
