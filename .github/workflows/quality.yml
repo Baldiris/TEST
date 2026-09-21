@@ -50,18 +50,7 @@ jobs:
             test -s jr-east/style.css
             test -s jr-east/app.js
             node --check jr-east/app.js
-            node <<'NODE'
-            const fs = require("fs");
-            const html = fs.readFileSync("jr-east/index.html","utf8");
-            const js = fs.readFileSync("jr-east/app.js","utf8");
-            const ids = [...new Set([...js.matchAll(/\$\("([^"]+)"\)/g)].map(m=>m[1]))];
-            const missing = ids.filter(id => !html.includes(`id="${id}"`));
-            if (missing.length) {
-              console.error("JR East missing HTML ids:", missing.join(", "));
-              process.exit(1);
-            }
-            console.log("Validated JR East", ids.length, "HTML id references.");
-            NODE
+            node -e 'const fs=require("fs");const html=fs.readFileSync("jr-east/index.html","utf8");const js=fs.readFileSync("jr-east/app.js","utf8");const ids=[...new Set([...js.matchAll(/\\$\\("([^"]+)"\\)/g)].map(m=>m[1]))];const missing=ids.filter(id=>!html.includes(`id="${id}"`));if(missing.length){console.error("JR East missing HTML ids:",missing.join(", "));process.exit(1)}console.log("Validated JR East",ids.length,"HTML id references.")'
           fi
 
       - name: Test game logic
