@@ -125,8 +125,9 @@
         </div>
 
         <div class="map-mode-tabs" role="group" aria-label="路線図表示">
+          <button class="map-mode-btn" id="overviewMapBtn" aria-pressed="false">関東</button>
           <button class="map-mode-btn active" id="coreMapBtn" aria-pressed="true">東京コア</button>
-          <button class="map-mode-btn" id="fullMapBtn" aria-pressed="false">全域ネットワーク</button>
+          <button class="map-mode-btn" id="fullMapBtn" aria-pressed="false">全駅</button>
         </div>
 
         <div class="legend">
@@ -139,6 +140,11 @@
 
         <div class="map-coverage-hint hidden" id="mapCoverageHint"></div>
 
+        <div class="overview-map hidden" id="overviewMapWrap">
+          <svg id="overviewSvg" viewBox="0 0 1000 700" role="img" aria-label="JR東日本関東近郊広域ゲームマップ"></svg>
+          <div class="overview-caption" id="overviewCaption"></div>
+        </div>
+
         <div class="network-scroll core-map-scroll" id="coreMapScroll">
           <div class="core-map-mount" id="coreMapMount" aria-label="東京コアゲーム用路線図">路線図を読み込んでいます...</div>
         </div>
@@ -147,7 +153,7 @@
           <svg id="networkSvg" viewBox="0 0 1840 820" role="img" aria-label="JR東日本関東近郊簡易ネットワーク図"></svg>
         </div>
 
-        <p class="notice board-note">東京コアはゲーム用に再構成したSVG模式図です。コア範囲外の駅は「全域ネットワーク」に自動で切り替わります。<br><small>Tokyo core SVG adapted from “Tokunai-pass.png”, Highexpress~commonswiki, Wikimedia Commons, CC BY-SA 4.0.</small></p>
+        <p class="notice board-note">「関東」は現在地とゴールの位置関係を見る概要図、「東京コア」は都心の詳細図、「全駅」は299駅の既存ネットワークです。<br><small>Tokyo core SVG adapted from “Tokunai-pass.png”, Highexpress~commonswiki, Wikimedia Commons, CC BY-SA 4.0.</small></p>
       </div>
 
       <div class="panel hidden" id="arrivalPanel">
