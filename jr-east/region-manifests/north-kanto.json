@@ -1,0 +1,217 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "north-kanto",
+  "name": "北関東",
+  "description": "高崎線・宇都宮線北部",
+  "hubs": [
+    "高崎",
+    "宇都宮",
+    "小山",
+    "熊谷"
+  ],
+  "map": null,
+  "stations": [
+    "宇都宮",
+    "岡部",
+    "間々田",
+    "熊谷",
+    "栗橋",
+    "古河",
+    "行田",
+    "高崎",
+    "鴻巣",
+    "自治医大",
+    "小金井",
+    "小山",
+    "新町",
+    "深谷",
+    "神保原",
+    "吹上",
+    "雀宮",
+    "石橋",
+    "倉賀野",
+    "東鷲宮",
+    "北鴻巣",
+    "本庄",
+    "野木",
+    "籠原"
+  ],
+  "boundaryStations": [
+    "久喜",
+    "北本"
+  ],
+  "edges": [
+    {
+      "from": "宇都宮",
+      "to": "雀宮",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "岡部",
+      "to": "深谷",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "岡部",
+      "to": "本庄",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "間々田",
+      "to": "野木",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "間々田",
+      "to": "小山",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "熊谷",
+      "to": "行田",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "熊谷",
+      "to": "籠原",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "栗橋",
+      "to": "東鷲宮",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "栗橋",
+      "to": "古河",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "古河",
+      "to": "野木",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "行田",
+      "to": "吹上",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "高崎",
+      "to": "倉賀野",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "鴻巣",
+      "to": "北鴻巣",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "自治医大",
+      "to": "小金井",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "自治医大",
+      "to": "石橋",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "小金井",
+      "to": "小山",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "新町",
+      "to": "神保原",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "新町",
+      "to": "倉賀野",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "深谷",
+      "to": "籠原",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "神保原",
+      "to": "本庄",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "吹上",
+      "to": "北鴻巣",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "雀宮",
+      "to": "石橋",
+      "services": [
+        "JU"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "鴻巣",
+      "to": "北本",
+      "toRegion": "saitama",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "東鷲宮",
+      "to": "久喜",
+      "toRegion": "saitama",
+      "services": [
+        "JU"
+      ]
+    }
+  ]
+}
