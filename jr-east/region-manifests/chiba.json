@@ -1,0 +1,290 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "chiba",
+  "name": "千葉",
+  "description": "総武・京葉線方面",
+  "hubs": [
+    "西船橋",
+    "津田沼",
+    "千葉",
+    "蘇我"
+  ],
+  "map": null,
+  "stations": [
+    "稲毛",
+    "稲毛海岸",
+    "下総中山",
+    "海浜幕張",
+    "検見川浜",
+    "三郷",
+    "市川",
+    "市川大野",
+    "小岩",
+    "新検見川",
+    "新習志野",
+    "新小岩",
+    "新松戸",
+    "新八柱",
+    "西千葉",
+    "西船橋",
+    "千葉",
+    "千葉みなと",
+    "船橋",
+    "船橋法典",
+    "蘇我",
+    "津田沼",
+    "東松戸",
+    "東船橋",
+    "南船橋",
+    "南流山",
+    "二俣新町",
+    "平井",
+    "本八幡",
+    "幕張",
+    "幕張豊砂",
+    "幕張本郷"
+  ],
+  "boundaryStations": [
+    "亀戸",
+    "市川塩浜",
+    "新三郷"
+  ],
+  "edges": [
+    {
+      "from": "稲毛",
+      "to": "新検見川",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "稲毛",
+      "to": "西千葉",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "稲毛海岸",
+      "to": "検見川浜",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "稲毛海岸",
+      "to": "千葉みなと",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "下総中山",
+      "to": "本八幡",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "下総中山",
+      "to": "西船橋",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "海浜幕張",
+      "to": "幕張豊砂",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "海浜幕張",
+      "to": "検見川浜",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "三郷",
+      "to": "南流山",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "市川",
+      "to": "小岩",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "市川",
+      "to": "本八幡",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "市川大野",
+      "to": "東松戸",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "市川大野",
+      "to": "船橋法典",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "小岩",
+      "to": "新小岩",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "新検見川",
+      "to": "幕張",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "新習志野",
+      "to": "南船橋",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "新習志野",
+      "to": "幕張豊砂",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "新小岩",
+      "to": "平井",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "新松戸",
+      "to": "南流山",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "新松戸",
+      "to": "新八柱",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "新八柱",
+      "to": "東松戸",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "西千葉",
+      "to": "千葉",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "西船橋",
+      "to": "船橋",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "西船橋",
+      "to": "船橋法典",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "千葉みなと",
+      "to": "蘇我",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "船橋",
+      "to": "東船橋",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "津田沼",
+      "to": "東船橋",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "津田沼",
+      "to": "幕張本郷",
+      "services": [
+        "JB"
+      ]
+    },
+    {
+      "from": "南船橋",
+      "to": "二俣新町",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "幕張",
+      "to": "幕張本郷",
+      "services": [
+        "JB"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "三郷",
+      "to": "新三郷",
+      "toRegion": "saitama",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "二俣新町",
+      "to": "市川塩浜",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "平井",
+      "to": "亀戸",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JB"
+      ]
+    }
+  ]
+}
