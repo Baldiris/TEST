@@ -58,6 +58,9 @@ jobs:
       - name: Test JR map contract
         run: node tests/jr-map-contract.test.js
 
+      - name: Check JR region manifests
+        run: node scripts/generate-jr-region-manifests.js --check
+
       - name: Test game logic
         run: node tests/logic.test.js
 
