@@ -1,30 +1,32 @@
 {
   "schemaVersion": "0.3",
   "regionId": "chiba",
-  "name": "千葉",
-  "description": "総武・京葉線方面",
+  "name": "千葉・湾岸",
+  "description": "総武・京葉線と千葉都市圏",
   "hubs": [
     "西船橋",
     "津田沼",
     "千葉",
     "蘇我"
   ],
-  "map": null,
+  "map": "maps/chiba.svg",
   "stations": [
     "稲毛",
     "稲毛海岸",
     "下総中山",
     "海浜幕張",
+    "鎌取",
     "検見川浜",
-    "三郷",
+    "五井",
+    "姉ケ崎",
     "市川",
+    "市川塩浜",
     "市川大野",
     "小岩",
+    "新浦安",
     "新検見川",
     "新習志野",
     "新小岩",
-    "新松戸",
-    "新八柱",
     "西千葉",
     "西船橋",
     "千葉",
@@ -33,21 +35,30 @@
     "船橋法典",
     "蘇我",
     "津田沼",
+    "都賀",
     "東松戸",
+    "東千葉",
     "東船橋",
     "南船橋",
-    "南流山",
     "二俣新町",
+    "八幡宿",
+    "浜野",
     "平井",
+    "本千葉",
     "本八幡",
     "幕張",
     "幕張豊砂",
-    "幕張本郷"
+    "幕張本郷",
+    "誉田"
   ],
   "boundaryStations": [
     "亀戸",
-    "市川塩浜",
-    "新三郷"
+    "錦糸町",
+    "四街道",
+    "新八柱",
+    "長浦",
+    "土気",
+    "舞浜"
   ],
   "edges": [
     {
@@ -62,6 +73,20 @@
       "to": "西千葉",
       "services": [
         "JB"
+      ]
+    },
+    {
+      "from": "稲毛",
+      "to": "津田沼",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "稲毛",
+      "to": "千葉",
+      "services": [
+        "JO"
       ]
     },
     {
@@ -107,10 +132,31 @@
       ]
     },
     {
-      "from": "三郷",
-      "to": "南流山",
+      "from": "鎌取",
+      "to": "蘇我",
       "services": [
-        "JM"
+        "SC"
+      ]
+    },
+    {
+      "from": "鎌取",
+      "to": "誉田",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "五井",
+      "to": "八幡宿",
+      "services": [
+        "UC"
+      ]
+    },
+    {
+      "from": "五井",
+      "to": "姉ケ崎",
+      "services": [
+        "UC"
       ]
     },
     {
@@ -125,6 +171,41 @@
       "to": "本八幡",
       "services": [
         "JB"
+      ]
+    },
+    {
+      "from": "市川",
+      "to": "新小岩",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "市川",
+      "to": "船橋",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "市川塩浜",
+      "to": "新浦安",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "市川塩浜",
+      "to": "二俣新町",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "市川塩浜",
+      "to": "西船橋",
+      "services": [
+        "JM"
       ]
     },
     {
@@ -177,27 +258,6 @@
       ]
     },
     {
-      "from": "新松戸",
-      "to": "南流山",
-      "services": [
-        "JM"
-      ]
-    },
-    {
-      "from": "新松戸",
-      "to": "新八柱",
-      "services": [
-        "JM"
-      ]
-    },
-    {
-      "from": "新八柱",
-      "to": "東松戸",
-      "services": [
-        "JM"
-      ]
-    },
-    {
       "from": "西千葉",
       "to": "千葉",
       "services": [
@@ -219,6 +279,27 @@
       ]
     },
     {
+      "from": "西船橋",
+      "to": "南船橋",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "千葉",
+      "to": "東千葉",
+      "services": [
+        "SB"
+      ]
+    },
+    {
+      "from": "千葉",
+      "to": "本千葉",
+      "services": [
+        "SC"
+      ]
+    },
+    {
       "from": "千葉みなと",
       "to": "蘇我",
       "services": [
@@ -233,6 +314,27 @@
       ]
     },
     {
+      "from": "船橋",
+      "to": "津田沼",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "蘇我",
+      "to": "浜野",
+      "services": [
+        "UC"
+      ]
+    },
+    {
+      "from": "蘇我",
+      "to": "本千葉",
+      "services": [
+        "SC"
+      ]
+    },
+    {
       "from": "津田沼",
       "to": "東船橋",
       "services": [
@@ -247,10 +349,24 @@
       ]
     },
     {
+      "from": "都賀",
+      "to": "東千葉",
+      "services": [
+        "SB"
+      ]
+    },
+    {
       "from": "南船橋",
       "to": "二俣新町",
       "services": [
         "JE"
+      ]
+    },
+    {
+      "from": "八幡宿",
+      "to": "浜野",
+      "services": [
+        "UC"
       ]
     },
     {
@@ -263,19 +379,43 @@
   ],
   "crossingEdges": [
     {
-      "from": "三郷",
-      "to": "新三郷",
-      "toRegion": "saitama",
+      "from": "姉ケ崎",
+      "to": "長浦",
+      "toRegion": "boso",
       "services": [
-        "JM"
+        "UC"
       ]
     },
     {
-      "from": "二俣新町",
-      "to": "市川塩浜",
-      "toRegion": "tokyo-core",
+      "from": "新浦安",
+      "to": "舞浜",
+      "toRegion": "bay-airport",
       "services": [
         "JE"
+      ]
+    },
+    {
+      "from": "新小岩",
+      "to": "錦糸町",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JO"
+      ]
+    },
+    {
+      "from": "都賀",
+      "to": "四街道",
+      "toRegion": "narita",
+      "services": [
+        "SB"
+      ]
+    },
+    {
+      "from": "東松戸",
+      "to": "新八柱",
+      "toRegion": "joban",
+      "services": [
+        "JM"
       ]
     },
     {
@@ -284,6 +424,14 @@
       "toRegion": "tokyo-core",
       "services": [
         "JB"
+      ]
+    },
+    {
+      "from": "誉田",
+      "to": "土気",
+      "toRegion": "boso",
+      "services": [
+        "SC"
       ]
     }
   ]

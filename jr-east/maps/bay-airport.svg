@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 933 1311" class="regional-map" data-region="bay-airport" role="img" aria-labelledby="map-title map-desc">
+<title id="map-title">東京湾岸・羽田 路線図</title><desc id="map-desc">15地域駅と4境界駅。破線の駅丸は隣接地域。駅丸のない交差では乗換できません。</desc>
+<style>.regional-map{font-family:"Noto Sans CJK JP","Yu Gothic",system-ui,sans-serif}.regional-map .map-label{fill:#19362e;paint-order:stroke;stroke:#fbfaf5;stroke-width:5;stroke-linejoin:round;font-weight:600;font-size:14px}.regional-map .major-label{font-size:18px;font-weight:800}.regional-map .boundary-label{fill:#546c66}.regional-map .station{fill:#fbfaf5;stroke:#385d50;stroke-width:2}.regional-map .hub{stroke-width:3}.regional-map .boundary{stroke-dasharray:3 2}.regional-map.labels-major-only .minor-label{display:none}.regional-map .leader{stroke:#899a92;stroke-width:1;fill:none}.regional-map.labels-major-only .minor-leader{display:none}.regional-map .track{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}.regional-map .small{font-size:12px;fill:#60796f}</style>
+<rect width="933" height="1311" fill="#fbfaf5"/><text x="45" y="52" fill="#19362e" font-size="28" font-weight="800">東京湾岸・羽田</text><text x="46" y="79" class="small">15 STATIONS · 4 CONNECTIONS　／　PDF 2023.03</text><path d="M868 81 V40 l-5 10 m5-10 5 10" stroke="#60796f" fill="none"/><text x="864" y="30" class="small">N</text>
+<path class="track" d="M 160 372.5 L 172.2 366.9 L 199.6 333.1 L 202.5 320" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;田町&quot;,&quot;浜松町&quot;,&quot;JY&quot;]" d="M 160 372.5 L 172.2 366.9 L 199.6 333.1 L 202.5 320" stroke="#9acd32"/>
+<path class="track" d="M 202.5 320 L 215.2 315.8 L 268.3 262.7 L 272.5 250" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;浜松町&quot;,&quot;新橋&quot;,&quot;JY&quot;]" d="M 202.5 320 L 215.2 315.8 L 268.3 262.7 L 272.5 250" stroke="#9acd32"/>
+<path class="track" d="M 272.5 250 L 202.5 320" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;新橋&quot;,&quot;浜松町&quot;,&quot;JK&quot;]" d="M 272.5 250 L 202.5 320" stroke="#00a7c4"/>
+<path class="track" d="M 202.5 320 L 160 372.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;浜松町&quot;,&quot;田町&quot;,&quot;JK&quot;]" d="M 202.5 320 L 160 372.5" stroke="#00a7c4"/>
+<path class="track" d="M 397.5 170 L 460 195" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;越中島&quot;,&quot;潮見&quot;,&quot;JE&quot;]" d="M 397.5 170 L 460 195" stroke="#c9252d"/>
+<path class="track" d="M 460 195 L 522.5 220" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;潮見&quot;,&quot;新木場&quot;,&quot;JE&quot;]" d="M 460 195 L 522.5 220" stroke="#c9252d"/>
+<path class="track" d="M 522.5 220 L 597.5 220" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;新木場&quot;,&quot;葛西臨海公園&quot;,&quot;JE&quot;]" d="M 522.5 220 L 597.5 220" stroke="#c9252d"/>
+<path class="track" d="M 597.5 220 L 672.5 220" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;葛西臨海公園&quot;,&quot;舞浜&quot;,&quot;JE&quot;]" d="M 597.5 220 L 672.5 220" stroke="#c9252d"/>
+<path class="track" d="M 672.5 220 L 747.5 220" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;舞浜&quot;,&quot;新浦安&quot;,&quot;JE&quot;]" d="M 672.5 220 L 747.5 220" stroke="#c9252d"/>
+<path class="track" d="M 202.5 320 L 322.5 445" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;浜松町&quot;,&quot;天王洲アイル&quot;,&quot;MO&quot;]" d="M 202.5 320 L 322.5 445" stroke="#00a8df"/>
+<path class="track" d="M 322.5 445 L 372.5 505" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;天王洲アイル&quot;,&quot;大井競馬場前&quot;,&quot;MO&quot;]" d="M 322.5 445 L 372.5 505" stroke="#00a8df"/>
+<path class="track" d="M 372.5 505 L 422.5 565" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;大井競馬場前&quot;,&quot;流通センター&quot;,&quot;MO&quot;]" d="M 372.5 505 L 422.5 565" stroke="#00a8df"/>
+<path class="track" d="M 422.5 565 L 472.5 625" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;流通センター&quot;,&quot;昭和島&quot;,&quot;MO&quot;]" d="M 422.5 565 L 472.5 625" stroke="#00a8df"/>
+<path class="track" d="M 472.5 625 L 522.5 685" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;昭和島&quot;,&quot;整備場&quot;,&quot;MO&quot;]" d="M 472.5 625 L 522.5 685" stroke="#00a8df"/>
+<path class="track" d="M 522.5 685 L 572.5 745" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;整備場&quot;,&quot;天空橋&quot;,&quot;MO&quot;]" d="M 522.5 685 L 572.5 745" stroke="#00a8df"/>
+<path class="track" d="M 572.5 745 L 622.5 805" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;天空橋&quot;,&quot;羽田空港第3ターミナル&quot;,&quot;MO&quot;]" d="M 572.5 745 L 622.5 805" stroke="#00a8df"/>
+<path class="track" d="M 622.5 805 L 672.5 865" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;羽田空港第3ターミナル&quot;,&quot;新整備場&quot;,&quot;MO&quot;]" d="M 622.5 805 L 672.5 865" stroke="#00a8df"/>
+<path class="track" d="M 672.5 865 L 722.5 925" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;新整備場&quot;,&quot;羽田空港第1ターミナル&quot;,&quot;MO&quot;]" d="M 672.5 865 L 722.5 925" stroke="#00a8df"/>
+<path class="track" d="M 722.5 925 L 772.5 985" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;羽田空港第1ターミナル&quot;,&quot;羽田空港第2ターミナル&quot;,&quot;MO&quot;]" d="M 722.5 925 L 772.5 985" stroke="#00a8df"/>
+<circle class="station" data-station="羽田空港第1ターミナル" cx="722.5" cy="925" r="6" aria-label="羽田空港第1ターミナル"><title>羽田空港第1ターミナル</title></circle>
+<circle class="station hub" data-station="羽田空港第2ターミナル" cx="772.5" cy="985" r="8" aria-label="羽田空港第2ターミナル"><title>羽田空港第2ターミナル</title></circle>
+<circle class="station" data-station="羽田空港第3ターミナル" cx="622.5" cy="805" r="6" aria-label="羽田空港第3ターミナル"><title>羽田空港第3ターミナル</title></circle>
+<circle class="station" data-station="葛西臨海公園" cx="597.5" cy="220" r="6" aria-label="葛西臨海公園"><title>葛西臨海公園</title></circle>
+<circle class="station" data-station="昭和島" cx="472.5" cy="625" r="6" aria-label="昭和島"><title>昭和島</title></circle>
+<circle class="station" data-station="新整備場" cx="672.5" cy="865" r="6" aria-label="新整備場"><title>新整備場</title></circle>
+<circle class="station hub" data-station="新木場" cx="522.5" cy="220" r="8" aria-label="新木場"><title>新木場</title></circle>
+<circle class="station" data-station="整備場" cx="522.5" cy="685" r="6" aria-label="整備場"><title>整備場</title></circle>
+<circle class="station" data-station="大井競馬場前" cx="372.5" cy="505" r="6" aria-label="大井競馬場前"><title>大井競馬場前</title></circle>
+<circle class="station" data-station="潮見" cx="460" cy="195" r="6" aria-label="潮見"><title>潮見</title></circle>
+<circle class="station hub" data-station="天王洲アイル" cx="322.5" cy="445" r="8" aria-label="天王洲アイル"><title>天王洲アイル</title></circle>
+<circle class="station" data-station="天空橋" cx="572.5" cy="745" r="6" aria-label="天空橋"><title>天空橋</title></circle>
+<circle class="station hub" data-station="浜松町" cx="202.5" cy="320" r="8" aria-label="浜松町"><title>浜松町</title></circle>
+<circle class="station" data-station="舞浜" cx="672.5" cy="220" r="6" aria-label="舞浜"><title>舞浜</title></circle>
+<circle class="station" data-station="流通センター" cx="422.5" cy="565" r="6" aria-label="流通センター"><title>流通センター</title></circle>
+<circle class="station boundary" data-station="越中島" cx="397.5" cy="170" r="6" aria-label="越中島"><title>越中島</title></circle>
+<circle class="station boundary" data-station="新浦安" cx="747.5" cy="220" r="6" aria-label="新浦安"><title>新浦安</title></circle>
+<circle class="station hub boundary" data-station="新橋" cx="272.5" cy="250" r="8" aria-label="新橋"><title>新橋</title></circle>
+<circle class="station boundary" data-station="田町" cx="160" cy="372.5" r="6" aria-label="田町"><title>田町</title></circle>
+<text class="map-label major-label" data-label="新木場" x="507.5" y="235" text-anchor="end">新木場</text>
+<text class="map-label major-label" data-label="天王洲アイル" x="337.5" y="450" text-anchor="start">天王洲アイル</text>
+<text class="map-label major-label" data-label="羽田空港第2ターミナル" x="757.5" y="990" text-anchor="end">羽田空港第2ターミナル</text>
+<text class="map-label minor-label boundary-label" data-label="越中島" x="412.5" y="175" text-anchor="start">越中島</text>
+<text class="map-label minor-label" data-label="潮見" x="475" y="200" text-anchor="start">潮見</text>
+<text class="map-label minor-label" data-label="葛西臨海公園" x="597.5" y="194" text-anchor="middle">葛西臨海公園</text>
+<text class="map-label minor-label" data-label="舞浜" x="687.5" y="225" text-anchor="start">舞浜</text>
+<text class="map-label minor-label boundary-label" data-label="新浦安" x="762.5" y="225" text-anchor="start">新浦安</text>
+<text class="map-label minor-label boundary-label" data-label="新橋" x="287.5" y="255" text-anchor="start">新橋</text>
+<text class="map-label minor-label" data-label="浜松町" x="217.5" y="325" text-anchor="start">浜松町</text>
+<text class="map-label minor-label boundary-label" data-label="田町" x="175" y="377.5" text-anchor="start">田町</text>
+<text class="map-label minor-label" data-label="大井競馬場前" x="387.5" y="510" text-anchor="start">大井競馬場前</text>
+<text class="map-label minor-label" data-label="流通センター" x="437.5" y="570" text-anchor="start">流通センター</text>
+<text class="map-label minor-label" data-label="昭和島" x="487.5" y="630" text-anchor="start">昭和島</text>
+<text class="map-label minor-label" data-label="整備場" x="537.5" y="690" text-anchor="start">整備場</text>
+<text class="map-label minor-label" data-label="天空橋" x="587.5" y="750" text-anchor="start">天空橋</text>
+<text class="map-label minor-label" data-label="羽田空港第3ターミナル" x="637.5" y="810" text-anchor="start">羽田空港第3ターミナル</text>
+<text class="map-label minor-label" data-label="新整備場" x="687.5" y="870" text-anchor="start">新整備場</text>
+<text class="map-label minor-label" data-label="羽田空港第1ターミナル" x="737.5" y="930" text-anchor="start">羽田空港第1ターミナル</text>
+<path d="M45 1215 H888" stroke="#dbe1d8"/><text x="45" y="1240" class="small">路線の交差は乗換ではありません。破線の駅丸＝隣接地域 ／ 地図は模式図</text>
+<path d="M45 1263 h24" stroke="#9acd32" stroke-width="5"/><text x="78" y="1267" class="small">JY 山手線</text>
+<path d="M255.75 1263 h24" stroke="#00a7c4" stroke-width="5"/><text x="288.75" y="1267" class="small">JK 京浜東北・根岸線</text>
+<path d="M466.5 1263 h24" stroke="#c9252d" stroke-width="5"/><text x="499.5" y="1267" class="small">JE 京葉線</text>
+<path d="M677.25 1263 h24" stroke="#00a8df" stroke-width="5"/><text x="710.25" y="1267" class="small">MO 東京モノレール</text>
+</svg>

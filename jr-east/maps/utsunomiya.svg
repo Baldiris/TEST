@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1670 1571" class="regional-map" data-region="utsunomiya" role="img" aria-labelledby="map-title map-desc">
+<title id="map-title">宇都宮・日光 路線図</title><desc id="map-desc">30地域駅と3境界駅。破線の駅丸は隣接地域。駅丸のない交差では乗換できません。</desc>
+<style>.regional-map{font-family:"Noto Sans CJK JP","Yu Gothic",system-ui,sans-serif}.regional-map .map-label{fill:#19362e;paint-order:stroke;stroke:#fbfaf5;stroke-width:5;stroke-linejoin:round;font-weight:600;font-size:14px}.regional-map .major-label{font-size:18px;font-weight:800}.regional-map .boundary-label{fill:#546c66}.regional-map .station{fill:#fbfaf5;stroke:#385d50;stroke-width:2}.regional-map .hub{stroke-width:3}.regional-map .boundary{stroke-dasharray:3 2}.regional-map.labels-major-only .minor-label{display:none}.regional-map .leader{stroke:#899a92;stroke-width:1;fill:none}.regional-map.labels-major-only .minor-leader{display:none}.regional-map .track{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}.regional-map .small{font-size:12px;fill:#60796f}</style>
+<rect width="1670" height="1571" fill="#fbfaf5"/><text x="45" y="52" fill="#19362e" font-size="28" font-weight="800">宇都宮・日光</text><text x="46" y="79" class="small">30 STATIONS · 3 CONNECTIONS　／　PDF 2023.03</text><path d="M1605 81 V40 l-5 10 m5-10 5 10" stroke="#60796f" fill="none"/><text x="1601" y="30" class="small">N</text>
+<path class="track" d="M 160 1195 L 243.5 1195" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;久喜&quot;,&quot;東鷲宮&quot;,&quot;JU&quot;]" d="M 160 1195 L 243.5 1195" stroke="#f68b1e"/>
+<path class="track" d="M 243.5 1195 L 326.5 1195" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;東鷲宮&quot;,&quot;栗橋&quot;,&quot;JU&quot;]" d="M 243.5 1195 L 326.5 1195" stroke="#f68b1e"/>
+<path class="track" d="M 326.5 1195 L 410 1195" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;栗橋&quot;,&quot;古河&quot;,&quot;JU&quot;]" d="M 326.5 1195 L 410 1195" stroke="#f68b1e"/>
+<path class="track" d="M 410 1195 L 493.5 1195" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;古河&quot;,&quot;野木&quot;,&quot;JU&quot;]" d="M 410 1195 L 493.5 1195" stroke="#f68b1e"/>
+<path class="track" d="M 493.5 1195 L 576.5 1195" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;野木&quot;,&quot;間々田&quot;,&quot;JU&quot;]" d="M 493.5 1195 L 576.5 1195" stroke="#f68b1e"/>
+<path class="track" d="M 576.5 1195 L 660 1195" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;間々田&quot;,&quot;小山&quot;,&quot;JU&quot;]" d="M 576.5 1195 L 660 1195" stroke="#f68b1e"/>
+<path class="track" d="M 660 1195 L 730 1105" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;小山&quot;,&quot;小金井&quot;,&quot;JU&quot;]" d="M 660 1195 L 730 1105" stroke="#f68b1e"/>
+<path class="track" d="M 730 1105 L 800 1015" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;小金井&quot;,&quot;自治医大&quot;,&quot;JU&quot;]" d="M 730 1105 L 800 1015" stroke="#f68b1e"/>
+<path class="track" d="M 800 1015 L 870 925" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;自治医大&quot;,&quot;石橋&quot;,&quot;JU&quot;]" d="M 800 1015 L 870 925" stroke="#f68b1e"/>
+<path class="track" d="M 870 925 L 940 835" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;石橋&quot;,&quot;雀宮&quot;,&quot;JU&quot;]" d="M 870 925 L 940 835" stroke="#f68b1e"/>
+<path class="track" d="M 940 835 L 1010 745" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;雀宮&quot;,&quot;宇都宮&quot;,&quot;JU&quot;]" d="M 940 835 L 1010 745" stroke="#f68b1e"/>
+<path class="track" d="M 1010 745 L 1060 687.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;宇都宮&quot;,&quot;岡本&quot;,&quot;JU&quot;]" d="M 1010 745 L 1060 687.5" stroke="#f68b1e"/>
+<path class="track" d="M 1060 687.5 L 1110 630" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;岡本&quot;,&quot;宝積寺&quot;,&quot;JU&quot;]" d="M 1060 687.5 L 1110 630" stroke="#f68b1e"/>
+<path class="track" d="M 1110 630 L 1160 572.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;宝積寺&quot;,&quot;氏家&quot;,&quot;JU&quot;]" d="M 1110 630 L 1160 572.5" stroke="#f68b1e"/>
+<path class="track" d="M 1160 572.5 L 1210 515" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;氏家&quot;,&quot;蒲須坂&quot;,&quot;JU&quot;]" d="M 1160 572.5 L 1210 515" stroke="#f68b1e"/>
+<path class="track" d="M 1210 515 L 1260 457.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;蒲須坂&quot;,&quot;片岡&quot;,&quot;JU&quot;]" d="M 1210 515 L 1260 457.5" stroke="#f68b1e"/>
+<path class="track" d="M 1260 457.5 L 1310 400" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;片岡&quot;,&quot;矢板&quot;,&quot;JU&quot;]" d="M 1260 457.5 L 1310 400" stroke="#f68b1e"/>
+<path class="track" d="M 1310 400 L 1360 342.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;矢板&quot;,&quot;野崎&quot;,&quot;JU&quot;]" d="M 1310 400 L 1360 342.5" stroke="#f68b1e"/>
+<path class="track" d="M 1360 342.5 L 1410 285" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;野崎&quot;,&quot;西那須野&quot;,&quot;JU&quot;]" d="M 1360 342.5 L 1410 285" stroke="#f68b1e"/>
+<path class="track" d="M 1410 285 L 1460 227.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;西那須野&quot;,&quot;那須塩原&quot;,&quot;JU&quot;]" d="M 1410 285 L 1460 227.5" stroke="#f68b1e"/>
+<path class="track" d="M 1460 227.5 L 1510 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;那須塩原&quot;,&quot;黒磯&quot;,&quot;JU&quot;]" d="M 1460 227.5 L 1510 170" stroke="#f68b1e"/>
+<path class="track" d="M 460 1057.5 L 660 1195" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;思川&quot;,&quot;小山&quot;,&quot;RY&quot;]" d="M 460 1057.5 L 660 1195" stroke="#ed8a27"/>
+<path class="track" d="M 1010 745 L 960 657.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;宇都宮&quot;,&quot;鶴田&quot;,&quot;NK&quot;]" d="M 1010 745 L 960 657.5" stroke="#b56b1b"/>
+<path class="track" d="M 960 657.5 L 910 570" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;鶴田&quot;,&quot;鹿沼&quot;,&quot;NK&quot;]" d="M 960 657.5 L 910 570" stroke="#b56b1b"/>
+<path class="track" d="M 910 570 L 860 482.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;鹿沼&quot;,&quot;文挟&quot;,&quot;NK&quot;]" d="M 910 570 L 860 482.5" stroke="#b56b1b"/>
+<path class="track" d="M 860 482.5 L 810 395" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;文挟&quot;,&quot;下野大沢&quot;,&quot;NK&quot;]" d="M 860 482.5 L 810 395" stroke="#b56b1b"/>
+<path class="track" d="M 810 395 L 760 307.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;下野大沢&quot;,&quot;今市&quot;,&quot;NK&quot;]" d="M 810 395 L 760 307.5" stroke="#b56b1b"/>
+<path class="track" d="M 760 307.5 L 710 220" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;今市&quot;,&quot;日光&quot;,&quot;NK&quot;]" d="M 760 307.5 L 710 220" stroke="#b56b1b"/>
+<path class="track" d="M 660 1195 L 718.5 1207.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;小山&quot;,&quot;小田林&quot;,&quot;MT&quot;]" d="M 660 1195 L 718.5 1207.5" stroke="#367bbb"/>
+<path class="track" d="M 718.5 1207.5 L 776.5 1220" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;小田林&quot;,&quot;結城&quot;,&quot;MT&quot;]" d="M 718.5 1207.5 L 776.5 1220" stroke="#367bbb"/>
+<path class="track" d="M 776.5 1220 L 835 1232.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;結城&quot;,&quot;東結城&quot;,&quot;MT&quot;]" d="M 776.5 1220 L 835 1232.5" stroke="#367bbb"/>
+<path class="track" d="M 835 1232.5 L 893.5 1245" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;東結城&quot;,&quot;川島&quot;,&quot;MT&quot;]" d="M 835 1232.5 L 893.5 1245" stroke="#367bbb"/>
+<circle class="station hub" data-station="宇都宮" cx="1010" cy="745" r="8" aria-label="宇都宮"><title>宇都宮</title></circle>
+<circle class="station" data-station="岡本" cx="1060" cy="687.5" r="6" aria-label="岡本"><title>岡本</title></circle>
+<circle class="station" data-station="下野大沢" cx="810" cy="395" r="6" aria-label="下野大沢"><title>下野大沢</title></circle>
+<circle class="station" data-station="蒲須坂" cx="1210" cy="515" r="6" aria-label="蒲須坂"><title>蒲須坂</title></circle>
+<circle class="station" data-station="間々田" cx="576.5" cy="1195" r="6" aria-label="間々田"><title>間々田</title></circle>
+<circle class="station" data-station="栗橋" cx="326.5" cy="1195" r="6" aria-label="栗橋"><title>栗橋</title></circle>
+<circle class="station" data-station="結城" cx="776.5" cy="1220" r="6" aria-label="結城"><title>結城</title></circle>
+<circle class="station" data-station="古河" cx="410" cy="1195" r="6" aria-label="古河"><title>古河</title></circle>
+<circle class="station hub" data-station="黒磯" cx="1510" cy="170" r="8" aria-label="黒磯"><title>黒磯</title></circle>
+<circle class="station" data-station="今市" cx="760" cy="307.5" r="6" aria-label="今市"><title>今市</title></circle>
+<circle class="station" data-station="氏家" cx="1160" cy="572.5" r="6" aria-label="氏家"><title>氏家</title></circle>
+<circle class="station" data-station="自治医大" cx="800" cy="1015" r="6" aria-label="自治医大"><title>自治医大</title></circle>
+<circle class="station" data-station="鹿沼" cx="910" cy="570" r="6" aria-label="鹿沼"><title>鹿沼</title></circle>
+<circle class="station" data-station="小金井" cx="730" cy="1105" r="6" aria-label="小金井"><title>小金井</title></circle>
+<circle class="station hub" data-station="小山" cx="660" cy="1195" r="8" aria-label="小山"><title>小山</title></circle>
+<circle class="station" data-station="小田林" cx="718.5" cy="1207.5" r="6" aria-label="小田林"><title>小田林</title></circle>
+<circle class="station" data-station="雀宮" cx="940" cy="835" r="6" aria-label="雀宮"><title>雀宮</title></circle>
+<circle class="station" data-station="西那須野" cx="1410" cy="285" r="6" aria-label="西那須野"><title>西那須野</title></circle>
+<circle class="station" data-station="石橋" cx="870" cy="925" r="6" aria-label="石橋"><title>石橋</title></circle>
+<circle class="station" data-station="鶴田" cx="960" cy="657.5" r="6" aria-label="鶴田"><title>鶴田</title></circle>
+<circle class="station" data-station="東結城" cx="835" cy="1232.5" r="6" aria-label="東結城"><title>東結城</title></circle>
+<circle class="station" data-station="東鷲宮" cx="243.5" cy="1195" r="6" aria-label="東鷲宮"><title>東鷲宮</title></circle>
+<circle class="station" data-station="那須塩原" cx="1460" cy="227.5" r="6" aria-label="那須塩原"><title>那須塩原</title></circle>
+<circle class="station hub" data-station="日光" cx="710" cy="220" r="8" aria-label="日光"><title>日光</title></circle>
+<circle class="station" data-station="文挟" cx="860" cy="482.5" r="6" aria-label="文挟"><title>文挟</title></circle>
+<circle class="station" data-station="片岡" cx="1260" cy="457.5" r="6" aria-label="片岡"><title>片岡</title></circle>
+<circle class="station" data-station="宝積寺" cx="1110" cy="630" r="6" aria-label="宝積寺"><title>宝積寺</title></circle>
+<circle class="station" data-station="野崎" cx="1360" cy="342.5" r="6" aria-label="野崎"><title>野崎</title></circle>
+<circle class="station" data-station="野木" cx="493.5" cy="1195" r="6" aria-label="野木"><title>野木</title></circle>
+<circle class="station" data-station="矢板" cx="1310" cy="400" r="6" aria-label="矢板"><title>矢板</title></circle>
+<circle class="station boundary" data-station="久喜" cx="160" cy="1195" r="6" aria-label="久喜"><title>久喜</title></circle>
+<circle class="station boundary" data-station="思川" cx="460" cy="1057.5" r="6" aria-label="思川"><title>思川</title></circle>
+<circle class="station boundary" data-station="川島" cx="893.5" cy="1245" r="6" aria-label="川島"><title>川島</title></circle>
+<text class="map-label major-label" data-label="黒磯" x="1525" y="175" text-anchor="start">黒磯</text>
+<text class="map-label major-label" data-label="日光" x="725" y="225" text-anchor="start">日光</text>
+<text class="map-label major-label" data-label="宇都宮" x="1025" y="750" text-anchor="start">宇都宮</text>
+<text class="map-label major-label" data-label="小山" x="645" y="1200" text-anchor="end">小山</text>
+<text class="map-label minor-label" data-label="那須塩原" x="1475" y="232.5" text-anchor="start">那須塩原</text>
+<text class="map-label minor-label" data-label="西那須野" x="1425" y="290" text-anchor="start">西那須野</text>
+<text class="map-label minor-label" data-label="今市" x="775" y="312.5" text-anchor="start">今市</text>
+<text class="map-label minor-label" data-label="野崎" x="1375" y="347.5" text-anchor="start">野崎</text>
+<text class="map-label minor-label" data-label="下野大沢" x="825" y="400" text-anchor="start">下野大沢</text>
+<text class="map-label minor-label" data-label="矢板" x="1325" y="405" text-anchor="start">矢板</text>
+<text class="map-label minor-label" data-label="片岡" x="1275" y="462.5" text-anchor="start">片岡</text>
+<text class="map-label minor-label" data-label="文挟" x="875" y="487.5" text-anchor="start">文挟</text>
+<text class="map-label minor-label" data-label="蒲須坂" x="1225" y="520" text-anchor="start">蒲須坂</text>
+<text class="map-label minor-label" data-label="鹿沼" x="925" y="575" text-anchor="start">鹿沼</text>
+<text class="map-label minor-label" data-label="氏家" x="1175" y="577.5" text-anchor="start">氏家</text>
+<text class="map-label minor-label" data-label="宝積寺" x="1125" y="635" text-anchor="start">宝積寺</text>
+<text class="map-label minor-label" data-label="鶴田" x="975" y="662.5" text-anchor="start">鶴田</text>
+<text class="map-label minor-label" data-label="岡本" x="1075" y="692.5" text-anchor="start">岡本</text>
+<text class="map-label minor-label" data-label="雀宮" x="955" y="840" text-anchor="start">雀宮</text>
+<text class="map-label minor-label" data-label="石橋" x="885" y="930" text-anchor="start">石橋</text>
+<text class="map-label minor-label" data-label="自治医大" x="815" y="1020" text-anchor="start">自治医大</text>
+<text class="map-label minor-label boundary-label" data-label="思川" x="475" y="1062.5" text-anchor="start">思川</text>
+<text class="map-label minor-label" data-label="小金井" x="745" y="1110" text-anchor="start">小金井</text>
+<text class="map-label minor-label" data-label="間々田" x="561.5" y="1200" text-anchor="end">間々田</text>
+<text class="map-label minor-label" data-label="栗橋" x="341.5" y="1200" text-anchor="start">栗橋</text>
+<text class="map-label minor-label" data-label="古河" x="425" y="1200" text-anchor="start">古河</text>
+<text class="map-label minor-label" data-label="東鷲宮" x="258.5" y="1200" text-anchor="start">東鷲宮</text>
+<text class="map-label minor-label" data-label="野木" x="493.5" y="1169" text-anchor="middle">野木</text>
+<text class="map-label minor-label boundary-label" data-label="久喜" x="175" y="1200" text-anchor="start">久喜</text>
+<text class="map-label minor-label" data-label="小田林" x="733.5" y="1192.5" text-anchor="start">小田林</text>
+<text class="map-label minor-label" data-label="結城" x="791.5" y="1225" text-anchor="start">結城</text>
+<text class="map-label minor-label" data-label="東結城" x="850" y="1217.5" text-anchor="start">東結城</text>
+<text class="map-label minor-label boundary-label" data-label="川島" x="908.5" y="1250" text-anchor="start">川島</text>
+<path d="M45 1475 H1625" stroke="#dbe1d8"/><text x="45" y="1500" class="small">路線の交差は乗換ではありません。破線の駅丸＝隣接地域 ／ 地図は模式図</text>
+<path d="M45 1523 h24" stroke="#f68b1e" stroke-width="5"/><text x="78" y="1527" class="small">JU 宇都宮線</text>
+<path d="M440 1523 h24" stroke="#ed8a27" stroke-width="5"/><text x="473" y="1527" class="small">RY 両毛線</text>
+<path d="M835 1523 h24" stroke="#b56b1b" stroke-width="5"/><text x="868" y="1527" class="small">NK 日光線</text>
+<path d="M1230 1523 h24" stroke="#367bbb" stroke-width="5"/><text x="1263" y="1527" class="small">MT 水戸線</text>
+</svg>

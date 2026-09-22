@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "bay-airport",
+  "name": "東京湾岸・羽田",
+  "description": "京葉線の湾岸部・東京モノレール",
+  "hubs": [
+    "羽田空港第2ターミナル",
+    "新木場",
+    "天王洲アイル"
+  ],
+  "map": "maps/bay-airport.svg",
+  "stations": [
+    "羽田空港第1ターミナル",
+    "羽田空港第2ターミナル",
+    "羽田空港第3ターミナル",
+    "葛西臨海公園",
+    "昭和島",
+    "新整備場",
+    "新木場",
+    "整備場",
+    "大井競馬場前",
+    "潮見",
+    "天王洲アイル",
+    "天空橋",
+    "浜松町",
+    "舞浜",
+    "流通センター"
+  ],
+  "boundaryStations": [
+    "越中島",
+    "新浦安",
+    "新橋",
+    "田町"
+  ],
+  "edges": [
+    {
+      "from": "羽田空港第1ターミナル",
+      "to": "新整備場",
+      "services": [
+        "MO"
+      ]
+    },
+    {
+      "from": "羽田空港第1ターミナル",
+      "to": "羽田空港第2ターミナル",
+      "services": [
+        "MO"
+      ]
+    },
+    {
+      "from": "羽田空港第3ターミナル",
+      "to": "天空橋",
+      "services": [
+        "MO"
+      ]
+    },
+    {
+      "from": "羽田空港第3ターミナル",
+      "to": "新整備場",
+      "services": [
+        "MO"
+      ]
+    },
+    {
+      "from": "葛西臨海公園",
+      "to": "新木場",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "葛西臨海公園",
+      "to": "舞浜",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "昭和島",
+      "to": "流通センター",
+      "services": [
+        "MO"
+      ]
+    },
+    {
+      "from": "昭和島",
+      "to": "整備場",
+      "services": [
+        "MO"
+      ]
+    },
+    {
+      "from": "新木場",
+      "to": "潮見",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "整備場",
+      "to": "天空橋",
+      "services": [
+        "MO"
+      ]
+    },
+    {
+      "from": "大井競馬場前",
+      "to": "天王洲アイル",
+      "services": [
+        "MO"
+      ]
+    },
+    {
+      "from": "大井競馬場前",
+      "to": "流通センター",
+      "services": [
+        "MO"
+      ]
+    },
+    {
+      "from": "天王洲アイル",
+      "to": "浜松町",
+      "services": [
+        "MO"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "潮見",
+      "to": "越中島",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JE"
+      ]
+    },
+    {
+      "from": "浜松町",
+      "to": "新橋",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "浜松町",
+      "to": "田町",
+      "toRegion": "tokyo-core",
+      "services": [
+        "JK",
+        "JY"
+      ]
+    },
+    {
+      "from": "舞浜",
+      "to": "新浦安",
+      "toRegion": "chiba",
+      "services": [
+        "JE"
+      ]
+    }
+  ]
+}

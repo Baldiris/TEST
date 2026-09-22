@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1583 756" class="regional-map" data-region="yamanashi" role="img" aria-labelledby="map-title map-desc">
+<title id="map-title">大月・山梨 路線図</title><desc id="map-desc">19地域駅と1境界駅。破線の駅丸は隣接地域。駅丸のない交差では乗換できません。</desc>
+<style>.regional-map{font-family:"Noto Sans CJK JP","Yu Gothic",system-ui,sans-serif}.regional-map .map-label{fill:#19362e;paint-order:stroke;stroke:#fbfaf5;stroke-width:5;stroke-linejoin:round;font-weight:600;font-size:14px}.regional-map .major-label{font-size:18px;font-weight:800}.regional-map .boundary-label{fill:#546c66}.regional-map .station{fill:#fbfaf5;stroke:#385d50;stroke-width:2}.regional-map .hub{stroke-width:3}.regional-map .boundary{stroke-dasharray:3 2}.regional-map.labels-major-only .minor-label{display:none}.regional-map .leader{stroke:#899a92;stroke-width:1;fill:none}.regional-map.labels-major-only .minor-leader{display:none}.regional-map .track{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}.regional-map .small{font-size:12px;fill:#60796f}</style>
+<rect width="1583" height="756" fill="#fbfaf5"/><text x="45" y="52" fill="#19362e" font-size="28" font-weight="800">大月・山梨</text><text x="46" y="79" class="small">19 STATIONS · 1 CONNECTIONS　／　PDF 2023.03</text><path d="M1518 81 V40 l-5 10 m5-10 5 10" stroke="#60796f" fill="none"/><text x="1514" y="30" class="small">N</text>
+<path class="track" d="M 1422.5 170 L 1410.5 176 L 1372 176 L 1360 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;上野原&quot;,&quot;四方津&quot;,&quot;JC&quot;]" d="M 1422.5 170 L 1410.5 176 L 1372 176 L 1360 170" stroke="#f15a22"/>
+<path class="track" d="M 1360 170 L 1348 176 L 1309.5 176 L 1297.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;四方津&quot;,&quot;梁川&quot;,&quot;JC&quot;]" d="M 1360 170 L 1348 176 L 1309.5 176 L 1297.5 170" stroke="#f15a22"/>
+<path class="track" d="M 1297.5 170 L 1285.5 176 L 1247 176 L 1235 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;梁川&quot;,&quot;鳥沢&quot;,&quot;JC&quot;]" d="M 1297.5 170 L 1285.5 176 L 1247 176 L 1235 170" stroke="#f15a22"/>
+<path class="track" d="M 1235 170 L 1223 176 L 1184.5 176 L 1172.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;鳥沢&quot;,&quot;猿橋&quot;,&quot;JC&quot;]" d="M 1235 170 L 1223 176 L 1184.5 176 L 1172.5 170" stroke="#f15a22"/>
+<path class="track" d="M 1172.5 170 L 1160.5 176 L 1122 176 L 1110 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;猿橋&quot;,&quot;大月&quot;,&quot;JC&quot;]" d="M 1172.5 170 L 1160.5 176 L 1122 176 L 1110 170" stroke="#f15a22"/>
+<path class="track" d="M 1422.5 170 L 1360 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;上野原&quot;,&quot;四方津&quot;,&quot;CO&quot;]" d="M 1422.5 170 L 1360 170" stroke="#367bbb"/>
+<path class="track" d="M 1360 170 L 1297.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;四方津&quot;,&quot;梁川&quot;,&quot;CO&quot;]" d="M 1360 170 L 1297.5 170" stroke="#367bbb"/>
+<path class="track" d="M 1297.5 170 L 1235 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;梁川&quot;,&quot;鳥沢&quot;,&quot;CO&quot;]" d="M 1297.5 170 L 1235 170" stroke="#367bbb"/>
+<path class="track" d="M 1235 170 L 1172.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;鳥沢&quot;,&quot;猿橋&quot;,&quot;CO&quot;]" d="M 1235 170 L 1172.5 170" stroke="#367bbb"/>
+<path class="track" d="M 1172.5 170 L 1110 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;猿橋&quot;,&quot;大月&quot;,&quot;CO&quot;]" d="M 1172.5 170 L 1110 170" stroke="#367bbb"/>
+<path class="track" d="M 1110 170 L 1042 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;大月&quot;,&quot;初狩&quot;,&quot;CO&quot;]" d="M 1110 170 L 1042 170" stroke="#367bbb"/>
+<path class="track" d="M 1042 170 L 973.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;初狩&quot;,&quot;笹子&quot;,&quot;CO&quot;]" d="M 1042 170 L 973.5 170" stroke="#367bbb"/>
+<path class="track" d="M 973.5 170 L 905.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;笹子&quot;,&quot;甲斐大和&quot;,&quot;CO&quot;]" d="M 973.5 170 L 905.5 170" stroke="#367bbb"/>
+<path class="track" d="M 905.5 170 L 837.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;甲斐大和&quot;,&quot;勝沼ぶどう郷&quot;,&quot;CO&quot;]" d="M 905.5 170 L 837.5 170" stroke="#367bbb"/>
+<path class="track" d="M 837.5 170 L 769 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;勝沼ぶどう郷&quot;,&quot;塩山&quot;,&quot;CO&quot;]" d="M 837.5 170 L 769 170" stroke="#367bbb"/>
+<path class="track" d="M 769 170 L 701 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;塩山&quot;,&quot;東山梨&quot;,&quot;CO&quot;]" d="M 769 170 L 701 170" stroke="#367bbb"/>
+<path class="track" d="M 701 170 L 632.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;東山梨&quot;,&quot;山梨市&quot;,&quot;CO&quot;]" d="M 701 170 L 632.5 170" stroke="#367bbb"/>
+<path class="track" d="M 632.5 170 L 564.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;山梨市&quot;,&quot;春日居町&quot;,&quot;CO&quot;]" d="M 632.5 170 L 564.5 170" stroke="#367bbb"/>
+<path class="track" d="M 564.5 170 L 496.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;春日居町&quot;,&quot;石和温泉&quot;,&quot;CO&quot;]" d="M 564.5 170 L 496.5 170" stroke="#367bbb"/>
+<path class="track" d="M 496.5 170 L 428 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;石和温泉&quot;,&quot;酒折&quot;,&quot;CO&quot;]" d="M 496.5 170 L 428 170" stroke="#367bbb"/>
+<path class="track" d="M 428 170 L 360 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;酒折&quot;,&quot;甲府&quot;,&quot;CO&quot;]" d="M 428 170 L 360 170" stroke="#367bbb"/>
+<path class="track" d="M 360 170 L 293.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;甲府&quot;,&quot;竜王&quot;,&quot;CO&quot;]" d="M 360 170 L 293.5 170" stroke="#367bbb"/>
+<path class="track" d="M 293.5 170 L 226.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;竜王&quot;,&quot;塩崎&quot;,&quot;CO&quot;]" d="M 293.5 170 L 226.5 170" stroke="#367bbb"/>
+<path class="track" d="M 226.5 170 L 160 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;塩崎&quot;,&quot;韮崎&quot;,&quot;CO&quot;]" d="M 226.5 170 L 160 170" stroke="#367bbb"/>
+<circle class="station" data-station="猿橋" cx="1172.5" cy="170" r="6" aria-label="猿橋"><title>猿橋</title></circle>
+<circle class="station" data-station="塩崎" cx="226.5" cy="170" r="6" aria-label="塩崎"><title>塩崎</title></circle>
+<circle class="station" data-station="塩山" cx="769" cy="170" r="6" aria-label="塩山"><title>塩山</title></circle>
+<circle class="station" data-station="甲斐大和" cx="905.5" cy="170" r="6" aria-label="甲斐大和"><title>甲斐大和</title></circle>
+<circle class="station hub" data-station="甲府" cx="360" cy="170" r="8" aria-label="甲府"><title>甲府</title></circle>
+<circle class="station" data-station="笹子" cx="973.5" cy="170" r="6" aria-label="笹子"><title>笹子</title></circle>
+<circle class="station" data-station="山梨市" cx="632.5" cy="170" r="6" aria-label="山梨市"><title>山梨市</title></circle>
+<circle class="station" data-station="四方津" cx="1360" cy="170" r="6" aria-label="四方津"><title>四方津</title></circle>
+<circle class="station" data-station="酒折" cx="428" cy="170" r="6" aria-label="酒折"><title>酒折</title></circle>
+<circle class="station" data-station="春日居町" cx="564.5" cy="170" r="6" aria-label="春日居町"><title>春日居町</title></circle>
+<circle class="station" data-station="初狩" cx="1042" cy="170" r="6" aria-label="初狩"><title>初狩</title></circle>
+<circle class="station" data-station="勝沼ぶどう郷" cx="837.5" cy="170" r="6" aria-label="勝沼ぶどう郷"><title>勝沼ぶどう郷</title></circle>
+<circle class="station" data-station="石和温泉" cx="496.5" cy="170" r="6" aria-label="石和温泉"><title>石和温泉</title></circle>
+<circle class="station hub" data-station="大月" cx="1110" cy="170" r="8" aria-label="大月"><title>大月</title></circle>
+<circle class="station" data-station="鳥沢" cx="1235" cy="170" r="6" aria-label="鳥沢"><title>鳥沢</title></circle>
+<circle class="station" data-station="東山梨" cx="701" cy="170" r="6" aria-label="東山梨"><title>東山梨</title></circle>
+<circle class="station hub" data-station="韮崎" cx="160" cy="170" r="8" aria-label="韮崎"><title>韮崎</title></circle>
+<circle class="station" data-station="竜王" cx="293.5" cy="170" r="6" aria-label="竜王"><title>竜王</title></circle>
+<circle class="station" data-station="梁川" cx="1297.5" cy="170" r="6" aria-label="梁川"><title>梁川</title></circle>
+<circle class="station boundary" data-station="上野原" cx="1422.5" cy="170" r="6" aria-label="上野原"><title>上野原</title></circle>
+<text class="map-label major-label" data-label="甲府" x="375" y="175" text-anchor="start">甲府</text>
+<text class="map-label major-label" data-label="大月" x="1095" y="175" text-anchor="end">大月</text>
+<text class="map-label major-label" data-label="韮崎" x="175" y="175" text-anchor="start">韮崎</text>
+<text class="map-label minor-label" data-label="猿橋" x="1187.5" y="175" text-anchor="start">猿橋</text>
+<text class="map-label minor-label" data-label="塩崎" x="241.5" y="175" text-anchor="start">塩崎</text>
+<text class="map-label minor-label" data-label="塩山" x="784" y="175" text-anchor="start">塩山</text>
+<text class="map-label minor-label" data-label="甲斐大和" x="905.5" y="144" text-anchor="middle">甲斐大和</text>
+<text class="map-label minor-label" data-label="笹子" x="988.5" y="175" text-anchor="start">笹子</text>
+<text class="map-label minor-label" data-label="山梨市" x="632.5" y="144" text-anchor="middle">山梨市</text>
+<text class="map-label minor-label" data-label="四方津" x="1360" y="144" text-anchor="middle">四方津</text>
+<text class="map-label minor-label" data-label="酒折" x="443" y="175" text-anchor="start">酒折</text>
+<text class="map-label minor-label" data-label="春日居町" x="564.5" y="144" text-anchor="middle">春日居町</text>
+<text class="map-label minor-label" data-label="初狩" x="1042" y="144" text-anchor="middle">初狩</text>
+<text class="map-label minor-label" data-label="勝沼ぶどう郷" x="811.5" y="144" text-anchor="end">勝沼ぶどう郷</text>
+<text class="map-label minor-label" data-label="石和温泉" x="496.5" y="144" text-anchor="middle">石和温泉</text>
+<text class="map-label minor-label" data-label="鳥沢" x="1250" y="175" text-anchor="start">鳥沢</text>
+<text class="map-label minor-label" data-label="東山梨" x="701" y="144" text-anchor="middle">東山梨</text>
+<text class="map-label minor-label" data-label="竜王" x="308.5" y="175" text-anchor="start">竜王</text>
+<text class="map-label minor-label" data-label="梁川" x="1312.5" y="175" text-anchor="start">梁川</text>
+<text class="map-label minor-label boundary-label" data-label="上野原" x="1437.5" y="175" text-anchor="start">上野原</text>
+<path d="M45 660 H1538" stroke="#dbe1d8"/><text x="45" y="685" class="small">路線の交差は乗換ではありません。破線の駅丸＝隣接地域 ／ 地図は模式図</text>
+<path d="M45 708 h24" stroke="#f15a22" stroke-width="5"/><text x="78" y="712" class="small">JC 中央線快速</text>
+<path d="M418.25 708 h24" stroke="#367bbb" stroke-width="5"/><text x="451.25" y="712" class="small">CO 中央本線</text>
+</svg>

@@ -30,17 +30,17 @@
       <div class="panel">
         <div class="section-title">
           <h2>V0.3 Interactive Map</h2>
-          <p id="networkStat">16路線</p>
+          <p id="networkStat">ネットワーク読込中</p>
         </div>
         <div class="feature-grid">
-          <div class="feature"><b>ネットワーク盤面</b><span>関東近郊 主要16路線</span></div>
+          <div class="feature"><b>ネットワーク盤面</b><span>PDF掲載の全駅へ拡張</span></div>
           <div class="feature"><b>候補駅カード</b><span>スマホでも選びやすく</span></div>
           <div class="feature"><b>ルートガイド</b><span>ゴール方向をひと目で</span></div>
           <div class="feature"><b>乗換を強調</b><span>0マス乗換を見やすく</span></div>
         </div>
         <button class="btn orange" id="newGameBtn">新しい旅をはじめる</button>
         <button class="btn secondary hidden gap-top" id="resumeBtn">途中から再開する</button>
-        <p class="notice">ログイン・GPS・AI API・バックエンドは使いません。進行状況はこのブラウザだけに保存されます。</p>
+        <p class="notice">進行状況はこのブラウザに保存されます。<br><a href="region-lab.html">全駅・地域マップを見る</a></p>
       </div>
     </section>
 
@@ -130,6 +130,10 @@
           <button class="map-mode-btn" id="fullMapBtn" aria-pressed="false">全駅</button>
         </div>
 
+        <div class="regional-controls">
+          <label for="regionSelect">地域</label><select id="regionSelect"><option value="auto">現在地の地域</option></select>
+          <button id="zoomOutBtn" aria-label="地図を縮小">−</button><output id="zoomStatus">100%</output><button id="zoomInBtn" aria-label="地図を拡大">＋</button>
+        </div>
         <div class="legend">
           <span><i class="legend-node current"></i>現在地</span>
           <span><i class="legend-node goal"></i>ゴール</span>
@@ -138,7 +142,7 @@
           <span><i class="legend-line"></i>おすすめ経路</span>
         </div>
 
-        <div class="map-coverage-hint hidden" id="mapCoverageHint"></div>
+        <div class="map-coverage-hint hidden" id="mapCoverageHint"></div><p class="notice" id="stationNote"></p>
 
         <div class="overview-map hidden" id="overviewMapWrap">
           <svg id="overviewSvg" viewBox="0 0 1000 700" role="img" aria-label="JR東日本関東近郊広域ゲームマップ"></svg>
@@ -153,7 +157,7 @@
           <svg id="networkSvg" viewBox="0 0 1840 820" role="img" aria-label="JR東日本関東近郊簡易ネットワーク図"></svg>
         </div>
 
-        <p class="notice board-note">「関東」は現在地とゴールの位置関係を見る概要図、「地域」は現在地周辺の詳細図、「全駅」は299駅の既存ネットワークです。<br><small>Tokyo core SVG adapted from “Tokunai-pass.png”, Highexpress~commonswiki, Wikimedia Commons, CC BY-SA 4.0.</small></p>
+        <p class="notice board-note">「関東」は現在地とゴールの位置関係を見る概要図、「地域」は現在地周辺の詳細図、「全駅」は全路線の接続を確認する補助表示です。<br><small>駅一覧はJR東日本の2023年3月版PDFを基準に収録。地図は独自の模式図です。営業日・停車列車は実際の案内をご確認ください。</small></p>
       </div>
 
       <div class="panel hidden" id="arrivalPanel">
@@ -197,7 +201,7 @@
       </div>
     </section>
 
-    <footer>Kimagure JR East Trip V0.3 — Architecture Split</footer>
+    <footer>Kimagure JR East Trip V0.3 — PDF Station Coverage</footer>
   </main>
 
   <div class="travel-overlay hidden" id="travelOverlay" aria-live="polite">

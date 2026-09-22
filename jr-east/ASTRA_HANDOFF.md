@@ -1,3 +1,5 @@
+> 最新範囲はPDF掲載539駅・18地域。`WORK_HANDOFF.md`を起点にすること。以下は299駅時点の履歴。
+
 # ASTRA HANDOFF — Kimagure JR Trip
 
 ## Current production concept
@@ -122,3 +124,4 @@ Do not paste copyrighted JR East map artwork directly into the application.
 - current / goal / reachable states visible
 - no JS syntax or CI regression
 - region can be used without editing game connectivity
+

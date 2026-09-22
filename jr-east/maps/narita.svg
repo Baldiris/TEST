@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 827" class="regional-map" data-region="narita" role="img" aria-labelledby="map-title map-desc">
+<title id="map-title">成田・佐倉 路線図</title><desc id="map-desc">13地域駅と3境界駅。破線の駅丸は隣接地域。駅丸のない交差では乗換できません。</desc>
+<style>.regional-map{font-family:"Noto Sans CJK JP","Yu Gothic",system-ui,sans-serif}.regional-map .map-label{fill:#19362e;paint-order:stroke;stroke:#fbfaf5;stroke-width:5;stroke-linejoin:round;font-weight:600;font-size:14px}.regional-map .major-label{font-size:18px;font-weight:800}.regional-map .boundary-label{fill:#546c66}.regional-map .station{fill:#fbfaf5;stroke:#385d50;stroke-width:2}.regional-map .hub{stroke-width:3}.regional-map .boundary{stroke-dasharray:3 2}.regional-map.labels-major-only .minor-label{display:none}.regional-map .leader{stroke:#899a92;stroke-width:1;fill:none}.regional-map.labels-major-only .minor-leader{display:none}.regional-map .track{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}.regional-map .small{font-size:12px;fill:#60796f}</style>
+<rect width="900" height="827" fill="#fbfaf5"/><text x="45" y="52" fill="#19362e" font-size="28" font-weight="800">成田・佐倉</text><text x="46" y="79" class="small">13 STATIONS · 3 CONNECTIONS　／　PDF 2023.03</text><path d="M835 81 V40 l-5 10 m5-10 5 10" stroke="#60796f" fill="none"/><text x="831" y="30" class="small">N</text>
+<path class="track" d="M 322 500.5 L 342 475.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;都賀&quot;,&quot;四街道&quot;,&quot;SB&quot;]" d="M 322 500.5 L 342 475.5" stroke="#367bbb"/>
+<path class="track" d="M 342 475.5 L 362 450.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;四街道&quot;,&quot;物井&quot;,&quot;SB&quot;]" d="M 342 475.5 L 362 450.5" stroke="#367bbb"/>
+<path class="track" d="M 362 450.5 L 382 425.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;物井&quot;,&quot;佐倉&quot;,&quot;SB&quot;]" d="M 362 450.5 L 382 425.5" stroke="#367bbb"/>
+<path class="track" d="M 382 425.5 L 472 450.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;佐倉&quot;,&quot;南酒々井&quot;,&quot;SB&quot;]" d="M 382 425.5 L 472 450.5" stroke="#367bbb"/>
+<path class="track" d="M 472 450.5 L 562 475.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;南酒々井&quot;,&quot;榎戸&quot;,&quot;SB&quot;]" d="M 472 450.5 L 562 475.5" stroke="#367bbb"/>
+<path class="track" d="M 562 475.5 L 652 500.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;榎戸&quot;,&quot;八街&quot;,&quot;SB&quot;]" d="M 562 475.5 L 652 500.5" stroke="#367bbb"/>
+<path class="track" d="M 382 425.5 L 382 325.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;佐倉&quot;,&quot;酒々井&quot;,&quot;NR&quot;]" d="M 382 425.5 L 382 325.5" stroke="#16a65b"/>
+<path class="track" d="M 382 325.5 L 382 225.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;酒々井&quot;,&quot;成田&quot;,&quot;NR&quot;]" d="M 382 325.5 L 382 225.5" stroke="#16a65b"/>
+<path class="track" d="M 382 225.5 L 532 225.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;成田&quot;,&quot;空港第2ビル&quot;,&quot;NR&quot;]" d="M 382 225.5 L 532 225.5" stroke="#16a65b"/>
+<path class="track" d="M 532 225.5 L 682 225.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;空港第2ビル&quot;,&quot;成田空港&quot;,&quot;NR&quot;]" d="M 532 225.5 L 682 225.5" stroke="#16a65b"/>
+<path class="track" d="M 160 170 L 204 181" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;布佐&quot;,&quot;木下&quot;,&quot;NR&quot;]" d="M 160 170 L 204 181" stroke="#16a65b"/>
+<path class="track" d="M 204 181 L 248.5 192" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;木下&quot;,&quot;小林&quot;,&quot;NR&quot;]" d="M 204 181 L 248.5 192" stroke="#16a65b"/>
+<path class="track" d="M 248.5 192 L 293 203.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;小林&quot;,&quot;安食&quot;,&quot;NR&quot;]" d="M 248.5 192 L 293 203.5" stroke="#16a65b"/>
+<path class="track" d="M 293 203.5 L 337.5 214.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;安食&quot;,&quot;下総松崎&quot;,&quot;NR&quot;]" d="M 293 203.5 L 337.5 214.5" stroke="#16a65b"/>
+<path class="track" d="M 337.5 214.5 L 382 225.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;下総松崎&quot;,&quot;成田&quot;,&quot;NR&quot;]" d="M 337.5 214.5 L 382 225.5" stroke="#16a65b"/>
+<circle class="station" data-station="安食" cx="293" cy="203.5" r="6" aria-label="安食"><title>安食</title></circle>
+<circle class="station" data-station="榎戸" cx="562" cy="475.5" r="6" aria-label="榎戸"><title>榎戸</title></circle>
+<circle class="station" data-station="下総松崎" cx="337.5" cy="214.5" r="6" aria-label="下総松崎"><title>下総松崎</title></circle>
+<circle class="station" data-station="空港第2ビル" cx="532" cy="225.5" r="6" aria-label="空港第2ビル"><title>空港第2ビル</title></circle>
+<circle class="station hub" data-station="佐倉" cx="382" cy="425.5" r="8" aria-label="佐倉"><title>佐倉</title></circle>
+<circle class="station" data-station="四街道" cx="342" cy="475.5" r="6" aria-label="四街道"><title>四街道</title></circle>
+<circle class="station" data-station="酒々井" cx="382" cy="325.5" r="6" aria-label="酒々井"><title>酒々井</title></circle>
+<circle class="station" data-station="小林" cx="248.5" cy="192" r="6" aria-label="小林"><title>小林</title></circle>
+<circle class="station hub" data-station="成田" cx="382" cy="225.5" r="8" aria-label="成田"><title>成田</title></circle>
+<circle class="station hub" data-station="成田空港" cx="682" cy="225.5" r="8" aria-label="成田空港"><title>成田空港</title></circle>
+<circle class="station" data-station="南酒々井" cx="472" cy="450.5" r="6" aria-label="南酒々井"><title>南酒々井</title></circle>
+<circle class="station" data-station="物井" cx="362" cy="450.5" r="6" aria-label="物井"><title>物井</title></circle>
+<circle class="station" data-station="木下" cx="204" cy="181" r="6" aria-label="木下"><title>木下</title></circle>
+<circle class="station boundary" data-station="都賀" cx="322" cy="500.5" r="6" aria-label="都賀"><title>都賀</title></circle>
+<circle class="station boundary" data-station="八街" cx="652" cy="500.5" r="6" aria-label="八街"><title>八街</title></circle>
+<circle class="station boundary" data-station="布佐" cx="160" cy="170" r="6" aria-label="布佐"><title>布佐</title></circle>
+<text class="map-label major-label" data-label="成田" x="397" y="230.5" text-anchor="start">成田</text>
+<text class="map-label major-label" data-label="成田空港" x="697" y="230.5" text-anchor="start">成田空港</text>
+<text class="map-label major-label" data-label="佐倉" x="397" y="430.5" text-anchor="start">佐倉</text>
+<text class="map-label minor-label boundary-label" data-label="布佐" x="145" y="175" text-anchor="end">布佐</text>
+<text class="map-label minor-label" data-label="木下" x="219" y="166" text-anchor="start">木下</text>
+<text class="map-label minor-label" data-label="小林" x="263.5" y="177" text-anchor="start">小林</text>
+<text class="map-label minor-label" data-label="安食" x="308" y="188.5" text-anchor="start">安食</text>
+<text class="map-label minor-label" data-label="下総松崎" x="352.5" y="199.5" text-anchor="start">下総松崎</text>
+<text class="map-label minor-label" data-label="空港第2ビル" x="547" y="230.5" text-anchor="start">空港第2ビル</text>
+<text class="map-label minor-label" data-label="酒々井" x="397" y="330.5" text-anchor="start">酒々井</text>
+<text class="map-label minor-label" data-label="南酒々井" x="487" y="455.5" text-anchor="start">南酒々井</text>
+<text class="map-label minor-label" data-label="物井" x="377" y="455.5" text-anchor="start">物井</text>
+<text class="map-label minor-label" data-label="榎戸" x="577" y="480.5" text-anchor="start">榎戸</text>
+<text class="map-label minor-label" data-label="四街道" x="357" y="480.5" text-anchor="start">四街道</text>
+<text class="map-label minor-label boundary-label" data-label="都賀" x="337" y="505.5" text-anchor="start">都賀</text>
+<text class="map-label minor-label boundary-label" data-label="八街" x="667" y="505.5" text-anchor="start">八街</text>
+<path d="M45 731 H855" stroke="#dbe1d8"/><text x="45" y="756" class="small">路線の交差は乗換ではありません。破線の駅丸＝隣接地域 ／ 地図は模式図</text>
+<path d="M45 779 h24" stroke="#367bbb" stroke-width="5"/><text x="78" y="783" class="small">SB 総武本線</text>
+<path d="M247.5 779 h24" stroke="#16a65b" stroke-width="5"/><text x="280.5" y="783" class="small">NR 成田線</text>
+</svg>

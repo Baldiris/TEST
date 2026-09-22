@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1270 926" class="regional-map" data-region="west-kanagawa" role="img" aria-labelledby="map-title map-desc">
+<title id="map-title">西湘・伊東 路線図</title><desc id="map-desc">16地域駅と1境界駅。破線の駅丸は隣接地域。駅丸のない交差では乗換できません。</desc>
+<style>.regional-map{font-family:"Noto Sans CJK JP","Yu Gothic",system-ui,sans-serif}.regional-map .map-label{fill:#19362e;paint-order:stroke;stroke:#fbfaf5;stroke-width:5;stroke-linejoin:round;font-weight:600;font-size:14px}.regional-map .major-label{font-size:18px;font-weight:800}.regional-map .boundary-label{fill:#546c66}.regional-map .station{fill:#fbfaf5;stroke:#385d50;stroke-width:2}.regional-map .hub{stroke-width:3}.regional-map .boundary{stroke-dasharray:3 2}.regional-map.labels-major-only .minor-label{display:none}.regional-map .leader{stroke:#899a92;stroke-width:1;fill:none}.regional-map.labels-major-only .minor-leader{display:none}.regional-map .track{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}.regional-map .small{font-size:12px;fill:#60796f}</style>
+<rect width="1270" height="926" fill="#fbfaf5"/><text x="45" y="52" fill="#19362e" font-size="28" font-weight="800">西湘・伊東</text><text x="46" y="79" class="small">16 STATIONS · 1 CONNECTIONS　／　PDF 2023.03</text><path d="M1205 81 V40 l-5 10 m5-10 5 10" stroke="#60796f" fill="none"/><text x="1201" y="30" class="small">N</text>
+<path class="track" d="M 1110 170 L 1098 178 L 947 178 L 935 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;茅ケ崎&quot;,&quot;平塚&quot;,&quot;JT&quot;]" d="M 1110 170 L 1098 178 L 947 178 L 935 170" stroke="#f68b1e"/>
+<path class="track" d="M 935 170 L 923 178 L 852 178 L 840 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;平塚&quot;,&quot;大磯&quot;,&quot;JT&quot;]" d="M 935 170 L 923 178 L 852 178 L 840 170" stroke="#f68b1e"/>
+<path class="track" d="M 840 170 L 828 178 L 757 178 L 745 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;大磯&quot;,&quot;二宮&quot;,&quot;JT&quot;]" d="M 840 170 L 828 178 L 757 178 L 745 170" stroke="#f68b1e"/>
+<path class="track" d="M 745 170 L 733 178 L 662 178 L 650 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;二宮&quot;,&quot;国府津&quot;,&quot;JT&quot;]" d="M 745 170 L 733 178 L 662 178 L 650 170" stroke="#f68b1e"/>
+<path class="track" d="M 650 170 L 638 178 L 592 178 L 580 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;国府津&quot;,&quot;鴨宮&quot;,&quot;JT&quot;]" d="M 650 170 L 638 178 L 592 178 L 580 170" stroke="#f68b1e"/>
+<path class="track" d="M 580 170 L 568 178 L 522 178 L 510 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;鴨宮&quot;,&quot;小田原&quot;,&quot;JT&quot;]" d="M 580 170 L 568 178 L 522 178 L 510 170" stroke="#f68b1e"/>
+<path class="track" d="M 510 170 L 499.4 179.8 L 453.1 187 L 440 181" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;小田原&quot;,&quot;早川&quot;,&quot;JT&quot;]" d="M 510 170 L 499.4 179.8 L 453.1 187 L 440 181" stroke="#f68b1e"/>
+<path class="track" d="M 440 181 L 429.4 190.8 L 383.1 198 L 370 192" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;早川&quot;,&quot;根府川&quot;,&quot;JT&quot;]" d="M 440 181 L 429.4 190.8 L 383.1 198 L 370 192" stroke="#f68b1e"/>
+<path class="track" d="M 370 192 L 359.4 201.8 L 313.1 209 L 300 203" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;根府川&quot;,&quot;真鶴&quot;,&quot;JT&quot;]" d="M 370 192 L 359.4 201.8 L 313.1 209 L 300 203" stroke="#f68b1e"/>
+<path class="track" d="M 300 203 L 289.4 212.8 L 243.1 220 L 230 214" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;真鶴&quot;,&quot;湯河原&quot;,&quot;JT&quot;]" d="M 300 203 L 289.4 212.8 L 243.1 220 L 230 214" stroke="#f68b1e"/>
+<path class="track" d="M 230 214 L 219.4 223.8 L 173.1 231 L 160 225" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;湯河原&quot;,&quot;熱海&quot;,&quot;JT&quot;]" d="M 230 214 L 219.4 223.8 L 173.1 231 L 160 225" stroke="#f68b1e"/>
+<path class="track" d="M 160 225 L 160 300" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;熱海&quot;,&quot;来宮&quot;,&quot;IZ&quot;]" d="M 160 225 L 160 300" stroke="#f68b1e"/>
+<path class="track" d="M 160 300 L 160 375" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;来宮&quot;,&quot;伊豆多賀&quot;,&quot;IZ&quot;]" d="M 160 300 L 160 375" stroke="#f68b1e"/>
+<path class="track" d="M 160 375 L 160 450" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;伊豆多賀&quot;,&quot;網代&quot;,&quot;IZ&quot;]" d="M 160 375 L 160 450" stroke="#f68b1e"/>
+<path class="track" d="M 160 450 L 160 525" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;網代&quot;,&quot;宇佐美&quot;,&quot;IZ&quot;]" d="M 160 450 L 160 525" stroke="#f68b1e"/>
+<path class="track" d="M 160 525 L 160 600" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;宇佐美&quot;,&quot;伊東&quot;,&quot;IZ&quot;]" d="M 160 525 L 160 600" stroke="#f68b1e"/>
+<circle class="station hub" data-station="伊東" cx="160" cy="600" r="8" aria-label="伊東"><title>伊東</title></circle>
+<circle class="station" data-station="伊豆多賀" cx="160" cy="375" r="6" aria-label="伊豆多賀"><title>伊豆多賀</title></circle>
+<circle class="station" data-station="宇佐美" cx="160" cy="525" r="6" aria-label="宇佐美"><title>宇佐美</title></circle>
+<circle class="station" data-station="鴨宮" cx="580" cy="170" r="6" aria-label="鴨宮"><title>鴨宮</title></circle>
+<circle class="station hub" data-station="国府津" cx="650" cy="170" r="8" aria-label="国府津"><title>国府津</title></circle>
+<circle class="station" data-station="根府川" cx="370" cy="192" r="6" aria-label="根府川"><title>根府川</title></circle>
+<circle class="station hub" data-station="小田原" cx="510" cy="170" r="8" aria-label="小田原"><title>小田原</title></circle>
+<circle class="station" data-station="真鶴" cx="300" cy="203" r="6" aria-label="真鶴"><title>真鶴</title></circle>
+<circle class="station" data-station="早川" cx="440" cy="181" r="6" aria-label="早川"><title>早川</title></circle>
+<circle class="station" data-station="大磯" cx="840" cy="170" r="6" aria-label="大磯"><title>大磯</title></circle>
+<circle class="station" data-station="湯河原" cx="230" cy="214" r="6" aria-label="湯河原"><title>湯河原</title></circle>
+<circle class="station" data-station="二宮" cx="745" cy="170" r="6" aria-label="二宮"><title>二宮</title></circle>
+<circle class="station hub" data-station="熱海" cx="160" cy="225" r="8" aria-label="熱海"><title>熱海</title></circle>
+<circle class="station hub" data-station="平塚" cx="935" cy="170" r="8" aria-label="平塚"><title>平塚</title></circle>
+<circle class="station" data-station="網代" cx="160" cy="450" r="6" aria-label="網代"><title>網代</title></circle>
+<circle class="station" data-station="来宮" cx="160" cy="300" r="6" aria-label="来宮"><title>来宮</title></circle>
+<circle class="station boundary" data-station="茅ケ崎" cx="1110" cy="170" r="6" aria-label="茅ケ崎"><title>茅ケ崎</title></circle>
+<text class="map-label major-label" data-label="国府津" x="665" y="175" text-anchor="start">国府津</text>
+<text class="map-label major-label" data-label="小田原" x="495" y="155" text-anchor="end">小田原</text>
+<text class="map-label major-label" data-label="平塚" x="950" y="175" text-anchor="start">平塚</text>
+<text class="map-label major-label" data-label="熱海" x="175" y="230" text-anchor="start">熱海</text>
+<text class="map-label major-label" data-label="伊東" x="175" y="605" text-anchor="start">伊東</text>
+<text class="map-label minor-label" data-label="鴨宮" x="595" y="175" text-anchor="start">鴨宮</text>
+<text class="map-label minor-label" data-label="大磯" x="855" y="175" text-anchor="start">大磯</text>
+<text class="map-label minor-label" data-label="二宮" x="760" y="175" text-anchor="start">二宮</text>
+<text class="map-label minor-label boundary-label" data-label="茅ケ崎" x="1125" y="175" text-anchor="start">茅ケ崎</text>
+<text class="map-label minor-label" data-label="早川" x="455" y="186" text-anchor="start">早川</text>
+<text class="map-label minor-label" data-label="根府川" x="355" y="177" text-anchor="end">根府川</text>
+<text class="map-label minor-label" data-label="真鶴" x="315" y="208" text-anchor="start">真鶴</text>
+<text class="map-label minor-label" data-label="湯河原" x="215" y="199" text-anchor="end">湯河原</text>
+<text class="map-label minor-label" data-label="来宮" x="175" y="305" text-anchor="start">来宮</text>
+<text class="map-label minor-label" data-label="伊豆多賀" x="175" y="380" text-anchor="start">伊豆多賀</text>
+<text class="map-label minor-label" data-label="網代" x="175" y="455" text-anchor="start">網代</text>
+<text class="map-label minor-label" data-label="宇佐美" x="175" y="530" text-anchor="start">宇佐美</text>
+<path d="M45 830 H1225" stroke="#dbe1d8"/><text x="45" y="855" class="small">路線の交差は乗換ではありません。破線の駅丸＝隣接地域 ／ 地図は模式図</text>
+<path d="M45 878 h24" stroke="#f68b1e" stroke-width="5"/><text x="78" y="882" class="small">JT 東海道線</text>
+<path d="M340 878 h24" stroke="#f68b1e" stroke-width="5"/><text x="373" y="882" class="small">IZ 伊東線</text>
+</svg>

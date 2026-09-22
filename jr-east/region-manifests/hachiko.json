@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "hachiko",
+  "name": "八高・高麗川",
+  "description": "八高線・川越線西側",
+  "hubs": [
+    "高麗川",
+    "寄居",
+    "小川町"
+  ],
+  "map": "maps/hachiko.svg",
+  "stations": [
+    "越生",
+    "笠幡",
+    "寄居",
+    "金子",
+    "高麗川",
+    "児玉",
+    "小川町",
+    "松久",
+    "折原",
+    "丹荘",
+    "竹沢",
+    "東飯能",
+    "武蔵高萩",
+    "明覚",
+    "毛呂",
+    "用土"
+  ],
+  "boundaryStations": [
+    "群馬藤岡",
+    "的場",
+    "箱根ケ崎"
+  ],
+  "edges": [
+    {
+      "from": "越生",
+      "to": "毛呂",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "越生",
+      "to": "明覚",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "笠幡",
+      "to": "武蔵高萩",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "寄居",
+      "to": "折原",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "寄居",
+      "to": "用土",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "金子",
+      "to": "東飯能",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "高麗川",
+      "to": "武蔵高萩",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "高麗川",
+      "to": "東飯能",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "高麗川",
+      "to": "毛呂",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "児玉",
+      "to": "松久",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "児玉",
+      "to": "丹荘",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "小川町",
+      "to": "明覚",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "小川町",
+      "to": "竹沢",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "松久",
+      "to": "用土",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "折原",
+      "to": "竹沢",
+      "services": [
+        "HC"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "笠幡",
+      "to": "的場",
+      "toRegion": "saitama",
+      "services": [
+        "KW"
+      ]
+    },
+    {
+      "from": "金子",
+      "to": "箱根ケ崎",
+      "toRegion": "ome-itsukaichi",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "丹荘",
+      "to": "群馬藤岡",
+      "toRegion": "gunma",
+      "services": [
+        "HC"
+      ]
+    }
+  ]
+}

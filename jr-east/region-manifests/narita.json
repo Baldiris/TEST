@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "narita",
+  "name": "成田・佐倉",
+  "description": "成田線・空港方面",
+  "hubs": [
+    "成田",
+    "佐倉",
+    "成田空港"
+  ],
+  "map": "maps/narita.svg",
+  "stations": [
+    "安食",
+    "榎戸",
+    "下総松崎",
+    "空港第2ビル",
+    "佐倉",
+    "四街道",
+    "酒々井",
+    "小林",
+    "成田",
+    "成田空港",
+    "南酒々井",
+    "物井",
+    "木下"
+  ],
+  "boundaryStations": [
+    "都賀",
+    "八街",
+    "布佐"
+  ],
+  "edges": [
+    {
+      "from": "安食",
+      "to": "小林",
+      "services": [
+        "NR"
+      ]
+    },
+    {
+      "from": "安食",
+      "to": "下総松崎",
+      "services": [
+        "NR"
+      ]
+    },
+    {
+      "from": "榎戸",
+      "to": "南酒々井",
+      "services": [
+        "SB"
+      ]
+    },
+    {
+      "from": "下総松崎",
+      "to": "成田",
+      "services": [
+        "NR"
+      ]
+    },
+    {
+      "from": "空港第2ビル",
+      "to": "成田",
+      "services": [
+        "NR"
+      ]
+    },
+    {
+      "from": "空港第2ビル",
+      "to": "成田空港",
+      "services": [
+        "NR"
+      ]
+    },
+    {
+      "from": "佐倉",
+      "to": "物井",
+      "services": [
+        "SB"
+      ]
+    },
+    {
+      "from": "佐倉",
+      "to": "南酒々井",
+      "services": [
+        "SB"
+      ]
+    },
+    {
+      "from": "佐倉",
+      "to": "酒々井",
+      "services": [
+        "NR"
+      ]
+    },
+    {
+      "from": "四街道",
+      "to": "物井",
+      "services": [
+        "SB"
+      ]
+    },
+    {
+      "from": "酒々井",
+      "to": "成田",
+      "services": [
+        "NR"
+      ]
+    },
+    {
+      "from": "小林",
+      "to": "木下",
+      "services": [
+        "NR"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "榎戸",
+      "to": "八街",
+      "toRegion": "boso",
+      "services": [
+        "SB"
+      ]
+    },
+    {
+      "from": "四街道",
+      "to": "都賀",
+      "toRegion": "chiba",
+      "services": [
+        "SB"
+      ]
+    },
+    {
+      "from": "木下",
+      "to": "布佐",
+      "toRegion": "joban",
+      "services": [
+        "NR"
+      ]
+    }
+  ]
+}

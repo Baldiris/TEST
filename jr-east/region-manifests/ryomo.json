@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "ryomo",
+  "name": "両毛",
+  "description": "前橋〜小山の両毛線",
+  "hubs": [
+    "桐生",
+    "足利",
+    "佐野",
+    "栃木"
+  ],
+  "map": "maps/ryomo.svg",
+  "stations": [
+    "あしかがフラワーパーク",
+    "伊勢崎",
+    "岩舟",
+    "岩宿",
+    "桐生",
+    "国定",
+    "佐野",
+    "山前",
+    "思川",
+    "小俣",
+    "足利",
+    "大平下",
+    "栃木",
+    "富田"
+  ],
+  "boundaryStations": [
+    "駒形",
+    "小山"
+  ],
+  "edges": [
+    {
+      "from": "あしかがフラワーパーク",
+      "to": "足利",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "あしかがフラワーパーク",
+      "to": "富田",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "伊勢崎",
+      "to": "国定",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "岩舟",
+      "to": "佐野",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "岩舟",
+      "to": "大平下",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "岩宿",
+      "to": "国定",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "岩宿",
+      "to": "桐生",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "桐生",
+      "to": "小俣",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "佐野",
+      "to": "富田",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "山前",
+      "to": "小俣",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "山前",
+      "to": "足利",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "思川",
+      "to": "栃木",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "大平下",
+      "to": "栃木",
+      "services": [
+        "RY"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "伊勢崎",
+      "to": "駒形",
+      "toRegion": "gunma",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "思川",
+      "to": "小山",
+      "toRegion": "utsunomiya",
+      "services": [
+        "RY"
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@ main{max-width:1100px;margin:auto;padding:20px}.head{display:flex;justify-conten
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:14px;text-align:left}
 .card button{width:100%;border:0;background:transparent;text-align:left;color:inherit;padding:0;cursor:pointer}.name{font-size:17px;font-weight:900}.meta{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.5}
 .status{display:inline-block;margin-top:9px;border-radius:99px;padding:4px 8px;font-size:10px;font-weight:900}.ready{background:#e7f5eb;color:#176139}.todo{background:#eeeae2;color:#756d62}
-.viewer{margin-top:18px;background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px}.viewer h2{margin:0 0 4px}.viewer-info{font-size:12px;color:var(--muted);margin-bottom:12px}.map-frame{min-height:360px;display:grid;place-items:center;border:1px solid #ddd;border-radius:14px;overflow:auto;background:#fffdf8}.map-frame svg{display:block;max-width:100%;height:auto}.empty{padding:50px;color:var(--muted);text-align:center}
+.viewer{margin-top:18px;background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px}.viewer h2{margin:0 0 4px}.viewer-info{font-size:12px;color:var(--muted);margin-bottom:12px}.map-frame{height:650px;min-height:360px;display:grid;place-items:center;border:1px solid #ddd;border-radius:14px;overflow:auto;background:#fffdf8}.map-frame svg{display:block;max-width:100%;height:auto;align-self:start}.map-frame:has(svg){display:block}.map-frame .preview-focus{fill:#173a2a!important;stroke:#eab223!important;stroke-width:5!important}.viewer button{padding:10px;margin:6px 4px 12px 0;font:inherit}.empty{padding:50px;color:var(--muted);text-align:center}
 .back{color:var(--green);font-weight:800;text-decoration:none}
 @media(max-width:800px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.grid{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}}
 </style>
@@ -19,14 +19,15 @@ main{max-width:1100px;margin:auto;padding:20px}.head{display:flex;justify-conten
 <body>
 <main>
 <div class="head">
-  <div><h1>JR Regional Map Lab</h1><p>地域分割・SVG実装状況・駅数を確認する開発用ページ</p></div>
+  <div><h1>JR Regional Map Lab</h1><p>PDF掲載539駅・18地域の路線図。駅名から地域を探せます。</p></div>
   <a class="back" href="./">JR本番へ戻る</a>
 </div>
+<div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap"><label for="stationSearch">駅名</label><input id="stationSearch" list="stationList" placeholder="例：東京、横浜、韮崎" style="font:inherit;padding:10px"><datalist id="stationList"></datalist><button id="searchBtn">駅を探す</button><span id="searchStatus" role="status"></span></div>
 <div class="grid" id="grid"></div>
 <section class="viewer">
   <h2 id="viewerTitle">地域を選択</h2>
   <div class="viewer-info" id="viewerInfo">カードを選ぶとマニフェストとSVGを確認できます。</div>
-  <div class="map-frame" id="mapFrame"><div class="empty">No region selected</div></div>
+  <button id="fitMap">地域全体</button><button id="detailMap">文字を拡大</button><div class="map-frame" id="mapFrame"><div class="empty">No region selected</div></div>
 </section>
 </main>
 <script src="network-data.js"></script>
@@ -36,14 +37,24 @@ const grid=document.getElementById("grid");
 const title=document.getElementById("viewerTitle");
 const info=document.getElementById("viewerInfo");
 const frame=document.getElementById("mapFrame");
+let chosenStation=null,selectionRequest=0;
+const allStations=[...new Set(Object.values(D.services).flatMap(s=>s.paths.flat()))].sort((a,b)=>a.localeCompare(b,'ja'));
+document.getElementById('stationList').innerHTML=allStations.map(s=>'<option value="'+s+'">').join('');
+function detail(){const svg=frame.querySelector('svg');if(!svg)return;svg.style.maxWidth='none';svg.style.width=svg.viewBox.baseVal.width+'px';svg.style.height=svg.viewBox.baseVal.height+'px';}
+function focusStation(station){detail();const svg=frame.querySelector('svg');if(!svg)return;const el=[...svg.querySelectorAll('[data-station]')].find(e=>e.getAttribute('data-station')===station);if(!el)return;svg.querySelectorAll('.preview-focus').forEach(e=>e.classList.remove('preview-focus'));el.classList.add('preview-focus');frame.scrollTo({left:+el.getAttribute('cx')-frame.clientWidth/2,top:+el.getAttribute('cy')-frame.clientHeight/2});}
+document.getElementById('fitMap').onclick=()=>{const svg=frame.querySelector('svg');if(!svg)return;svg.style.maxWidth='100%';svg.style.width='100%';svg.style.height='auto';frame.scrollTo({left:0,top:0});};
+document.getElementById('detailMap').onclick=()=>chosenStation?focusStation(chosenStation):detail();
+const manifests=new Map();
+document.getElementById('searchBtn').onclick=async()=>{const station=document.getElementById('stationSearch').value.trim();const status=document.getElementById('searchStatus');if(!allStations.includes(station)){status.textContent='掲載駅名を選んでください。';return;}chosenStation=station;for(const id of Object.keys(D.regions)){const m=await loadManifest(id);if(m.stations.includes(station)){status.textContent=station+' / '+D.regions[id].name;await selectRegion(id);focusStation(station);document.querySelector('.viewer').scrollIntoView({block:'start'});return;}}};
 
 async function loadManifest(id){
+  if(manifests.has(id))return manifests.get(id);
   const r=await fetch("region-manifests/"+id+".json",{cache:"no-cache"});
   if(!r.ok) throw new Error("manifest");
-  return r.json();
+  const m=await r.json();manifests.set(id,m);return m;
 }
 async function selectRegion(id){
-  const region=D.regions[id];
+  const region=D.regions[id];const request=++selectionRequest;
   title.textContent=region.name;
   frame.innerHTML='<div class="empty">読み込み中...</div>';
   try{
@@ -52,7 +63,9 @@ async function selectRegion(id){
     if(region.map){
       const r=await fetch(region.map,{cache:"no-cache"});
       if(!r.ok) throw new Error("map");
-      frame.innerHTML=await r.text();
+      const svg=await r.text();if(request!==selectionRequest)return;
+      frame.innerHTML=svg;
+      frame.querySelectorAll('[data-station]').forEach(el=>{el.style.cursor='pointer';el.onclick=()=>{chosenStation=el.getAttribute('data-station');document.getElementById('stationSearch').value=chosenStation;focusStation(chosenStation);};});
     }else{
       frame.innerHTML='<div class="empty">SVG未実装<br><small>Manifest: region-manifests/'+id+'.json</small></div>';
     }
@@ -70,11 +83,13 @@ async function build(){
     card.innerHTML='<button><div class="name">'+r.name+'</div><div class="meta">'+
       (m?m.stations.length+"駅 / "+m.edges.length+"エッジ":"manifest unavailable")+
       '<br>'+r.description+'</div><span class="status '+(r.map?"ready":"todo")+'">'+(r.map?"SVG READY":"SVG TODO")+'</span></button>';
-    card.querySelector("button").onclick=()=>selectRegion(id);
+    card.querySelector("button").onclick=async()=>{chosenStation=null;await selectRegion(id);document.querySelector(".viewer").scrollIntoView({block:"start"});};
     grid.appendChild(card);
   }
 }
 build();
+selectRegion("tokyo-core");
 </script>
 </body>
 </html>
+

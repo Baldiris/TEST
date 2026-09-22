@@ -203,3 +203,14 @@ footer{text-align:center;font-size:11px;color:#8a8f89;margin-top:22px}
   .overview-label{font-size:17px}
   .overview-caption{font-size:11px}
 }
+
+/* Regional SVGs use their own aspect ratio and offer readable focus / zoom / fit modes. */
+.core-map-mount:has(> .regional-map){min-width:0;min-height:0}
+.core-map-scroll.overview .core-map-mount>svg{width:100%!important;height:auto!important}
+.regional-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+.regional-controls select{flex:1;min-width:140px;max-width:290px;padding:10px;border:1px solid #d7dccf;border-radius:8px;background:#fffdf8;color:#173a2a;font:inherit}
+.regional-controls button{width:40px;height:40px;border:1px solid #d7dccf;border-radius:8px;background:#fffdf8;color:#173a2a;font-size:22px;cursor:pointer}
+.regional-controls output{font-size:12px;min-width:35px;text-align:center}
+.core-map-mount .regional-map.labels-major-only .state-label{display:block;font-weight:800}
+.core-map-mount .regional-map [data-station]{pointer-events:all}
+#stationNote:empty{display:none}

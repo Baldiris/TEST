@@ -1,0 +1,281 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "utsunomiya",
+  "name": "宇都宮・日光",
+  "description": "宇都宮線・日光線",
+  "hubs": [
+    "宇都宮",
+    "小山",
+    "日光",
+    "黒磯"
+  ],
+  "map": "maps/utsunomiya.svg",
+  "stations": [
+    "宇都宮",
+    "岡本",
+    "下野大沢",
+    "蒲須坂",
+    "間々田",
+    "栗橋",
+    "結城",
+    "古河",
+    "黒磯",
+    "今市",
+    "氏家",
+    "自治医大",
+    "鹿沼",
+    "小金井",
+    "小山",
+    "小田林",
+    "雀宮",
+    "西那須野",
+    "石橋",
+    "鶴田",
+    "東結城",
+    "東鷲宮",
+    "那須塩原",
+    "日光",
+    "文挟",
+    "片岡",
+    "宝積寺",
+    "野崎",
+    "野木",
+    "矢板"
+  ],
+  "boundaryStations": [
+    "久喜",
+    "思川",
+    "川島"
+  ],
+  "edges": [
+    {
+      "from": "宇都宮",
+      "to": "雀宮",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "宇都宮",
+      "to": "岡本",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "宇都宮",
+      "to": "鶴田",
+      "services": [
+        "NK"
+      ]
+    },
+    {
+      "from": "岡本",
+      "to": "宝積寺",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "下野大沢",
+      "to": "文挟",
+      "services": [
+        "NK"
+      ]
+    },
+    {
+      "from": "下野大沢",
+      "to": "今市",
+      "services": [
+        "NK"
+      ]
+    },
+    {
+      "from": "蒲須坂",
+      "to": "氏家",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "蒲須坂",
+      "to": "片岡",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "間々田",
+      "to": "野木",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "間々田",
+      "to": "小山",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "栗橋",
+      "to": "東鷲宮",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "栗橋",
+      "to": "古河",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "結城",
+      "to": "小田林",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "結城",
+      "to": "東結城",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "古河",
+      "to": "野木",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "黒磯",
+      "to": "那須塩原",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "今市",
+      "to": "日光",
+      "services": [
+        "NK"
+      ]
+    },
+    {
+      "from": "氏家",
+      "to": "宝積寺",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "自治医大",
+      "to": "小金井",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "自治医大",
+      "to": "石橋",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "鹿沼",
+      "to": "鶴田",
+      "services": [
+        "NK"
+      ]
+    },
+    {
+      "from": "鹿沼",
+      "to": "文挟",
+      "services": [
+        "NK"
+      ]
+    },
+    {
+      "from": "小金井",
+      "to": "小山",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "小山",
+      "to": "小田林",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "雀宮",
+      "to": "石橋",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "西那須野",
+      "to": "野崎",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "西那須野",
+      "to": "那須塩原",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "片岡",
+      "to": "矢板",
+      "services": [
+        "JU"
+      ]
+    },
+    {
+      "from": "野崎",
+      "to": "矢板",
+      "services": [
+        "JU"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "小山",
+      "to": "思川",
+      "toRegion": "ryomo",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "東結城",
+      "to": "川島",
+      "toRegion": "mito",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "東鷲宮",
+      "to": "久喜",
+      "toRegion": "saitama",
+      "services": [
+        "JU"
+      ]
+    }
+  ]
+}
