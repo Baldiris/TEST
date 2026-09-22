@@ -72,12 +72,26 @@ for(const [regionId,region] of Object.entries(data.regions)){
   for(const hub of region.hubs){
     if(!mapStations.includes(hub)) fail(regionId+" SVG is missing region hub: "+hub);
   }
-  if(regionId==="yokohama-kawasaki"){
-    const manifest=JSON.parse(fs.readFileSync(path.join(root,"jr-east/region-manifests",regionId+".json"),"utf8"));
-    const expected=[...manifest.stations,...manifest.boundaryStations];
-    for(const station of expected) if(!mapStations.includes(station)) fail(regionId+" missing manifest station: "+station);
-    if(mapStations.length!==expected.length) fail(regionId+" station coverage differs from manifest");
-    if(!/viewBox="0 0 1140 1240"/.test(svg)) fail(regionId+" invalid layout bounds");
+  const manifest=JSON.parse(fs.readFileSync(path.join(root,"jr-east/region-manifests",regionId+".json"),"utf8"));
+  const expected=[...new Set([...manifest.stations,...manifest.boundaryStations,...region.hubs])];
+  for(const station of expected) if(!mapStations.includes(station)) fail(regionId+" missing manifest station: "+station);
+  if(mapStations.length!==expected.length) fail(regionId+" station coverage differs from manifest");
+  const vb=svg.match(/viewBox="0 0 ([0-9.]+) ([0-9.]+)"/);
+  if(!vb)fail(regionId+" invalid bounds");
+  for(const node of svg.matchAll(/<circle[^>]*data-station="([^"]+)"[^>]*cx="([0-9.-]+)"[^>]*cy="([0-9.-]+)"/g)){
+    if(+node[2]<0||+node[2]>+vb[1]||+node[3]<0||+node[3]>+vb[2])fail(regionId+" out-of-bounds station: "+node[1]);
+  }
+  const rendered=new Set();
+  for(const match of svg.matchAll(/data-edge="([^"]+)"/g)){
+    const [from,to,line]=JSON.parse(match[1].replaceAll('&quot;','"').replaceAll('&amp;','&'));
+    const service=data.services[line];
+    if(!service)fail(regionId+" unknown geometry service "+line);
+    const connected=service.paths.some(p=>p.some((n,i)=>n===from&&p[i+1]===to||n===to&&p[i+1]===from)||service.closed&&((p[0]===from&&p.at(-1)===to)||(p[0]===to&&p.at(-1)===from)));
+    if(!connected)fail(regionId+" geometry invents a game edge: "+from+' / '+to);
+    rendered.add([from,to,line].sort().join('|'));
+  }
+  for(const e of [...manifest.edges,...manifest.crossingEdges])for(const line of e.services){
+    if(!rendered.has([e.from,e.to,line].sort().join('|')))fail(regionId+" missing track geometry: "+e.from+' / '+e.to+' / '+line);
   }
 }
 

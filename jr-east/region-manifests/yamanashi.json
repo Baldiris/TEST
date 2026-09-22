@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "yamanashi",
+  "name": "大月・山梨",
+  "description": "中央本線の山梨方面",
+  "hubs": [
+    "大月",
+    "甲府",
+    "韮崎"
+  ],
+  "map": "maps/yamanashi.svg",
+  "stations": [
+    "猿橋",
+    "塩崎",
+    "塩山",
+    "甲斐大和",
+    "甲府",
+    "笹子",
+    "山梨市",
+    "四方津",
+    "酒折",
+    "春日居町",
+    "初狩",
+    "勝沼ぶどう郷",
+    "石和温泉",
+    "大月",
+    "鳥沢",
+    "東山梨",
+    "韮崎",
+    "竜王",
+    "梁川"
+  ],
+  "boundaryStations": [
+    "上野原"
+  ],
+  "edges": [
+    {
+      "from": "猿橋",
+      "to": "鳥沢",
+      "services": [
+        "CO",
+        "JC"
+      ]
+    },
+    {
+      "from": "猿橋",
+      "to": "大月",
+      "services": [
+        "CO",
+        "JC"
+      ]
+    },
+    {
+      "from": "塩崎",
+      "to": "竜王",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "塩崎",
+      "to": "韮崎",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "塩山",
+      "to": "勝沼ぶどう郷",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "塩山",
+      "to": "東山梨",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "甲斐大和",
+      "to": "笹子",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "甲斐大和",
+      "to": "勝沼ぶどう郷",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "甲府",
+      "to": "酒折",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "甲府",
+      "to": "竜王",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "笹子",
+      "to": "初狩",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "山梨市",
+      "to": "東山梨",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "山梨市",
+      "to": "春日居町",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "四方津",
+      "to": "梁川",
+      "services": [
+        "CO",
+        "JC"
+      ]
+    },
+    {
+      "from": "酒折",
+      "to": "石和温泉",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "春日居町",
+      "to": "石和温泉",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "初狩",
+      "to": "大月",
+      "services": [
+        "CO"
+      ]
+    },
+    {
+      "from": "鳥沢",
+      "to": "梁川",
+      "services": [
+        "CO",
+        "JC"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "四方津",
+      "to": "上野原",
+      "toRegion": "tama-west",
+      "services": [
+        "CO",
+        "JC"
+      ]
+    }
+  ]
+}

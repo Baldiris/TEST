@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "boso",
+  "name": "房総",
+  "description": "内房・外房・東金線",
+  "hubs": [
+    "大網",
+    "成東",
+    "上総一ノ宮",
+    "大原",
+    "木更津",
+    "君津"
+  ],
+  "map": "maps/boso.svg",
+  "stations": [
+    "永田",
+    "巌根",
+    "求名",
+    "君津",
+    "三門",
+    "上総一ノ宮",
+    "新茂原",
+    "成東",
+    "袖ケ浦",
+    "太東",
+    "大原",
+    "大網",
+    "長浦",
+    "長者町",
+    "土気",
+    "東金",
+    "東浪見",
+    "日向",
+    "八街",
+    "八積",
+    "福俵",
+    "本納",
+    "茂原",
+    "木更津"
+  ],
+  "boundaryStations": [
+    "榎戸",
+    "姉ケ崎",
+    "誉田"
+  ],
+  "edges": [
+    {
+      "from": "永田",
+      "to": "大網",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "永田",
+      "to": "本納",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "巌根",
+      "to": "袖ケ浦",
+      "services": [
+        "UC"
+      ]
+    },
+    {
+      "from": "巌根",
+      "to": "木更津",
+      "services": [
+        "UC"
+      ]
+    },
+    {
+      "from": "求名",
+      "to": "東金",
+      "services": [
+        "TG"
+      ]
+    },
+    {
+      "from": "求名",
+      "to": "成東",
+      "services": [
+        "TG"
+      ]
+    },
+    {
+      "from": "君津",
+      "to": "木更津",
+      "services": [
+        "UC"
+      ]
+    },
+    {
+      "from": "三門",
+      "to": "長者町",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "三門",
+      "to": "大原",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "上総一ノ宮",
+      "to": "八積",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "上総一ノ宮",
+      "to": "東浪見",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "新茂原",
+      "to": "本納",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "新茂原",
+      "to": "茂原",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "成東",
+      "to": "日向",
+      "services": [
+        "SB"
+      ]
+    },
+    {
+      "from": "袖ケ浦",
+      "to": "長浦",
+      "services": [
+        "UC"
+      ]
+    },
+    {
+      "from": "太東",
+      "to": "東浪見",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "太東",
+      "to": "長者町",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "大網",
+      "to": "土気",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "大網",
+      "to": "福俵",
+      "services": [
+        "TG"
+      ]
+    },
+    {
+      "from": "東金",
+      "to": "福俵",
+      "services": [
+        "TG"
+      ]
+    },
+    {
+      "from": "日向",
+      "to": "八街",
+      "services": [
+        "SB"
+      ]
+    },
+    {
+      "from": "八積",
+      "to": "茂原",
+      "services": [
+        "SC"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "長浦",
+      "to": "姉ケ崎",
+      "toRegion": "chiba",
+      "services": [
+        "UC"
+      ]
+    },
+    {
+      "from": "土気",
+      "to": "誉田",
+      "toRegion": "chiba",
+      "services": [
+        "SC"
+      ]
+    },
+    {
+      "from": "八街",
+      "to": "榎戸",
+      "toRegion": "narita",
+      "services": [
+        "SB"
+      ]
+    }
+  ]
+}

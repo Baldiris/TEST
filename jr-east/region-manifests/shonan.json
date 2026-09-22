@@ -2,15 +2,16 @@
   "schemaVersion": "0.3",
   "regionId": "shonan",
   "name": "湘南・鎌倉",
-  "description": "湘南・鎌倉・横須賀方面",
+  "description": "湘南・横須賀・相模線",
   "hubs": [
     "大船",
     "藤沢",
     "茅ケ崎",
     "鎌倉",
-    "逗子"
+    "逗子",
+    "久里浜"
   ],
-  "map": null,
+  "map": "maps/shonan.svg",
   "stations": [
     "衣笠",
     "磯子",

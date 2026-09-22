@@ -1,0 +1,128 @@
+[
+  {
+    "region": "tokyo-core",
+    "stations": 68,
+    "width": 1465,
+    "height": 1873,
+    "labelCollisions": 0
+  },
+  {
+    "region": "yokohama-kawasaki",
+    "stations": 59,
+    "width": 1645,
+    "height": 1617,
+    "labelCollisions": 0
+  },
+  {
+    "region": "tama-west",
+    "stations": 62,
+    "width": 1660,
+    "height": 1701,
+    "labelCollisions": 0
+  },
+  {
+    "region": "ome-itsukaichi",
+    "stations": 34,
+    "width": 1290,
+    "height": 930,
+    "labelCollisions": 0
+  },
+  {
+    "region": "yamanashi",
+    "stations": 20,
+    "width": 1583,
+    "height": 756,
+    "labelCollisions": 0
+  },
+  {
+    "region": "saitama",
+    "stations": 58,
+    "width": 1774,
+    "height": 1502,
+    "labelCollisions": 0
+  },
+  {
+    "region": "hachiko",
+    "stations": 19,
+    "width": 900,
+    "height": 1633,
+    "labelCollisions": 0
+  },
+  {
+    "region": "gunma",
+    "stations": 27,
+    "width": 1220,
+    "height": 1459,
+    "labelCollisions": 0
+  },
+  {
+    "region": "ryomo",
+    "stations": 16,
+    "width": 2085,
+    "height": 1371,
+    "labelCollisions": 0
+  },
+  {
+    "region": "utsunomiya",
+    "stations": 33,
+    "width": 1670,
+    "height": 1571,
+    "labelCollisions": 0
+  },
+  {
+    "region": "mito",
+    "stations": 30,
+    "width": 1745,
+    "height": 1396,
+    "labelCollisions": 0
+  },
+  {
+    "region": "joban",
+    "stations": 37,
+    "width": 1920,
+    "height": 1101,
+    "labelCollisions": 0
+  },
+  {
+    "region": "chiba",
+    "stations": 46,
+    "width": 1533,
+    "height": 1239,
+    "labelCollisions": 0
+  },
+  {
+    "region": "narita",
+    "stations": 16,
+    "width": 900,
+    "height": 827,
+    "labelCollisions": 0
+  },
+  {
+    "region": "boso",
+    "stations": 27,
+    "width": 1270,
+    "height": 1346,
+    "labelCollisions": 0
+  },
+  {
+    "region": "shonan",
+    "stations": 29,
+    "width": 1345,
+    "height": 1646,
+    "labelCollisions": 0
+  },
+  {
+    "region": "west-kanagawa",
+    "stations": 17,
+    "width": 1270,
+    "height": 926,
+    "labelCollisions": 0
+  },
+  {
+    "region": "bay-airport",
+    "stations": 19,
+    "width": 933,
+    "height": 1311,
+    "labelCollisions": 0
+  }
+]

@@ -89,13 +89,20 @@ function shortest(start,goal){
 }
 
 function reachableExactly(start,steps){
-  // 候補爆発を防ぐため「現在地からの最短距離がサイコロ目と一致する駅」に限定する。
-  // 同じ駅へ遠回りして帳尻を合わせるルートは候補にしない。
-  const result = new Map();
-  for(const station of ALL_STATIONS){
-    if(station===start) continue;
-    const route=shortest(start,station);
-    if(route.distance===steps) result.set(station,route);
+  // One breadth-first traversal keeps the existing shortest-distance dice rule.
+  const result=new Map(),queue=[start],prev=new Map([[start,null]]),distance=new Map([[start,0]]);
+  for(let i=0;i<queue.length;i++){
+    const station=queue[i],d=distance.get(station);
+    if(d===steps){
+      const nodes=[station],edges=[];let cur=station;
+      while(prev.get(cur)){const e=prev.get(cur);edges.unshift(e);nodes.unshift(e.from);cur=e.from;}
+      if(station!==start)result.set(station,{distance:d,nodes,edges});
+      continue;
+    }
+    for(const e of GRAPH[station]||[]){
+      if(distance.has(e.to))continue;
+      distance.set(e.to,d+1);prev.set(e.to,{from:station,to:e.to,line:e.line});queue.push(e.to);
+    }
   }
   return result;
 }
@@ -117,6 +124,7 @@ function fresh(){
 let state=load()||fresh();
 let setupStart=null,setupGoal=null,rollTimer=null,boardMode="focus",lastBoardStation=null;
 let mapMode="core",coreMapReady=false,coreMapStations=new Set(),activeRegionId="tokyo-core",loadingRegionId=null;
+let mapRequest=0,mapPinnedRegion=null,mapZoom=1;
 const overviewHubCache=new Map();
 const stationRegionCache=new Map();
 const views=["homeView","setupView","gameView","finishView"];
@@ -192,7 +200,7 @@ function updateSetupRoute(){
   $("setupRoute").innerHTML="<strong>最短 "+r.distance+"駅</strong><br>"+escapeHtml(setupStart)+" → "+escapeHtml(setupGoal);
 }
 function confirmSetup(){
-  state=fresh();
+  state=fresh();mapPinnedRegion=null;
   state.start=setupStart; state.goal=setupGoal; state.current=setupStart; state.phase="game";
   boardMode="focus"; lastBoardStation=null;
   log("旅を開始："+state.start+" → "+state.goal);
@@ -285,15 +293,18 @@ function renderCandidates(){
 }
 
 const SVG_NS="http://www.w3.org/2000/svg";
-const BOARD = {left:118,top:70,dx:56,dy:82,width:2860,height:1420};
+const LINE_ROWS={};let boardRows=0;
+for(const id of LINE_ORDER){LINE_ROWS[id]=boardRows;boardRows+=LINES[id].paths.length;}
+const BOARD = {left:210,top:70,dx:56,dy:100,
+  width:310+Math.max(...Object.values(LINES).flatMap(s=>s.paths.map(p=>p.length)))*56,
+  height:140+boardRows*100};
 function svgEl(tag,attrs={}){
   const el=document.createElementNS(SVG_NS,tag);
   Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v));
   return el;
 }
 function occurrencePoint(lineId,pathIndex,index){
-  const row=LINE_ORDER.indexOf(lineId);
-  const path=LINES[lineId].paths[pathIndex];
+  const row=LINE_ROWS[lineId]+pathIndex;
   let x=BOARD.left+index*BOARD.dx;
   return {x,y:BOARD.top+row*BOARD.dy};
 }
@@ -336,7 +347,7 @@ function renderBoard(){
 
   // line labels + route lines
   LINE_ORDER.forEach(lineId=>{
-    const line=LINES[lineId],row=LINE_ORDER.indexOf(lineId),y=BOARD.top+row*BOARD.dy;
+    const line=LINES[lineId],row=LINE_ROWS[lineId],y=BOARD.top+row*BOARD.dy;
     const label=svgEl("g",{class:"line-label"});
     label.appendChild(svgEl("circle",{cx:42,cy:y,r:18,fill:line.color}));
     const t=svgEl("text",{x:42,y:y+5,"text-anchor":"middle",fill:"#fff","font-size":"13","font-weight":"900"});
@@ -594,55 +605,77 @@ function updateCoreMap(){
 
   const old=svg.querySelector("#game-route-overlay");
   if(old) old.remove();
-  const pts=(route.nodes||[]).map(corePoint).filter(Boolean);
-  if(pts.length>=2 && pts.length===route.nodes.length){
-    const path=svgEl("path",{
-      id:"game-route-overlay",
-      d:pts.map((p,i)=>(i?"L ":"M ")+p.x+" "+p.y).join(" "),
-      fill:"none",stroke:"#173a2a","stroke-width":"5.8",
-      "stroke-linecap":"round","stroke-linejoin":"round",opacity:"0.72",
-      "pointer-events":"none"
-    });
-    svg.insertBefore(path,svg.querySelector("[data-station]"));
+  const geometries=new Map([...svg.querySelectorAll('[data-edge]')].map(el=>[el.getAttribute('data-edge'),el]));
+  const overlay=svgEl('g',{id:'game-route-overlay','pointer-events':'none'});
+  for(const edge of route.edges||[]){
+    const geometry=geometries.get(JSON.stringify([edge.from,edge.to,edge.line]))||geometries.get(JSON.stringify([edge.to,edge.from,edge.line]));
+    if(!geometry)continue; // Never bridge missing/off-map sections with an invented straight line.
+    overlay.appendChild(svgEl('path',{d:geometry.getAttribute('d'),fill:'none',stroke:'#173a2a','stroke-width':'8','stroke-linecap':'round','stroke-linejoin':'round',opacity:'.7'}));
   }
+  if(overlay.childNodes.length)svg.insertBefore(overlay,svg.querySelector('[data-station]'));
+  svg.querySelectorAll('[data-label]').forEach(el=>{
+    const station=el.getAttribute('data-label');
+    el.classList.toggle('state-label',station===state.current||station===state.goal||reachableSet.has(station));
+  });
   return true;
 }
 async function loadRegionMap(regionId,{autoMode=true}={}){
-  if(typeof fetch!=="function") return false;
-  const region=REGIONS[regionId];
-  if(!region||!region.map) return false;
+  if(typeof fetch!=="function")return false;
+  const region=REGIONS[regionId];if(!region?.map)return false;
+  const request=++mapRequest;loadingRegionId=regionId;
   try{
-    $("coreMapMount").textContent=region.name+"の路線図を読み込んでいます...";
-    const res=await fetch(region.map,{cache:"no-cache"});
-    if(!res.ok) throw new Error("SVG load failed: "+region.map);
+    const res=await fetch(region.map,{cache:'no-cache'});
+    if(!res.ok)throw new Error('SVG load failed: '+region.map);
     const text=await res.text();
-    $("coreMapMount").innerHTML=text;
-    const svg=$("coreMapMount").querySelector("svg");
-    if(!svg) throw new Error("SVG not found");
-    svg.removeAttribute("width"); svg.removeAttribute("height");
-    coreMapStations=new Set([...svg.querySelectorAll("[data-station]")].map(el=>el.getAttribute("data-station")));
-    coreMapReady=true;
-    activeRegionId=regionId;
-    $("coreMapMount").setAttribute("aria-label",region.name+"ゲーム用路線図");
-    $("coreMapBtn").textContent="地域: "+region.name;
-    updateCoreMap();
-    if(autoMode){
-      if(state.current && (!coreMapStations.has(state.current)||!coreMapStations.has(state.goal))) setMapMode("full",true);
-      else setMapMode("core",true);
+    if(request!==mapRequest)return false;
+    const holder=document.createElement('div');holder.innerHTML=text;
+    const svg=holder.querySelector('svg');if(!svg)throw new Error('SVG not found');
+    const stations=new Set([...svg.querySelectorAll('[data-station]')].map(el=>el.getAttribute('data-station')));
+    if(!stations.size)throw new Error('No station nodes');
+    $('coreMapMount').replaceChildren(svg);
+    coreMapStations=stations;coreMapReady=true;activeRegionId=regionId;
+    $('coreMapMount').setAttribute('aria-label',region.name+'ゲーム用路線図');
+    $('coreMapBtn').textContent='地域: '+region.name;$('coreMapBtn').disabled=false;
+    $('regionSelect').value=mapPinnedRegion?regionId:'auto';
+    applyMapZoom();updateCoreMap();updateMapCoverageHint();
+    if(autoMode)setMapMode('core',true);
+    if(mapMode==='core'){
+      if(boardMode==='overview'||!coreMapStations.has(state.current))fitBoard();
+      else centerCurrent(false);
     }
     return true;
-  }catch(err){
+  }catch(error){
+    if(request!==mapRequest)return false;
     coreMapReady=false;
-    $("coreMapMount").textContent=region.name+"の地域図を読み込めませんでした。全駅表示を利用してください。";
-    if(autoMode) setMapMode("full",true);
-    return false;
-  }
+    $('coreMapMount').textContent=region.name+'の地域図を読み込めませんでした。全駅表示を利用してください。';
+    setMapMode('full',true);return false;
+  }finally{if(request===mapRequest)loadingRegionId=null;}
 }
+function applyMapZoom(){
+  const svg=$('coreMapMount').querySelector('svg');if(!svg)return;
+  const vb=svg.viewBox.baseVal;
+  svg.style.width=(vb.width*mapZoom)+'px';svg.style.height=(vb.height*mapZoom)+'px';
+  $('zoomStatus').textContent=Math.round(mapZoom*100)+'%';
+}
+function zoomMap(factor){
+  const scroll=$('coreMapScroll'),old=mapZoom;
+  if(mapMode!=='core')setMapMode('core',true);
+  if(scroll.classList.contains('overview')){
+    const svg=$('coreMapMount').querySelector('svg');if(svg)mapZoom=svg.getBoundingClientRect().width/svg.viewBox.baseVal.width;
+  }
+  const base=mapZoom;mapZoom=Math.max(.35,Math.min(2,mapZoom*factor));
+  const x=(scroll.scrollLeft+scroll.clientWidth/2)/base,y=(scroll.scrollTop+scroll.clientHeight/2)/base;
+  boardMode='focus';scroll.classList.remove('overview');
+  $('coreMapMount').querySelector('svg')?.classList.remove('labels-major-only');
+  applyMapZoom();scroll.scrollTo({left:x*mapZoom-scroll.clientWidth/2,top:y*mapZoom-scroll.clientHeight/2});
+  $('fitBtn').textContent='全体';$('fitBtn').setAttribute('aria-pressed','false');
+}
+
 async function initCoreMap(){
   return loadRegionMap("tokyo-core");
 }
 function syncRegionalMapForState(){
-  if(!state.current) return;
+  if(!state.current||mapPinnedRegion) return;
   const resolved=regionForStation(state.current);
   if(!resolved) return;
   const region=REGIONS[resolved.id];
@@ -664,28 +697,17 @@ function syncRegionalMapForState(){
   loadingRegionId=resolved.id;
   btn.textContent="地域: "+region.name+"（読込中）";
   loadRegionMap(resolved.id,{autoMode:false}).then(ok=>{
-    loadingRegionId=null;
-    if(ok){
-      btn.textContent="地域: "+region.name;
-      updateCoreMap();
-      updateMapCoverageHint();
-    }else{
-      btn.textContent="地域: "+region.name+"（読込失敗）";
-      btn.disabled=true;
-      if(mapMode==="core") setMapMode("full",true);
-    }
+    if(ok&&mapMode==='full'&&!mapPinnedRegion)setMapMode('core',true);
   });
 }
 
 function ensureMapModeForState(){
-  if(!state.current||!state.goal) return;
+  // A distant goal must not force a readable regional board into the all-station fallback.
+  if(!state.current||mapPinnedRegion)return;
   const resolved=regionForStation(state.current);
-  const region=resolved&&REGIONS[resolved.id];
-  if(region?.map && resolved.id!==activeRegionId) return;
-  if(!coreMapReady) return;
-  const bothInside=coreMapStations.has(state.current)&&coreMapStations.has(state.goal);
-  if(!bothInside&&mapMode==="core") setMapMode("full",true);
+  if(resolved&&resolved.id===activeRegionId&&coreMapReady&&mapMode==='core'&&!coreMapStations.has(state.current))setMapMode('full',true);
 }
+
 function updateMapCoverageHint(){
   const hint=$("mapCoverageHint");
   const activeRegion=REGIONS[activeRegionId];
@@ -693,7 +715,7 @@ function updateMapCoverageHint(){
   const missing=[state.current,state.goal].filter(Boolean).filter(st=>!coreMapStations.has(st));
   if(missing.length){
     hint.classList.remove("hidden");
-    hint.textContent=(activeRegion?.name||"地域図")+"の範囲外：" + [...new Set(missing)].join("・") + "。全駅表示で確認できます。";
+    hint.textContent=(activeRegion?.name||"地域図")+"の範囲外：" + [...new Set(missing)].join("・") + "。関東図または地域選択で確認できます。移動候補はカードからも選べます。";
   }else{
     hint.classList.add("hidden");
     hint.textContent="";
@@ -709,6 +731,7 @@ function renderGame(){
   $("currentLines").innerHTML=lineChips(state.current);
   $("recommendation").textContent=recommendation();
   renderRouteCompass(r);
+  $('stationNote').textContent=DATA.stationNotes?.[state.current]||'';
   $("dice").textContent=state.dice?["⚀","⚁","⚂","⚃","⚄","⚅"][state.dice-1]:"⚄";
   $("rollBtn").disabled=state.phase!=="game"||Boolean(state.dice);
   $("rollBtn").textContent=state.dice?"出目確定：移動先を選んでください":"サイコロを振る";
@@ -934,7 +957,19 @@ $("restartBtn").onclick=newGame;
 $("backHomeBtn").onclick=()=>show("homeView");
 $("resetBtn").onclick=hardReset;
 $("fitBtn").onclick=fitBoard;
-$("centerBtn").onclick=centerCurrent;
+$("centerBtn").onclick=async()=>{
+  mapPinnedRegion=null;$('regionSelect').value='auto';
+  const resolved=regionForStation(state.current);
+  if(resolved&&resolved.id!==activeRegionId)await loadRegionMap(resolved.id);
+  setMapMode('core',true);centerCurrent();
+};
+$('zoomInBtn').onclick=()=>zoomMap(1.25);$('zoomOutBtn').onclick=()=>zoomMap(.8);
+$('regionSelect').innerHTML='<option value="auto">現在地の地域</option>'+Object.entries(REGIONS).map(([id,r])=>'<option value="'+id+'">'+escapeHtml(r.name)+'</option>').join('');
+$('regionSelect').onchange=async e=>{
+  const id=e.target.value;mapPinnedRegion=id==='auto'?null:id;
+  const target=mapPinnedRegion||regionForStation(state.current)?.id||'tokyo-core';
+  boardMode=id==='auto'?'focus':'overview';await loadRegionMap(target);setMapMode('core',true);
+};
 $("overviewMapBtn").onclick=()=>setMapMode("overview");
 $("coreMapBtn").onclick=()=>{
   if(!$("coreMapBtn").disabled) setMapMode("core");

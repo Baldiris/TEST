@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1633" class="regional-map" data-region="hachiko" role="img" aria-labelledby="map-title map-desc">
+<title id="map-title">八高・高麗川 路線図</title><desc id="map-desc">16地域駅と3境界駅。破線の駅丸は隣接地域。駅丸のない交差では乗換できません。</desc>
+<style>.regional-map{font-family:"Noto Sans CJK JP","Yu Gothic",system-ui,sans-serif}.regional-map .map-label{fill:#19362e;paint-order:stroke;stroke:#fbfaf5;stroke-width:5;stroke-linejoin:round;font-weight:600;font-size:14px}.regional-map .major-label{font-size:18px;font-weight:800}.regional-map .boundary-label{fill:#546c66}.regional-map .station{fill:#fbfaf5;stroke:#385d50;stroke-width:2}.regional-map .hub{stroke-width:3}.regional-map .boundary{stroke-dasharray:3 2}.regional-map.labels-major-only .minor-label{display:none}.regional-map .leader{stroke:#899a92;stroke-width:1;fill:none}.regional-map.labels-major-only .minor-leader{display:none}.regional-map .track{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}.regional-map .small{font-size:12px;fill:#60796f}</style>
+<rect width="900" height="1633" fill="#fbfaf5"/><text x="45" y="52" fill="#19362e" font-size="28" font-weight="800">八高・高麗川</text><text x="46" y="79" class="small">16 STATIONS · 3 CONNECTIONS　／　PDF 2023.03</text><path d="M835 81 V40 l-5 10 m5-10 5 10" stroke="#60796f" fill="none"/><text x="831" y="30" class="small">N</text>
+<path class="track" d="M 700 811.5 L 560 896.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;的場&quot;,&quot;笠幡&quot;,&quot;KW&quot;]" d="M 700 811.5 L 560 896.5" stroke="#00a65a"/>
+<path class="track" d="M 560 896.5 L 420 981.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;笠幡&quot;,&quot;武蔵高萩&quot;,&quot;KW&quot;]" d="M 560 896.5 L 420 981.5" stroke="#00a65a"/>
+<path class="track" d="M 420 981.5 L 280 1066.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;武蔵高萩&quot;,&quot;高麗川&quot;,&quot;KW&quot;]" d="M 420 981.5 L 280 1066.5" stroke="#00a65a"/>
+<path class="track" d="M 160 1306.5 L 200 1226.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;箱根ケ崎&quot;,&quot;金子&quot;,&quot;HC&quot;]" d="M 160 1306.5 L 200 1226.5" stroke="#8b8981"/>
+<path class="track" d="M 200 1226.5 L 240 1146.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;金子&quot;,&quot;東飯能&quot;,&quot;HC&quot;]" d="M 200 1226.5 L 240 1146.5" stroke="#8b8981"/>
+<path class="track" d="M 240 1146.5 L 280 1066.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;東飯能&quot;,&quot;高麗川&quot;,&quot;HC&quot;]" d="M 240 1146.5 L 280 1066.5" stroke="#8b8981"/>
+<path class="track" d="M 280 1066.5 L 280 1001.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;高麗川&quot;,&quot;毛呂&quot;,&quot;HC&quot;]" d="M 280 1066.5 L 280 1001.5" stroke="#8b8981"/>
+<path class="track" d="M 280 1001.5 L 280 936.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;毛呂&quot;,&quot;越生&quot;,&quot;HC&quot;]" d="M 280 1001.5 L 280 936.5" stroke="#8b8981"/>
+<path class="track" d="M 280 936.5 L 280 871.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;越生&quot;,&quot;明覚&quot;,&quot;HC&quot;]" d="M 280 936.5 L 280 871.5" stroke="#8b8981"/>
+<path class="track" d="M 280 871.5 L 280 806.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;明覚&quot;,&quot;小川町&quot;,&quot;HC&quot;]" d="M 280 871.5 L 280 806.5" stroke="#8b8981"/>
+<path class="track" d="M 280 806.5 L 280 743" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;小川町&quot;,&quot;竹沢&quot;,&quot;HC&quot;]" d="M 280 806.5 L 280 743" stroke="#8b8981"/>
+<path class="track" d="M 280 743 L 280 680" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;竹沢&quot;,&quot;折原&quot;,&quot;HC&quot;]" d="M 280 743 L 280 680" stroke="#8b8981"/>
+<path class="track" d="M 280 680 L 280 616.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;折原&quot;,&quot;寄居&quot;,&quot;HC&quot;]" d="M 280 680 L 280 616.5" stroke="#8b8981"/>
+<path class="track" d="M 280 616.5 L 290.5 527" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;寄居&quot;,&quot;用土&quot;,&quot;HC&quot;]" d="M 280 616.5 L 290.5 527" stroke="#8b8981"/>
+<path class="track" d="M 290.5 527 L 301.5 438" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;用土&quot;,&quot;松久&quot;,&quot;HC&quot;]" d="M 290.5 527 L 301.5 438" stroke="#8b8981"/>
+<path class="track" d="M 301.5 438 L 312 348.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;松久&quot;,&quot;児玉&quot;,&quot;HC&quot;]" d="M 301.5 438 L 312 348.5" stroke="#8b8981"/>
+<path class="track" d="M 312 348.5 L 323 259.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;児玉&quot;,&quot;丹荘&quot;,&quot;HC&quot;]" d="M 312 348.5 L 323 259.5" stroke="#8b8981"/>
+<path class="track" d="M 323 259.5 L 333.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;丹荘&quot;,&quot;群馬藤岡&quot;,&quot;HC&quot;]" d="M 323 259.5 L 333.5 170" stroke="#8b8981"/>
+<circle class="station" data-station="越生" cx="280" cy="936.5" r="6" aria-label="越生"><title>越生</title></circle>
+<circle class="station" data-station="笠幡" cx="560" cy="896.5" r="6" aria-label="笠幡"><title>笠幡</title></circle>
+<circle class="station hub" data-station="寄居" cx="280" cy="616.5" r="8" aria-label="寄居"><title>寄居</title></circle>
+<circle class="station" data-station="金子" cx="200" cy="1226.5" r="6" aria-label="金子"><title>金子</title></circle>
+<circle class="station hub" data-station="高麗川" cx="280" cy="1066.5" r="8" aria-label="高麗川"><title>高麗川</title></circle>
+<circle class="station" data-station="児玉" cx="312" cy="348.5" r="6" aria-label="児玉"><title>児玉</title></circle>
+<circle class="station hub" data-station="小川町" cx="280" cy="806.5" r="8" aria-label="小川町"><title>小川町</title></circle>
+<circle class="station" data-station="松久" cx="301.5" cy="438" r="6" aria-label="松久"><title>松久</title></circle>
+<circle class="station" data-station="折原" cx="280" cy="680" r="6" aria-label="折原"><title>折原</title></circle>
+<circle class="station" data-station="丹荘" cx="323" cy="259.5" r="6" aria-label="丹荘"><title>丹荘</title></circle>
+<circle class="station" data-station="竹沢" cx="280" cy="743" r="6" aria-label="竹沢"><title>竹沢</title></circle>
+<circle class="station" data-station="東飯能" cx="240" cy="1146.5" r="6" aria-label="東飯能"><title>東飯能</title></circle>
+<circle class="station" data-station="武蔵高萩" cx="420" cy="981.5" r="6" aria-label="武蔵高萩"><title>武蔵高萩</title></circle>
+<circle class="station" data-station="明覚" cx="280" cy="871.5" r="6" aria-label="明覚"><title>明覚</title></circle>
+<circle class="station" data-station="毛呂" cx="280" cy="1001.5" r="6" aria-label="毛呂"><title>毛呂</title></circle>
+<circle class="station" data-station="用土" cx="290.5" cy="527" r="6" aria-label="用土"><title>用土</title></circle>
+<circle class="station boundary" data-station="群馬藤岡" cx="333.5" cy="170" r="6" aria-label="群馬藤岡"><title>群馬藤岡</title></circle>
+<circle class="station boundary" data-station="的場" cx="700" cy="811.5" r="6" aria-label="的場"><title>的場</title></circle>
+<circle class="station boundary" data-station="箱根ケ崎" cx="160" cy="1306.5" r="6" aria-label="箱根ケ崎"><title>箱根ケ崎</title></circle>
+<text class="map-label major-label" data-label="寄居" x="295" y="621.5" text-anchor="start">寄居</text>
+<text class="map-label major-label" data-label="小川町" x="295" y="811.5" text-anchor="start">小川町</text>
+<text class="map-label major-label" data-label="高麗川" x="295" y="1071.5" text-anchor="start">高麗川</text>
+<text class="map-label minor-label boundary-label" data-label="群馬藤岡" x="348.5" y="175" text-anchor="start">群馬藤岡</text>
+<text class="map-label minor-label" data-label="丹荘" x="338" y="264.5" text-anchor="start">丹荘</text>
+<text class="map-label minor-label" data-label="児玉" x="327" y="353.5" text-anchor="start">児玉</text>
+<text class="map-label minor-label" data-label="松久" x="316.5" y="443" text-anchor="start">松久</text>
+<text class="map-label minor-label" data-label="用土" x="305.5" y="532" text-anchor="start">用土</text>
+<text class="map-label minor-label" data-label="折原" x="295" y="685" text-anchor="start">折原</text>
+<text class="map-label minor-label" data-label="竹沢" x="295" y="748" text-anchor="start">竹沢</text>
+<text class="map-label minor-label boundary-label" data-label="的場" x="715" y="816.5" text-anchor="start">的場</text>
+<text class="map-label minor-label" data-label="明覚" x="295" y="876.5" text-anchor="start">明覚</text>
+<text class="map-label minor-label" data-label="笠幡" x="575" y="901.5" text-anchor="start">笠幡</text>
+<text class="map-label minor-label" data-label="越生" x="295" y="941.5" text-anchor="start">越生</text>
+<text class="map-label minor-label" data-label="武蔵高萩" x="435" y="986.5" text-anchor="start">武蔵高萩</text>
+<text class="map-label minor-label" data-label="毛呂" x="295" y="1006.5" text-anchor="start">毛呂</text>
+<text class="map-label minor-label" data-label="東飯能" x="255" y="1151.5" text-anchor="start">東飯能</text>
+<text class="map-label minor-label" data-label="金子" x="215" y="1231.5" text-anchor="start">金子</text>
+<text class="map-label minor-label boundary-label" data-label="箱根ケ崎" x="175" y="1311.5" text-anchor="start">箱根ケ崎</text>
+<path d="M45 1537 H855" stroke="#dbe1d8"/><text x="45" y="1562" class="small">路線の交差は乗換ではありません。破線の駅丸＝隣接地域 ／ 地図は模式図</text>
+<path d="M45 1585 h24" stroke="#00a65a" stroke-width="5"/><text x="78" y="1589" class="small">KW 川越線</text>
+<path d="M247.5 1585 h24" stroke="#8b8981" stroke-width="5"/><text x="280.5" y="1589" class="small">HC 八高線</text>
+</svg>

@@ -1,16 +1,20 @@
 {
   "schemaVersion": "0.3",
   "regionId": "west-kanagawa",
-  "name": "西湘",
-  "description": "東海道線西湘方面",
+  "name": "西湘・伊東",
+  "description": "東海道線・伊東線",
   "hubs": [
     "平塚",
     "国府津",
     "小田原",
-    "熱海"
+    "熱海",
+    "伊東"
   ],
-  "map": null,
+  "map": "maps/west-kanagawa.svg",
   "stations": [
+    "伊東",
+    "伊豆多賀",
+    "宇佐美",
     "鴨宮",
     "国府津",
     "根府川",
@@ -21,12 +25,42 @@
     "湯河原",
     "二宮",
     "熱海",
-    "平塚"
+    "平塚",
+    "網代",
+    "来宮"
   ],
   "boundaryStations": [
     "茅ケ崎"
   ],
   "edges": [
+    {
+      "from": "伊東",
+      "to": "宇佐美",
+      "services": [
+        "IZ"
+      ]
+    },
+    {
+      "from": "伊豆多賀",
+      "to": "来宮",
+      "services": [
+        "IZ"
+      ]
+    },
+    {
+      "from": "伊豆多賀",
+      "to": "網代",
+      "services": [
+        "IZ"
+      ]
+    },
+    {
+      "from": "宇佐美",
+      "to": "網代",
+      "services": [
+        "IZ"
+      ]
+    },
     {
       "from": "鴨宮",
       "to": "国府津",
@@ -95,6 +129,13 @@
       "to": "熱海",
       "services": [
         "JT"
+      ]
+    },
+    {
+      "from": "熱海",
+      "to": "来宮",
+      "services": [
+        "IZ"
       ]
     }
   ],

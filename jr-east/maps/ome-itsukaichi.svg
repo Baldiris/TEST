@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 930" class="regional-map" data-region="ome-itsukaichi" role="img" aria-labelledby="map-title map-desc">
+<title id="map-title">青梅・五日市 路線図</title><desc id="map-desc">31地域駅と3境界駅。破線の駅丸は隣接地域。駅丸のない交差では乗換できません。</desc>
+<style>.regional-map{font-family:"Noto Sans CJK JP","Yu Gothic",system-ui,sans-serif}.regional-map .map-label{fill:#19362e;paint-order:stroke;stroke:#fbfaf5;stroke-width:5;stroke-linejoin:round;font-weight:600;font-size:14px}.regional-map .major-label{font-size:18px;font-weight:800}.regional-map .boundary-label{fill:#546c66}.regional-map .station{fill:#fbfaf5;stroke:#385d50;stroke-width:2}.regional-map .hub{stroke-width:3}.regional-map .boundary{stroke-dasharray:3 2}.regional-map.labels-major-only .minor-label{display:none}.regional-map .leader{stroke:#899a92;stroke-width:1;fill:none}.regional-map.labels-major-only .minor-leader{display:none}.regional-map .track{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}.regional-map .small{font-size:12px;fill:#60796f}</style>
+<rect width="1290" height="930" fill="#fbfaf5"/><text x="45" y="52" fill="#19362e" font-size="28" font-weight="800">青梅・五日市</text><text x="46" y="79" class="small">31 STATIONS · 3 CONNECTIONS　／　PDF 2023.03</text><path d="M1225 81 V40 l-5 10 m5-10 5 10" stroke="#60796f" fill="none"/><text x="1221" y="30" class="small">N</text>
+<path class="track" d="M 1100 590 L 1070 550" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;東中神&quot;,&quot;中神&quot;,&quot;OM&quot;]" d="M 1100 590 L 1070 550" stroke="#f15a22"/>
+<path class="track" d="M 1070 550 L 1040 510" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;中神&quot;,&quot;昭島&quot;,&quot;OM&quot;]" d="M 1070 550 L 1040 510" stroke="#f15a22"/>
+<path class="track" d="M 1040 510 L 1010 470" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;昭島&quot;,&quot;拝島&quot;,&quot;OM&quot;]" d="M 1040 510 L 1010 470" stroke="#f15a22"/>
+<path class="track" d="M 1010 470 L 988.5 427" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;拝島&quot;,&quot;牛浜&quot;,&quot;OM&quot;]" d="M 1010 470 L 988.5 427" stroke="#f15a22"/>
+<path class="track" d="M 988.5 427 L 967 384.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;牛浜&quot;,&quot;福生&quot;,&quot;OM&quot;]" d="M 988.5 427 L 967 384.5" stroke="#f15a22"/>
+<path class="track" d="M 967 384.5 L 945.5 341.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;福生&quot;,&quot;羽村&quot;,&quot;OM&quot;]" d="M 967 384.5 L 945.5 341.5" stroke="#f15a22"/>
+<path class="track" d="M 945.5 341.5 L 924.5 298.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;羽村&quot;,&quot;小作&quot;,&quot;OM&quot;]" d="M 945.5 341.5 L 924.5 298.5" stroke="#f15a22"/>
+<path class="track" d="M 924.5 298.5 L 903 255.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;小作&quot;,&quot;河辺&quot;,&quot;OM&quot;]" d="M 924.5 298.5 L 903 255.5" stroke="#f15a22"/>
+<path class="track" d="M 903 255.5 L 881.5 213" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;河辺&quot;,&quot;東青梅&quot;,&quot;OM&quot;]" d="M 903 255.5 L 881.5 213" stroke="#f15a22"/>
+<path class="track" d="M 881.5 213 L 860 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;東青梅&quot;,&quot;青梅&quot;,&quot;OM&quot;]" d="M 881.5 213 L 860 170" stroke="#f15a22"/>
+<path class="track" d="M 860 170 L 801.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;青梅&quot;,&quot;宮ノ平&quot;,&quot;OM&quot;]" d="M 860 170 L 801.5 170" stroke="#f15a22"/>
+<path class="track" d="M 801.5 170 L 743.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;宮ノ平&quot;,&quot;日向和田&quot;,&quot;OM&quot;]" d="M 801.5 170 L 743.5 170" stroke="#f15a22"/>
+<path class="track" d="M 743.5 170 L 685 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;日向和田&quot;,&quot;石神前&quot;,&quot;OM&quot;]" d="M 743.5 170 L 685 170" stroke="#f15a22"/>
+<path class="track" d="M 685 170 L 626.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;石神前&quot;,&quot;二俣尾&quot;,&quot;OM&quot;]" d="M 685 170 L 626.5 170" stroke="#f15a22"/>
+<path class="track" d="M 626.5 170 L 568.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;二俣尾&quot;,&quot;軍畑&quot;,&quot;OM&quot;]" d="M 626.5 170 L 568.5 170" stroke="#f15a22"/>
+<path class="track" d="M 568.5 170 L 510 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;軍畑&quot;,&quot;沢井&quot;,&quot;OM&quot;]" d="M 568.5 170 L 510 170" stroke="#f15a22"/>
+<path class="track" d="M 510 170 L 451.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;沢井&quot;,&quot;御嶽&quot;,&quot;OM&quot;]" d="M 510 170 L 451.5 170" stroke="#f15a22"/>
+<path class="track" d="M 451.5 170 L 393.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;御嶽&quot;,&quot;川井&quot;,&quot;OM&quot;]" d="M 451.5 170 L 393.5 170" stroke="#f15a22"/>
+<path class="track" d="M 393.5 170 L 335 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;川井&quot;,&quot;古里&quot;,&quot;OM&quot;]" d="M 393.5 170 L 335 170" stroke="#f15a22"/>
+<path class="track" d="M 335 170 L 276.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;古里&quot;,&quot;鳩ノ巣&quot;,&quot;OM&quot;]" d="M 335 170 L 276.5 170" stroke="#f15a22"/>
+<path class="track" d="M 276.5 170 L 218.5 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;鳩ノ巣&quot;,&quot;白丸&quot;,&quot;OM&quot;]" d="M 276.5 170 L 218.5 170" stroke="#f15a22"/>
+<path class="track" d="M 218.5 170 L 160 170" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;白丸&quot;,&quot;奥多摩&quot;,&quot;OM&quot;]" d="M 218.5 170 L 160 170" stroke="#f15a22"/>
+<path class="track" d="M 1010 470 L 943.5 470" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;拝島&quot;,&quot;熊川&quot;,&quot;IT&quot;]" d="M 1010 470 L 943.5 470" stroke="#f15a22"/>
+<path class="track" d="M 943.5 470 L 876.5 470" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;熊川&quot;,&quot;東秋留&quot;,&quot;IT&quot;]" d="M 943.5 470 L 876.5 470" stroke="#f15a22"/>
+<path class="track" d="M 876.5 470 L 810 470" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;東秋留&quot;,&quot;秋川&quot;,&quot;IT&quot;]" d="M 876.5 470 L 810 470" stroke="#f15a22"/>
+<path class="track" d="M 810 470 L 743.5 470" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;秋川&quot;,&quot;武蔵引田&quot;,&quot;IT&quot;]" d="M 810 470 L 743.5 470" stroke="#f15a22"/>
+<path class="track" d="M 743.5 470 L 676.5 470" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;武蔵引田&quot;,&quot;武蔵増戸&quot;,&quot;IT&quot;]" d="M 743.5 470 L 676.5 470" stroke="#f15a22"/>
+<path class="track" d="M 676.5 470 L 610 470" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;武蔵増戸&quot;,&quot;武蔵五日市&quot;,&quot;IT&quot;]" d="M 676.5 470 L 610 470" stroke="#f15a22"/>
+<path class="track" d="M 910 603.5 L 960 536.5" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;北八王子&quot;,&quot;小宮&quot;,&quot;HC&quot;]" d="M 910 603.5 L 960 536.5" stroke="#8b8981"/>
+<path class="track" d="M 960 536.5 L 1010 470" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;小宮&quot;,&quot;拝島&quot;,&quot;HC&quot;]" d="M 960 536.5 L 1010 470" stroke="#8b8981"/>
+<path class="track" d="M 1010 470 L 1050 390" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;拝島&quot;,&quot;東福生&quot;,&quot;HC&quot;]" d="M 1010 470 L 1050 390" stroke="#8b8981"/>
+<path class="track" d="M 1050 390 L 1090 310" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;東福生&quot;,&quot;箱根ケ崎&quot;,&quot;HC&quot;]" d="M 1050 390 L 1090 310" stroke="#8b8981"/>
+<path class="track" d="M 1090 310 L 1130 230" stroke="#fbfaf5" style="stroke-width:8"/><path class="track" data-edge="[&quot;箱根ケ崎&quot;,&quot;金子&quot;,&quot;HC&quot;]" d="M 1090 310 L 1130 230" stroke="#8b8981"/>
+<circle class="station" data-station="羽村" cx="945.5" cy="341.5" r="6" aria-label="羽村"><title>羽村</title></circle>
+<circle class="station hub" data-station="奥多摩" cx="160" cy="170" r="8" aria-label="奥多摩"><title>奥多摩</title></circle>
+<circle class="station" data-station="河辺" cx="903" cy="255.5" r="6" aria-label="河辺"><title>河辺</title></circle>
+<circle class="station" data-station="宮ノ平" cx="801.5" cy="170" r="6" aria-label="宮ノ平"><title>宮ノ平</title></circle>
+<circle class="station" data-station="牛浜" cx="988.5" cy="427" r="6" aria-label="牛浜"><title>牛浜</title></circle>
+<circle class="station" data-station="熊川" cx="943.5" cy="470" r="6" aria-label="熊川"><title>熊川</title></circle>
+<circle class="station" data-station="軍畑" cx="568.5" cy="170" r="6" aria-label="軍畑"><title>軍畑</title></circle>
+<circle class="station" data-station="古里" cx="335" cy="170" r="6" aria-label="古里"><title>古里</title></circle>
+<circle class="station" data-station="御嶽" cx="451.5" cy="170" r="6" aria-label="御嶽"><title>御嶽</title></circle>
+<circle class="station" data-station="秋川" cx="810" cy="470" r="6" aria-label="秋川"><title>秋川</title></circle>
+<circle class="station" data-station="小宮" cx="960" cy="536.5" r="6" aria-label="小宮"><title>小宮</title></circle>
+<circle class="station" data-station="小作" cx="924.5" cy="298.5" r="6" aria-label="小作"><title>小作</title></circle>
+<circle class="station" data-station="昭島" cx="1040" cy="510" r="6" aria-label="昭島"><title>昭島</title></circle>
+<circle class="station hub" data-station="青梅" cx="860" cy="170" r="8" aria-label="青梅"><title>青梅</title></circle>
+<circle class="station" data-station="石神前" cx="685" cy="170" r="6" aria-label="石神前"><title>石神前</title></circle>
+<circle class="station" data-station="川井" cx="393.5" cy="170" r="6" aria-label="川井"><title>川井</title></circle>
+<circle class="station" data-station="沢井" cx="510" cy="170" r="6" aria-label="沢井"><title>沢井</title></circle>
+<circle class="station" data-station="中神" cx="1070" cy="550" r="6" aria-label="中神"><title>中神</title></circle>
+<circle class="station" data-station="東秋留" cx="876.5" cy="470" r="6" aria-label="東秋留"><title>東秋留</title></circle>
+<circle class="station" data-station="東青梅" cx="881.5" cy="213" r="6" aria-label="東青梅"><title>東青梅</title></circle>
+<circle class="station" data-station="東福生" cx="1050" cy="390" r="6" aria-label="東福生"><title>東福生</title></circle>
+<circle class="station" data-station="二俣尾" cx="626.5" cy="170" r="6" aria-label="二俣尾"><title>二俣尾</title></circle>
+<circle class="station" data-station="日向和田" cx="743.5" cy="170" r="6" aria-label="日向和田"><title>日向和田</title></circle>
+<circle class="station hub" data-station="拝島" cx="1010" cy="470" r="8" aria-label="拝島"><title>拝島</title></circle>
+<circle class="station" data-station="白丸" cx="218.5" cy="170" r="6" aria-label="白丸"><title>白丸</title></circle>
+<circle class="station" data-station="箱根ケ崎" cx="1090" cy="310" r="6" aria-label="箱根ケ崎"><title>箱根ケ崎</title></circle>
+<circle class="station" data-station="鳩ノ巣" cx="276.5" cy="170" r="6" aria-label="鳩ノ巣"><title>鳩ノ巣</title></circle>
+<circle class="station" data-station="武蔵引田" cx="743.5" cy="470" r="6" aria-label="武蔵引田"><title>武蔵引田</title></circle>
+<circle class="station hub" data-station="武蔵五日市" cx="610" cy="470" r="8" aria-label="武蔵五日市"><title>武蔵五日市</title></circle>
+<circle class="station" data-station="武蔵増戸" cx="676.5" cy="470" r="6" aria-label="武蔵増戸"><title>武蔵増戸</title></circle>
+<circle class="station" data-station="福生" cx="967" cy="384.5" r="6" aria-label="福生"><title>福生</title></circle>
+<circle class="station boundary" data-station="金子" cx="1130" cy="230" r="6" aria-label="金子"><title>金子</title></circle>
+<circle class="station boundary" data-station="東中神" cx="1100" cy="590" r="6" aria-label="東中神"><title>東中神</title></circle>
+<circle class="station boundary" data-station="北八王子" cx="910" cy="603.5" r="6" aria-label="北八王子"><title>北八王子</title></circle>
+<text class="map-label major-label" data-label="奥多摩" x="145" y="175" text-anchor="end">奥多摩</text>
+<text class="map-label major-label" data-label="青梅" x="875" y="175" text-anchor="start">青梅</text>
+<text class="map-label major-label" data-label="拝島" x="1025" y="475" text-anchor="start">拝島</text>
+<text class="map-label major-label" data-label="武蔵五日市" x="595" y="475" text-anchor="end">武蔵五日市</text>
+<text class="map-label minor-label" data-label="宮ノ平" x="801.5" y="144" text-anchor="middle">宮ノ平</text>
+<text class="map-label minor-label" data-label="軍畑" x="583.5" y="175" text-anchor="start">軍畑</text>
+<text class="map-label minor-label" data-label="古里" x="350" y="175" text-anchor="start">古里</text>
+<text class="map-label minor-label" data-label="御嶽" x="466.5" y="175" text-anchor="start">御嶽</text>
+<text class="map-label minor-label" data-label="石神前" x="685" y="144" text-anchor="middle">石神前</text>
+<text class="map-label minor-label" data-label="川井" x="408.5" y="175" text-anchor="start">川井</text>
+<text class="map-label minor-label" data-label="沢井" x="525" y="175" text-anchor="start">沢井</text>
+<text class="map-label minor-label" data-label="二俣尾" x="626.5" y="144" text-anchor="middle">二俣尾</text>
+<text class="map-label minor-label" data-label="日向和田" x="743.5" y="144" text-anchor="middle">日向和田</text>
+<text class="map-label minor-label" data-label="白丸" x="233.5" y="175" text-anchor="start">白丸</text>
+<text class="map-label minor-label" data-label="鳩ノ巣" x="276.5" y="144" text-anchor="middle">鳩ノ巣</text>
+<text class="map-label minor-label" data-label="東青梅" x="896.5" y="218" text-anchor="start">東青梅</text>
+<text class="map-label minor-label boundary-label" data-label="金子" x="1145" y="235" text-anchor="start">金子</text>
+<text class="map-label minor-label" data-label="河辺" x="918" y="260.5" text-anchor="start">河辺</text>
+<text class="map-label minor-label" data-label="小作" x="939.5" y="303.5" text-anchor="start">小作</text>
+<text class="map-label minor-label" data-label="箱根ケ崎" x="1105" y="315" text-anchor="start">箱根ケ崎</text>
+<text class="map-label minor-label" data-label="羽村" x="960.5" y="346.5" text-anchor="start">羽村</text>
+<text class="map-label minor-label" data-label="福生" x="982" y="389.5" text-anchor="start">福生</text>
+<text class="map-label minor-label" data-label="東福生" x="1065" y="395" text-anchor="start">東福生</text>
+<text class="map-label minor-label" data-label="牛浜" x="1003.5" y="432" text-anchor="start">牛浜</text>
+<text class="map-label minor-label" data-label="熊川" x="958.5" y="475" text-anchor="start">熊川</text>
+<text class="map-label minor-label" data-label="秋川" x="825" y="475" text-anchor="start">秋川</text>
+<text class="map-label minor-label" data-label="東秋留" x="876.5" y="444" text-anchor="middle">東秋留</text>
+<text class="map-label minor-label" data-label="武蔵引田" x="743.5" y="444" text-anchor="middle">武蔵引田</text>
+<text class="map-label minor-label" data-label="武蔵増戸" x="676.5" y="444" text-anchor="middle">武蔵増戸</text>
+<text class="map-label minor-label" data-label="昭島" x="1055" y="515" text-anchor="start">昭島</text>
+<text class="map-label minor-label" data-label="小宮" x="975" y="541.5" text-anchor="start">小宮</text>
+<text class="map-label minor-label" data-label="中神" x="1085" y="555" text-anchor="start">中神</text>
+<text class="map-label minor-label boundary-label" data-label="東中神" x="1115" y="595" text-anchor="start">東中神</text>
+<text class="map-label minor-label boundary-label" data-label="北八王子" x="925" y="608.5" text-anchor="start">北八王子</text>
+<path d="M45 834 H1245" stroke="#dbe1d8"/><text x="45" y="859" class="small">路線の交差は乗換ではありません。破線の駅丸＝隣接地域 ／ 地図は模式図</text>
+<path d="M45 882 h24" stroke="#f15a22" stroke-width="5"/><text x="78" y="886" class="small">OM 青梅線</text>
+<path d="M345 882 h24" stroke="#f15a22" stroke-width="5"/><text x="378" y="886" class="small">IT 五日市線</text>
+<path d="M645 882 h24" stroke="#8b8981" stroke-width="5"/><text x="678" y="886" class="small">HC 八高線</text>
+</svg>

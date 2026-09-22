@@ -1,0 +1,289 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "ome-itsukaichi",
+  "name": "青梅・五日市",
+  "description": "青梅線・五日市線",
+  "hubs": [
+    "青梅",
+    "拝島",
+    "奥多摩",
+    "武蔵五日市"
+  ],
+  "map": "maps/ome-itsukaichi.svg",
+  "stations": [
+    "羽村",
+    "奥多摩",
+    "河辺",
+    "宮ノ平",
+    "牛浜",
+    "熊川",
+    "軍畑",
+    "古里",
+    "御嶽",
+    "秋川",
+    "小宮",
+    "小作",
+    "昭島",
+    "青梅",
+    "石神前",
+    "川井",
+    "沢井",
+    "中神",
+    "東秋留",
+    "東青梅",
+    "東福生",
+    "二俣尾",
+    "日向和田",
+    "拝島",
+    "白丸",
+    "箱根ケ崎",
+    "鳩ノ巣",
+    "武蔵引田",
+    "武蔵五日市",
+    "武蔵増戸",
+    "福生"
+  ],
+  "boundaryStations": [
+    "金子",
+    "東中神",
+    "北八王子"
+  ],
+  "edges": [
+    {
+      "from": "羽村",
+      "to": "福生",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "羽村",
+      "to": "小作",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "奥多摩",
+      "to": "白丸",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "河辺",
+      "to": "小作",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "河辺",
+      "to": "東青梅",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "宮ノ平",
+      "to": "青梅",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "宮ノ平",
+      "to": "日向和田",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "牛浜",
+      "to": "拝島",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "牛浜",
+      "to": "福生",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "熊川",
+      "to": "拝島",
+      "services": [
+        "IT"
+      ]
+    },
+    {
+      "from": "熊川",
+      "to": "東秋留",
+      "services": [
+        "IT"
+      ]
+    },
+    {
+      "from": "軍畑",
+      "to": "二俣尾",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "軍畑",
+      "to": "沢井",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "古里",
+      "to": "川井",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "古里",
+      "to": "鳩ノ巣",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "御嶽",
+      "to": "沢井",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "御嶽",
+      "to": "川井",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "秋川",
+      "to": "東秋留",
+      "services": [
+        "IT"
+      ]
+    },
+    {
+      "from": "秋川",
+      "to": "武蔵引田",
+      "services": [
+        "IT"
+      ]
+    },
+    {
+      "from": "小宮",
+      "to": "拝島",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "昭島",
+      "to": "中神",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "昭島",
+      "to": "拝島",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "青梅",
+      "to": "東青梅",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "石神前",
+      "to": "日向和田",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "石神前",
+      "to": "二俣尾",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "東福生",
+      "to": "拝島",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "東福生",
+      "to": "箱根ケ崎",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "白丸",
+      "to": "鳩ノ巣",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "武蔵引田",
+      "to": "武蔵増戸",
+      "services": [
+        "IT"
+      ]
+    },
+    {
+      "from": "武蔵五日市",
+      "to": "武蔵増戸",
+      "services": [
+        "IT"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "小宮",
+      "to": "北八王子",
+      "toRegion": "tama-west",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "中神",
+      "to": "東中神",
+      "toRegion": "tama-west",
+      "services": [
+        "OM"
+      ]
+    },
+    {
+      "from": "箱根ケ崎",
+      "to": "金子",
+      "toRegion": "hachiko",
+      "services": [
+        "HC"
+      ]
+    }
+  ]
+}

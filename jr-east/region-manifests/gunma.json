@@ -1,0 +1,234 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "gunma",
+  "name": "高崎・前橋",
+  "description": "高崎線・上越線",
+  "hubs": [
+    "高崎",
+    "新前橋",
+    "渋川",
+    "熊谷"
+  ],
+  "map": "maps/gunma.svg",
+  "stations": [
+    "井野",
+    "岡部",
+    "駒形",
+    "熊谷",
+    "群馬総社",
+    "群馬藤岡",
+    "行田",
+    "高崎",
+    "高崎問屋町",
+    "鴻巣",
+    "渋川",
+    "新前橋",
+    "新町",
+    "深谷",
+    "神保原",
+    "吹上",
+    "前橋",
+    "前橋大島",
+    "倉賀野",
+    "八木原",
+    "北鴻巣",
+    "北藤岡",
+    "本庄",
+    "籠原"
+  ],
+  "boundaryStations": [
+    "伊勢崎",
+    "丹荘",
+    "北本"
+  ],
+  "edges": [
+    {
+      "from": "井野",
+      "to": "高崎問屋町",
+      "services": [
+        "ET"
+      ]
+    },
+    {
+      "from": "井野",
+      "to": "新前橋",
+      "services": [
+        "ET"
+      ]
+    },
+    {
+      "from": "岡部",
+      "to": "深谷",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "岡部",
+      "to": "本庄",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "駒形",
+      "to": "前橋大島",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "熊谷",
+      "to": "行田",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "熊谷",
+      "to": "籠原",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "群馬総社",
+      "to": "新前橋",
+      "services": [
+        "ET"
+      ]
+    },
+    {
+      "from": "群馬総社",
+      "to": "八木原",
+      "services": [
+        "ET"
+      ]
+    },
+    {
+      "from": "群馬藤岡",
+      "to": "北藤岡",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "行田",
+      "to": "吹上",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "高崎",
+      "to": "倉賀野",
+      "services": [
+        "HC",
+        "TAK"
+      ]
+    },
+    {
+      "from": "高崎",
+      "to": "高崎問屋町",
+      "services": [
+        "ET"
+      ]
+    },
+    {
+      "from": "鴻巣",
+      "to": "北鴻巣",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "渋川",
+      "to": "八木原",
+      "services": [
+        "ET"
+      ]
+    },
+    {
+      "from": "新前橋",
+      "to": "前橋",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "新町",
+      "to": "神保原",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "新町",
+      "to": "倉賀野",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "深谷",
+      "to": "籠原",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "神保原",
+      "to": "本庄",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "吹上",
+      "to": "北鴻巣",
+      "services": [
+        "TAK"
+      ]
+    },
+    {
+      "from": "前橋",
+      "to": "前橋大島",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "倉賀野",
+      "to": "北藤岡",
+      "services": [
+        "HC"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "駒形",
+      "to": "伊勢崎",
+      "toRegion": "ryomo",
+      "services": [
+        "RY"
+      ]
+    },
+    {
+      "from": "群馬藤岡",
+      "to": "丹荘",
+      "toRegion": "hachiko",
+      "services": [
+        "HC"
+      ]
+    },
+    {
+      "from": "鴻巣",
+      "to": "北本",
+      "toRegion": "saitama",
+      "services": [
+        "TAK"
+      ]
+    }
+  ]
+}

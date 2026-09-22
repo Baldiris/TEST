@@ -1,0 +1,256 @@
+{
+  "schemaVersion": "0.3",
+  "regionId": "mito",
+  "name": "水戸・常磐北部",
+  "description": "常磐線北部・水戸線",
+  "hubs": [
+    "水戸",
+    "友部",
+    "高萩",
+    "下館"
+  ],
+  "map": "maps/mito.svg",
+  "stations": [
+    "稲田",
+    "羽黒",
+    "羽鳥",
+    "下館",
+    "笠間",
+    "岩間",
+    "岩瀬",
+    "玉戸",
+    "高萩",
+    "佐和",
+    "宍戸",
+    "十王",
+    "勝田",
+    "小木津",
+    "常陸多賀",
+    "新治",
+    "水戸",
+    "石岡",
+    "赤塚",
+    "川島",
+    "大和",
+    "大甕",
+    "東海",
+    "内原",
+    "日立",
+    "福原",
+    "友部",
+    "偕楽園"
+  ],
+  "boundaryStations": [
+    "高浜",
+    "東結城"
+  ],
+  "edges": [
+    {
+      "from": "稲田",
+      "to": "福原",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "稲田",
+      "to": "笠間",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "羽黒",
+      "to": "岩瀬",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "羽黒",
+      "to": "福原",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "羽鳥",
+      "to": "石岡",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "羽鳥",
+      "to": "岩間",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "下館",
+      "to": "玉戸",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "下館",
+      "to": "新治",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "笠間",
+      "to": "宍戸",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "岩間",
+      "to": "友部",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "岩瀬",
+      "to": "大和",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "玉戸",
+      "to": "川島",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "高萩",
+      "to": "十王",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "佐和",
+      "to": "勝田",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "佐和",
+      "to": "東海",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "宍戸",
+      "to": "友部",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "十王",
+      "to": "小木津",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "勝田",
+      "to": "水戸",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "小木津",
+      "to": "日立",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "常陸多賀",
+      "to": "大甕",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "常陸多賀",
+      "to": "日立",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "新治",
+      "to": "大和",
+      "services": [
+        "MT"
+      ]
+    },
+    {
+      "from": "水戸",
+      "to": "偕楽園",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "赤塚",
+      "to": "内原",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "赤塚",
+      "to": "偕楽園",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "大甕",
+      "to": "東海",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "内原",
+      "to": "友部",
+      "services": [
+        "JJ"
+      ]
+    }
+  ],
+  "crossingEdges": [
+    {
+      "from": "石岡",
+      "to": "高浜",
+      "toRegion": "joban",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "川島",
+      "to": "東結城",
+      "toRegion": "utsunomiya",
+      "services": [
+        "MT"
+      ]
+    }
+  ]
+}

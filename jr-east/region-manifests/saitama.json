@@ -1,33 +1,30 @@
 {
   "schemaVersion": "0.3",
   "regionId": "saitama",
-  "name": "埼玉",
-  "description": "大宮を中心とする埼玉南部・川越方面",
+  "name": "埼玉・川越",
+  "description": "埼玉南部・川越線",
   "hubs": [
     "大宮",
     "浦和",
     "川越",
     "武蔵浦和"
   ],
-  "map": null,
+  "map": "maps/saitama.svg",
   "stations": [
     "さいたま新都心",
     "浦和",
     "越谷レイクタウン",
     "王子",
     "桶川",
-    "笠幡",
     "吉川",
     "吉川美南",
     "久喜",
     "宮原",
     "戸田",
     "戸田公園",
-    "高麗川",
     "指扇",
     "上尾",
     "新座",
-    "新三郷",
     "新白岡",
     "西浦和",
     "西川越",
@@ -53,7 +50,6 @@
     "白岡",
     "浮間舟渡",
     "武蔵浦和",
-    "武蔵高萩",
     "北浦和",
     "北戸田",
     "北上尾",
@@ -67,10 +63,11 @@
     "蕨"
   ],
   "boundaryStations": [
+    "笠幡",
     "鴻巣",
-    "三郷",
     "十条",
     "上中里",
+    "新三郷",
     "新秋津",
     "東鷲宮",
     "尾久"
@@ -158,29 +155,8 @@
       ]
     },
     {
-      "from": "笠幡",
-      "to": "的場",
-      "services": [
-        "KW"
-      ]
-    },
-    {
-      "from": "笠幡",
-      "to": "武蔵高萩",
-      "services": [
-        "KW"
-      ]
-    },
-    {
       "from": "吉川",
       "to": "吉川美南",
-      "services": [
-        "JM"
-      ]
-    },
-    {
-      "from": "吉川美南",
-      "to": "新三郷",
       "services": [
         "JM"
       ]
@@ -225,13 +201,6 @@
       "to": "浮間舟渡",
       "services": [
         "JA"
-      ]
-    },
-    {
-      "from": "高麗川",
-      "to": "武蔵高萩",
-      "services": [
-        "KW"
       ]
     },
     {
@@ -490,19 +459,19 @@
       ]
     },
     {
-      "from": "久喜",
-      "to": "東鷲宮",
-      "toRegion": "north-kanto",
+      "from": "吉川美南",
+      "to": "新三郷",
+      "toRegion": "joban",
       "services": [
-        "JU"
+        "JM"
       ]
     },
     {
-      "from": "新三郷",
-      "to": "三郷",
-      "toRegion": "chiba",
+      "from": "久喜",
+      "to": "東鷲宮",
+      "toRegion": "utsunomiya",
       "services": [
-        "JM"
+        "JU"
       ]
     },
     {
@@ -523,6 +492,14 @@
       ]
     },
     {
+      "from": "的場",
+      "to": "笠幡",
+      "toRegion": "hachiko",
+      "services": [
+        "KW"
+      ]
+    },
+    {
       "from": "東所沢",
       "to": "新秋津",
       "toRegion": "tama-west",
@@ -533,7 +510,7 @@
     {
       "from": "北本",
       "to": "鴻巣",
-      "toRegion": "north-kanto",
+      "toRegion": "gunma",
       "services": [
         "TAK"
       ]

@@ -28,7 +28,7 @@ async function boot(suite=false){
   setupGoal=fixture==='north'?'新横浜':fixture==='boundary'?'大船':fixture==='outside'?'東京':'川崎';
   confirmSetup();
   await loadRegionMap('yokohama-kawasaki');
-  check(coreMapReady&&coreMapStations.size===42,'42駅の地域SVGロード');
+  check(coreMapReady&&coreMapStations.size>=59,'横浜・川崎の全駅ロード');
   if(fixture==='legacy'){
    localStorage.removeItem(KEY);localStorage.setItem(LEGACY_KEYS[0],JSON.stringify({...state,version:'0.2'}));
    state=load();check(state.version==='0.3'&&state.current==='横浜','V0.2 → V0.3 保存移行');
@@ -39,13 +39,23 @@ async function boot(suite=false){
   check(coreStationElement(state.current).classList.contains('game-current'),'現在地の強調');
   if(fixture!=='outside')check(coreStationElement(state.goal).classList.contains('game-goal'),'ゴールの強調');
   check(document.querySelectorAll('#coreMapMount .game-reachable').length>0,'候補駅の強調');
-  if(fixture==='outside')check(mapMode==='full'&&!$('networkScroll').classList.contains('hidden'),'地域外ゴールの全駅表示');
+  if(fixture==='outside')check(mapMode==='core'&&!$('coreMapScroll').classList.contains('hidden'),'地域外ゴールでも地域図を維持');
   if(${suite}){
-   for(const station of ['川崎','横浜','武蔵小杉','新横浜']){
+   check(ALL_STATIONS.length===539,'PDF対象539駅');
+   const seen=new Set();
+   mapPinnedRegion='test';
+   for(const [id,region] of Object.entries(REGIONS)){
+    const ok=await loadRegionMap(id,{autoMode:false});check(ok,id+' SVG読込');
+    coreMapStations.forEach(st=>seen.add(st));
+   }
+   check(ALL_STATIONS.every(st=>seen.has(st)),'18地域SVGで全539駅を表示');
+   await loadRegionMap('yokohama-kawasaki');mapPinnedRegion=null;
+   for(const station of ['川崎' ,'横浜','武蔵小杉','新横浜']){
     state.current=station;state.goal=station==='横浜'?'川崎':'横浜';state.dice=1;state.phase='game';state.reachable=Object.fromEntries(reachableExactly(station,1));
     renderGame();check(coreStationElement(station).classList.contains('game-current'),station+' 現在地');
    }
    state.current='横浜';state.goal='川崎';state.phase='game';state.dice=1;state.reachable=Object.fromEntries(reachableExactly('横浜',1));renderGame();
+   check(document.querySelectorAll('#game-route-overlay path').length===1,'経路強調は描画済み線路を使用');
    const target=coreStationElement('川崎');check(target.getAttribute('role')==='button','候補駅の操作属性');
    target.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));check(state.target==='川崎'&&state.phase==='arrival','駅Enter選択');
    arrive();check(state.current==='川崎'&&state.quests['川崎'].length===2,'到着・クエスト2件');

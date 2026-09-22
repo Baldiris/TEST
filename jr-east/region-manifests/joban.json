@@ -1,28 +1,86 @@
 {
   "schemaVersion": "0.3",
   "regionId": "joban",
-  "name": "常磐",
-  "description": "常磐線快速の東葛・茨城南部方面",
+  "name": "常磐・東葛",
+  "description": "快速・各駅停車・茨城南部",
   "hubs": [
     "北千住",
     "松戸",
     "柏",
-    "取手"
+    "取手",
+    "土浦"
   ],
-  "map": null,
+  "map": "maps/joban.svg",
   "stations": [
+    "ひたち野うしく",
+    "綾瀬",
     "我孫子",
+    "亀有",
+    "牛久",
+    "金町",
+    "湖北",
+    "荒川沖",
+    "高浜",
+    "三郷",
     "取手",
     "松戸",
+    "新三郷",
+    "新松戸",
+    "新八柱",
+    "新木",
+    "神立",
     "天王台",
+    "土浦",
+    "東我孫子",
+    "藤代",
     "南千住",
+    "南柏",
+    "南流山",
+    "馬橋",
     "柏",
-    "北千住"
+    "布佐",
+    "北小金",
+    "北松戸",
+    "北千住",
+    "北柏",
+    "龍ケ崎市"
   ],
   "boundaryStations": [
-    "三河島"
+    "吉川美南",
+    "三河島",
+    "石岡",
+    "東松戸",
+    "木下"
   ],
   "edges": [
+    {
+      "from": "ひたち野うしく",
+      "to": "牛久",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "ひたち野うしく",
+      "to": "荒川沖",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "綾瀬",
+      "to": "北千住",
+      "services": [
+        "JL"
+      ]
+    },
+    {
+      "from": "綾瀬",
+      "to": "亀有",
+      "services": [
+        "JL"
+      ]
+    },
     {
       "from": "我孫子",
       "to": "柏",
@@ -34,13 +92,99 @@
       "from": "我孫子",
       "to": "天王台",
       "services": [
+        "JJ",
+        "JL"
+      ]
+    },
+    {
+      "from": "我孫子",
+      "to": "北柏",
+      "services": [
+        "JL"
+      ]
+    },
+    {
+      "from": "我孫子",
+      "to": "東我孫子",
+      "services": [
+        "NR"
+      ]
+    },
+    {
+      "from": "亀有",
+      "to": "金町",
+      "services": [
+        "JL"
+      ]
+    },
+    {
+      "from": "牛久",
+      "to": "龍ケ崎市",
+      "services": [
         "JJ"
+      ]
+    },
+    {
+      "from": "金町",
+      "to": "松戸",
+      "services": [
+        "JL"
+      ]
+    },
+    {
+      "from": "湖北",
+      "to": "東我孫子",
+      "services": [
+        "NR"
+      ]
+    },
+    {
+      "from": "湖北",
+      "to": "新木",
+      "services": [
+        "NR"
+      ]
+    },
+    {
+      "from": "荒川沖",
+      "to": "土浦",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "高浜",
+      "to": "神立",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "三郷",
+      "to": "新三郷",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "三郷",
+      "to": "南流山",
+      "services": [
+        "JM"
       ]
     },
     {
       "from": "取手",
       "to": "天王台",
       "services": [
+        "JJ",
+        "JL"
+      ]
+    },
+    {
+      "from": "取手",
+      "to": "藤代",
+      "services": [
         "JJ"
       ]
     },
@@ -59,20 +203,136 @@
       ]
     },
     {
+      "from": "松戸",
+      "to": "北松戸",
+      "services": [
+        "JL"
+      ]
+    },
+    {
+      "from": "新松戸",
+      "to": "南流山",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "新松戸",
+      "to": "新八柱",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "新松戸",
+      "to": "馬橋",
+      "services": [
+        "JL"
+      ]
+    },
+    {
+      "from": "新松戸",
+      "to": "北小金",
+      "services": [
+        "JL"
+      ]
+    },
+    {
+      "from": "新木",
+      "to": "布佐",
+      "services": [
+        "NR"
+      ]
+    },
+    {
+      "from": "神立",
+      "to": "土浦",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "藤代",
+      "to": "龍ケ崎市",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
       "from": "南千住",
       "to": "北千住",
       "services": [
         "JJ"
       ]
+    },
+    {
+      "from": "南柏",
+      "to": "北小金",
+      "services": [
+        "JL"
+      ]
+    },
+    {
+      "from": "南柏",
+      "to": "柏",
+      "services": [
+        "JL"
+      ]
+    },
+    {
+      "from": "馬橋",
+      "to": "北松戸",
+      "services": [
+        "JL"
+      ]
+    },
+    {
+      "from": "柏",
+      "to": "北柏",
+      "services": [
+        "JL"
+      ]
     }
   ],
   "crossingEdges": [
+    {
+      "from": "高浜",
+      "to": "石岡",
+      "toRegion": "mito",
+      "services": [
+        "JJ"
+      ]
+    },
+    {
+      "from": "新三郷",
+      "to": "吉川美南",
+      "toRegion": "saitama",
+      "services": [
+        "JM"
+      ]
+    },
+    {
+      "from": "新八柱",
+      "to": "東松戸",
+      "toRegion": "chiba",
+      "services": [
+        "JM"
+      ]
+    },
     {
       "from": "南千住",
       "to": "三河島",
       "toRegion": "tokyo-core",
       "services": [
         "JJ"
+      ]
+    },
+    {
+      "from": "布佐",
+      "to": "木下",
+      "toRegion": "narita",
+      "services": [
+        "NR"
       ]
     }
   ]
