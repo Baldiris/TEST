@@ -62,3 +62,11 @@ node scripts/generate-jr-maps.js --check
 
 旧 `tokyo-core-map.svg` は以前の比較ラボ用に残す。本番は `maps/tokyo-core.svg`。
 `region-manifests/north-kanto.json` は旧構成の資料で、現行は高崎・両毛・宇都宮の各地域。
+
+## 2026-09-22 公開確認
+
+- PR #13 を master に統合。実装コミット `4a6c13d`、統合コミット `5254347`。
+- Quality Check: 35713311405 成功。GitHub Pages: 35713311375 成功。
+- 公開 `region-check.html` の390px/1000px自動回帰が成功。18地域・539駅の読込、駅Enter選択、到着とクエスト、ゴール、V0.1/V0.2移行を確認。
+- 東京・横浜地域図の日本語表示を公開ブラウザーで確認。地域外ゴールでも地域図を維持。
+- 模式図は拡大・スクロールで読む設計。全体縮小時の文字サイズと複雑な並走区間には、引き続き視覚改善の余地がある。
