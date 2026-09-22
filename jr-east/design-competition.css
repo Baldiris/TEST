@@ -1,0 +1,469 @@
+/* きまぐれJR旅 — Design Competition
+   Additive only: this file is loaded after the production stylesheet.
+   Three deliberately different compositions share the existing app logic. */
+
+body.design-competition{
+  --comp-bar-h:72px;
+  padding-top:var(--comp-bar-h);
+}
+
+.competition-bar{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:500;
+  min-height:var(--comp-bar-h);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  padding:10px 18px;
+  background:rgba(255,255,255,.9);
+  border-bottom:1px solid rgba(20,30,28,.09);
+  backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:0 8px 30px rgba(20,30,28,.06);
+}
+.competition-copy{display:flex;align-items:center;gap:10px;min-width:0}
+.competition-mark{
+  display:grid;place-items:center;width:34px;height:34px;border-radius:11px;
+  background:#111;color:#fff;font-weight:900;font-size:12px;letter-spacing:.02em
+}
+.competition-copy b,.competition-copy span{display:block}
+.competition-copy b{font-size:13px}
+.competition-copy span{font-size:10px;color:#77807d;margin-top:2px;white-space:nowrap}
+.competition-switcher{display:flex;gap:6px;padding:4px;border-radius:14px;background:#eef1ef}
+.competition-switcher button{
+  border:0;background:transparent;border-radius:10px;padding:8px 12px;
+  font-weight:850;font-size:11px;color:#66706b;white-space:nowrap
+}
+.competition-switcher button[aria-pressed="true"]{background:#fff;color:#111;box-shadow:0 2px 9px rgba(22,28,25,.1)}
+.competition-original{
+  color:#3e4a44;text-decoration:none;font-size:11px;font-weight:800;
+  border:1px solid #dbe0dd;border-radius:11px;padding:9px 11px;background:#fff
+}
+.design-badge{
+  position:fixed;right:14px;bottom:14px;z-index:420;
+  padding:8px 11px;border-radius:999px;background:#111;color:#fff;
+  font-size:10px;font-weight:850;letter-spacing:.04em;box-shadow:0 8px 20px rgba(0,0,0,.2)
+}
+
+/* Shared polish */
+.design-competition .panel,.design-competition .btn,.design-competition .tiny,
+.design-competition .mini-btn,.design-competition .map-mode-btn,
+.design-competition .candidate-card,.design-competition .slot{
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease
+}
+.design-competition .btn:hover:not(:disabled){transform:translateY(-1px)}
+.design-competition .topbar{position:relative}
+.design-competition footer{padding-bottom:28px}
+
+/* =========================================================
+   A — TRAVEL FIRST
+   NEWT-inspired principles: generous whitespace, one hero idea,
+   large rounded surfaces, soft travel palette, obvious primary CTA.
+   ========================================================= */
+body[data-design="a"]{
+  --bg-a:#f7f7f3;--ink-a:#17201c;--mint-a:#dff7e8;--lime-a:#b8f25f;
+  --blue-a:#dff0ff;--orange-a:#ffb552;--line-a:#e7ebe7;
+  color:var(--ink-a);
+  background:
+    radial-gradient(circle at 8% 5%,#e8faef 0,transparent 24%),
+    radial-gradient(circle at 95% 12%,#e7f2ff 0,transparent 22%),
+    #f7f7f3;
+}
+body[data-design="a"] .app{max-width:1180px;padding:26px 24px 70px}
+body[data-design="a"] .topbar{padding:4px 2px 18px}
+body[data-design="a"] .logo{
+  background:#111;border-radius:11px;box-shadow:none;width:40px;height:40px
+}
+body[data-design="a"] .brand h1{font-size:18px;letter-spacing:-.03em}
+body[data-design="a"] .brand p{color:#7b837f}
+body[data-design="a"] .tiny{border:0;background:#ecefec;border-radius:999px;padding:10px 14px}
+body[data-design="a"] #homeView{
+  display:grid;grid-template-columns:minmax(0,1.28fr) minmax(320px,.72fr);gap:22px;align-items:stretch
+}
+body[data-design="a"] #homeView.hidden{display:none!important}
+body[data-design="a"] .panel{
+  background:#fff;border:1px solid rgba(22,34,28,.07);border-radius:30px;
+  box-shadow:0 16px 50px rgba(30,52,40,.08);padding:24px;margin:0 0 22px
+}
+body[data-design="a"] #homeView>.panel{margin:0}
+body[data-design="a"] .hero{
+  min-height:560px;position:relative;overflow:hidden;padding:52px 46px;
+  display:flex;flex-direction:column;justify-content:flex-end;color:#102018;
+  background:linear-gradient(150deg,#dff7e8 0%,#effbe7 48%,#e7f2ff 100%);
+}
+body[data-design="a"] .hero:before{
+  content:"";position:absolute;inset:0 0 32% 32%;
+  background:url("maps/tokyo-core.svg") center/110% auto no-repeat;
+  opacity:.16;filter:saturate(.7);transform:rotate(-4deg) scale(1.12);
+  -webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 45%,transparent 100%)
+}
+body[data-design="a"] .hero:after{
+  content:"RANDOM JOURNEY";position:absolute;right:-24px;top:34px;
+  font-size:72px;font-weight:950;letter-spacing:-.07em;line-height:.8;color:rgba(14,40,25,.055);
+  writing-mode:vertical-rl
+}
+body[data-design="a"] .hero>*{position:relative;z-index:1;max-width:650px}
+body[data-design="a"] .hero .eyebrow{
+  width:max-content;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.75);
+  color:#245337;opacity:1;font-weight:900;letter-spacing:.08em
+}
+body[data-design="a"] .hero h2{font-size:clamp(42px,5vw,70px);line-height:1.03;letter-spacing:-.065em;margin:18px 0}
+body[data-design="a"] .hero p{font-size:15px;line-height:1.9;max-width:580px;opacity:.72}
+body[data-design="a"] #homeView>.panel:not(.hero){
+  display:flex;flex-direction:column;justify-content:center;padding:34px
+}
+body[data-design="a"] .section-title h2{font-size:21px;letter-spacing:-.035em}
+body[data-design="a"] .feature-grid{grid-template-columns:1fr;gap:8px;margin:22px 0}
+body[data-design="a"] .feature{
+  display:grid;grid-template-columns:125px 1fr;align-items:center;gap:12px;
+  background:#f7f8f6;border:0;border-radius:17px;padding:14px 16px
+}
+body[data-design="a"] .feature b{font-size:12px}
+body[data-design="a"] .feature span{font-size:11px;margin:0}
+body[data-design="a"] .btn{border-radius:16px;padding:15px 18px}
+body[data-design="a"] .btn.orange{background:#111;color:#fff}
+body[data-design="a"] .btn.secondary{border:0;background:#edf1ee;color:#1b2d23}
+body[data-design="a"] .btn.ghost{background:#fff;border:1px solid var(--line-a);color:#67716c}
+body[data-design="a"] .notice a{color:#1b683d;font-weight:800}
+body[data-design="a"] .slot{
+  border:0;background:#f6f8f5;border-radius:24px;padding:24px
+}
+body[data-design="a"] .slot-value{font-size:40px;letter-spacing:-.05em}
+body[data-design="a"] .timeline .step{height:4px;background:#e9ece9}
+body[data-design="a"] .timeline .step.on{background:#111}
+body[data-design="a"] #gameView{
+  display:grid;grid-template-columns:350px minmax(0,1fr);gap:20px;align-items:start
+}
+body[data-design="a"] #gameView.hidden{display:none!important}
+body[data-design="a"] #gameView>.panel{margin:0}
+body[data-design="a"] #gameView>.network-panel{grid-column:2;grid-row:1 / span 4}
+body[data-design="a"] #gameView>.compact-panel{grid-column:1;grid-row:1}
+body[data-design="a"] #gameView>.dice-panel{grid-column:1;grid-row:2}
+body[data-design="a"] #gameView>#arrivalPanel{grid-column:1;grid-row:3}
+body[data-design="a"] #gameView>#questPanel{grid-column:1;grid-row:3}
+body[data-design="a"] #gameView>.panel:last-child{grid-column:1;grid-row:4}
+body[data-design="a"] .stats{grid-template-columns:1fr}
+body[data-design="a"] .stat{
+  display:flex;align-items:center;justify-content:space-between;text-align:left;
+  border:0;background:#f6f8f5;border-radius:15px;padding:12px 14px
+}
+body[data-design="a"] .stat b{order:2;font-size:16px}.design-competition[data-design="a"] .stat span{order:1}
+body[data-design="a"] .route-compass{background:#16231c;border-radius:21px}
+body[data-design="a"] .dice-panel{border-top:0}
+body[data-design="a"] .dice{
+  width:126px;height:126px;border:0;border-radius:32px;font-size:67px;
+  background:linear-gradient(145deg,#fff,#f2f4f2);box-shadow:0 13px 28px rgba(16,28,21,.13)
+}
+body[data-design="a"] .roll-btn{background:var(--lime-a)!important;color:#153018!important}
+body[data-design="a"] .candidate-list{grid-template-columns:1fr}
+body[data-design="a"] .candidate-card{border:0;background:#f7f8f6;border-radius:17px}
+body[data-design="a"] .candidate-card.best{background:#e7f8ec}
+body[data-design="a"] .network-panel{padding:26px}
+body[data-design="a"] .network-scroll,
+body[data-design="a"] .overview-map{border:0;border-radius:24px;background:#f8f9f7}
+body[data-design="a"] .core-map-scroll{height:700px}
+body[data-design="a"] .map-mode-tabs{
+  background:transparent;position:static;padding:0;display:inline-flex;
+  border-radius:13px;padding:4px;background:#f1f3f1;width:auto
+}
+body[data-design="a"] .map-mode-btn{flex:none;border:0;background:transparent;border-radius:10px;padding:8px 14px}
+body[data-design="a"] .map-mode-btn.active{background:#111;color:#fff}
+body[data-design="a"] .regional-controls{padding:10px 0}
+body[data-design="a"] .regional-controls select,
+body[data-design="a"] .regional-controls button{background:#f6f8f5;border:0;border-radius:12px}
+body[data-design="a"] .legend{padding:9px 0;margin-bottom:13px}
+body[data-design="a"] #finishView .success{padding:54px;background:linear-gradient(145deg,#e8faee,#eef4ff)}
+
+/* =========================================================
+   B — NETWORK FIRST
+   A mobility/productivity interpretation: map first, compact station
+   status, bottom action energy, strong information hierarchy.
+   ========================================================= */
+body[data-design="b"]{
+  --b-ink:#101617;--b-cyan:#11c7be;--b-yellow:#ffd74d;--b-surface:#f1f5f4;
+  color:var(--b-ink);background:#e9efee;
+}
+body[data-design="b"] .app{max-width:1320px;padding:22px 20px 70px}
+body[data-design="b"] .topbar{
+  background:#0f1718;color:#fff;padding:13px 16px;border-radius:18px;margin-bottom:14px
+}
+body[data-design="b"] .logo{background:var(--b-cyan);color:#092421;box-shadow:none;border-radius:10px}
+body[data-design="b"] .brand p{color:#9fb0ac}
+body[data-design="b"] .tiny{background:#253031;color:#fff;border:1px solid #344342}
+body[data-design="b"] #homeView{display:flex;flex-direction:column;gap:14px}
+body[data-design="b"] #homeView.hidden{display:none!important}
+body[data-design="b"] .panel{border:0;border-radius:22px;box-shadow:none;background:#fff;padding:22px;margin:0 0 14px}
+body[data-design="b"] .hero{
+  min-height:360px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:28px;
+  background:#101819;color:#fff;position:relative;overflow:hidden;padding:42px
+}
+body[data-design="b"] .hero:after{
+  content:"";min-height:280px;border-radius:24px;
+  background:
+    linear-gradient(rgba(17,199,190,.16),rgba(17,199,190,.02)),
+    url("maps/tokyo-core.svg") center/cover no-repeat,#162221;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)
+}
+body[data-design="b"] .hero .eyebrow{color:#7ce4df;opacity:1;font-weight:900}
+body[data-design="b"] .hero h2{font-size:48px;letter-spacing:-.055em;line-height:1.07}
+body[data-design="b"] .hero p{max-width:560px;color:#c8d2cf}
+body[data-design="b"] #homeView>.panel:not(.hero){
+  display:grid;grid-template-columns:260px 1fr 270px;gap:22px;align-items:center
+}
+body[data-design="b"] #homeView .feature-grid{grid-template-columns:repeat(4,1fr);margin:0}
+body[data-design="b"] .feature{border:0;border-radius:16px;background:#f0f5f4;padding:15px;min-height:78px}
+body[data-design="b"] #homeView>.panel:not(.hero)>.btn{grid-column:3}
+body[data-design="b"] #homeView>.panel:not(.hero)>.btn.secondary{grid-column:3}
+body[data-design="b"] #homeView>.panel:not(.hero)>.notice{grid-column:1 / -1;margin:0}
+body[data-design="b"] .btn{border-radius:13px;background:#101819}
+body[data-design="b"] .btn.orange{background:var(--b-yellow);color:#161b14}
+body[data-design="b"] .btn.secondary{background:#edf2f1;color:#101819;border:0}
+body[data-design="b"] .btn.ghost{background:transparent;color:#5e6a67;border:1px solid #d8e0de}
+body[data-design="b"] .slot{
+  border:0;border-radius:18px;background:#eef4f2;display:grid;grid-template-columns:80px 1fr 200px;
+  align-items:center;gap:12px;text-align:left;padding:18px
+}
+body[data-design="b"] .slot-label{font-weight:900;color:#62716d}
+body[data-design="b"] .slot-value{font-size:34px;margin:0}
+body[data-design="b"] .slot .chips{justify-content:flex-start;margin:0}
+body[data-design="b"] .slot .btn{grid-column:3;grid-row:1 / span 2}
+body[data-design="b"] #gameView{
+  display:grid;grid-template-columns:minmax(0,1.7fr) 360px;grid-auto-rows:auto;gap:14px;align-items:start
+}
+body[data-design="b"] #gameView.hidden{display:none!important}
+body[data-design="b"] #gameView>.panel{margin:0}
+body[data-design="b"] #gameView>.network-panel{grid-column:1;grid-row:1 / span 5;padding:18px}
+body[data-design="b"] #gameView>.compact-panel{grid-column:2;grid-row:1}
+body[data-design="b"] #gameView>.dice-panel{grid-column:2;grid-row:2;border:0}
+body[data-design="b"] #gameView>#arrivalPanel,
+body[data-design="b"] #gameView>#questPanel{grid-column:2;grid-row:3}
+body[data-design="b"] #gameView>.panel:last-child{grid-column:2;grid-row:4}
+body[data-design="b"] .network-panel>.section-title{padding:4px 2px 12px}
+body[data-design="b"] .network-scroll,body[data-design="b"] .overview-map{
+  border:1px solid #dfe7e5;border-radius:18px;background:#f7faf9
+}
+body[data-design="b"] .core-map-scroll{height:760px}
+body[data-design="b"] .map-mode-tabs{
+  position:static;background:#eef3f2;border-radius:13px;padding:4px;margin:0 0 10px
+}
+body[data-design="b"] .map-mode-btn{border:0;background:transparent}
+body[data-design="b"] .map-mode-btn.active{background:#101819;color:#fff}
+body[data-design="b"] .regional-controls{
+  display:grid;grid-template-columns:auto minmax(180px,1fr) 40px 50px 40px;gap:7px
+}
+body[data-design="b"] .regional-controls select,body[data-design="b"] .regional-controls button{
+  background:#eef3f2;border:0;border-radius:10px
+}
+body[data-design="b"] .stats{grid-template-columns:1fr 1fr}
+body[data-design="b"] .stat{background:#eef3f2;border:0}
+body[data-design="b"] .stat:first-child{grid-column:1 / -1;background:#101819;color:#fff;text-align:left;padding:17px}
+body[data-design="b"] .stat:first-child b{font-size:28px}
+body[data-design="b"] .stat:first-child span{color:#9bb0aa}
+body[data-design="b"] .route-compass{background:#0f1718}
+body[data-design="b"] .dicebox{display:grid;grid-template-columns:116px 1fr;gap:14px;align-items:center;text-align:left}
+body[data-design="b"] .dice{width:116px;height:116px;margin:0;border:0;border-radius:21px;box-shadow:none;background:#f0f5f4}
+body[data-design="b"] .roll-btn{height:64px;background:var(--b-yellow)!important;color:#181b13!important}
+body[data-design="b"] .candidate-list{grid-template-columns:1fr}
+body[data-design="b"] .candidate-card{border:1px solid #e1e7e5;border-radius:14px}
+body[data-design="b"] .candidate-card.best{background:#e9f9f6;border-color:#88dcd7}
+body[data-design="b"] .recommendation{border-left:0;border-top:4px solid var(--b-cyan);background:#eff9f8}
+body[data-design="b"] .timeline .step.on{background:var(--b-cyan)}
+body[data-design="b"] .quest-num{background:#101819}
+body[data-design="b"] #finishView .success{background:#101819;color:#fff;padding:52px}
+
+/* =========================================================
+   C — JOURNEY EDITORIAL
+   Travel-magazine composition: warm paper, asymmetry, oversized type,
+   border-led cards, and a board presented like a fold-out map.
+   ========================================================= */
+body[data-design="c"]{
+  --c-paper:#f5efe5;--c-ink:#24201c;--c-red:#d8513d;--c-blue:#244b60;--c-line:#cfc4b3;
+  color:var(--c-ink);
+  background:
+    linear-gradient(rgba(90,69,46,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(90,69,46,.04) 1px,transparent 1px),
+    var(--c-paper);
+  background-size:28px 28px;
+}
+body[data-design="c"] .app{max-width:1240px;padding:34px 28px 80px}
+body[data-design="c"] .topbar{border-bottom:2px solid #28221d;padding:0 0 14px;margin-bottom:22px}
+body[data-design="c"] .logo{
+  background:transparent;color:#24201c;border:2px solid #24201c;border-radius:50%;
+  width:46px;height:46px;box-shadow:none
+}
+body[data-design="c"] .brand h1{font-family:Georgia,"Yu Mincho",serif;font-size:24px}
+body[data-design="c"] .brand p{font-family:ui-monospace,monospace;color:#7d7165}
+body[data-design="c"] .tiny{background:transparent;border:1px solid #8b8177;border-radius:0}
+body[data-design="c"] #homeView{
+  display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,.65fr);gap:28px
+}
+body[data-design="c"] #homeView.hidden{display:none!important}
+body[data-design="c"] .panel{
+  background:rgba(251,247,240,.92);border:1px solid var(--c-line);border-radius:0;
+  box-shadow:8px 8px 0 rgba(92,71,48,.10);padding:24px;margin:0 0 26px
+}
+body[data-design="c"] #homeView>.panel{margin:0}
+body[data-design="c"] .hero{
+  min-height:600px;background:var(--c-blue);color:#f9f3e7;border:0;position:relative;overflow:hidden;
+  padding:54px 48px;display:flex;flex-direction:column;justify-content:flex-end
+}
+body[data-design="c"] .hero:before{
+  content:"VOL. 03\A KANTO";white-space:pre;position:absolute;top:38px;right:42px;
+  font-family:ui-monospace,monospace;font-size:12px;line-height:1.45;letter-spacing:.14em;color:#d6e3e7
+}
+body[data-design="c"] .hero:after{
+  content:"";position:absolute;left:46px;right:46px;top:88px;height:250px;
+  background:url("maps/tokyo-core.svg") center/cover no-repeat;
+  filter:grayscale(1) contrast(.8) invert(.05);opacity:.28;border:1px solid rgba(255,255,255,.3)
+}
+body[data-design="c"] .hero .eyebrow{font-family:ui-monospace,monospace;letter-spacing:.18em;color:#f1c6aa;opacity:1}
+body[data-design="c"] .hero h2{
+  font-family:Georgia,"Yu Mincho",serif;font-size:clamp(48px,6vw,76px);
+  line-height:1.03;letter-spacing:-.055em;margin:18px 0 14px
+}
+body[data-design="c"] .hero p{font-family:Georgia,"Yu Mincho",serif;font-size:15px;line-height:2}
+body[data-design="c"] #homeView>.panel:not(.hero){padding:30px}
+body[data-design="c"] .section-title{border-bottom:1px solid var(--c-line);padding-bottom:11px}
+body[data-design="c"] .section-title h2{font-family:Georgia,"Yu Mincho",serif;font-size:20px}
+body[data-design="c"] .section-title p{font-family:ui-monospace,monospace}
+body[data-design="c"] .feature-grid{grid-template-columns:1fr;margin:24px 0}
+body[data-design="c"] .feature{
+  position:relative;padding:15px 0 15px 34px;border:0;border-bottom:1px solid #d9cfbf;border-radius:0;background:transparent
+}
+body[data-design="c"] .feature:before{
+  content:counter(feature);counter-increment:feature;position:absolute;left:0;top:14px;
+  font-family:ui-monospace,monospace;font-size:11px;color:var(--c-red)
+}
+body[data-design="c"] .feature-grid{counter-reset:feature}
+body[data-design="c"] .btn{border-radius:0;background:#24201c;letter-spacing:.02em}
+body[data-design="c"] .btn.orange{background:var(--c-red);color:#fff}
+body[data-design="c"] .btn.secondary{background:transparent;color:#24201c;border:1px solid #71675e}
+body[data-design="c"] .btn.ghost{background:transparent;border:0;border-bottom:1px solid #71675e;color:#71675e}
+body[data-design="c"] .slot{
+  border:1px solid var(--c-line);border-radius:0;background:#fbf7ef;text-align:left;padding:22px;
+  display:grid;grid-template-columns:90px 1fr;gap:8px 14px;align-items:end
+}
+body[data-design="c"] .slot-label{font-family:ui-monospace,monospace;color:var(--c-red)}
+body[data-design="c"] .slot-value{font-family:Georgia,"Yu Mincho",serif;font-size:40px;margin:0}
+body[data-design="c"] .slot .chips{grid-column:2;justify-content:flex-start;margin:0}
+body[data-design="c"] .slot .btn{grid-column:1 / -1}
+body[data-design="c"] #gameView{
+  display:grid;grid-template-columns:minmax(0,1.6fr) minmax(310px,.7fr);gap:26px;align-items:start
+}
+body[data-design="c"] #gameView.hidden{display:none!important}
+body[data-design="c"] #gameView>.panel{margin:0}
+body[data-design="c"] #gameView>.network-panel{grid-column:1;grid-row:1 / span 5}
+body[data-design="c"] #gameView>.compact-panel{grid-column:2;grid-row:1}
+body[data-design="c"] #gameView>.dice-panel{grid-column:2;grid-row:2;border-top:0}
+body[data-design="c"] #gameView>#arrivalPanel,
+body[data-design="c"] #gameView>#questPanel{grid-column:2;grid-row:3}
+body[data-design="c"] #gameView>.panel:last-child{grid-column:2;grid-row:4}
+body[data-design="c"] .network-panel{padding:26px;background:#eee4d5}
+body[data-design="c"] .network-scroll,body[data-design="c"] .overview-map{
+  border:1px solid #b9aa98;border-radius:0;background:#fffdf8;box-shadow:5px 5px 0 rgba(68,48,28,.12)
+}
+body[data-design="c"] .core-map-scroll{height:760px}
+body[data-design="c"] .map-mode-tabs{position:static;background:transparent;padding:0}
+body[data-design="c"] .map-mode-btn{border-radius:0;border:1px solid #8e8173;background:transparent}
+body[data-design="c"] .map-mode-btn.active{background:#24201c;color:#fff;border-color:#24201c}
+body[data-design="c"] .regional-controls select,body[data-design="c"] .regional-controls button{
+  border-radius:0;background:#fbf7ef;border:1px solid #a99b8a
+}
+body[data-design="c"] .stats{grid-template-columns:1fr}
+body[data-design="c"] .stat{
+  display:grid;grid-template-columns:1fr auto;align-items:end;text-align:left;border:0;border-bottom:1px solid #d6cbbb;
+  border-radius:0;background:transparent;padding:12px 0
+}
+body[data-design="c"] .stat b{grid-column:2;font-family:Georgia,"Yu Mincho",serif;font-size:22px}
+body[data-design="c"] .stat span{grid-column:1;grid-row:1;font-family:ui-monospace,monospace}
+body[data-design="c"] .route-compass{border-radius:0;background:var(--c-blue)}
+body[data-design="c"] .message{border-radius:0;background:#f6efe3;border:1px solid #d5c8b8}
+body[data-design="c"] .recommendation{border-left:0;border-top:3px solid var(--c-red)}
+body[data-design="c"] .dice{border-radius:0;border:2px solid #24201c;box-shadow:7px 7px 0 #d5c8b7;background:#fffaf1}
+body[data-design="c"] .candidate-list{grid-template-columns:1fr}
+body[data-design="c"] .candidate-card{border-radius:0;background:#fffaf2;border:1px solid #d7caba}
+body[data-design="c"] .candidate-card.best{background:#e8efe9;border-color:#91a89a}
+body[data-design="c"] .candidate-rank{border-radius:0;background:#ded6c9}
+body[data-design="c"] .timeline .step{height:2px;border-radius:0;background:#cabdab}
+body[data-design="c"] .timeline .step.on{background:var(--c-red)}
+body[data-design="c"] .quest{border-radius:0;background:#fffaf2}
+body[data-design="c"] .quest-num{border-radius:0;background:var(--c-red)}
+body[data-design="c"] .arrival-card{border-radius:0;background:#efe5d7}
+body[data-design="c"] #finishView .success{
+  background:var(--c-blue);color:#fff;border:0;box-shadow:10px 10px 0 rgba(36,75,96,.15);padding:56px
+}
+
+@media(max-width:900px){
+  .competition-bar{justify-content:space-between;gap:8px;padding:8px 10px}
+  .competition-copy span,.competition-original{display:none}
+  .competition-switcher button{padding:8px 9px}
+  body.design-competition{--comp-bar-h:62px}
+  body[data-design="a"] #homeView,
+  body[data-design="c"] #homeView{grid-template-columns:1fr}
+  body[data-design="a"] .hero,body[data-design="c"] .hero{min-height:470px}
+  body[data-design="a"] #gameView,
+  body[data-design="b"] #gameView,
+  body[data-design="c"] #gameView{grid-template-columns:1fr}
+  body[data-design="a"] #gameView>.network-panel,
+  body[data-design="b"] #gameView>.network-panel,
+  body[data-design="c"] #gameView>.network-panel{grid-column:1;grid-row:auto;order:1}
+  body[data-design="a"] #gameView>.compact-panel,
+  body[data-design="b"] #gameView>.compact-panel,
+  body[data-design="c"] #gameView>.compact-panel{grid-column:1;grid-row:auto;order:0}
+  body[data-design="a"] #gameView>.dice-panel,
+  body[data-design="b"] #gameView>.dice-panel,
+  body[data-design="c"] #gameView>.dice-panel{grid-column:1;grid-row:auto;order:2}
+  body[data-design="a"] #gameView>#arrivalPanel,
+  body[data-design="a"] #gameView>#questPanel,
+  body[data-design="b"] #gameView>#arrivalPanel,
+  body[data-design="b"] #gameView>#questPanel,
+  body[data-design="c"] #gameView>#arrivalPanel,
+  body[data-design="c"] #gameView>#questPanel{grid-column:1;grid-row:auto;order:3}
+  body[data-design="a"] #gameView>.panel:last-child,
+  body[data-design="b"] #gameView>.panel:last-child,
+  body[data-design="c"] #gameView>.panel:last-child{grid-column:1;grid-row:auto;order:4}
+  body[data-design="a"] .core-map-scroll,
+  body[data-design="b"] .core-map-scroll,
+  body[data-design="c"] .core-map-scroll{height:560px}
+  body[data-design="b"] #homeView>.panel:not(.hero){grid-template-columns:1fr}
+  body[data-design="b"] #homeView .feature-grid{grid-template-columns:1fr 1fr}
+  body[data-design="b"] #homeView>.panel:not(.hero)>.btn,
+  body[data-design="b"] #homeView>.panel:not(.hero)>.btn.secondary,
+  body[data-design="b"] #homeView>.panel:not(.hero)>.notice{grid-column:1}
+}
+@media(max-width:580px){
+  .competition-copy b{font-size:11px}
+  .competition-mark{width:30px;height:30px}
+  .competition-switcher{gap:2px}
+  .competition-switcher button{padding:7px 8px;font-size:10px}
+  .design-badge{display:none}
+  body[data-design="a"] .app,
+  body[data-design="b"] .app,
+  body[data-design="c"] .app{padding:14px 10px 50px}
+  body[data-design="a"] .panel,
+  body[data-design="b"] .panel,
+  body[data-design="c"] .panel{padding:16px}
+  body[data-design="a"] .hero,
+  body[data-design="b"] .hero,
+  body[data-design="c"] .hero{min-height:420px;padding:30px 22px;display:flex}
+  body[data-design="a"] .hero h2{font-size:42px}
+  body[data-design="b"] .hero h2{font-size:38px}
+  body[data-design="c"] .hero h2{font-size:44px}
+  body[data-design="b"] .hero:after{display:none}
+  body[data-design="c"] .hero:after{left:22px;right:22px;top:75px;height:150px}
+  body[data-design="b"] #homeView .feature-grid{grid-template-columns:1fr}
+  body[data-design="b"] .slot,
+  body[data-design="c"] .slot{display:block}
+  body[data-design="b"] .slot .chips,
+  body[data-design="c"] .slot .chips{justify-content:center}
+  body[data-design="b"] .slot .btn{margin-top:12px}
+  body[data-design="a"] .feature{grid-template-columns:1fr}
+  body[data-design="a"] .core-map-scroll,
+  body[data-design="b"] .core-map-scroll,
+  body[data-design="c"] .core-map-scroll{height:430px}
+  body[data-design="b"] .regional-controls{display:flex}
+  body[data-design="b"] .dicebox{grid-template-columns:100px 1fr}
+  body[data-design="b"] .dice{width:100px;height:100px}
+}
