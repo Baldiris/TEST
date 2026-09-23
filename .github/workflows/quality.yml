@@ -67,6 +67,9 @@ jobs:
       - name: Check PDF station coverage and expanded graph
         run: node tests/jr-pdf-coverage.test.js && node tests/jr-logic.test.js
 
+      - name: Check JR reference design preview
+        run: node tests/jr-design-reference.test.js
+
       - name: Test game logic
         run: node tests/logic.test.js
 

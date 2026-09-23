@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>きまぐれJR旅 デザイン表示確認</title>
+<style>
+body{margin:18px;font:14px system-ui,sans-serif;background:#edf5f2;color:#23334c}
+h1{font-size:20px;margin:0 0 10px}button,select{font:inherit;padding:9px 13px;border:1px solid #bcd4c7;border-radius:7px;background:white;color:inherit}
+label{margin-right:12px}button{cursor:pointer}pre{white-space:pre-wrap;font-size:11px;max-height:170px;overflow:auto}
+iframe{display:block;width:390px;height:900px;max-width:100%;background:white;border:1px solid #c3d9d0;margin:15px auto}
+.controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}a{color:inherit}
+</style>
+<h1>デザイン表示確認</h1>
+<div class="controls">
+<label>画面幅 <select id="width"><option value="390">390px</option><option value="1000">1000px</option></select></label>
+<label>画面 <select id="view"><option value="home">トップ</option><option value="game">ゲーム</option></select></label>
+<button id="render">表示</button><button id="suite">操作を自動検証</button><a href="design-reference.html">デザイン版を開く</a>
+</div>
+<pre id="result" role="status">読み込み中…</pre>
+<iframe id="preview" title="デザイン確認"></iframe>
+<script>
+const frame=document.getElementById('preview'),result=document.getElementById('result');
+let assets;
+async function boot(suite=false){
+ result.textContent='読み込み中…';
+ try{
+  assets ||= await Promise.all(['design-reference.html','network-data.js','design-engine.js','design-reference.js'].map(async p=>{
+   const r=await fetch(p,{cache:'no-cache'});if(!r.ok)throw Error(p+' '+r.status);return r.text();
+  }));
+  const [html,data,engine,adapter]=assets;
+  frame.style.width=document.getElementById('width').value+'px';
+  const initialView=document.getElementById('view').value;
+  const setup=`
+const previewMemory=new Map();
+Object.defineProperty(window,'localStorage',{value:{
+ getItem:k=>{if(k!=='kimagureJRDesignReferenceV03')throw Error('本番保存の読み取り');return previewMemory.get(k)||null},
+ setItem:(k,v)=>{if(k!=='kimagureJRDesignReferenceV03')throw Error('本番保存への書き込み');previewMemory.set(k,String(v))},
+ removeItem:k=>{if(k!=='kimagureJRDesignReferenceV03')throw Error('本番保存の削除');previewMemory.delete(k)}
+}});
+`;
+  const checks=`
+(async()=>{
+ const log=[],check=(value,label)=>{if(!value)throw Error(label);log.push('PASS '+label)};
+ const send=()=>parent.postMessage({type:'jr-design-check',text:log.join('\\n')},location.origin);
+ const until=async test=>{const end=Date.now()+5000;while(!test()){if(Date.now()>end)throw Error('操作タイムアウト');await new Promise(r=>setTimeout(r,50))}};
+ try{
+  await document.fonts.ready;
+  if(${suite}){
+   check(ALL_STATIONS.length===539,'PDF掲載539駅');
+   $('newGameBtn').click();check(!$('setupView').classList.contains('hidden'),'トップ→旅の設定');
+   setupStart='横浜';setupGoal='川崎';confirmSetup();
+   await until(()=>coreMapReady&&activeRegionId==='yokohama-kawasaki'&&!loadingRegionId);
+   check(coreStationElement('横浜').classList.contains('game-current'),'現在地と地域図');
+   $('rollBtn').click();await until(()=>state.dice!==null);
+   check(state.dice>=1&&state.dice<=6,'サイコロ1〜6');
+   check($('rollBtn').disabled,'振り直し防止');
+   check(Object.keys(state.reachable).every(s=>shortest('横浜',s).distance===state.dice||(s==='川崎'&&shortest('横浜',s).distance<=state.dice)),'出目と一致する移動候補・ゴール特例');
+   document.querySelector('[data-candidate-index]').click();
+   check(state.phase==='arrival'&&state.current==='横浜','候補選択→移動前の確認');
+   $('changeTargetBtn').click();check(state.phase==='game','移動先の選び直し');
+   chooseTarget('川崎');$('arrivedBtn').click();
+   check(state.phase==='quests'&&state.current==='川崎','到着→クエスト');
+   check(state.quests['川崎'].length===2,'駅ごとのクエスト2件');
+   document.querySelector('[data-q]').click();
+   check(state.quests['川崎'][0].done,'クエスト達成');
+   state=load();show('homeView');$('resumeBtn').click();
+   check(state.phase==='quests'&&state.quests['川崎'][0].done,'保存から旅と達成を復元');
+   $('nextTurnBtn').click();check(state.finished&&!$('finishView').classList.contains('hidden'),'ゴール到着と旅の完了');
+   check(previewMemory.size===1,'本番セーブを読まず、書き換えない');
+   await until(()=>$('travelOverlay').classList.contains('hidden'));
+  }
+  if(${JSON.stringify(initialView)}==='game'){
+   setupStart='横浜';setupGoal='東京';confirmSetup();
+   await until(()=>coreMapReady&&activeRegionId==='yokohama-kawasaki'&&!loadingRegionId);
+   centerCurrent(false);
+  }else show('homeView');
+  await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+  check(document.documentElement.scrollWidth<=document.documentElement.clientWidth+1,'画面幅 '+document.documentElement.clientWidth+'px・横はみ出しなし');
+  send();
+ }catch(e){log.push('FAIL '+e.message);send();}
+})();
+`;
+  const inline=code=>'<script>'+code.replace(/<\/script/gi,'<\\/script')+'<\/script>';
+  frame.srcdoc=html.replace('<head>','<head><base href="'+new URL('./',location.href).href+'">')
+   .replace('<script src="network-data.js"><\/script>',inline(setup+data))
+   .replace('<script src="design-engine.js"><\/script>',inline(engine))
+   .replace('<script src="design-reference.js"><\/script>',inline(adapter+checks));
+ }catch(e){result.textContent='FAIL '+e.message;}
+}
+window.addEventListener('message',e=>{
+ if(e.source===frame.contentWindow&&e.origin===location.origin&&e.data?.type==='jr-design-check')result.textContent=e.data.text;
+});
+document.getElementById('render').onclick=()=>boot();
+document.getElementById('suite').onclick=()=>boot(true);
+boot();
+</script>
+</html>
