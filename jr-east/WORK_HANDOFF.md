@@ -79,3 +79,13 @@ node scripts/generate-jr-maps.js --check
 - `design-reference.js` は表示・導線のアダプター。プレビュー保存キーは `kimagureJRDesignReferenceV03`。
 - `design-reference-check.html` で390px / 1000px、移動・到着・クエスト・保存復元・完走・保存分離を検証可能。検証ページはメモリー内保存のみ。
 - 詳細は `DESIGN_REFERENCE.md`。最終確認では公開ページの見た目と検証結果を両方確認する。
+
+
+## 2026-09-23 本番LP昇格（作業ブランチ）
+
+- 参照デザイン版のLP構造を本番 `jr-east/index.html` へ昇格。
+- ゲーム実行は隔離用 `design-engine.js` ではなく、従来どおり本番 `app.js` を使用。
+- `network-data.js`、539駅 / 34サービス / 18地域SVG、V0.3保存キー、旧版移行、サイコロ・候補駅・到着・クエスト・履歴・完走のルールは変更しない。
+- 旧本番画面は `jr-east/classic.html` として退避し、LPフッターから到達可能。
+- `tests/jr-production-lp.test.js` を追加し、本番LPの全操作ID、スクリプト順、保存キー、LP素材、旧画面退避をCIで保護。
+- 作業ブランチ: `feature/jr-east-lp-production`。

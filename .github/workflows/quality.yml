@@ -70,6 +70,9 @@ jobs:
       - name: Check JR reference design preview
         run: node tests/jr-design-reference.test.js
 
+      - name: Check JR production LP shell
+        run: node tests/jr-production-lp.test.js
+
       - name: Test game logic
         run: node tests/logic.test.js
 

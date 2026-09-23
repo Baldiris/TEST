@@ -1,54 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#173a2a">
-  <title>きまぐれJR旅 V0.3</title>
+  <meta name="theme-color" content="#eef9fc">
+  <title>きまぐれJR旅 — いつもの景色を、旅に。</title>
+  <meta name="description" content="サイコロで行き先が決まる、関東の駅めぐり。539駅の路線図と小さなクエストで、いつもの日常を旅に変えよう。">
+  <link rel="preload" as="image" href="assets/kanto-riverside.webp">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="design-reference.css">
 </head>
-<body>
-  <main class="app">
-    <header class="topbar">
-      <div class="brand">
-        <div class="logo">JR</div>
-        <div>
-          <h1>きまぐれJR旅</h1>
-          <p>JR東日本 関東近郊ネットワーク V0.3</p>
-        </div>
-      </div>
-      <button class="tiny" id="resetBtn">初期化</button>
-    </header>
-
+<body data-view="homeView">
+  <header class="reference-nav">
+    <a class="reference-brand" href="#homeView" data-home-link aria-label="きまぐれJR旅 トップ">
+      <svg class="brand-mark" viewBox="0 0 52 60" aria-hidden="true"><rect x="8" y="3" width="36" height="43" rx="12" fill="white" stroke="currentColor" stroke-width="4"/><path d="M16 15h20v17H16z" fill="#24394b"/><path d="M26 15v17" stroke="white" stroke-width="2"/><path d="M21 9h10M16 39h3m14 0h3" stroke="#1a945e" stroke-width="4" stroke-linecap="round"/><path d="m17 46-8 9m26-9 8 9M14 51h24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+      <span><strong>きまぐれ<span>JR</span>旅</strong><small>KANTO RAIL TRIP</small></span>
+    </a>
+    <nav class="reference-links" aria-label="メインメニュー"><a href="#homeView" data-home-link aria-current="page">トップ</a><a href="#howto" data-howto-link>遊び方</a><a href="region-lab.html">路線図</a></nav>
+    <button class="nav-cta" data-start>今すぐ始める <span aria-hidden="true">→</span></button>
+    <button class="tiny reset-button" id="resetBtn">旅をリセット</button>
+  </header>
+  <main class="reference-main">
     <section id="homeView">
-      <div class="panel hero">
-        <div class="eyebrow">JR EAST KANTO NETWORK JOURNEY</div>
-        <h2>路線図を見ながら、<br>サイコロで関東を進む。</h2>
-        <p>現在地・ゴール・おすすめ経路・サイコロで行ける駅を、ひとつのネットワーク盤面で確認できます。</p>
-      </div>
-
-      <div class="panel">
-        <div class="section-title">
-          <h2>V0.3 Interactive Map</h2>
-          <p id="networkStat">ネットワーク読込中</p>
+      <div class="reference-hero">
+        <div class="hero-copy">
+          <span class="hero-kicker">いつもの景色を、旅に。</span>
+          <h1>思い立ったら、<br><em>きまぐれに。</em></h1>
+          <h2>サイコロで行き先が決まる<br>関東の駅めぐりアプリ</h2>
+          <p>いつもの日常に、ちょっとした旅のワクワクを。<br>ひと駅先の、まだ知らない街へ。<br>次の行き先は、サイコロにまかせよう。</p>
+          <button class="hero-cta" id="newGameBtn">さっそく旅をはじめる <span aria-hidden="true">→</span></button>
+          <button class="resume-link hidden" id="resumeBtn">途中の旅を再開する →</button>
+          <span class="hero-note">インストール不要・無料ですぐに遊べます</span>
         </div>
-        <div class="feature-grid">
-          <div class="feature"><b>ネットワーク盤面</b><span>PDF掲載の全駅へ拡張</span></div>
-          <div class="feature"><b>候補駅カード</b><span>スマホでも選びやすく</span></div>
-          <div class="feature"><b>ルートガイド</b><span>ゴール方向をひと目で</span></div>
-          <div class="feature"><b>乗換を強調</b><span>0マス乗換を見やすく</span></div>
+        <div class="hero-stage">
+          <div class="area-badge"><span>JR</span>関東エリア<br>対応</div>
+          <p class="handwritten">サイコロが、<br>いつもの景色を<br><span>旅に変える。</span></p>
+          <div class="phone-frame" aria-label="アプリのイメージ">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="phone-status"><b>9:41</b><span>▮▮▮ ▰</span></div>
+              <div class="phone-brand">▣ きまぐれ<span>JR</span>旅 <span class="phone-menu" aria-hidden="true">☰</span></div>
+              <div class="phone-scene">
+                <p>どこへ行く？<strong>今日のきまぐれ旅</strong></p>
+                <svg class="showcase-die" viewBox="0 0 190 200" aria-hidden="true">
+                  <defs><linearGradient id="die-left" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#b9c6cc"/></linearGradient><linearGradient id="die-right" x2="1" y2="1"><stop stop-color="#f7fcff"/><stop offset="1" stop-color="#ced8de"/></linearGradient></defs>
+                  <path d="M17 72Q12 65 22 59L88 22Q96 18 106 24L168 62Q176 67 172 76L102 121 88 120Z" fill="#fff"/>
+                  <path d="M15 68L94 113 95 188Q90 190 83 186L26 151Q18 146 17 135Z" fill="url(#die-left)"/>
+                  <path d="M94 113L174 68 171 141Q170 149 164 153L104 187Q99 190 95 188Z" fill="url(#die-right)"/>
+                  <ellipse cx="96" cy="64" rx="15" ry="9" fill="#e85259"/><ellipse cx="38" cy="105" rx="8" ry="12" transform="rotate(-25 38 105)" fill="#233349"/><ellipse cx="73" cy="153" rx="8" ry="12" transform="rotate(-25 73 153)" fill="#233349"/><ellipse cx="116" cy="114" rx="8" ry="12" transform="rotate(25 116 114)" fill="#233349"/><ellipse cx="151" cy="94" rx="8" ry="12" transform="rotate(25 151 94)" fill="#233349"/><ellipse cx="116" cy="158" rx="8" ry="12" transform="rotate(25 116 158)" fill="#233349"/><ellipse cx="151" cy="138" rx="8" ry="12" transform="rotate(25 151 138)" fill="#233349"/>
+                </svg>
+                <button class="phone-roll" data-start><span aria-hidden="true">▶</span> 旅をはじめる</button>
+                <span class="phone-caption">ひと駅先に、あたらしい発見。</span>
+              </div>
+              <div class="phone-tabs" aria-hidden="true"><span>⌂<small>ホーム</small></span><span>⌖<small>マップ</small></span><span>▣<small>旅の記録</small></span></div>
+            </div>
+          </div>
+          <span class="hero-postcard">行き先は、<br>きっといい出会いにつながってる。</span>
         </div>
-        <button class="btn orange" id="newGameBtn">新しい旅をはじめる</button>
-        <button class="btn secondary hidden gap-top" id="resumeBtn">途中から再開する</button>
-        <p class="notice">進行状況はこのブラウザに保存されます。<br><a href="region-lab.html">全駅・地域マップを見る</a></p>
       </div>
+      <section class="benefit-strip" aria-label="旅の楽しみ方">
+        <article><span class="benefit-icon" aria-hidden="true">⚄</span><div><b>サイコロで行き先決定</b><small>迷う時間も、旅の楽しみに。</small></div></article>
+        <article><span class="benefit-icon" aria-hidden="true">⌖</span><div><b>関東の駅をめぐろう</b><small id="networkStat">539駅のネットワーク</small></div></article>
+        <article><span class="benefit-icon" aria-hidden="true">⚑</span><div><b>駅ごとにクエスト</b><small>小さな発見を、ひとつずつ。</small></div></article>
+        <article><span class="benefit-icon" aria-hidden="true">☆</span><div><b>旅の思い出を記録</b><small>訪れた駅・クエストを自動保存。</small></div></article>
+      </section>
+      <section class="howto-section" id="howto" aria-labelledby="howtoTitle">
+        <div class="section-heading"><div><span class="eyebrow">HOW TO ENJOY</span><h2 id="howtoTitle">気ままな旅は、4ステップ。</h2></div><p>予定はなくても、楽しみはきっとある。</p></div>
+        <div class="step-grid">
+          <article class="step-card"><span class="step-number">01</span><h3>サイコロをふる</h3><p>出発駅とゴールを決めたら、<br>サイコロで次の一歩を。</p><div class="step-art dice-art" aria-hidden="true"><span>⚄</span></div></article>
+          <article class="step-card"><span class="step-number">02</span><h3>行き先の駅を選ぶ</h3><p>出目に合う候補から、<br>気になる駅を選ぼう。</p><div class="step-art ticket-art" aria-hidden="true"><small>次の目的地</small><strong>横浜 → 川崎</strong><span>知らない景色まで、あとひと駅。</span></div></article>
+          <article class="step-card"><span class="step-number">03</span><h3>クエストに挑戦</h3><p>駅の風景や気になるお店。<br>小さなミッションを楽しもう。</p><div class="step-art quest-art" aria-hidden="true"><span>✓ 駅名標を写真に残す</span><span>○ 気になるお店を見つける</span></div></article>
+          <article class="step-card"><span class="step-number">04</span><h3>旅の記録を残す</h3><p>訪れた駅と思い出が、<br>あなただけの旅の履歴に。</p><div class="step-art record-art" aria-hidden="true"><span>YOUR JOURNEY</span><strong>横浜 → 川崎 → 東京</strong><small>次は、どこに行こう？</small></div></article>
+        </div>
+        <div class="try-trip"><p><b>まずは、画面で旅してみる？</b><span>横浜から東京へ。実際のゲームを試せます。</span></p><button id="tryTripBtn">横浜から旅を試す <span aria-hidden="true">→</span></button></div>
+      </section>
     </section>
-
     <section id="setupView" class="hidden">
       <div class="panel">
         <div class="section-title">
           <h2>旅の行き先を抽選</h2>
-          <p>JR東日本 東京近郊コア</p>
+          <p>行き先は、サイコロと偶然におまかせ。</p>
         </div>
         <div class="timeline"><span class="step on"></span><span class="step"></span><span class="step"></span></div>
 
@@ -73,9 +104,10 @@
     </section>
 
     <section id="gameView" class="hidden">
+      <div class="game-title"><div><span class="eyebrow">TODAY’S KIMAGURE TRIP</span><h1>今日のきまぐれ旅</h1></div><button class="home-button" data-home-link>⌂ ホーム</button></div>
       <div class="panel compact-panel">
         <div class="section-title">
-          <h2>旅の状況</h2>
+          <h2>旅のきっぷ</h2>
           <p id="turnText">TURN 1</p>
         </div>
         <div class="timeline"><span class="step on"></span><span class="step on"></span><span class="step"></span></div>
@@ -92,7 +124,7 @@
 
       <div class="panel dice-panel" id="dicePanel">
         <div class="section-title">
-          <h2>サイコロ</h2>
+          <h2>次は、どの駅へ？</h2>
           <p id="diceStateText">振って移動可能駅を表示</p>
         </div>
         <div class="dicebox">
@@ -115,7 +147,7 @@
       <div class="panel network-panel">
         <div class="section-title">
           <div>
-            <h2>路線図</h2>
+            <h2>旅のマップ</h2>
             <p id="boardHint">地域図を読み込み中...</p>
           </div>
           <div class="board-tools">
@@ -157,7 +189,7 @@
           <svg id="networkSvg" viewBox="0 0 1840 820" role="img" aria-label="JR東日本関東近郊簡易ネットワーク図"></svg>
         </div>
 
-        <p class="notice board-note">「関東」は現在地とゴールの位置関係を見る概要図、「地域」は現在地周辺の詳細図、「全駅」は全路線の接続を確認する補助表示です。<br><small>駅一覧はJR東日本の2023年3月版PDFを基準に収録。地図は独自の模式図です。営業日・停車列車は実際の案内をご確認ください。</small></p>
+        <details class="map-explanation"><summary>路線図の見方</summary><p class="notice board-note">「関東」は現在地とゴールの位置関係を見る概要図、「地域」は現在地周辺の詳細図、「全駅」は全路線の接続を確認する補助表示です。<br><small>駅一覧はJR東日本の2023年3月版PDFを基準に収録。地図は独自の模式図です。営業日・停車列車は実際の案内をご確認ください。</small></p></details>
       </div>
 
       <div class="panel hidden" id="arrivalPanel">
@@ -183,7 +215,7 @@
         <button class="btn" id="nextTurnBtn">次のサイコロへ</button>
       </div>
 
-      <div class="panel">
+      <div class="panel history-panel">
         <div class="section-title"><h2>旅の履歴</h2><p>自動保存</p></div>
         <div class="history" id="history"></div>
       </div>
@@ -201,9 +233,8 @@
       </div>
     </section>
 
-    <footer>Kimagure JR East Trip V0.3 — PDF Station Coverage</footer>
   </main>
-
+  <footer class="reference-footer"><b>きまぐれ<span>JR</span>旅</b><span>関東の駅を、もっと気ままに。</span><a href="classic.html">旧V0.3画面 →</a><small>JR各社の公式サービスではありません。進行状況はこのブラウザーに保存されます。</small></footer>
   <div class="travel-overlay hidden" id="travelOverlay" aria-live="polite">
     <div class="travel-card">
       <div class="train-track"><span class="travel-train">🚃</span></div>
@@ -214,6 +245,6 @@
   <div class="toast" id="toast"></div>
   <script src="network-data.js"></script>
   <script src="app.js"></script>
+  <script src="design-reference.js"></script>
 </body>
 </html>
-
