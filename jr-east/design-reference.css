@@ -127,12 +127,12 @@ body:not([data-view="homeView"]) .reference-nav {height:86px;border-bottom:1px s
 .section-title h2 {font-size:17px}
 .section-title p {font-size:11px;line-height:1.6}
 #gameView .compact-panel {grid-area:summary;display:grid;grid-template-columns:1fr 1fr;gap:12px 26px;position:relative;border-top:4px solid var(--green);padding:18px 24px}
-.compact-panel>.section-title {grid-column:1/-1}
+.compact-panel>.section-title {grid-column:1;grid-row:1}
 .compact-panel>.timeline {display:none}
 .compact-panel>.stats {grid-column:1;grid-row:2}
 .compact-panel>#currentLines {grid-column:1;grid-row:3;align-content:center;margin:0;justify-content:flex-start}
-.compact-panel>#recommendation {grid-column:2;grid-row:2;margin:0;padding:10px 13px;font-size:12px;display:flex;align-items:center}
-.compact-panel>#routeCompass {grid-column:2;grid-row:3;margin:0}
+.compact-panel>#recommendation {grid-column:2;grid-row:1;margin:0;padding:6px 11px;font-size:11px;display:flex;align-items:center}
+.compact-panel>#routeCompass {grid-column:2;grid-row:2 / span 2;margin:0;align-self:start}
 .stats {gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden}
 .stat {background:#f7fbfa;border:0;border-radius:0;padding:10px 5px}
 .stat+.stat {border-left:1px dashed #cae1d6}

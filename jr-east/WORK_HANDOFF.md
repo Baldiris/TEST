@@ -70,3 +70,12 @@ node scripts/generate-jr-maps.js --check
 - 公開 `region-check.html` の390px/1000px自動回帰が成功。18地域・539駅の読込、駅Enter選択、到着とクエスト、ゴール、V0.1/V0.2移行を確認。
 - 東京・横浜地域図の日本語表示を公開ブラウザーで確認。地域外ゴールでも地域図を維持。
 - 模式図は拡大・スクロールで読む設計。全体縮小時の文字サイズと複雑な並走区間には、引き続き視覚改善の余地がある。
+
+## 2026-09-23 参照画像のデザイン版
+
+- PR #14で `design-reference.html` を独立した公開画面として追加。トップ、抽選、ゲーム、到着、クエスト、完走を操作可能。
+- 既存の本番HTML・CSS・エンジン・ネットワークは変更しない。背景画像はユーザーの範囲削除を反映した川沿いの風景。
+- `design-engine.js` は `app.js` の生成コピー。保存キーと旧版移行キーのみ分離し、CIでソース一致を保証。ルール修正時は `node scripts/generate-jr-design-engine.js` も実行する。
+- `design-reference.js` は表示・導線のアダプター。プレビュー保存キーは `kimagureJRDesignReferenceV03`。
+- `design-reference-check.html` で390px / 1000px、移動・到着・クエスト・保存復元・完走・保存分離を検証可能。検証ページはメモリー内保存のみ。
+- 詳細は `DESIGN_REFERENCE.md`。最終確認では公開ページの見た目と検証結果を両方確認する。
