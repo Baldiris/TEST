@@ -41,7 +41,7 @@ Object.defineProperty(window,'localStorage',{value:{
   const checks=`
 (async()=>{
  const log=[],check=(value,label)=>{if(!value)throw Error(label);log.push('PASS '+label)};
- const send=()=>parent.postMessage({type:'jr-design-check',text:log.join('\\n')},location.origin);
+ const send=()=>parent.postMessage({type:'jr-design-check',text:log.join('\\n')},new URL(document.baseURI).origin);
  const until=async test=>{const end=Date.now()+5000;while(!test()){if(Date.now()>end)throw Error('操作タイムアウト');await new Promise(r=>setTimeout(r,50))}};
  try{
   await document.fonts.ready;
