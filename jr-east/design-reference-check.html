@@ -52,6 +52,13 @@ Object.defineProperty(window,'localStorage',{value:{
    check($('startSlot').textContent!=='？'&&$('startLines').children.length>0,'出発駅の抽選と路線');
    $('drawGoalBtn').click();await until(()=>$('confirmSetupBtn').disabled===false);
    check($('goalSlot').textContent!=='？'&&$('goalLines').children.length>0,'ゴール駅の抽選と旅を開始の有効化');
+   $('drawStartBtn').click();
+   check($('setupRoute').classList.contains('hidden')&&$('drawGoalBtn').disabled&&$('confirmSetupBtn').disabled,'出発駅の再抽選では古い経路を隠して次の操作を止める');
+   await until(()=>$('drawGoalBtn').disabled===false);
+   $('drawGoalBtn').click();await until(()=>$('confirmSetupBtn').disabled===false);
+   $('drawGoalBtn').click();
+   check($('setupRoute').classList.contains('hidden')&&$('confirmSetupBtn').disabled,'ゴール駅の再抽選では古い経路を隠す');
+   await until(()=>$('confirmSetupBtn').disabled===false);
    setupStart='横浜';setupGoal='川崎';confirmSetup();
    await until(()=>coreMapReady&&activeRegionId==='yokohama-kawasaki'&&!loadingRegionId);
    check(coreStationElement('横浜').classList.contains('game-current'),'現在地と地域図');

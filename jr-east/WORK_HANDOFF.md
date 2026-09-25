@@ -89,3 +89,10 @@ node scripts/generate-jr-maps.js --check
 - 旧本番画面は `jr-east/classic.html` として退避し、LPフッターから到達可能。
 - `tests/jr-production-lp.test.js` を追加し、本番LPの全操作ID、スクリプト順、保存キー、LP素材、旧画面退避をCIで保護。
 - 作業ブランチ: `feature/jr-east-lp-production`。
+
+## 2026-09-25 旅の設定画面LP
+
+- PR #17 を master に統合。トップから続く設定画面を、東京タワーと列車の風景・右側の抽選フォームで構成。モバイルは縦配置。
+- 本番 `index.html` と隔離プレビュー `design-reference.html` は同じ設定画面を共有。抽選・路線・保存は従来の V0.3 エンジンを使用。
+- PR #17 の Quality Check 成功。公開 Pages で抽選から旅の開始、地域図まで確認。`design-reference-check.html` の390px/1000pxで539駅・抽選・移動・保存・完走・横はみ出しなしを確認。
+- 続く修正では、出発駅・ゴール駅を再抽選する間は古い経路を隠し、次のボタンを一時無効化する。表示アダプター `design-reference.js` のみで対応し、公開検証に再抽選を追加。
