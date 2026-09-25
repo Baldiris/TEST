@@ -48,6 +48,9 @@ Object.defineProperty(window,'localStorage',{value:{
   if(${suite}){
    check(ALL_STATIONS.length===539,'PDF掲載539駅');
    $('newGameBtn').click();check(!$('setupView').classList.contains('hidden'),'トップ→旅の設定');
+   $('drawStartBtn').click();$('cancelSetupBtn').click();newGame();
+   await new Promise(r=>setTimeout(r,850));
+   check($('startSlot').textContent==='？'&&!$('drawStartBtn').disabled&&$('drawGoalBtn').disabled,'抽選途中で戻っても次の旅に古い結果を出さない');
    $('drawStartBtn').click();await until(()=>$('drawGoalBtn').disabled===false);
    check($('startSlot').textContent!=='？'&&$('startLines').children.length>0,'出発駅の抽選と路線');
    $('drawGoalBtn').click();await until(()=>$('confirmSetupBtn').disabled===false);

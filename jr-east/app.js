@@ -122,7 +122,7 @@ function fresh(){
   };
 }
 let state=load()||fresh();
-let setupStart=null,setupGoal=null,rollTimer=null,boardMode="focus",lastBoardStation=null;
+let setupStart=null,setupGoal=null,setupAnimationTimer=null,rollTimer=null,boardMode="focus",lastBoardStation=null;
 let mapMode="core",coreMapReady=false,coreMapStations=new Set(),activeRegionId="tokyo-core",loadingRegionId=null;
 let mapRequest=0,mapPinnedRegion=null,mapZoom=1;
 const overviewHubCache=new Map();
@@ -145,6 +145,7 @@ function load(){
   }catch{return null}
 }
 function show(id){
+  if(id!=="setupView"&&setupAnimationTimer){clearInterval(setupAnimationTimer);setupAnimationTimer=null;}
   views.forEach(v=>$(v).classList.toggle("hidden",v!==id));
   window.scrollTo({top:0,behavior:"smooth"});
 }
@@ -178,16 +179,19 @@ function randomGoalFrom(start){
 }
 function slotAnimate(el,final,cb){
   let n=0;
-  const t=setInterval(()=>{
+  clearInterval(setupAnimationTimer);
+  setupAnimationTimer=setInterval(()=>{
     el.textContent=ALL_STATIONS[Math.floor(Math.random()*ALL_STATIONS.length)];
-    if(++n>13){clearInterval(t);el.textContent=final;cb&&cb();}
+    if(++n>13){clearInterval(setupAnimationTimer);setupAnimationTimer=null;el.textContent=final;cb&&cb();}
   },55);
 }
 
 function newGame(){
+  clearInterval(setupAnimationTimer);setupAnimationTimer=null;
   setupStart=setupGoal=null;
   $("startSlot").textContent=$("goalSlot").textContent="？";
   $("startLines").innerHTML=$("goalLines").innerHTML="";
+  $("drawStartBtn").disabled=false;
   $("drawGoalBtn").disabled=true;
   $("confirmSetupBtn").disabled=true;
   $("setupRoute").classList.add("hidden");
@@ -870,6 +874,7 @@ function resume(){
 }
 function hardReset(){
   if(!confirm("保存中の旅を初期化します。よろしいですか？")) return;
+  clearInterval(setupAnimationTimer);setupAnimationTimer=null;
   localStorage.removeItem(KEY); LEGACY_KEYS.forEach(key=>localStorage.removeItem(key));
   state=fresh(); setupStart=setupGoal=null; boardMode="focus"; lastBoardStation=null;
   updateResume(); show("homeView"); toast("初期化しました");
