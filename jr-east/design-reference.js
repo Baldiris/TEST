@@ -23,6 +23,14 @@
     });
   };
   document.body.dataset.view = 'homeView';
+  document.getElementById('drawStartBtn').addEventListener('click', () => {
+    document.getElementById('drawGoalBtn').disabled = true;
+    document.getElementById('setupRoute').classList.add('hidden');
+  });
+  document.getElementById('drawGoalBtn').addEventListener('click', () => {
+    document.getElementById('confirmSetupBtn').disabled = true;
+    document.getElementById('setupRoute').classList.add('hidden');
+  });
   document.querySelectorAll('[data-start]').forEach(button => button.onclick = newGame);
   document.querySelectorAll('[data-home-link]').forEach(link => link.onclick = event => {
     event.preventDefault();
