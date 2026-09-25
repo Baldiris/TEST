@@ -6,6 +6,7 @@ const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
 const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 const html = read('jr-east/index.html');
+const preview = read('jr-east/design-reference.html');
 const classic = read('jr-east/classic.html');
 const app = read('jr-east/app.js');
 const adapter = read('jr-east/design-reference.js');
@@ -19,6 +20,10 @@ for (const [, id] of app.matchAll(/\$\(["']([^"']+)["']\)/g)) {
 }
 
 assert(html.includes('assets/kanto-riverside.webp'), 'LP hero asset must remain');
+assert(css.includes('assets/setup-tokyo-tower.webp'), 'approved setup landscape must load');
+assert(html.includes('class="setup-landscape"') && html.includes('class="setup-content"'), 'setup must keep the scenic and form areas side by side');
+const setupSection = page => page.match(/<section id="setupView"[\s\S]*?<section id="gameView"/)[0];
+assert.equal(setupSection(html), setupSection(preview), 'production and isolated preview must share the setup screen');
 assert(html.includes('design-reference.css'), 'LP stylesheet must load');
 assert(html.includes('design-reference.js'), 'presentation adapter must load');
 assert(html.includes('classic.html'), 'classic V0.3 screen must remain reachable');
