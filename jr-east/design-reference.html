@@ -75,31 +75,50 @@
         <div class="try-trip"><p><b>まずは、画面で旅してみる？</b><span>横浜から東京へ。実際のゲームを試せます。</span></p><button id="tryTripBtn">横浜から旅を試す <span aria-hidden="true">→</span></button></div>
       </section>
     </section>
-    <section id="setupView" class="hidden">
-      <div class="panel">
-        <div class="section-title">
-          <h2>旅の行き先を抽選</h2>
-          <p>行き先は、サイコロと偶然におまかせ。</p>
+    <section id="setupView" class="hidden" aria-labelledby="setupTitle">
+      <div class="setup-landscape">
+        <p class="setup-handwritten">サイコロが、<br>いつもの景色を<br><span>旅に変える。</span></p>
+        <svg class="setup-trail" viewBox="0 0 600 650" aria-hidden="true">
+          <path d="M35 410 C125 345 85 255 180 275 S255 455 345 380 S425 190 570 230" fill="none" stroke="white" stroke-width="3" stroke-dasharray="8 13" stroke-linecap="round"/>
+          <circle cx="180" cy="275" r="9" fill="white"/><circle cx="345" cy="380" r="9" fill="white"/><circle cx="570" cy="230" r="9" fill="white"/>
+        </svg>
+        <span class="setup-photo-caption">次は、どこへ行こう？</span>
+      </div>
+      <div class="setup-content">
+        <div class="setup-inner">
+          <div class="setup-progress" aria-label="旅の設定は3ステップ">
+            <div class="timeline" aria-hidden="true"><span class="step on"></span><span class="step"></span><span class="step"></span></div>
+            <div class="setup-progress-labels"><span>出発駅</span><span>ゴール駅</span><span>旅を開始</span></div>
+          </div>
+          <div class="section-title">
+            <span class="setup-kicker">WHERE TO NEXT?</span>
+            <h1 id="setupTitle">旅の行き先を抽選</h1>
+            <p>出発駅とゴール駅を決めたら、<br>あなただけの気まぐれ旅がはじまります。</p>
+          </div>
+          <div class="setup-stations">
+            <div class="slot setup-start">
+              <div class="slot-label"><span class="setup-pin" aria-hidden="true">⌾</span> START</div>
+              <p class="setup-slot-caption">出発駅</p>
+              <div class="slot-value" id="startSlot" aria-live="polite">？</div>
+              <div class="chips" id="startLines"></div>
+              <button class="btn orange" id="drawStartBtn">⚄ <span>出発駅を抽選</span></button>
+            </div>
+            <span class="setup-direction" aria-hidden="true">→</span>
+            <div class="slot setup-goal">
+              <div class="slot-label"><span class="setup-pin" aria-hidden="true">⌖</span> GOAL</div>
+              <p class="setup-slot-caption">ゴール駅</p>
+              <div class="slot-value" id="goalSlot" aria-live="polite">？</div>
+              <div class="chips" id="goalLines"></div>
+              <button class="btn orange" id="drawGoalBtn" disabled>⚄ <span>ゴール駅を抽選</span></button>
+            </div>
+          </div>
+          <div class="message hidden" id="setupRoute" role="status"></div>
+          <div class="setup-actions">
+            <button class="btn" id="confirmSetupBtn" disabled>この旅を開始 <span aria-hidden="true">→</span></button>
+            <button class="btn ghost" id="cancelSetupBtn">ホームへ戻る</button>
+          </div>
+          <p class="setup-note">行き先は偶然におまかせ。何度でも抽選し直せます。</p>
         </div>
-        <div class="timeline"><span class="step on"></span><span class="step"></span><span class="step"></span></div>
-
-        <div class="slot">
-          <div class="slot-label">START</div>
-          <div class="slot-value" id="startSlot">？</div>
-          <div class="chips" id="startLines"></div>
-          <button class="btn orange" id="drawStartBtn">出発駅を抽選</button>
-        </div>
-
-        <div class="slot">
-          <div class="slot-label">GOAL</div>
-          <div class="slot-value" id="goalSlot">？</div>
-          <div class="chips" id="goalLines"></div>
-          <button class="btn orange" id="drawGoalBtn" disabled>ゴール駅を抽選</button>
-        </div>
-
-        <div class="message hidden" id="setupRoute"></div>
-        <button class="btn" id="confirmSetupBtn" disabled>この旅を開始</button>
-        <button class="btn ghost gap-top" id="cancelSetupBtn">ホームへ戻る</button>
       </div>
     </section>
 

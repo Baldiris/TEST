@@ -13,7 +13,7 @@ iframe{display:block;width:390px;height:900px;max-width:100%;background:white;bo
 <h1>デザイン表示確認</h1>
 <div class="controls">
 <label>画面幅 <select id="width"><option value="390">390px</option><option value="1000">1000px</option></select></label>
-<label>画面 <select id="view"><option value="home">トップ</option><option value="game">ゲーム</option></select></label>
+<label>画面 <select id="view"><option value="home">トップ</option><option value="setup">旅の設定</option><option value="game">ゲーム</option></select></label>
 <button id="render">表示</button><button id="suite">操作を自動検証</button><a href="design-reference.html">デザイン版を開く</a>
 </div>
 <pre id="result" role="status">読み込み中…</pre>
@@ -48,6 +48,10 @@ Object.defineProperty(window,'localStorage',{value:{
   if(${suite}){
    check(ALL_STATIONS.length===539,'PDF掲載539駅');
    $('newGameBtn').click();check(!$('setupView').classList.contains('hidden'),'トップ→旅の設定');
+   $('drawStartBtn').click();await until(()=>$('drawGoalBtn').disabled===false);
+   check($('startSlot').textContent!=='？'&&$('startLines').children.length>0,'出発駅の抽選と路線');
+   $('drawGoalBtn').click();await until(()=>$('confirmSetupBtn').disabled===false);
+   check($('goalSlot').textContent!=='？'&&$('goalLines').children.length>0,'ゴール駅の抽選と旅を開始の有効化');
    setupStart='横浜';setupGoal='川崎';confirmSetup();
    await until(()=>coreMapReady&&activeRegionId==='yokohama-kawasaki'&&!loadingRegionId);
    check(coreStationElement('横浜').classList.contains('game-current'),'現在地と地域図');
@@ -73,7 +77,8 @@ Object.defineProperty(window,'localStorage',{value:{
    setupStart='横浜';setupGoal='東京';confirmSetup();
    await until(()=>coreMapReady&&activeRegionId==='yokohama-kawasaki'&&!loadingRegionId);
    centerCurrent(false);
-  }else show('homeView');
+  }else if(${JSON.stringify(initialView)}==='setup') newGame();
+  else show('homeView');
   await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
   check(document.documentElement.scrollWidth<=document.documentElement.clientWidth+1,'画面幅 '+document.documentElement.clientWidth+'px・横はみ出しなし');
   send();

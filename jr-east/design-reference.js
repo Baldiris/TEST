@@ -1,8 +1,21 @@
 /* Presentation adapter. Rules, maps and persistence come from design-engine.js. */
 (() => {
+  const setupSteps = [...document.querySelectorAll('#setupView .timeline .step')];
+  const syncSetupSteps = () => {
+    const startReady = !!document.getElementById('startLines').children.length;
+    const goalReady = !document.getElementById('confirmSetupBtn').disabled;
+    setupSteps.forEach((step, i) => step.classList.toggle('on', i === (goalReady ? 2 : startReady ? 1 : 0)));
+    document.querySelectorAll('.setup-progress-labels span').forEach((label, i) => {
+      label.classList.toggle('on', i === (goalReady ? 2 : startReady ? 1 : 0));
+    });
+  };
+  const setupObserver = new MutationObserver(syncSetupSteps);
+  setupObserver.observe(document.getElementById('startLines'), { childList: true });
+  setupObserver.observe(document.getElementById('confirmSetupBtn'), { attributes: true, attributeFilter: ['disabled'] });
   const engineShow = show;
   show = function (id) {
     engineShow(id);
+    if (id === 'setupView') syncSetupSteps();
     document.body.dataset.view = id;
     document.querySelectorAll('[data-home-link]').forEach(link => {
       if (id === 'homeView') link.setAttribute('aria-current', 'page');
