@@ -16,7 +16,7 @@ for (const [, id] of engine.matchAll(/\$\(["']([^"']+)["']\)/g)) {
   assert(ids.includes(id), 'Missing V0.3 control: ' + id);
 }
 for (const [, asset] of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
-  if (!/^(https?:|mailto:)/.test(asset)) assert(fs.existsSync(path.join(root, 'jr-east', asset)), 'Missing asset: ' + asset);
+  if (!/^(https?:|mailto:)/.test(asset)) assert(fs.existsSync(path.join(root, 'jr-east', asset.split('?')[0])), 'Missing asset: ' + asset);
 }
 for (const [, asset] of read('jr-east/design-reference.css').matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
   assert(fs.existsSync(path.join(root, 'jr-east', asset)), 'Missing CSS asset: ' + asset);
