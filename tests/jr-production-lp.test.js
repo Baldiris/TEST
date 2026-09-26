@@ -19,7 +19,12 @@ for (const [, id] of app.matchAll(/\$\(["']([^"']+)["']\)/g)) {
   assert(ids.includes(id), 'Missing production V0.3 control: ' + id);
 }
 
-assert(html.includes('assets/kanto-riverside.webp'), 'LP hero asset must remain');
+assert(html.includes('assets/hero-tokyo-tower.webp'), 'Tokyo Tower hero asset must preload');
+assert(css.includes('assets/hero-tokyo-tower.webp'), 'Tokyo Tower hero must be visible');
+assert(!html.includes('phone-frame'), 'hero must not contain a floating phone mockup');
+assert(!css.includes('url("assets/kanto-riverside.webp") center 50%/cover'), 'old Skytree hero must be removed');
+const homeHero = page => page.match(/<div class="reference-hero">[\s\S]*?<section class="benefit-strip"/)[0];
+assert.equal(homeHero(html), homeHero(preview), 'production and isolated preview must share the new hero');
 assert(css.includes('assets/setup-tokyo-tower.webp'), 'approved setup landscape must load');
 assert(html.includes('class="setup-landscape"') && html.includes('class="setup-content"'), 'setup must keep the scenic and form areas side by side');
 const setupSection = page => page.match(/<section id="setupView"[\s\S]*?<section id="gameView"/)[0];
