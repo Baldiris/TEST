@@ -8,7 +8,7 @@
   <meta name="description" content="サイコロで行き先が決まる、関東の駅めぐり。539駅の路線図と小さなクエストで、いつもの日常を旅に変えよう。">
   <link rel="preload" as="image" href="assets/hero-tokyo-tower.webp">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="design-reference.css?v=20260926-home">
+  <link rel="stylesheet" href="design-reference.css?v=20260926-manual">
 </head>
 <body data-view="homeView">
   <header class="reference-nav">
@@ -70,8 +70,8 @@
           </div>
           <div class="section-title">
             <span class="setup-kicker">WHERE TO NEXT?</span>
-            <h1 id="setupTitle">旅の行き先を抽選</h1>
-            <p>出発駅とゴール駅を決めたら、<br>あなただけの気まぐれ旅がはじまります。</p>
+            <h1 id="setupTitle">旅の行き先を決める</h1>
+            <p>駅名から指定するか、サイコロにおまかせ。<br>出発駅とゴール駅を決めて旅に出よう。</p>
           </div>
           <div class="setup-stations">
             <div class="slot setup-start">
@@ -80,6 +80,11 @@
               <div class="slot-value" id="startSlot" aria-live="polite">？</div>
               <div class="chips" id="startLines"></div>
               <button class="btn orange" id="drawStartBtn">⚄ <span>出発駅を抽選</span></button>
+              <div class="station-picker">
+                <label for="manualStartInput">または駅名で指定</label>
+                <div class="station-picker-row"><input id="manualStartInput" type="search" list="stationOptions" placeholder="例：横浜" autocomplete="off"><button type="button" id="manualStartBtn">決定</button></div>
+                <small id="manualStartStatus" role="status" aria-live="polite"></small>
+              </div>
             </div>
             <span class="setup-direction" aria-hidden="true">→</span>
             <div class="slot setup-goal">
@@ -88,14 +93,20 @@
               <div class="slot-value" id="goalSlot" aria-live="polite">？</div>
               <div class="chips" id="goalLines"></div>
               <button class="btn orange" id="drawGoalBtn" disabled>⚄ <span>ゴール駅を抽選</span></button>
+              <div class="station-picker">
+                <label for="manualGoalInput">または駅名で指定</label>
+                <div class="station-picker-row"><input id="manualGoalInput" type="search" list="stationOptions" placeholder="出発駅を先に決定" autocomplete="off" disabled><button type="button" id="manualGoalBtn" disabled>決定</button></div>
+                <small id="manualGoalStatus" role="status" aria-live="polite"></small>
+              </div>
             </div>
           </div>
+          <datalist id="stationOptions"></datalist>
           <div class="message hidden" id="setupRoute" role="status"></div>
           <div class="setup-actions">
             <button class="btn" id="confirmSetupBtn" disabled>この旅を開始 <span aria-hidden="true">→</span></button>
             <button class="btn ghost" id="cancelSetupBtn">ホームへ戻る</button>
           </div>
-          <p class="setup-note">行き先は偶然におまかせ。何度でも抽選し直せます。</p>
+          <p class="setup-note">539駅から選べます。抽選と駅名指定は途中で切り替えられます。</p>
         </div>
       </div>
     </section>
@@ -241,7 +252,7 @@
   </div>
   <div class="toast" id="toast"></div>
   <script src="network-data.js"></script>
-  <script src="design-engine.js"></script>
+  <script src="design-engine.js?v=20260926-manual"></script>
   <script src="design-reference.js"></script>
 </body>
 </html>

@@ -189,6 +189,10 @@ function slotAnimate(el,final,cb){
 function newGame(){
   clearInterval(setupAnimationTimer);setupAnimationTimer=null;
   setupStart=setupGoal=null;
+  $("manualStartInput").value=$("manualGoalInput").value="";
+  $("manualStartStatus").textContent=$("manualGoalStatus").textContent="";
+  $("manualGoalInput").disabled=$("manualGoalBtn").disabled=true;
+  $("manualGoalInput").placeholder="出発駅を先に決定";
   $("startSlot").textContent=$("goalSlot").textContent="？";
   $("startLines").innerHTML=$("goalLines").innerHTML="";
   $("drawStartBtn").disabled=false;
@@ -200,6 +204,7 @@ function newGame(){
 function updateSetupRoute(){
   if(!setupStart||!setupGoal) return;
   const r=shortest(setupStart,setupGoal);
+  if(r.distance===null) return;
   $("setupRoute").classList.remove("hidden");
   $("setupRoute").innerHTML="<strong>最短 "+r.distance+"駅</strong><br>"+escapeHtml(setupStart)+" → "+escapeHtml(setupGoal);
 }
@@ -934,23 +939,70 @@ function centerCurrent(smooth=true){
 }
 
 $("networkStat").textContent=LINE_ORDER.length+"路線 / "+ALL_STATIONS.length+"駅ネットワーク";
+$("stationOptions").innerHTML=ALL_STATIONS.map(st=>'<option value="'+escapeHtml(st)+'"></option>').join("");
+function setSetupStart(station){
+  clearInterval(setupAnimationTimer);setupAnimationTimer=null;
+  setupStart=station;setupGoal=null;
+  $("startSlot").textContent=station;$("startLines").innerHTML=lineChips(station);
+  $("goalSlot").textContent="？";$("goalLines").innerHTML="";
+  $("manualGoalInput").value="";$("manualGoalInput").disabled=$("manualGoalBtn").disabled=false;
+  $("manualGoalInput").placeholder="例：東京";
+  $("manualGoalStatus").textContent="";
+  $("drawStartBtn").disabled=false;$("drawGoalBtn").disabled=false;
+  $("confirmSetupBtn").disabled=true;$("setupRoute").classList.add("hidden");
+}
+function setSetupGoal(station){
+  clearInterval(setupAnimationTimer);setupAnimationTimer=null;
+  setupGoal=station;$("goalSlot").textContent=station;
+  $("goalLines").innerHTML=lineChips(station);
+  $("drawGoalBtn").disabled=false;$("confirmSetupBtn").disabled=false;
+  updateSetupRoute();
+}
+function chooseManualStation(which){
+  const input=$(which==="start"?"manualStartInput":"manualGoalInput");
+  const status=$(which==="start"?"manualStartStatus":"manualGoalStatus");
+  const station=input.value.trim();
+  if(!ALL_STATIONS.includes(station)){
+    status.textContent="候補にある駅名を選んでください。";return;
+  }
+  if(which==="goal"&&station===setupStart){
+    status.textContent="出発駅と別の駅を選んでください。";return;
+  }
+  if(which==="goal"&&shortest(setupStart,station).distance===null){
+    status.textContent="この駅には経路がありません。別の駅を選んでください。";return;
+  }
+  status.textContent="";
+  if(which==="start")setSetupStart(station);else setSetupGoal(station);
+}
+for(const which of ["Start","Goal"]){
+  const input=$("manual"+which+"Input");
+  input.oninput=()=>$("manual"+which+"Status").textContent="";
+  input.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();chooseManualStation(which.toLowerCase());}};
+  $("manual"+which+"Btn").onclick=()=>chooseManualStation(which.toLowerCase());
+}
 $("newGameBtn").onclick=newGame;
 $("resumeBtn").onclick=resume;
 $("cancelSetupBtn").onclick=()=>show("homeView");
 $("drawStartBtn").onclick=()=>{
   setupStart=randomStation(); setupGoal=null;
   $("goalSlot").textContent="？"; $("goalLines").innerHTML="";
+  $("manualStartInput").value=$("manualGoalInput").value="";
+  $("manualStartStatus").textContent=$("manualGoalStatus").textContent="";
+  $("manualGoalInput").disabled=$("manualGoalBtn").disabled=true;
+  $("manualGoalInput").placeholder="出発駅を先に決定";
+  $("startLines").innerHTML="";
   $("confirmSetupBtn").disabled=true; $("drawStartBtn").disabled=true;
   slotAnimate($("startSlot"),setupStart,()=>{
-    $("drawStartBtn").disabled=false; $("drawGoalBtn").disabled=false;
-    $("startLines").innerHTML=lineChips(setupStart);
+    setSetupStart(setupStart);
   });
 };
 $("drawGoalBtn").onclick=()=>{
   setupGoal=randomGoalFrom(setupStart); $("drawGoalBtn").disabled=true;
+  $("manualGoalInput").value="";$("manualGoalStatus").textContent="";
+  $("goalLines").innerHTML="";$("confirmSetupBtn").disabled=true;
+  $("setupRoute").classList.add("hidden");
   slotAnimate($("goalSlot"),setupGoal,()=>{
-    $("drawGoalBtn").disabled=false; $("confirmSetupBtn").disabled=false;
-    $("goalLines").innerHTML=lineChips(setupGoal); updateSetupRoute();
+    setSetupGoal(setupGoal);
   });
 };
 $("confirmSetupBtn").onclick=confirmSetup;

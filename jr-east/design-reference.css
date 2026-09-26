@@ -332,6 +332,15 @@ body[data-view="setupView"] .reference-footer {display:none}
 #setupView .slot .chip {font-size:9px}
 #setupView .slot .btn {margin-top:20px;padding:12px 6px;min-height:47px;font-size:12px;border-radius:24px;white-space:nowrap}
 #setupView .slot .btn span {margin-left:3px}
+.station-picker {width:100%;margin-top:13px;padding-top:11px;border-top:1px solid #e0ece6;text-align:left}
+.station-picker label {display:block;margin-bottom:7px;color:#57736a;font-size:11px;font-weight:800}
+.station-picker-row {display:flex;gap:5px;min-width:0}
+.station-picker-row input {min-width:0;flex:1;width:0;border:1px solid #bfdacf;border-radius:9px;background:#fff;color:#24364b;padding:9px 7px;font:inherit;font-size:12px}
+.station-picker-row input:focus-visible,.station-picker-row button:focus-visible {outline:2px solid #168754;outline-offset:2px}
+.station-picker-row input:disabled {background:#edf3ef;color:#748d80}
+.station-picker-row button {flex:none;border:0;border-radius:9px;background:#17885a;color:white;padding:7px 10px;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.station-picker-row button:disabled {background:#d8eae0;color:#748d80;cursor:not-allowed}
+.station-picker small {display:block;min-height:1em;margin-top:4px;color:#b34b39;font-size:10px;line-height:1.4}
 .setup-direction {text-align:center;color:#348e63;font-size:27px;font-weight:900;position:relative;z-index:1}
 #setupView .message {margin:15px 0 0;text-align:center;color:#22563c;font-size:13px;line-height:1.6}
 .setup-actions {margin-top:30px}
