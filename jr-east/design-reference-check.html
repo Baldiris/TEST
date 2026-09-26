@@ -62,7 +62,23 @@ Object.defineProperty(window,'localStorage',{value:{
    $('drawGoalBtn').click();
    check($('setupRoute').classList.contains('hidden')&&$('confirmSetupBtn').disabled,'ゴール駅の再抽選では古い経路を隠す');
    await until(()=>$('confirmSetupBtn').disabled===false);
-   setupStart='横浜';setupGoal='川崎';confirmSetup();
+   newGame();
+   check($('stationOptions').options.length===539,'539駅を駅名候補に表示');
+   $('manualStartInput').value='存在しない駅';$('manualStartBtn').click();
+   check($('manualStartStatus').textContent.includes('候補')&&$('drawGoalBtn').disabled,'候補外の駅を拒否');
+   $('manualStartInput').value='横浜';$('manualStartBtn').click();
+   check($('startSlot').textContent==='横浜'&&!$('drawGoalBtn').disabled,'出発駅を手動で指定');
+   $('manualGoalInput').value='横浜';$('manualGoalBtn').click();
+   check($('confirmSetupBtn').disabled&&$('manualGoalStatus').textContent.includes('別の駅'),'同一駅をゴールにできない');
+   $('manualGoalInput').value='川崎';$('manualGoalBtn').click();
+   check($('goalSlot').textContent==='川崎'&&!$('confirmSetupBtn').disabled&&$('setupRoute').textContent.includes('横浜 → 川崎'),'ゴール駅を手動指定して経路を表示');
+   $('manualStartInput').value='東京';$('manualStartBtn').click();
+   check($('goalSlot').textContent==='？'&&$('confirmSetupBtn').disabled&&$('setupRoute').classList.contains('hidden'),'出発駅の変更でゴールと経路をリセット');
+   $('manualStartInput').value='横浜';$('manualStartBtn').click();
+   $('drawGoalBtn').click();await until(()=>$('confirmSetupBtn').disabled===false);
+   check($('goalSlot').textContent!=='？','手動出発駅からゴールを抽選');
+   $('manualGoalInput').value='川崎';$('manualGoalBtn').click();$('confirmSetupBtn').click();
+   check(state.start==='横浜'&&state.goal==='川崎'&&state.phase==='game','指定した経路でV0.3ゲームを開始');
    await until(()=>coreMapReady&&activeRegionId==='yokohama-kawasaki'&&!loadingRegionId);
    check(coreStationElement('横浜').classList.contains('game-current'),'現在地と地域図');
    $('rollBtn').click();await until(()=>state.dice!==null);
@@ -98,7 +114,7 @@ Object.defineProperty(window,'localStorage',{value:{
   const inline=code=>'<script>'+code.replace(/<\/script/gi,'<\\/script')+'<\/script>';
   frame.srcdoc=html.replace('<head>','<head><base href="'+new URL('./',location.href).href+'">')
    .replace('<script src="network-data.js"><\/script>',inline(setup+data))
-   .replace('<script src="design-engine.js"><\/script>',inline(engine))
+   .replace('<script src="design-engine.js?v=20260926-manual"><\/script>',inline(engine))
    .replace('<script src="design-reference.js"><\/script>',inline(adapter+checks));
  }catch(e){result.textContent='FAIL '+e.message;}
 }
